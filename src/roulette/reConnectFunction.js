@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const MongoID = mongoose.Types.ObjectId;
 const RouletteTables = mongoose.model('RouletteTables');
 
-const userReconnect = async (payload, socket) => {
+const userReconnectRoulette = async (payload, socket) => {
   try {
     //logger.info('User Reconnect Payload ', payload, '\n<==== New Connected Socket id ===>', socket.id, '\n Table Id =>', socket.tbid, '\n Socket Id', socket);
 
@@ -154,4 +154,4 @@ const updateScoketId = async (payload, table) => {
   }
 };
 
-module.exports = { userReconnect, updateRejoinStatus, updateScoketId };
+module.exports = { userReconnectRoulette, updateRejoinStatus, updateScoketId };

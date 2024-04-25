@@ -20,6 +20,8 @@ const { registerUser } = require('../helper/signups/signupValidation');
 const mainCtrl = require('./mainController');
 const { sendEvent, sendDirectEvent } = require('../helper/socketFunctions');
 const { userReconnect } = require('../SORAT/reConnectFunction');
+const { userReconnectRoulette } = require('../roulette/reConnectFunction');
+
 const { userReconnectSpinner } = require('../SpinerGame/reconnect');
 
 const { getBannerList } = require('./adminController');

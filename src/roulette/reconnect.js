@@ -12,7 +12,7 @@ const RouletteTables = mongoose.model('RouletteTables');
 const MongoID = mongoose.Types.ObjectId;
 
 module.exports.
-userReconnectSpinner = async (requestData, client) => {
+reconnect = async (requestData, client) => {
         try {
             if (requestData.playerId !== '' && requestData.playerId !== null && requestData.playerId !== undefined) {
                 let gwh = {
