@@ -44,19 +44,19 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
             delete client.JT
             return false;
         }
-        await this.findTable( client)
+        await this.findTable( client,requestData)
     } catch (error) {
         console.info("ROULETTE_GAME_JOIN_TABLE", error);
     }
 }
 
-module.exports.findTable = async (client) => {
+module.exports.findTable = async (client,requestData) => {
     logger.info("findTable  : ");
 
     let tableInfo = await this.getBetTable();
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
     console.log("tableInfo ",tableInfo)
-    await this.findEmptySeatAndUserSeat(tableInfo, client);
+    await this.findEmptySeatAndUserSeat(tableInfo, client,requestData);
 }
 
 module.exports.getBetTable = async () => {
@@ -110,7 +110,7 @@ module.exports.createTable = async () => {
     }
 }
 
-module.exports.findEmptySeatAndUserSeat = async (table, client) => {
+module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
     try {
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
@@ -236,6 +236,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client) => {
             tableid: tableInfo._id,
             gamePlayType: tableInfo.gamePlayType,
             tableAmount: tableInfo.tableAmount,
+            tableType: requestData.whichTable
         });
 
         if(userInfo.Iscom == undefined || userInfo.Iscom == 0)
@@ -252,8 +253,9 @@ module.exports.findEmptySeatAndUserSeat = async (table, client) => {
 
             let jobId = "LEAVE_SINGLE_USER:" + tableInfo._id;
             clearJob(jobId)
+            logger.info("WhichTable   ", requestData.whichTable);
             setTimeout(async ()=>{
-                await gameStartActions.gameTimerStart(tableInfo);
+                await gameStartActions.gameTimerStart(tableInfo,requestData.whichTable);
             },1000)
         }
         // else{

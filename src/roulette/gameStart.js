@@ -12,7 +12,7 @@ const RouletteTables = mongoose.model('RouletteTables');
 // const leaveTableActions = require("./leaveTable");
 const { v4: uuidv4 } = require('uuid');
 
-module.exports.gameTimerStart = async (tb) => {
+module.exports.gameTimerStart = async (tb,whichTable) => {
     try {
         logger.info("gameTimerStart tb : ", tb);
         if (tb.gameState != "" && tb.gameState != "WinnerDecalre") return false;
@@ -49,6 +49,14 @@ module.exports.gameTimerStart = async (tb) => {
         logger.info("gameTimerStart tabInfo :: ", tabInfo);
 
         let roundTime = 10;
+
+        if(whichTable == "blueTable")
+            roundTime = 10;
+        else
+            roundTime = 15;
+        
+            logger.info("TableName : ", whichTable, roundTime);
+
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime,history:tabInfo.history });
 
         let tbId = tabInfo._id;
@@ -131,7 +139,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             // }, { new: true });
 
             this.winnerSpinner(tabInfo,itemObject);
-        },6000);
+        },12000);
 
         //botLogic.PlayRobot(tabInfo,tabInfo.playerInfo,itemObject)
 

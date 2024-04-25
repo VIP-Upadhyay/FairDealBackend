@@ -1,0 +1,5088 @@
+[2024-04-25T12:49:41.377] [INFO] development - Socket connected ===>  cFGHWdvzmBtISTM-AAAA
+[2024-04-25T12:49:41.380] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:49:41 GMT+0530 (India Standard Time) : Data : {"eventName":"DONE","data":{},"flag":true,"msg":""}
+[2024-04-25T12:49:41.562] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:49:41.565] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:49:41 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:49:41.942] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:49:41.942] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:49:41.976] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:49:41.977] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:49:41.978] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:49:42.720] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:49:42 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-25T12:49:52.719] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:49:52 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-25T12:50:02.723] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:02 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-25T12:50:04.591] [INFO] development - Table Name =======>  blueTable
+[2024-04-25T12:50:04.623] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:50:04.654] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-25T12:50:04.655] [INFO] development - findTable  : 
+[2024-04-25T12:50:04.655] [INFO] development - getBetTable  : 
+[2024-04-25T12:50:04.655] [INFO] development - getBetTable wh :  {"activePlayer":{"$gte":1}}
+[2024-04-25T12:50:04.685] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ]
+}
+[2024-04-25T12:50:04.744] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042445b1c10c789aa0ad
+}
+[2024-04-25T12:50:04.747] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","_id":"662a042445b1c10c789aa0ad"}
+[2024-04-25T12:50:04.758] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042445b1c10c789aa0ad
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'cFGHWdvzmBtISTM-AAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 35366,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 378,
+        [Symbol(triggerId)]: 247
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'cFGHWdvzmBtISTM-AAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 31309,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Set] },
+    sids: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'cFGHWdvzmBtISTM-AAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'r3Qnpt9BVtlNLnhhrSK54w==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Thu Apr 25 2024 12:49:41 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714029581374,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-25T12:50:04.765] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-25T12:50:04.797] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:50:04.798] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:50:04.799] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662a042445b1c10c789aa0ad,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-25T12:50:04.840] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042445b1c10c789aa0ad
+}
+[2024-04-25T12:50:04.842] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662a042445b1c10c789aa0ad
+[2024-04-25T12:50:04.843] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:04 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-25T12:50:04.846] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:04 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"cFGHWdvzmBtISTM-AAAA","playerSocketId":"cFGHWdvzmBtISTM-AAAA","playerLostChips":0,"Iscom":0},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"utt":30,"fns":20,"tableid":"662a042445b1c10c789aa0ad","tableType":"blueTable"},"flag":true,"msg":""}
+[2024-04-25T12:50:04.847] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:04 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"cFGHWdvzmBtISTM-AAAA","playerSocketId":"cFGHWdvzmBtISTM-AAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-25T12:50:04.851] [INFO] development - WhichTable    blueTable
+[2024-04-25T12:50:05.852] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042445b1c10c789aa0ad
+}
+[2024-04-25T12:50:05.854] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a042445b1c10c789aa0ad,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:20:05.853Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: '20f4f142-ec9a-462c-8400-e5728addc558'
+  }
+}
+[2024-04-25T12:50:05.892] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z }
+}
+[2024-04-25T12:50:05.893] [INFO] development - TableName :  blueTable 10
+[2024-04-25T12:50:05.894] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:05 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":10,"history":[]},"flag":true,"msg":""}
+[2024-04-25T12:50:08.530] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:50:08.563] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z }
+}
+[2024-04-25T12:50:08.565] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:50:08.566] [INFO] development - leaveTable updateData :  {
+  _id: 662a042445b1c10c789aa0ad,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-25T12:50:08.601] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z }
+}
+[2024-04-25T12:50:08.602] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:08 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a042445b1c10c789aa0ad","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:50:08.602] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:08 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a042445b1c10c789aa0ad","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:50:08.603] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z }
+}
+[2024-04-25T12:50:08.605] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-25T12:50:08.660] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:50:08.661] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:08 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:50:08.993] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:50:08.994] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:50:09.025] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:50:09.025] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:50:09.026] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:50:10.641] [INFO] development - Table Name =======>  greenTable
+[2024-04-25T12:50:10.672] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:50:10.703] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-25T12:50:10.703] [INFO] development - findTable  : 
+[2024-04-25T12:50:10.703] [INFO] development - getBetTable  : 
+[2024-04-25T12:50:10.704] [INFO] development - getBetTable wh :  {"activePlayer":{"$gte":1}}
+[2024-04-25T12:50:10.736] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ]
+}
+[2024-04-25T12:50:10.775] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042a45b1c10c789aa0bb
+}
+[2024-04-25T12:50:10.776] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","_id":"662a042a45b1c10c789aa0bb"}
+[2024-04-25T12:50:10.785] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042a45b1c10c789aa0bb
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'cFGHWdvzmBtISTM-AAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 41415,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 693,
+        [Symbol(triggerId)]: 247
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'cFGHWdvzmBtISTM-AAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 31309,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Set] },
+    sids: Map(1) { 'cFGHWdvzmBtISTM-AAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'cFGHWdvzmBtISTM-AAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'r3Qnpt9BVtlNLnhhrSK54w==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Thu Apr 25 2024 12:49:41 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714029581374,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  seatIndex: 0,
+  tbid: 662a042445b1c10c789aa0ad,
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-25T12:50:10.788] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-25T12:50:10.820] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:50:10.821] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:50:10.821] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662a042a45b1c10c789aa0bb,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-25T12:50:10.863] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042a45b1c10c789aa0bb
+}
+[2024-04-25T12:50:10.866] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662a042a45b1c10c789aa0bb
+[2024-04-25T12:50:10.866] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:10 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-25T12:50:10.867] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:10 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"cFGHWdvzmBtISTM-AAAA","playerSocketId":"cFGHWdvzmBtISTM-AAAA","playerLostChips":0,"Iscom":0},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"utt":30,"fns":20,"tableid":"662a042a45b1c10c789aa0bb","tableType":"greenTable"},"flag":true,"msg":""}
+[2024-04-25T12:50:10.868] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:10 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"cFGHWdvzmBtISTM-AAAA","playerSocketId":"cFGHWdvzmBtISTM-AAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-25T12:50:10.868] [INFO] development - WhichTable    greenTable
+[2024-04-25T12:50:11.869] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a042a45b1c10c789aa0bb
+}
+[2024-04-25T12:50:11.871] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a042a45b1c10c789aa0bb,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:20:11.871Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce'
+  }
+}
+[2024-04-25T12:50:11.912] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z }
+}
+[2024-04-25T12:50:11.913] [INFO] development - TableName :  blueTable 10
+[2024-04-25T12:50:11.913] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:11 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":10,"history":[]},"flag":true,"msg":""}
+[2024-04-25T12:50:13.505] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:13 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-25T12:50:14.764] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:50:14.800] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'cFGHWdvzmBtISTM-AAAA',
+      playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z }
+}
+[2024-04-25T12:50:14.801] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'cFGHWdvzmBtISTM-AAAA',
+  playerSocketId: 'cFGHWdvzmBtISTM-AAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:50:14.802] [INFO] development - leaveTable updateData :  {
+  _id: 662a042a45b1c10c789aa0bb,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-25T12:50:14.838] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z }
+}
+[2024-04-25T12:50:14.838] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:14 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a042a45b1c10c789aa0bb","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:50:14.839] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:14 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a042a45b1c10c789aa0bb","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:50:14.840] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z }
+}
+[2024-04-25T12:50:14.840] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-25T12:50:14.887] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:50:14.890] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:14 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:50:15.227] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:50:15.228] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:50:15.258] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:50:15.258] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:50:15.258] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:50:16.160] [INFO] development - 
+<==== disconnect socket id ===> cFGHWdvzmBtISTM-AAAA 
+ Disconnect Table Id => 662a042a45b1c10c789aa0bb
+[2024-04-25T12:50:16.161] [INFO] development - schedule USER Start DISCONNECTED jobId typeof :  DISCONNECT65967296eae703374096d4dd string
+[2024-04-25T12:50:17.923] [INFO] development - RouletteGameStartTimer tbId :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z }
+}
+[2024-04-25T12:50:17.924] [INFO] development - RouletteGameStartTimer GAMELOGICCONFIG.SPIN :  Normal
+[2024-04-25T12:50:17.924] [INFO] development - RouletteGameStartTimer tb.totalbet :  ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"]
+[2024-04-25T12:50:17.924] [INFO] development - startSpinner UserInfo :  { _id: 662a042445b1c10c789aa0ad } {
+  '$set': {
+    gameState: 'StartSpinner',
+    itemObject: 10,
+    turnStartTimer: 2024-04-25T07:20:17.924Z
+  },
+  '$push': { history: { '$each': [Array], '$slice': -7 } }
+}
+[2024-04-25T12:50:17.956] [INFO] development - startSpinner tabInfo ::  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 10 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z },
+  turnStartTimer: 2024-04-25T07:20:17.924Z
+}
+[2024-04-25T12:50:17.957] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:17 GMT+0530 (India Standard Time) : Data : {"eventName":"START_ROULETTE","data":{"itemObject":10,"timelimit":6},"flag":true,"msg":""}
+[2024-04-25T12:50:23.946] [INFO] development - RouletteGameStartTimer tbId :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z }
+}
+[2024-04-25T12:50:23.947] [INFO] development - RouletteGameStartTimer GAMELOGICCONFIG.SPIN :  Normal
+[2024-04-25T12:50:23.948] [INFO] development - RouletteGameStartTimer tb.totalbet :  ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"]
+[2024-04-25T12:50:23.949] [INFO] development - startSpinner UserInfo :  { _id: 662a042a45b1c10c789aa0bb } {
+  '$set': {
+    gameState: 'StartSpinner',
+    itemObject: 21,
+    turnStartTimer: 2024-04-25T07:20:23.949Z
+  },
+  '$push': { history: { '$each': [Array], '$slice': -7 } }
+}
+[2024-04-25T12:50:23.988] [INFO] development - startSpinner tabInfo ::  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 21 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z },
+  turnStartTimer: 2024-04-25T07:20:23.949Z
+}
+[2024-04-25T12:50:23.990] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:23 GMT+0530 (India Standard Time) : Data : {"eventName":"START_ROULETTE","data":{"itemObject":21,"timelimit":6},"flag":true,"msg":""}
+[2024-04-25T12:50:29.958] [INFO] development - winnerSorat winner ::  --> 10 {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 10 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z },
+  turnStartTimer: 2024-04-25T07:20:17.924Z
+}
+[2024-04-25T12:50:29.960] [INFO] development - winnerSorat tbid :: 662a042445b1c10c789aa0ad
+[2024-04-25T12:50:30.011] [INFO] development - winnerSorat upWh updateData ::  { _id: '662a042445b1c10c789aa0ad' } { '$set': { isFinalWinner: true, gameState: 'WinnerDecalre' } }
+[2024-04-25T12:50:30.046] [INFO] development - winnerSorat tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 10 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z },
+  turnStartTimer: 2024-04-25T07:20:17.924Z
+}
+[2024-04-25T12:50:30.050] [INFO] development - getWinner playerInGame :: []
+[2024-04-25T12:50:30.050] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:30 GMT+0530 (India Standard Time) : Data : {"eventName":"ROULETTEWINNER","data":{"WinnerData":[],"itemObject":10},"flag":true,"msg":""}
+[2024-04-25T12:50:35.052] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 10 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '20f4f142-ec9a-462c-8400-e5728addc558',
+  _id: 662a042445b1c10c789aa0ad,
+  gameTimer: { GST: 2024-04-25T07:20:05.853Z },
+  turnStartTimer: 2024-04-25T07:20:17.924Z
+}
+[2024-04-25T12:50:35.054] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a042445b1c10c789aa0ad,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:20:35.054Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: '5065e990-caf1-4565-897e-5388aa8675b8'
+  }
+}
+[2024-04-25T12:50:35.087] [INFO] development - gameTimerStart tabInfo ::  null
+[2024-04-25T12:50:35.087] [INFO] development - TableName :  blueTable 10
+[2024-04-25T12:50:35.088] [ERROR] development - gameTimerStart.js error -> TypeError: Cannot read properties of null (reading '_id')
+    at module.exports.gameTimerStart (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:60:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async module.exports.winnerSpinner (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:344:9)
+[2024-04-25T12:50:35.991] [INFO] development - winnerSorat winner ::  --> 21 {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 21 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z },
+  turnStartTimer: 2024-04-25T07:20:23.949Z
+}
+[2024-04-25T12:50:35.993] [INFO] development - winnerSorat tbid :: 662a042a45b1c10c789aa0bb
+[2024-04-25T12:50:36.050] [INFO] development - winnerSorat upWh updateData ::  { _id: '662a042a45b1c10c789aa0bb' } { '$set': { isFinalWinner: true, gameState: 'WinnerDecalre' } }
+[2024-04-25T12:50:36.084] [INFO] development - winnerSorat tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 21 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z },
+  turnStartTimer: 2024-04-25T07:20:23.949Z
+}
+[2024-04-25T12:50:36.086] [INFO] development - getWinner playerInGame :: []
+[2024-04-25T12:50:36.086] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:50:36 GMT+0530 (India Standard Time) : Data : {"eventName":"ROULETTEWINNER","data":{"WinnerData":[],"itemObject":21},"flag":true,"msg":""}
+[2024-04-25T12:50:41.089] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 21 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'ec804300-5926-4b43-b9d4-883de8ceedce',
+  _id: 662a042a45b1c10c789aa0bb,
+  gameTimer: { GST: 2024-04-25T07:20:11.871Z },
+  turnStartTimer: 2024-04-25T07:20:23.949Z
+}
+[2024-04-25T12:50:41.090] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a042a45b1c10c789aa0bb,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:20:41.090Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'a6372c83-26ef-4254-ae10-a22882eb4514'
+  }
+}
+[2024-04-25T12:50:41.124] [INFO] development - gameTimerStart tabInfo ::  null
+[2024-04-25T12:50:41.124] [INFO] development - TableName :  blueTable 10
+[2024-04-25T12:50:41.125] [ERROR] development - gameTimerStart.js error -> TypeError: Cannot read properties of null (reading '_id')
+    at module.exports.gameTimerStart (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:60:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async module.exports.winnerSpinner (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:344:9)
+[2024-04-25T12:51:16.163] [INFO] development - after USER JOB CANCELLED scheduleJob:  true
+[2024-04-25T12:51:16.164] [INFO] development - disconnectTableHandle client.uid =>:  65967296eae703374096d4dd
+[2024-04-25T12:51:16.164] [INFO] development - disconnectTableHandle client.tbid =>:  662a042a45b1c10c789aa0bb
+[2024-04-25T12:51:16.192] [INFO] development - Find Table when user Disconnect => null
+[2024-04-25T12:52:53.700] [INFO] development - Server ID : => HTTPServer - Express server listening on port : 9999 date : Thu Apr 25 2024 12:52:53 GMT+0530 (India Standard Time)
+[2024-04-25T12:52:54.175] [INFO] development - Mongoose connection open
+[2024-04-25T12:53:01.647] [INFO] development - Socket connected ===>  gwFaJqHKthYhkXRZAAAA
+[2024-04-25T12:53:01.649] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:01 GMT+0530 (India Standard Time) : Data : {"eventName":"DONE","data":{},"flag":true,"msg":""}
+[2024-04-25T12:53:01.852] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:53:01.857] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:01 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:53:02.218] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:53:02.218] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:53:02.254] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:53:02.257] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:53:02.259] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:53:03.007] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:03 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-25T12:53:03.243] [INFO] development - Table Name =======>  blueTable
+[2024-04-25T12:53:03.277] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:53:03.308] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-25T12:53:03.308] [INFO] development - findTable  : 
+[2024-04-25T12:53:03.308] [INFO] development - getBetTable  : 
+[2024-04-25T12:53:03.308] [INFO] development - getBetTable wh :  {"activePlayer":{"$gte":1}}
+[2024-04-25T12:53:03.340] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ]
+}
+[2024-04-25T12:53:03.400] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04d7b731bf44e826d955
+}
+[2024-04-25T12:53:03.404] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","_id":"662a04d7b731bf44e826d955"}
+[2024-04-25T12:53:03.417] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04d7b731bf44e826d955
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'gwFaJqHKthYhkXRZAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 10901,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 286,
+        [Symbol(triggerId)]: 215
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'gwFaJqHKthYhkXRZAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1362,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Set] },
+    sids: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'gwFaJqHKthYhkXRZAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'P9ZlmVvZD9HpKlbqQmTNzA==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Thu Apr 25 2024 12:53:01 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714029781644,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-25T12:53:03.429] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-25T12:53:03.468] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:53:03.468] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:53:03.469] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662a04d7b731bf44e826d955,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-25T12:53:03.513] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04d7b731bf44e826d955
+}
+[2024-04-25T12:53:03.514] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662a04d7b731bf44e826d955
+[2024-04-25T12:53:03.515] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:03 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-25T12:53:03.516] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:03 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"gwFaJqHKthYhkXRZAAAA","playerSocketId":"gwFaJqHKthYhkXRZAAAA","playerLostChips":0,"Iscom":0},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"utt":30,"fns":20,"tableid":"662a04d7b731bf44e826d955","tableType":"blueTable"},"flag":true,"msg":""}
+[2024-04-25T12:53:03.516] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:03 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"gwFaJqHKthYhkXRZAAAA","playerSocketId":"gwFaJqHKthYhkXRZAAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-25T12:53:03.518] [INFO] development - WhichTable    blueTable
+[2024-04-25T12:53:04.520] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04d7b731bf44e826d955
+}
+[2024-04-25T12:53:04.521] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a04d7b731bf44e826d955,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:23:04.521Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765'
+  }
+}
+[2024-04-25T12:53:04.568] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z }
+}
+[2024-04-25T12:53:04.569] [INFO] development - TableName :  blueTable 10
+[2024-04-25T12:53:04.570] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:04 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":10,"history":[]},"flag":true,"msg":""}
+[2024-04-25T12:53:07.581] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:53:07.612] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z }
+}
+[2024-04-25T12:53:07.614] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:53:07.614] [INFO] development - leaveTable updateData :  {
+  _id: 662a04d7b731bf44e826d955,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-25T12:53:07.649] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z }
+}
+[2024-04-25T12:53:07.650] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:07 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a04d7b731bf44e826d955","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:53:07.652] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:07 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a04d7b731bf44e826d955","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:53:07.653] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z }
+}
+[2024-04-25T12:53:07.656] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-25T12:53:07.702] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:53:07.703] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:07 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:53:08.113] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:53:08.114] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:53:08.146] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:53:08.147] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:53:08.147] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:53:09.132] [INFO] development - Table Name =======>  greenTable
+[2024-04-25T12:53:09.160] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:53:09.194] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-25T12:53:09.194] [INFO] development - findTable  : 
+[2024-04-25T12:53:09.194] [INFO] development - getBetTable  : 
+[2024-04-25T12:53:09.195] [INFO] development - getBetTable wh :  {"activePlayer":{"$gte":1}}
+[2024-04-25T12:53:09.221] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ]
+}
+[2024-04-25T12:53:09.266] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04ddb731bf44e826d963
+}
+[2024-04-25T12:53:09.268] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","_id":"662a04ddb731bf44e826d963"}
+[2024-04-25T12:53:09.276] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04ddb731bf44e826d963
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'gwFaJqHKthYhkXRZAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 16792,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 643,
+        [Symbol(triggerId)]: 215
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'gwFaJqHKthYhkXRZAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1362,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Set] },
+    sids: Map(1) { 'gwFaJqHKthYhkXRZAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'gwFaJqHKthYhkXRZAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'P9ZlmVvZD9HpKlbqQmTNzA==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Thu Apr 25 2024 12:53:01 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714029781644,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  seatIndex: 0,
+  tbid: 662a04d7b731bf44e826d955,
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-25T12:53:09.284] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-25T12:53:09.321] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:53:09.321] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:53:09.322] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662a04ddb731bf44e826d963,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-25T12:53:09.364] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04ddb731bf44e826d963
+}
+[2024-04-25T12:53:09.368] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662a04ddb731bf44e826d963
+[2024-04-25T12:53:09.369] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:09 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-25T12:53:09.372] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:09 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"gwFaJqHKthYhkXRZAAAA","playerSocketId":"gwFaJqHKthYhkXRZAAAA","playerLostChips":0,"Iscom":0},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],"utt":30,"fns":20,"tableid":"662a04ddb731bf44e826d963","tableType":"greenTable"},"flag":true,"msg":""}
+[2024-04-25T12:53:09.373] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:09 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"gwFaJqHKthYhkXRZAAAA","playerSocketId":"gwFaJqHKthYhkXRZAAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-25T12:53:09.373] [INFO] development - WhichTable    greenTable
+[2024-04-25T12:53:10.375] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662a04ddb731bf44e826d963
+}
+[2024-04-25T12:53:10.377] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a04ddb731bf44e826d963,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:23:10.377Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'e8664276-5994-4579-9149-a958a594a748'
+  }
+}
+[2024-04-25T12:53:10.410] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z }
+}
+[2024-04-25T12:53:10.412] [INFO] development - TableName :  greenTable 15
+[2024-04-25T12:53:10.413] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:10 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":15,"history":[]},"flag":true,"msg":""}
+[2024-04-25T12:53:12.455] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-25T12:53:12.485] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'gwFaJqHKthYhkXRZAAAA',
+      playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z }
+}
+[2024-04-25T12:53:12.486] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'gwFaJqHKthYhkXRZAAAA',
+  playerSocketId: 'gwFaJqHKthYhkXRZAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-25T12:53:12.486] [INFO] development - leaveTable updateData :  {
+  _id: 662a04ddb731bf44e826d963,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-25T12:53:12.519] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z }
+}
+[2024-04-25T12:53:12.520] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:12 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a04ddb731bf44e826d963","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:53:12.521] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:12 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662a04ddb731bf44e826d963","seatIndex":0},"flag":true,"msg":""}
+[2024-04-25T12:53:12.522] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z }
+}
+[2024-04-25T12:53:12.522] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-25T12:53:12.579] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:115:29)
+[2024-04-25T12:53:12.580] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:12 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-25T12:53:12.998] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-25T12:53:12.998] [INFO] development - table not found ===--==-==-- >
+[2024-04-25T12:53:13.029] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-25T12:53:13.030] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-25T12:53:13.031] [ERROR] development - Reconnect.js Exception Reconnect  =>  ReferenceError: result is not defined
+    at module.exports.reconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reconnect.js:32:68)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async userReconnect (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\SORAT\reConnectFunction.js:72:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:176:25)
+[2024-04-25T12:53:13.553] [INFO] development - 
+<==== disconnect socket id ===> gwFaJqHKthYhkXRZAAAA 
+ Disconnect Table Id => 662a04ddb731bf44e826d963
+[2024-04-25T12:53:13.553] [INFO] development - schedule USER Start DISCONNECTED jobId typeof :  DISCONNECT65967296eae703374096d4dd string
+[2024-04-25T12:53:16.600] [INFO] development - RouletteGameStartTimer tbId :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z }
+}
+[2024-04-25T12:53:16.600] [INFO] development - RouletteGameStartTimer GAMELOGICCONFIG.SPIN :  Normal
+[2024-04-25T12:53:16.600] [INFO] development - RouletteGameStartTimer tb.totalbet :  ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"]
+[2024-04-25T12:53:16.601] [INFO] development - startSpinner UserInfo :  { _id: 662a04d7b731bf44e826d955 } {
+  '$set': {
+    gameState: 'StartSpinner',
+    itemObject: 15,
+    turnStartTimer: 2024-04-25T07:23:16.601Z
+  },
+  '$push': { history: { '$each': [Array], '$slice': -7 } }
+}
+[2024-04-25T12:53:16.632] [INFO] development - startSpinner tabInfo ::  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 15 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z },
+  turnStartTimer: 2024-04-25T07:23:16.601Z
+}
+[2024-04-25T12:53:16.632] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:16 GMT+0530 (India Standard Time) : Data : {"eventName":"START_ROULETTE","data":{"itemObject":15,"timelimit":6},"flag":true,"msg":""}
+[2024-04-25T12:53:27.441] [INFO] development - RouletteGameStartTimer tbId :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z }
+}
+[2024-04-25T12:53:27.442] [INFO] development - RouletteGameStartTimer GAMELOGICCONFIG.SPIN :  Normal
+[2024-04-25T12:53:27.442] [INFO] development - RouletteGameStartTimer tb.totalbet :  ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"]
+[2024-04-25T12:53:27.443] [INFO] development - startSpinner UserInfo :  { _id: 662a04ddb731bf44e826d963 } {
+  '$set': {
+    gameState: 'StartSpinner',
+    itemObject: 35,
+    turnStartTimer: 2024-04-25T07:23:27.443Z
+  },
+  '$push': { history: { '$each': [Array], '$slice': -7 } }
+}
+[2024-04-25T12:53:27.475] [INFO] development - startSpinner tabInfo ::  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 35 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z },
+  turnStartTimer: 2024-04-25T07:23:27.443Z
+}
+[2024-04-25T12:53:27.475] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:27 GMT+0530 (India Standard Time) : Data : {"eventName":"START_ROULETTE","data":{"itemObject":35,"timelimit":6},"flag":true,"msg":""}
+[2024-04-25T12:53:28.633] [INFO] development - winnerSorat winner ::  --> 15 {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 15 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z },
+  turnStartTimer: 2024-04-25T07:23:16.601Z
+}
+[2024-04-25T12:53:28.633] [INFO] development - winnerSorat tbid :: 662a04d7b731bf44e826d955
+[2024-04-25T12:53:28.663] [INFO] development - winnerSorat upWh updateData ::  { _id: '662a04d7b731bf44e826d955' } { '$set': { isFinalWinner: true, gameState: 'WinnerDecalre' } }
+[2024-04-25T12:53:28.691] [INFO] development - winnerSorat tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 15 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z },
+  turnStartTimer: 2024-04-25T07:23:16.601Z
+}
+[2024-04-25T12:53:28.693] [INFO] development - getWinner playerInGame :: []
+[2024-04-25T12:53:28.693] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:28 GMT+0530 (India Standard Time) : Data : {"eventName":"ROULETTEWINNER","data":{"WinnerData":[],"itemObject":15},"flag":true,"msg":""}
+[2024-04-25T12:53:33.693] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 15 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'c41a5421-1409-4f41-94cc-b1d8f85ba765',
+  _id: 662a04d7b731bf44e826d955,
+  gameTimer: { GST: 2024-04-25T07:23:04.521Z },
+  turnStartTimer: 2024-04-25T07:23:16.601Z
+}
+[2024-04-25T12:53:33.695] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a04d7b731bf44e826d955,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:23:33.695Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: '75fe1dec-1b05-44bf-9be1-6635ae023e34'
+  }
+}
+[2024-04-25T12:53:33.724] [INFO] development - gameTimerStart tabInfo ::  null
+[2024-04-25T12:53:33.725] [INFO] development - TableName :  undefined 15
+[2024-04-25T12:53:33.725] [ERROR] development - gameTimerStart.js error -> TypeError: Cannot read properties of null (reading '_id')
+    at module.exports.gameTimerStart (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:60:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async module.exports.winnerSpinner (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:344:9)
+[2024-04-25T12:53:39.478] [INFO] development - winnerSorat winner ::  --> 35 {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'StartSpinner',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [ 35 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z },
+  turnStartTimer: 2024-04-25T07:23:27.443Z
+}
+[2024-04-25T12:53:39.479] [INFO] development - winnerSorat tbid :: 662a04ddb731bf44e826d963
+[2024-04-25T12:53:39.514] [INFO] development - winnerSorat upWh updateData ::  { _id: '662a04ddb731bf44e826d963' } { '$set': { isFinalWinner: true, gameState: 'WinnerDecalre' } }
+[2024-04-25T12:53:39.545] [INFO] development - winnerSorat tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 35 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z },
+  turnStartTimer: 2024-04-25T07:23:27.443Z
+}
+[2024-04-25T12:53:39.547] [INFO] development - getWinner playerInGame :: []
+[2024-04-25T12:53:39.547] [INFO] development - 
+Response Time :Thu Apr 25 2024 12:53:39 GMT+0530 (India Standard Time) : Data : {"eventName":"ROULETTEWINNER","data":{"WinnerData":[],"itemObject":35},"flag":true,"msg":""}
+[2024-04-25T12:53:44.547] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+  ],
+  gameState: 'WinnerDecalre',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: true,
+  history: [ 35 ],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'e8664276-5994-4579-9149-a958a594a748',
+  _id: 662a04ddb731bf44e826d963,
+  gameTimer: { GST: 2024-04-25T07:23:10.377Z },
+  turnStartTimer: 2024-04-25T07:23:27.443Z
+}
+[2024-04-25T12:53:44.549] [INFO] development - gameTimerStart UserInfo :  {
+  _id: 662a04ddb731bf44e826d963,
+  'playerInfo._id': { '$exists': true }
+} {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-25T07:23:44.549Z,
+    totalbet: 0,
+    'playerInfo.$.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: '68cebcf9-b9ed-4dbf-b54f-bc61a65b4eb2'
+  }
+}
+[2024-04-25T12:53:44.577] [INFO] development - gameTimerStart tabInfo ::  null
+[2024-04-25T12:53:44.578] [INFO] development - TableName :  undefined 15
+[2024-04-25T12:53:44.578] [ERROR] development - gameTimerStart.js error -> TypeError: Cannot read properties of null (reading '_id')
+    at module.exports.gameTimerStart (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:60:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async module.exports.winnerSpinner (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\roulette\gameStart.js:344:9)

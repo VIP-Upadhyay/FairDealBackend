@@ -256,9 +256,9 @@ myIo.init = function (server) {
 
                      // SPinner GAME Event 
                      case CONST.ROULETTE_JOIN_TABLE: {
-                        socket.uid = payload.data.playerId;
+                        socket.uid = payload.data.playerId; 
                         socket.sck = socket.id;
-
+                        logger.info("Table Name =======> ", payload.data.whichTable);
                         await gamePlayActionsRoulette.ROULETTE_GAME_JOIN_TABLE(payload.data, socket);
                         break;
                     }
