@@ -53,13 +53,13 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
 module.exports.findTable = async (client,requestData) => {
     logger.info("findTable  : ");
 
-    let tableInfo = await this.getBetTable();
+    let tableInfo = await this.getBetTable(requestData);
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
     console.log("tableInfo ",tableInfo)
     await this.findEmptySeatAndUserSeat(tableInfo, client,requestData);
 }
 
-module.exports.getBetTable = async () => {
+module.exports.getBetTable = async (requestData) => {
     logger.info("getBetTable  : ");
     // let wh = {
     //     activePlayer: { $gte: 1}
@@ -70,16 +70,16 @@ module.exports.getBetTable = async () => {
     // if (tableInfo.length > 0) {
     //     return tableInfo[0];
     // }
-    let table = await this.createTable({});
+    let table = await this.createTable(requestData);
     return table;
 }
 
-module.exports.createTable = async () => {
+module.exports.createTable = async (requestData) => {
     try {
         let insertobj = {
             gameId: "",
             activePlayer: 0,
-            playerInfo: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+            playerInfo: [{}],
             gameState: "",
             history:[],
             betamount:[5,10,50,100,500,1000],
@@ -95,7 +95,8 @@ module.exports.createTable = async () => {
                 "1st12","2nd12","3rd12",
                 "1to18","19to36","even","odd",
                 "red","black"
-            ]
+            ],
+            whichTable:requestData.whichTable
         };
         logger.info("createTable insertobj : ", insertobj);
 
@@ -236,7 +237,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
             tableid: tableInfo._id,
             gamePlayType: tableInfo.gamePlayType,
             tableAmount: tableInfo.tableAmount,
-            tableType: requestData.whichTable
+            tableType: tableInfo.whichTable
         });
 
         if(userInfo.Iscom == undefined || userInfo.Iscom == 0)
@@ -254,7 +255,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
             let jobId = "LEAVE_SINGLE_USER:" + tableInfo._id;
             clearJob(jobId)
             setTimeout(async ()=>{
-                await gameStartActions.gameTimerStart(tableInfo,requestData.whichTable);
+                await gameStartActions.gameTimerStart(tableInfo);
             },1000)
         }
         // else{

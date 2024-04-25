@@ -39,7 +39,7 @@ reconnect = async (requestData, client) => {
 
                 //     };
 
-                //     sendDirectEvent(client.id.toString(), CONST.RECONNECT, response);
+                //     sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, response);
                 //     return false;
                 // }
 
@@ -60,7 +60,7 @@ reconnect = async (requestData, client) => {
                         sceneName: CONST.DASHBOARD,
                     };
 
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, response);
+                    sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, response);
                     return false;
                 }
 
@@ -85,7 +85,7 @@ reconnect = async (requestData, client) => {
                     // let diff = Gtime - time;
 
                     let currentDateTime = new Date();
-                    let turnTime = new Date(tabInfo.gameTimer.GST);
+                    let turnTime = new Date(tabInfo.turnStartTimer);
 
                     let diff = (currentDateTime - turnTime);
 
@@ -96,10 +96,10 @@ reconnect = async (requestData, client) => {
                     const responseRS = {
                         ...response,
                         currentTurnUserSeatIndex: tabInfo.turnSeatIndex,
-                        currentTurnTimer: (22 - (diff/1000)),
+                        currentTurnTimer: (12 - (diff/1000)),
                     };
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRS);
-                } else if (tabInfo.gameState === "SpinnerGameStartTimer") {
+                    sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, responseRS);
+                } else if (tabInfo.gameState === "RouletteGameStartTimer") { //RouletteGameStartTimer
                     // let currentDateTime = new Date();
                     // let time = currentDateTime.getSeconds();
                     // let turnTime = new Date(tabInfo.gameTimer.GST);
@@ -111,7 +111,7 @@ reconnect = async (requestData, client) => {
                     //     timer: diff,
                     // };
 
-                    // sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRST);
+                    // sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, responseRST);
 
                     let currentDateTime = new Date();
                     let turnTime = new Date(tabInfo.gameTimer.GST);
@@ -122,12 +122,20 @@ reconnect = async (requestData, client) => {
                     console.log("currentDateTime ",currentDateTime)
                     console.log("turnTime ",turnTime)
 
+                    let roundTime = CONST.BLUETABLETIMER;
+
+                    if(tabInfo.whichTable == "blueTable")
+                        roundTime = CONST.BLUETABLETIMER;
+                    else
+                        roundTime = CONST.GREENTABLETIMER;;
+
+
                     const responseRST = {
                         ...response,
-                        timer: (322-(diff/1000)),
+                        timer: (roundTime-(diff/1000)),
                     };
 
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRST);
+                    sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, responseRST);
                     
                 } else if (tabInfo.gameState === "WinnerDecalre") {
                     // const scoreBoard = tabInfo.playersScoreBoard;
@@ -145,9 +153,9 @@ reconnect = async (requestData, client) => {
                         // GSB: responseRSB,
                     };
 
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRE);
+                    sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, responseRE);
                 } else {
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, response);
+                    sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, response);
                 }
                 return;
             } else {
@@ -155,7 +163,7 @@ reconnect = async (requestData, client) => {
                     login: false,
                     sceneName: CONST.DASHBOARD,
                 };
-                sendDirectEvent(client.id, CONST.RECONNECT, response, {
+                sendDirectEvent(client.id, CONST.RECONNECTROULETTE, response, {
                     flag: false,
                     msg: 'Player Id not found!',
                 });

@@ -31,7 +31,7 @@ module.exports.actionSpin = async (requestData, client) => {
 
         const wh = {
             _id: MongoID(client.tbid.toString()),
-            //status:"SpinnerGameStartTimer"
+            //status:"RouletteGameStartTimer"
         }
         const project = {
 

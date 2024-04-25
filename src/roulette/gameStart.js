@@ -12,21 +12,20 @@ const RouletteTables = mongoose.model('RouletteTables');
 // const leaveTableActions = require("./leaveTable");
 const { v4: uuidv4 } = require('uuid');
 
-module.exports.gameTimerStart = async (tb,whichTable) => {
+module.exports.gameTimerStart = async (tb) => {
     try {
         logger.info("gameTimerStart tb : ", tb);
         if (tb.gameState != "" && tb.gameState != "WinnerDecalre") return false;
 
         let wh = {
-            _id:MongoID(tb._id),
-            "playerInfo._id": {$exists:true}
+            _id:MongoID(tb._id)
         }
         let update = {
             $set: {
                 gameState: "RouletteGameStartTimer",
                 "gameTimer.GST": new Date(),
                 "totalbet":0,
-                "playerInfo.$.selectObj":[
+                "playerInfo.0.selectObj":[
                     0,0,0,0,0,
                     0,0,0,0,0,
                     0,0,0,0,0,
@@ -48,14 +47,13 @@ module.exports.gameTimerStart = async (tb,whichTable) => {
         const tabInfo = await RouletteTables.findOneAndUpdate(wh, update, { new: true });
         logger.info("gameTimerStart tabInfo :: ", tabInfo);
 
-        let roundTime = 10;
+        let roundTime = CONST.BLUETABLETIMER;
 
-        if(whichTable == "blueTable")
-            roundTime = 10;
+        if(tabInfo.whichTable == "blueTable")
+            roundTime = CONST.BLUETABLETIMER;
         else
-            roundTime = 15;
+            roundTime = CONST.GREENTABLETIMER;
         
-            logger.info("TableName : ", whichTable, roundTime);
 
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime,history:tabInfo.history });
 
