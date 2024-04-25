@@ -94,7 +94,6 @@ const CONST = {
   LEAVETABLESPINNER: "LEAVETABLESPINNER",
   ClearBet: "ClearBet",
   DoubleBet: "DoubleBet",
-  RECONNECTSPINNER: "RECONNECTSPINNER",
   LEAVETABLESPINNER: "LEAVETABLESPINNER",
   //===================================================
 
@@ -108,6 +107,8 @@ const CONST = {
   ClearBet:"ClearBet",
   DoubleBet:"DoubleBet",
   LEAVETABLEROULETTE:"LEAVETABLEROULETTE",
+  RECONNECTROULETTE: "RECONNECTROULETTE",
+
 
 
   USER_JOIN_IN_TABLE: "UJIT",

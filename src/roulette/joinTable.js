@@ -61,15 +61,15 @@ module.exports.findTable = async (client,requestData) => {
 
 module.exports.getBetTable = async () => {
     logger.info("getBetTable  : ");
-    let wh = {
-        activePlayer: { $gte: 1}
-    }
-    logger.info("getBetTable wh : ", JSON.stringify(wh));
-    let tableInfo = await RouletteTables.find(wh, {}).sort({ activePlayer: 1 }).lean();
+    // let wh = {
+    //     activePlayer: { $gte: 1}
+    // }
+    // logger.info("getBetTable wh : ", JSON.stringify(wh));
+    // let tableInfo = await RouletteTables.find(wh, {}).sort({ activePlayer: 1 }).lean();
 
-    if (tableInfo.length > 0) {
-        return tableInfo[0];
-    }
+    // if (tableInfo.length > 0) {
+    //     return tableInfo[0];
+    // }
     let table = await this.createTable({});
     return table;
 }

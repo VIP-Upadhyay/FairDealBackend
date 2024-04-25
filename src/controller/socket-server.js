@@ -256,7 +256,7 @@ myIo.init = function (server) {
                     //============================================================
 
 
-                     // SPinner GAME Event 
+                     // ROULETTE GAME Event 
                      case CONST.ROULETTE_JOIN_TABLE: {
                         socket.uid = payload.data.playerId; 
                         socket.sck = socket.id;
@@ -287,8 +287,8 @@ myIo.init = function (server) {
                         break;
                     }
 
-                    case CONST.RECONNECTSPINNER: {
-                        await userReconnectSpinner(payload.data, socket);
+                    case CONST.RECONNECTROULETTE: {
+                        await userReconnectRoulette(payload.data, socket);
                         break;
                     }
                     

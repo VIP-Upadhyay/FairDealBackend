@@ -29,24 +29,25 @@ reconnect = async (requestData, client) => {
                     ...newData,
                 };
                 logger.info('Reconnect Final Data => ', finaldata);
-                let responseResult = await filterBeforeSendSPEvent(result);
+                // let responseResult = await filterBeforeSendSPEvent(result);
 
-                if (requestData.tableId == '') {
-                    const response = {
-                        login: true,
-                        ...responseResult,
-                        sceneName: CONST.DASHBOARD,
+                // if (requestData.tableId == '') {
+                //     const response = {
+                //         login: true,
+                //         ...responseResult,
+                //         sceneName: CONST.DASHBOARD,
 
-                    };
+                //     };
 
-                    sendDirectEvent(client.id.toString(), CONST.RECONNECT, response);
-                    return false;
-                }
+                //     sendDirectEvent(client.id.toString(), CONST.RECONNECT, response);
+                //     return false;
+                // }
 
 
                 //when player in table
                 const wh = {
                     _id: MongoID(client.tbid),
+                    'playerInfo._id': MongoID(requestData.playerId),
                 };
 
                 const project = {};
@@ -75,32 +76,59 @@ reconnect = async (requestData, client) => {
                     sceneName: CONST.GAMEPLAY,
                 };
 
-                if (tabInfo.gameState === "SpinnerGameStartTimer") {
-                    let currentDateTime = new Date();
-                    let time = currentDateTime.getSeconds();
+                if (tabInfo.gameState === "StartSpinner") {
+                    // let currentDateTime = new Date();
+                    // let time = currentDateTime.getSeconds();
 
-                    let turnTime = new Date(tabInfo.turnStartTimer);
-                    let Gtime = turnTime.getSeconds();
-                    let diff = Gtime - time;
+                    // let turnTime = new Date(tabInfo.turnStartTimer);
+                    // let Gtime = turnTime.getSeconds();
+                    // let diff = Gtime - time;
+
+                    let currentDateTime = new Date();
+                    let turnTime = new Date(tabInfo.gameTimer.GST);
+
+                    let diff = (currentDateTime - turnTime);
+
+                    console.log("diff ",diff)
+                    console.log("currentDateTime ",currentDateTime)
+                    console.log("turnTime ",turnTime)
 
                     const responseRS = {
                         ...response,
-                        currentTurnTimer: diff,
+                        currentTurnUserSeatIndex: tabInfo.turnSeatIndex,
+                        currentTurnTimer: (22 - (diff/1000)),
                     };
                     sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRS);
                 } else if (tabInfo.gameState === "SpinnerGameStartTimer") {
+                    // let currentDateTime = new Date();
+                    // let time = currentDateTime.getSeconds();
+                    // let turnTime = new Date(tabInfo.gameTimer.GST);
+                    // let Gtime = turnTime.getSeconds();
+                    // let diff = Gtime - time;
+
+                    // const responseRST = {
+                    //     ...response,
+                    //     timer: diff,
+                    // };
+
+                    // sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRST);
+
                     let currentDateTime = new Date();
-                    let time = currentDateTime.getSeconds();
                     let turnTime = new Date(tabInfo.gameTimer.GST);
-                    let Gtime = turnTime.getSeconds();
-                    let diff = Gtime - time;
+
+                    let diff = (currentDateTime - turnTime);
+
+                    console.log("diff ",diff)
+                    console.log("currentDateTime ",currentDateTime)
+                    console.log("turnTime ",turnTime)
 
                     const responseRST = {
                         ...response,
-                        timer: diff,
+                        timer: (322-(diff/1000)),
                     };
 
                     sendDirectEvent(client.id.toString(), CONST.RECONNECT, responseRST);
+                    
                 } else if (tabInfo.gameState === "WinnerDecalre") {
                     // const scoreBoard = tabInfo.playersScoreBoard;
                     // let winnerViewResponse = winnerViewResponseFilter(scoreBoard);
