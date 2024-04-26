@@ -323,7 +323,7 @@ module.exports.HISTORY = async (requestData, client) => {
 
     try {
 
-        const tableHistory = await RouletteUserHistory.find({ userId: MongoID(requestData.playerId) }).sort({ createdAt: -1 });
+        const tableHistory = await RouletteUserHistory.find({ userId: requestData.playerId }).sort({ createdAt: -1 });
 
         commandAcions.sendEvent(client, CONST.HISTORY, { tableHistory: tableHistory }, false, "");
 

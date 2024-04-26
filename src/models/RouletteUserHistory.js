@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GameUser = mongoose.model("users");
 
 const collectionName = 'RouletteUserHistory';
 
 const RouletteUserSchema = new Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: GameUser },
+    userId: { type: String },
     ballposition:{ type: Number},
     play:{ type: Number},
     won:{ type: Number},

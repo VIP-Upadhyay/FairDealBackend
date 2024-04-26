@@ -332,7 +332,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) =>{
 
 
         let insertobj = {
-            userId: tbInfo.playerInfo[0]._id,
+            userId: tbInfo.playerInfo[0]._id.toString(),
             ballposition:itemIndex,
             play:tbInfo.playerInfo[0].totalbet,
             won:TotalWinAmount,
