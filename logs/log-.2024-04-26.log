@@ -6027,3 +6027,7 @@ Response Time :Fri Apr 26 2024 16:04:05 GMT+0530 (India Standard Time) : Data : 
 Response Time :Fri Apr 26 2024 16:04:06 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
 [2024-04-26T16:04:16.622] [INFO] development - 
 Response Time :Fri Apr 26 2024 16:04:16 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-26T16:06:36.087] [INFO] development - Server ID : => HTTPServer - Express server listening on port : 9999 date : Fri Apr 26 2024 16:06:36 GMT+0530 (India Standard Time)
+[2024-04-26T16:06:36.387] [INFO] development - Mongoose connection open
+[2024-04-26T16:06:50.690] [INFO] development - Server ID : => HTTPServer - Express server listening on port : 9999 date : Fri Apr 26 2024 16:06:50 GMT+0530 (India Standard Time)
+[2024-04-26T16:06:51.041] [INFO] development - Mongoose connection open
