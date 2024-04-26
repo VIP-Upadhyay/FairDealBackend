@@ -126,9 +126,9 @@ reconnect = async (requestData, client) => {
                     let roundTime = CONST.BLUETABLETIMER;
 
                     if(tabInfo.whichTable == "blueTable")
-                        roundTime = CONST.BLUETABLETIMER;
+                        roundTime = CONST.BLUETABLETIMER+2;
                     else
-                        roundTime = CONST.GREENTABLETIMER;;
+                        roundTime = CONST.GREENTABLETIMER+2;
 
 
                     const responseRST = {
