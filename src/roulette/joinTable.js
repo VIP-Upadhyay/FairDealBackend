@@ -51,7 +51,7 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
 }
 
 module.exports.findTable = async (client,requestData) => {
-    logger.info("findTable  : ");
+    logger.info("findTable  : ",requestData);
 
     let tableInfo = await this.getBetTable(requestData);
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
@@ -60,7 +60,7 @@ module.exports.findTable = async (client,requestData) => {
 }
 
 module.exports.getBetTable = async (requestData) => {
-    logger.info("getBetTable  : ");
+    logger.info("getBetTable  : ",requestData);
     // let wh = {
     //     activePlayer: { $gte: 1}
     // }
@@ -98,6 +98,7 @@ module.exports.createTable = async (requestData) => {
             ],
             whichTable:requestData.whichTable != undefined ? requestData.whichTable : "blueTable"
         };
+        console.log("requestData ",requestData)
         logger.info("createTable insertobj : ", insertobj);
 
         let insertInfo = await RouletteTables.create(insertobj);
@@ -239,7 +240,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
             tableAmount: tableInfo.tableAmount,
             tableType: tableInfo.whichTable
         });
-
+        console.log("tableType: tableInfo.whichTable ",tableInfo.whichTable)
         if(userInfo.Iscom == undefined || userInfo.Iscom == 0)
         client.join(tableInfo._id.toString());
 

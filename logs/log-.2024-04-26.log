@@ -1,0 +1,3574 @@
+[2024-04-26T12:33:08.925] [INFO] development - after USER JOB CANCELLED scheduleJob:  true
+[2024-04-26T12:33:08.926] [INFO] development - disconnectTableHandle client.uid =>:  65967296eae703374096d4dd
+[2024-04-26T12:33:08.926] [INFO] development - disconnectTableHandle client.tbid =>:  662b516a316e341a709aa68d
+[2024-04-26T12:33:08.949] [INFO] development - Find Table when user Disconnect => null
+[2024-04-26T12:33:18.074] [INFO] development - Server ID : => HTTPServer - Express server listening on port : 9999 date : Fri Apr 26 2024 12:33:18 GMT+0530 (India Standard Time)
+[2024-04-26T12:33:18.397] [INFO] development - Mongoose connection open
+[2024-04-26T12:33:22.608] [INFO] development - Socket connected ===>  JlVTfEbCrLg75SmQAAAA
+[2024-04-26T12:33:22.609] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:22 GMT+0530 (India Standard Time) : Data : {"eventName":"DONE","data":{},"flag":true,"msg":""}
+[2024-04-26T12:33:22.686] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:117:29)
+[2024-04-26T12:33:22.690] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:22 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-26T12:33:23.028] [INFO] development - User Reconnect Payload  {
+  tableId: '662b516a316e341a709aa68d',
+  playerId: '65967296eae703374096d4dd'
+} 
+<==== New Connected Socket id ===> JlVTfEbCrLg75SmQAAAA 
+ Table Id => undefined 
+ Socket Id <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'JlVTfEbCrLg75SmQAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 6110,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 252,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'JlVTfEbCrLg75SmQAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1157,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Set] },
+    sids: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'JlVTfEbCrLg75SmQAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'LHiCM18elExw1F4Y8zkOiA==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:33:22 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115002607,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:33:23.060] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-26T12:33:23.060] [INFO] development - table not found ===--==-==-- >
+[2024-04-26T12:33:23.061] [INFO] development - 
+ Update SocketId Payload => { playerId: '65967296eae703374096d4dd', sck: 'JlVTfEbCrLg75SmQAAAA' }
+[2024-04-26T12:33:23.061] [INFO] development -  Table not found
+[2024-04-26T12:33:23.085] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:33:23.088] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-26T12:33:23.113] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:23 GMT+0530 (India Standard Time) : Data : {"eventName":"RECONNECTROULETTE","data":{"login":true,"userInfo":{"_id":"65967296eae703374096d4dd","counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9"},"sceneName":"DASHBOARD"},"flag":true,"msg":""}
+[2024-04-26T12:33:23.821] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:23 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-26T12:33:25.776] [INFO] development - Table Name =======>  blueTable
+[2024-04-26T12:33:25.804] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:33:25.828] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-26T12:33:25.829] [INFO] development - findTable  :  { playerId: '65967296eae703374096d4dd', whichTable: 'blueTable' }
+[2024-04-26T12:33:25.829] [INFO] development - getBetTable  :  { playerId: '65967296eae703374096d4dd', whichTable: 'blueTable' }
+[2024-04-26T12:33:25.830] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  whichTable: 'blueTable'
+}
+[2024-04-26T12:33:25.883] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662b51bd63be863f002f1c5a
+}
+[2024-04-26T12:33:25.884] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","_id":"662b51bd63be863f002f1c5a"}
+[2024-04-26T12:33:25.892] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662b51bd63be863f002f1c5a
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'JlVTfEbCrLg75SmQAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 8856,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 303,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'JlVTfEbCrLg75SmQAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1157,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(2) {
+      'JlVTfEbCrLg75SmQAAAA' => [Set],
+      '662b516a316e341a709aa68d' => [Set]
+    },
+    sids: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'JlVTfEbCrLg75SmQAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'LHiCM18elExw1F4Y8zkOiA==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:33:22 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115002607,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  tbid: '662b516a316e341a709aa68d',
+  sck: 'JlVTfEbCrLg75SmQAAAA',
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:33:25.893] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-26T12:33:25.917] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-26T12:33:25.918] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'JlVTfEbCrLg75SmQAAAA',
+  playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-26T12:33:25.919] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662b51bd63be863f002f1c5a,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'JlVTfEbCrLg75SmQAAAA',
+      playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-26T12:33:25.961] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'JlVTfEbCrLg75SmQAAAA',
+      playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662b51bd63be863f002f1c5a
+}
+[2024-04-26T12:33:25.963] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662b51bd63be863f002f1c5a
+[2024-04-26T12:33:25.964] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:25 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-26T12:33:25.966] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:25 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"JlVTfEbCrLg75SmQAAAA","playerSocketId":"JlVTfEbCrLg75SmQAAAA","playerLostChips":0,"Iscom":0}],"utt":30,"fns":20,"tableid":"662b51bd63be863f002f1c5a"},"flag":true,"msg":""}
+[2024-04-26T12:33:25.968] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:25 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"JlVTfEbCrLg75SmQAAAA","playerSocketId":"JlVTfEbCrLg75SmQAAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-26T12:33:26.970] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'JlVTfEbCrLg75SmQAAAA',
+      playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  _id: 662b51bd63be863f002f1c5a
+}
+[2024-04-26T12:33:26.972] [INFO] development - gameTimerStart UserInfo :  { _id: 662b51bd63be863f002f1c5a } {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-26T07:03:26.971Z,
+    totalbet: 0,
+    'playerInfo.0.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'cc42c3c5-9342-4809-94f8-2bbef4db52ac'
+  }
+}
+[2024-04-26T12:33:27.001] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'JlVTfEbCrLg75SmQAAAA',
+      playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'cc42c3c5-9342-4809-94f8-2bbef4db52ac',
+  _id: 662b51bd63be863f002f1c5a,
+  gameTimer: { GST: 2024-04-26T07:03:26.971Z }
+}
+[2024-04-26T12:33:27.003] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:27 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":15,"history":[]},"flag":true,"msg":""}
+[2024-04-26T12:33:31.036] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-26T12:33:31.065] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'JlVTfEbCrLg75SmQAAAA',
+      playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'cc42c3c5-9342-4809-94f8-2bbef4db52ac',
+  _id: 662b51bd63be863f002f1c5a,
+  gameTimer: { GST: 2024-04-26T07:03:26.971Z }
+}
+[2024-04-26T12:33:31.066] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'JlVTfEbCrLg75SmQAAAA',
+  playerSocketId: 'JlVTfEbCrLg75SmQAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-26T12:33:31.066] [INFO] development - leaveTable updateData :  {
+  _id: 662b51bd63be863f002f1c5a,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-26T12:33:31.099] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'cc42c3c5-9342-4809-94f8-2bbef4db52ac',
+  _id: 662b51bd63be863f002f1c5a,
+  gameTimer: { GST: 2024-04-26T07:03:26.971Z }
+}
+[2024-04-26T12:33:31.100] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:31 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662b51bd63be863f002f1c5a","seatIndex":0},"flag":true,"msg":""}
+[2024-04-26T12:33:31.101] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:31 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662b51bd63be863f002f1c5a","seatIndex":0},"flag":true,"msg":""}
+[2024-04-26T12:33:31.102] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'cc42c3c5-9342-4809-94f8-2bbef4db52ac',
+  _id: 662b51bd63be863f002f1c5a,
+  gameTimer: { GST: 2024-04-26T07:03:26.971Z }
+}
+[2024-04-26T12:33:31.104] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-26T12:33:31.166] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:117:29)
+[2024-04-26T12:33:31.168] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:31 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-26T12:33:31.570] [INFO] development - User Reconnect Payload  {
+  tableId: '662b51bd63be863f002f1c5a',
+  playerId: '65967296eae703374096d4dd'
+} 
+<==== New Connected Socket id ===> JlVTfEbCrLg75SmQAAAA 
+ Table Id => 662b51bd63be863f002f1c5a 
+ Socket Id <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'JlVTfEbCrLg75SmQAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 14652,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 610,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'JlVTfEbCrLg75SmQAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1157,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(2) {
+      'JlVTfEbCrLg75SmQAAAA' => [Set],
+      '662b516a316e341a709aa68d' => [Set]
+    },
+    sids: Map(1) { 'JlVTfEbCrLg75SmQAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'JlVTfEbCrLg75SmQAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'LHiCM18elExw1F4Y8zkOiA==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:33:22 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115002607,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  tbid: 662b51bd63be863f002f1c5a,
+  sck: 'JlVTfEbCrLg75SmQAAAA',
+  seatIndex: 0,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:33:31.596] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-26T12:33:31.596] [INFO] development - table not found ===--==-==-- >
+[2024-04-26T12:33:31.596] [INFO] development - 
+ Update SocketId Payload => { playerId: '65967296eae703374096d4dd', sck: 'JlVTfEbCrLg75SmQAAAA' }
+[2024-04-26T12:33:31.597] [INFO] development -  Table not found
+[2024-04-26T12:33:31.626] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:33:31.626] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-26T12:33:31.648] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:33:31 GMT+0530 (India Standard Time) : Data : {"eventName":"RECONNECTROULETTE","data":{"login":true,"userInfo":{"_id":"65967296eae703374096d4dd","counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9"},"sceneName":"DASHBOARD"},"flag":true,"msg":""}
+[2024-04-26T12:33:32.682] [INFO] development - 
+<==== disconnect socket id ===> JlVTfEbCrLg75SmQAAAA 
+ Disconnect Table Id => 662b51bd63be863f002f1c5a
+[2024-04-26T12:33:32.682] [INFO] development - schedule USER Start DISCONNECTED jobId typeof :  DISCONNECT65967296eae703374096d4dd string
+[2024-04-26T12:37:53.610] [INFO] development - Server ID : => HTTPServer - Express server listening on port : 9999 date : Fri Apr 26 2024 12:37:53 GMT+0530 (India Standard Time)
+[2024-04-26T12:37:53.942] [INFO] development - Mongoose connection open
+[2024-04-26T12:37:57.618] [INFO] development - Socket connected ===>  wDK4O0h3cnC2J0AeAAAA
+[2024-04-26T12:37:57.620] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time) : Data : {"eventName":"DONE","data":{},"flag":true,"msg":""}
+[2024-04-26T12:37:57.706] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:117:29)
+[2024-04-26T12:37:57.711] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-26T12:37:58.066] [INFO] development - User Reconnect Payload  {
+  tableId: '662b51bd63be863f002f1c5a',
+  playerId: '65967296eae703374096d4dd'
+} 
+<==== New Connected Socket id ===> wDK4O0h3cnC2J0AeAAAA 
+ Table Id => undefined 
+ Socket Id <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'wDK4O0h3cnC2J0AeAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 5646,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 252,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'wDK4O0h3cnC2J0AeAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1190,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Set] },
+    sids: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'wDK4O0h3cnC2J0AeAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'hIdNreakaO5IIvpNG/0mDg==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115277617,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:37:58.094] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-26T12:37:58.095] [INFO] development - table not found ===--==-==-- >
+[2024-04-26T12:37:58.095] [INFO] development - 
+ Update SocketId Payload => { playerId: '65967296eae703374096d4dd', sck: 'wDK4O0h3cnC2J0AeAAAA' }
+[2024-04-26T12:37:58.096] [INFO] development -  Table not found
+[2024-04-26T12:37:58.118] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:37:58.119] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-26T12:37:58.145] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:58 GMT+0530 (India Standard Time) : Data : {"eventName":"RECONNECTROULETTE","data":{"login":true,"userInfo":{"_id":"65967296eae703374096d4dd","counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9"},"sceneName":"DASHBOARD"},"flag":true,"msg":""}
+[2024-04-26T12:37:58.848] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:58 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-26T12:37:59.336] [INFO] development - Table Name =======>  blueTable
+[2024-04-26T12:37:59.360] [INFO] development - JoinTable UserInfo :  { _id: 65967296eae703374096d4dd } {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:37:59.384] [INFO] development - JoinTable tableInfo :  { _id: 65967296eae703374096d4dd } null
+[2024-04-26T12:37:59.385] [INFO] development - findTable  :  { playerId: '65967296eae703374096d4dd', whichTable: 'blueTable' }
+[2024-04-26T12:37:59.385] [INFO] development - getBetTable  :  { playerId: '65967296eae703374096d4dd', whichTable: 'blueTable' }
+[2024-04-26T12:37:59.387] [INFO] development - createTable insertobj :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  whichTable: 'blueTable'
+}
+[2024-04-26T12:37:59.433] [INFO] development - createTable insertInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207
+}
+[2024-04-26T12:37:59.436] [INFO] development - findTable tableInfo :  {"gameId":"","activePlayer":0,"playerInfo":[{}],"gameState":"","jobId":"","turnDone":false,"gameTracks":[],"callFinalWinner":false,"isLastUserFinish":false,"isFinalWinner":false,"history":[],"betamount":[5,10,50,100,500,1000],"totalbet":0,"TableObject":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","1st12","2nd12","3rd12","1to18","19to36","even","odd","red","black"],"uuid":"","whichTable":"blueTable","_id":"662b52cfd36a4d0c40e8c207"}
+[2024-04-26T12:37:59.446] [INFO] development - findEmptySeatAndUserSeat table :=>  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207
+} client :=>  <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'wDK4O0h3cnC2J0AeAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 6915,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 303,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'wDK4O0h3cnC2J0AeAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1190,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(2) {
+      'wDK4O0h3cnC2J0AeAAAA' => [Set],
+      '662b51bd63be863f002f1c5a' => [Set]
+    },
+    sids: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'wDK4O0h3cnC2J0AeAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'hIdNreakaO5IIvpNG/0mDg==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115277617,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  tbid: '662b51bd63be863f002f1c5a',
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  JT: true,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:37:59.451] [INFO] development - findEmptySeatAndUserSeat seatIndex :: 0
+[2024-04-26T12:37:59.475] [INFO] development - findEmptySeatAndUserSeat userInfo :  {
+  _id: 65967296eae703374096d4dd,
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-26T12:37:59.476] [INFO] development - findEmptySeatAndUserSeat playerDetails :  {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: undefined,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+}
+[2024-04-26T12:37:59.477] [INFO] development - findEmptySeatAndUserSeat whereCond :  {
+  _id: 662b52cfd36a4d0c40e8c207,
+  'playerInfo.0.seatIndex': { '$exists': false }
+} {
+  '$set': {
+    gameState: '',
+    'playerInfo.0': {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: undefined,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  },
+  '$inc': { activePlayer: 1 }
+}
+[2024-04-26T12:37:59.515] [INFO] development - 
+findEmptySeatAndUserSeat tbInfo :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207
+}
+[2024-04-26T12:37:59.516] [INFO] development - 
+ Assign table id and seat index socket event -> 0 662b52cfd36a4d0c40e8c207
+[2024-04-26T12:37:59.517] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:59 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{},"flag":true,"msg":""}
+[2024-04-26T12:37:59.518] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:59 GMT+0530 (India Standard Time) : Data : {"eventName":"RGTI","data":{"ssi":0,"gst":-1,"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"wDK4O0h3cnC2J0AeAAAA","playerSocketId":"wDK4O0h3cnC2J0AeAAAA","playerLostChips":0,"Iscom":0}],"utt":30,"fns":20,"tableid":"662b52cfd36a4d0c40e8c207","tableType":"blueTable"},"flag":true,"msg":""}
+[2024-04-26T12:37:59.519] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:37:59 GMT+0530 (India Standard Time) : Data : {"eventName":"RJT","data":{"ap":1,"playerDetail":{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"wDK4O0h3cnC2J0AeAAAA","playerSocketId":"wDK4O0h3cnC2J0AeAAAA","playerLostChips":0,"Iscom":0}},"flag":true,"msg":""}
+[2024-04-26T12:38:00.519] [INFO] development - gameTimerStart tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: '',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: '',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207
+}
+[2024-04-26T12:38:00.521] [INFO] development - gameTimerStart UserInfo :  { _id: 662b52cfd36a4d0c40e8c207 } {
+  '$set': {
+    gameState: 'RouletteGameStartTimer',
+    'gameTimer.GST': 2024-04-26T07:08:00.520Z,
+    totalbet: 0,
+    'playerInfo.0.selectObj': [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0
+    ],
+    isFinalWinner: false,
+    uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb'
+  }
+}
+[2024-04-26T12:38:00.552] [INFO] development - gameTimerStart tabInfo ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:00.553] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:00 GMT+0530 (India Standard Time) : Data : {"eventName":"RGST","data":{"timer":10,"history":[]},"flag":true,"msg":""}
+[2024-04-26T12:38:06.184] [INFO] development - User Reconnect Payload  {
+  playerId: '65967296eae703374096d4dd',
+  tableId: '662b52cfd36a4d0c40e8c207'
+} 
+<==== New Connected Socket id ===> wDK4O0h3cnC2J0AeAAAA 
+ Table Id => 662b52cfd36a4d0c40e8c207 
+ Socket Id <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'wDK4O0h3cnC2J0AeAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 13763,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 516,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'wDK4O0h3cnC2J0AeAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1190,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(3) {
+      'wDK4O0h3cnC2J0AeAAAA' => [Set],
+      '662b51bd63be863f002f1c5a' => [Set],
+      '662b52cfd36a4d0c40e8c207' => [Set]
+    },
+    sids: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'wDK4O0h3cnC2J0AeAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'hIdNreakaO5IIvpNG/0mDg==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115277617,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  tbid: 662b52cfd36a4d0c40e8c207,
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  seatIndex: 0,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:38:06.218] [INFO] development - 
+ finded disconnected  --> {
+  _id: 662b52cfd36a4d0c40e8c207,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ]
+}
+[2024-04-26T12:38:06.249] [INFO] development - updateRejoinStatus tabInfo ::  {
+  _id: 662b52cfd36a4d0c40e8c207,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0
+    }
+  ]
+}
+[2024-04-26T12:38:06.283] [INFO] development - update rejoin user update table ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0,
+      rejoin: true
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:06.285] [INFO] development - update reJoin status {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0,
+      rejoin: true
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:06.287] [INFO] development - 
+ plInfo  --> {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+  playerLostChips: 0,
+  Iscom: 0
+} 
+ disconnTable._id  --> 662b52cfd36a4d0c40e8c207
+ plInfo._id  --> 65967296eae703374096d4dd
+[2024-04-26T12:38:06.291] [INFO] development - RECONNECT USER JOB CANCELLED once user RECONNECT successfully typeof :  DISCONNECT65967296eae703374096d4dd string
+[2024-04-26T12:38:06.291] [INFO] development - schedule USER Cancel JOB :-->  false DISCONNECT65967296eae703374096d4dd
+[2024-04-26T12:38:06.292] [INFO] development - 
+ Update SocketId Payload => { playerId: '65967296eae703374096d4dd', sck: 'wDK4O0h3cnC2J0AeAAAA' }
+[2024-04-26T12:38:06.324] [INFO] development - updateRejoinStatus tabInfo ::  {
+  _id: 662b52cfd36a4d0c40e8c207,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0,
+      rejoin: true
+    }
+  ]
+}
+[2024-04-26T12:38:06.353] [INFO] development - updateScoketId table ::  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0,
+      rejoin: true
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:06.380] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:38:06.381] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-26T12:38:06.413] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:06 GMT+0530 (India Standard Time) : Data : {"eventName":"RECONNECTROULETTE","data":{"pi":[{"seatIndex":0,"_id":"65967296eae703374096d4dd","playerId":"65967296eae703374096d4dd","username":"USER_15","profile":null,"coins":21261,"status":"","playerStatus":"","selectObj":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"totalbet":0,"turnMissCounter":0,"turnCount":0,"sck":"wDK4O0h3cnC2J0AeAAAA","playerSocketId":"wDK4O0h3cnC2J0AeAAAA","playerLostChips":0,"Iscom":0,"rejoin":true}],"spi":"65967296eae703374096d4dd","gameState":"RouletteGameStartTimer","ap":0,"tableid":"662b52cfd36a4d0c40e8c207","sceneName":"GAMEPLAY","timer":4.109},"flag":true,"msg":""}
+[2024-04-26T12:38:09.233] [INFO] development - leaveTable userInfo :  {
+  flags: { isOnline: 1 },
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  password: '',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  _id: 65967296eae703374096d4dd,
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9,
+  lastLoginDate: 2024-01-04T08:55:50.168Z,
+  createdAt: 2024-01-04T08:55:50.168Z,
+  modifiedAt: 2024-01-04T08:55:50.168Z
+}
+[2024-04-26T12:38:09.260] [INFO] development - leaveTable tb :  {
+  gameId: '',
+  activePlayer: 1,
+  playerInfo: [
+    {
+      seatIndex: 0,
+      _id: 65967296eae703374096d4dd,
+      playerId: 65967296eae703374096d4dd,
+      username: 'USER_15',
+      profile: null,
+      coins: 21261,
+      status: '',
+      playerStatus: '',
+      selectObj: [Array],
+      totalbet: 0,
+      turnMissCounter: 0,
+      turnCount: 0,
+      sck: 'wDK4O0h3cnC2J0AeAAAA',
+      playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+      playerLostChips: 0,
+      Iscom: 0,
+      rejoin: true
+    }
+  ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:09.261] [INFO] development - leaveTable playerInfo : => {
+  seatIndex: 0,
+  _id: 65967296eae703374096d4dd,
+  playerId: 65967296eae703374096d4dd,
+  username: 'USER_15',
+  profile: null,
+  coins: 21261,
+  status: '',
+  playerStatus: '',
+  selectObj: [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0
+  ],
+  totalbet: 0,
+  turnMissCounter: 0,
+  turnCount: 0,
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  playerSocketId: 'wDK4O0h3cnC2J0AeAAAA',
+  playerLostChips: 0,
+  Iscom: 0,
+  rejoin: true
+}
+[2024-04-26T12:38:09.261] [INFO] development - leaveTable updateData :  {
+  _id: 662b52cfd36a4d0c40e8c207,
+  'playerInfo._id': 65967296eae703374096d4dd
+} { '$set': { 'playerInfo.$': {} }, '$inc': { activePlayer: -1 } }
+[2024-04-26T12:38:09.294] [INFO] development - leaveTable tbInfo :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:09.295] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:09 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662b52cfd36a4d0c40e8c207","seatIndex":0},"flag":true,"msg":""}
+[2024-04-26T12:38:09.295] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:09 GMT+0530 (India Standard Time) : Data : {"eventName":"LEAVETABLEROULETTE","data":{"reason":"ManuallyLeave","tbid":"662b52cfd36a4d0c40e8c207","seatIndex":0},"flag":true,"msg":""}
+[2024-04-26T12:38:09.296] [INFO] development - 
+manageOnUserLeave tb :  {
+  gameId: '',
+  activePlayer: 0,
+  playerInfo: [ {} ],
+  gameState: 'RouletteGameStartTimer',
+  jobId: '',
+  turnDone: false,
+  gameTracks: [],
+  callFinalWinner: false,
+  isLastUserFinish: false,
+  isFinalWinner: false,
+  history: [],
+  betamount: [ 5, 10, 50, 100, 500, 1000 ],
+  totalbet: 0,
+  TableObject: [
+    '0',     '1',      '2',     '3',     '4',
+    '5',     '6',      '7',     '8',     '9',
+    '10',    '11',     '12',    '13',    '14',
+    '15',    '16',     '17',    '18',    '19',
+    '20',    '21',     '22',    '23',    '24',
+    '25',    '26',     '27',    '28',    '29',
+    '30',    '31',     '32',    '33',    '34',
+    '35',    '36',     '1st12', '2nd12', '3rd12',
+    '1to18', '19to36', 'even',  'odd',   'red',
+    'black'
+  ],
+  uuid: 'bb1aaed4-53b1-4ad1-9b7a-42c980746ecb',
+  whichTable: 'blueTable',
+  _id: 662b52cfd36a4d0c40e8c207,
+  gameTimer: { GST: 2024-04-26T07:08:00.520Z }
+}
+[2024-04-26T12:38:09.298] [INFO] development - manageOnUserLeave playerInGame :  []
+[2024-04-26T12:38:09.351] [INFO] development - user Session --> TypeError: rdlClient.hmset is not a function
+    at module.exports.userSesssionSet (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:187:15)
+    at module.exports.appLunchDetails [as appLunchDetail] (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\helper\signups\appStart.js:16:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Socket.<anonymous> (E:\SISU_Games\DealRegal\BackEnd\Deal-Ragal\src\controller\socket-server.js:117:29)
+[2024-04-26T12:38:09.352] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:09 GMT+0530 (India Standard Time) : Data : {"eventName":"DASHBOARD","data":{"_id":"65967296eae703374096d4dd","name":"","username":"USER_15","mobileNumber":"1234567890","loginType":"phone","uniqueId":"USER_0000000015","deviceId":"","chips":13840,"winningChips":7421,"tableId":0,"createdAt":"2024-01-04T08:55:50.168Z"},"flag":true,"msg":""}
+[2024-04-26T12:38:09.742] [INFO] development - User Reconnect Payload  {
+  tableId: '662b52cfd36a4d0c40e8c207',
+  playerId: '65967296eae703374096d4dd'
+} 
+<==== New Connected Socket id ===> wDK4O0h3cnC2J0AeAAAA 
+ Table Id => 662b52cfd36a4d0c40e8c207 
+ Socket Id <ref *1> Socket {
+  _events: [Object: null prototype] {
+    error: [Function: noop],
+    req: [AsyncFunction (anonymous)],
+    disconnect: [AsyncFunction (anonymous)]
+  },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  nsp: <ref *2> Namespace {
+    _events: [Object: null prototype] {
+      connection: [AsyncFunction (anonymous)]
+    },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    _fns: [],
+    _ids: 0,
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Circular *2],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    name: '/',
+    adapter: Adapter {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      nsp: [Circular *2],
+      rooms: [Map],
+      sids: [Map],
+      encoder: [Encoder],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  client: Client {
+    sockets: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Circular *1] },
+    nsps: Map(1) { '/' => [Circular *1] },
+    server: Server {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _nsps: [Map],
+      parentNsps: Map(0) {},
+      parentNamespacesFromRegExp: Map(0) {},
+      _path: '/socket.io',
+      clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+      _connectTimeout: 45000,
+      _serveClient: true,
+      _parser: [Object],
+      encoder: [Encoder],
+      opts: [Object],
+      _adapter: [class Adapter extends EventEmitter],
+      sockets: [Namespace],
+      eio: [Server],
+      httpServer: [Server],
+      engine: [Server],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    conn: Socket {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      id: 'wDK4O0h3cnC2J0AeAAAA',
+      server: [Server],
+      upgrading: false,
+      upgraded: false,
+      _readyState: 'open',
+      writeBuffer: [],
+      packetsFn: [],
+      sentCallbackFn: [],
+      cleanupFn: [Array],
+      request: [IncomingMessage],
+      protocol: 3,
+      remoteAddress: '::ffff:192.168.56.1',
+      checkIntervalTimer: null,
+      upgradeTimeoutTimer: null,
+      pingTimeoutTimer: Timeout {
+        _idleTimeout: 45000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 17321,
+        _onTimeout: [Function (anonymous)],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: true,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 706,
+        [Symbol(triggerId)]: 218
+      },
+      pingIntervalTimer: null,
+      transport: [WebSocket],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    encoder: Encoder { replacer: undefined },
+    decoder: Decoder { reviver: undefined, _callbacks: [Object] },
+    id: 'wDK4O0h3cnC2J0AeAAAA',
+    onclose: [Function: bound onclose],
+    ondata: [Function: bound ondata],
+    onerror: [Function: bound onerror],
+    ondecoded: [Function: bound ondecoded],
+    connectTimeout: undefined
+  },
+  recovered: false,
+  data: {},
+  connected: true,
+  acks: Map(0) {},
+  fns: [],
+  flags: {},
+  server: <ref *3> Server {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) { '/' => [Namespace] },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: [Object],
+      Encoder: [class Encoder],
+      Decoder: [class Decoder extends Emitter]
+    },
+    encoder: Encoder { replacer: undefined },
+    opts: { allowEIO3: true, cleanupEmptyChildNamespaces: false },
+    _adapter: [class Adapter extends EventEmitter],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Circular *3],
+      name: '/',
+      adapter: [Adapter],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    httpServer: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      requireHostHeader: true,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 1,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6::::9999',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 39,
+      [Symbol(kUniqueHeaders)]: null,
+      [Symbol(http.server.connections)]: ConnectionsList {},
+      [Symbol(http.server.connectionsCheckingInterval)]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList],
+        _idleNext: [TimersList],
+        _idleStart: 1190,
+        _onTimeout: [Function: bound checkConnections],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 63,
+        [Symbol(triggerId)]: 40
+      }
+    },
+    engine: Server {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: [Object],
+      clientsCount: 1,
+      opts: [Object],
+      ws: [WebSocketServer],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  adapter: <ref *4> Adapter {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    nsp: <ref *2> Namespace {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: [Map],
+      _fns: [],
+      _ids: 0,
+      server: [Server],
+      name: '/',
+      adapter: [Circular *4],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    rooms: Map(2) {
+      'wDK4O0h3cnC2J0AeAAAA' => [Set],
+      '662b51bd63be863f002f1c5a' => [Set]
+    },
+    sids: Map(1) { 'wDK4O0h3cnC2J0AeAAAA' => [Set] },
+    encoder: Encoder { replacer: undefined },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  },
+  id: 'wDK4O0h3cnC2J0AeAAAA',
+  handshake: {
+    headers: {
+      'user-agent': 'websocket-sharp/1.0',
+      upgrade: 'websocket',
+      connection: 'Upgrade',
+      host: '192.168.56.1:9999',
+      'sec-websocket-key': 'hIdNreakaO5IIvpNG/0mDg==',
+      'sec-websocket-version': '13'
+    },
+    time: 'Fri Apr 26 2024 12:37:57 GMT+0530 (India Standard Time)',
+    address: '::ffff:192.168.56.1',
+    xdomain: false,
+    secure: false,
+    issued: 1714115277617,
+    url: '/socket.io/?EIO=3&transport=websocket',
+    query: [Object: null prototype] { EIO: '3', transport: 'websocket' },
+    auth: {}
+  },
+  uid: '65967296eae703374096d4dd',
+  uniqueId: 'USER_0000000015',
+  tbid: '662b52cfd36a4d0c40e8c207',
+  sck: 'wDK4O0h3cnC2J0AeAAAA',
+  seatIndex: 0,
+  [Symbol(shapeMode)]: false,
+  [Symbol(kCapture)]: false
+}
+[2024-04-26T12:38:09.765] [INFO] development - 
+ finded disconnected  --> null
+[2024-04-26T12:38:09.766] [INFO] development - table not found ===--==-==-- >
+[2024-04-26T12:38:09.766] [INFO] development - 
+ Update SocketId Payload => { playerId: '65967296eae703374096d4dd', sck: 'wDK4O0h3cnC2J0AeAAAA' }
+[2024-04-26T12:38:09.766] [INFO] development -  Table not found
+[2024-04-26T12:38:09.788] [INFO] development - reconnect User Info :  {"_id":"65967296eae703374096d4dd","flags":{"isOnline":1},"counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","password":"","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9","lastLoginDate":"2024-01-04T08:55:50.168Z","createdAt":"2024-01-04T08:55:50.168Z","modifiedAt":"2024-01-04T08:55:50.168Z"}
+[2024-04-26T12:38:09.789] [INFO] development - Reconnect Final Data =>  {
+  _id: 65967296eae703374096d4dd,
+  counters: { gameWin: 0, gameLoss: 0, totalMatch: 0 },
+  email: 'player@gmail.com',
+  deviceType: 'Android',
+  loginType: 'phone',
+  tableId: '',
+  status: '',
+  isVIP: 1,
+  Iscom: 0,
+  fcmToken: '',
+  id: 15,
+  deviceId: '',
+  username: 'USER_15',
+  name: '',
+  mobileNumber: '1234567890',
+  uniqueId: 'USER_0000000015',
+  chips: 13840,
+  winningChips: 7421,
+  referralCode: '',
+  sckId: '',
+  shopId: 65967151eae703374096d4a9
+}
+[2024-04-26T12:38:09.813] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:09 GMT+0530 (India Standard Time) : Data : {"eventName":"RECONNECTROULETTE","data":{"login":true,"userInfo":{"_id":"65967296eae703374096d4dd","counters":{"gameWin":0,"gameLoss":0,"totalMatch":0},"email":"player@gmail.com","deviceType":"Android","loginType":"phone","tableId":"","status":"","isVIP":1,"Iscom":0,"fcmToken":"","id":15,"deviceId":"","username":"USER_15","name":"","mobileNumber":"1234567890","uniqueId":"USER_0000000015","chips":13840,"winningChips":7421,"referralCode":"","sckId":"","shopId":"65967151eae703374096d4a9"},"sceneName":"DASHBOARD"},"flag":true,"msg":""}
+[2024-04-26T12:38:10.378] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:10 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-26T12:38:12.584] [INFO] development - RouletteGameStartTimer tbId :  null
+[2024-04-26T12:38:20.389] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:20 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
+[2024-04-26T12:38:30.394] [INFO] development - 
+Response Time :Fri Apr 26 2024 12:38:30 GMT+0530 (India Standard Time) : Data : {"eventName":"PONG","data":{},"flag":true,"msg":""}
