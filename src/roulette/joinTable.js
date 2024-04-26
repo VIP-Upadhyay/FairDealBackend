@@ -96,7 +96,7 @@ module.exports.createTable = async (requestData) => {
                 "1to18","19to36","even","odd",
                 "red","black"
             ],
-            whichTable:requestData.whichTable
+            whichTable:requestData.whichTable != undefined ? requestData.whichTable : "blueTable"
         };
         logger.info("createTable insertobj : ", insertobj);
 
