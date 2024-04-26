@@ -9,7 +9,7 @@ const commandAcions = require("../helper/socketFunctions");
 const RouletteTables = mongoose.model('RouletteTables');
 
 const walletActions = require("./updateWallet");
-//const RouletteUserHistory = mongoose.model('RouletteUserHistory');
+const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 
 /*
     bet : 10,
