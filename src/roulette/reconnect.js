@@ -74,6 +74,7 @@ reconnect = async (requestData, client) => {
                     tableid: tabInfo._id,
                     gamePlayType: tabInfo.gamePlayType,
                     sceneName: CONST.GAMEPLAY,
+                    whichTable : tabInfo.whichTable
                 };
 
                 if (tabInfo.gameState === "StartSpinner") {
