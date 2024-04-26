@@ -9,6 +9,8 @@ const logger = require("../../logger");
 const roundStartActions = require("./roundStart");
 const walletActions = require("./updateWallet");
 const RouletteTables = mongoose.model('RouletteTables');
+const RouletteUserHistory = mongoose.model('RouletteUserHistory');
+
 // const leaveTableActions = require("./leaveTable");
 const { v4: uuidv4 } = require('uuid');
 
@@ -328,6 +330,17 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) =>{
         //     }
         // }
 
+
+        let insertobj = {
+            userId: tbInfo.playerInfo[0]._id,
+            ballposition:itemIndex,
+            play:tbInfo.playerInfo[0].totalbet,
+            won:TotalWinAmount,
+            uuid:this.generateRandomNumber(10)
+        };
+            console.log("RouletteUserHistory ",insertobj)
+        await RouletteUserHistory.create(insertobj);
+
       
         commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.ROULETTEWINNER, {
             WinnerData:winnerData,
@@ -347,6 +360,13 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) =>{
 
 }
 
+module.exports.generateRandomNumber = (length) => {
+    let randomNumber = '';
+    for (let i = 0; i < length; i++) {
+        randomNumber += Math.floor(Math.random() * 10); // Generates a random digit from 0 to 9
+    }
+    return randomNumber;
+}
 
 //===================
 module.exports.deduct = async (tabInfo, playerInfo) => {

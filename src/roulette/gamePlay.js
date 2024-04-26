@@ -9,6 +9,7 @@ const commandAcions = require("../helper/socketFunctions");
 const RouletteTables = mongoose.model('RouletteTables');
 
 const walletActions = require("./updateWallet");
+const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 
 /*
     bet : 10,
@@ -44,11 +45,11 @@ module.exports.actionSpin = async (requestData, client) => {
             delete client.action;
             return false
         }
-       
-        
+
+
         let playerInfo = tabInfo.playerInfo[client.seatIndex];
         let currentBet = Number(requestData.bet);
-       
+
         logger.info("action currentBet ::", currentBet);
 
         let gwh = {
@@ -61,13 +62,13 @@ module.exports.actionSpin = async (requestData, client) => {
             $set: {
 
             },
-            $inc:{
-                
+            $inc: {
+
             }
         }
-        let chalvalue =currentBet;
+        let chalvalue = currentBet;
         updateData.$set["playerInfo.$.playStatus"] = "action"
-    
+
         let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
 
         if (Number(chalvalue) > Number(totalWallet)) {
@@ -78,9 +79,9 @@ module.exports.actionSpin = async (requestData, client) => {
         }
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex,"roulette");
+        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex, "roulette");
 
-        updateData.$inc["playerInfo.$.selectObj."+requestData.item] = chalvalue;
+        updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
 
 
@@ -99,14 +100,14 @@ module.exports.actionSpin = async (requestData, client) => {
 
         let response = {
             bet: chalvalue,
-            item:requestData.item
+            item: requestData.item
         }
 
         commandAcions.sendEvent(client, CONST.ACTIONROULETTE, response, false, "");
 
-      
+
         delete client.action;
-        
+
         // let activePlayerInRound = await roundStartActions.getPlayingUserInRound(tb.playerInfo);
         // logger.info("action activePlayerInRound :", activePlayerInRound, activePlayerInRound.length);
         // if (activePlayerInRound.length == 1) {
@@ -114,7 +115,7 @@ module.exports.actionSpin = async (requestData, client) => {
         // } else {
         //     await roundStartActions.nextUserTurnstart(tb);
         // }
-        
+
         return true;
     } catch (e) {
         logger.info("Exception action : ", e);
@@ -149,13 +150,13 @@ module.exports.ClearBet = async (requestData, client) => {
 
         if (tabInfo == null) {
             logger.info("ClearBet user not turn ::", tabInfo);
-           
+
             return false
         }
-       
-        
+
+
         let playerInfo = tabInfo.playerInfo[client.seatIndex];
-       
+
         let gwh = {
             _id: MongoID(client.uid)
         }
@@ -164,31 +165,31 @@ module.exports.ClearBet = async (requestData, client) => {
 
         let updateData = {
             $set: {
-                "playerInfo.$.selectObj":[
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,0,0,0,
-                    0,0,
-                    0,0,0,
-                    0,0,0,0,
-                    0,0
+                "playerInfo.$.selectObj": [
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0
                 ],
-                "playerInfo.$.totalbet":0,
-                
+                "playerInfo.$.totalbet": 0,
+
             },
-            $inc:{
-                "totalbet":-Number(playerInfo.totalbet)
+            $inc: {
+                "totalbet": -Number(playerInfo.totalbet)
             }
         }
-        
-       
-        await walletActions.addWallet(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", tabInfo,client.id, client.seatIndex,"roulette");
 
-    
+
+        await walletActions.addWallet(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", tabInfo, client.id, client.seatIndex, "roulette");
+
+
         const upWh = {
             _id: MongoID(client.tbid.toString()),
             "playerInfo.seatIndex": Number(client.seatIndex)
@@ -199,11 +200,11 @@ module.exports.ClearBet = async (requestData, client) => {
         logger.info("action tb : ", tb);
 
         let response = {
-            flags:true
+            flags: true
         }
 
         commandAcions.sendEvent(client, CONST.ClearBet, response, false, "");
-        
+
         return true;
     } catch (e) {
         logger.info("Exception action : ", e);
@@ -238,13 +239,13 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         if (tabInfo == null) {
             logger.info("DoubleBet user not turn ::", tabInfo);
-           
+
             return false
         }
-       
-        
+
+
         let playerInfo = tabInfo.playerInfo[client.seatIndex];
-       
+
         let gwh = {
             _id: MongoID(client.uid)
         }
@@ -253,9 +254,9 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         var chalvalue = playerInfo.selectObj.reduce((accumulator, currentValue) => {
             return accumulator + currentValue
-        },0);
-        
-        console.log("chalvalue ",chalvalue)
+        }, 0);
+
+        console.log("chalvalue ", chalvalue)
 
         let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
 
@@ -268,24 +269,24 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex,"roulette");
+        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex, "roulette");
 
         let updateData = {
             $set: {
 
             },
-            $inc:{
-                
+            $inc: {
+
             }
         }
-        
-        for (let i = 0; i < playerInfo.selectObj.length; i++ ) {
-            if(playerInfo.selectObj[i] != 0){
-                updateData.$inc["playerInfo.$.selectObj."+i] = playerInfo.selectObj[i];
-            }
-          }
 
-        
+        for (let i = 0; i < playerInfo.selectObj.length; i++) {
+            if (playerInfo.selectObj[i] != 0) {
+                updateData.$inc["playerInfo.$.selectObj." + i] = playerInfo.selectObj[i];
+            }
+        }
+
+
 
 
         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
@@ -305,8 +306,8 @@ module.exports.DoubleBet = async (requestData, client) => {
         logger.info("action tb : ", tb);
 
         let response = {
-            selectObj:tb.playerInfo[client.seatIndex].selectObj,
-            totalbet:tb.playerInfo[client.seatIndex].totalbet
+            selectObj: tb.playerInfo[client.seatIndex].selectObj,
+            totalbet: tb.playerInfo[client.seatIndex].totalbet
 
         }
 
@@ -318,3 +319,16 @@ module.exports.DoubleBet = async (requestData, client) => {
     }
 }
 
+module.exports.HISTORY = async (requestData, client) => {
+
+    try {
+
+        const tableHistory = await RouletteUserHistory.findOne({ userId: MongoID(requestData.userId) }).sort({ createdAt: -1 });
+
+        commandAcions.sendEvent(client, CONST.HISTORY, { tableHistory: tableHistory }, false, "");
+
+
+    } catch (e) {
+        logger.info("Exception HISTORY : ", e);
+    }
+}

@@ -280,8 +280,6 @@ myIo.init = function (server) {
                         break;
                     }
 
-                    
-
                     case CONST.LEAVETABLEROULETTE: {
                         await gamePlayActionsRoulette.leaveTable(payload.data, socket);
                         break;
@@ -291,7 +289,12 @@ myIo.init = function (server) {
                         await userReconnectRoulette(payload.data, socket);
                         break;
                     }
+
                     
+                    case CONST.HISTORY: {
+                        await gamePlayActionsRoulette.HISTORY(payload.data, socket);
+                        break;
+                    }
 
                     //====================================
 
