@@ -32,7 +32,7 @@ router.get('/UserList', async (req, res) => {
             userList = await Users.find({}, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         } else {
-            userList = await Users.find({ shopId: MongoID(req.query.Id) }, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+            userList = await Users.find({ agentId: MongoID(req.query.Id) }, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
         }
         logger.info('admin/dahboard.js post dahboard  error => ', userList);
 
@@ -88,7 +88,7 @@ router.post('/AddUser', async (req, res) => {
             password: req.body.password,
             isVIP: 1,
             country: req.body.country,
-            shopId: req.body.shopId,
+            agentId: req.body.agentId,
             profileUrl: "upload/avatar/1.jpg"
         }
 

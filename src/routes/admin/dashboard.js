@@ -31,14 +31,8 @@ router.get('/', async (req, res) => {
       if(req.query.Id == undefined || req.query.Id == "undefined" || req.query.Id == "Admin"){
         totalUser = await Users.find().count()
       }else{
-        totalUser = await Users.find({shopId:MongoID(req.query.Id)}).count()
+        totalUser = await Users.find({agentId:MongoID(req.query.Id)}).count()
 
-      }
-
-      if(req.query.Id == undefined || req.query.Id == "undefined" || req.query.Id == "Admin"){
-        totalShop = await Shop.find().count()
-      }else{
-        totalShop = await Shop.find({agentId:MongoID(req.query.Id)}).count()
       }
 
       totalAgent = await Agent.find().count()
@@ -50,7 +44,7 @@ router.get('/', async (req, res) => {
       console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
       logger.info('admin/dahboard.js post dahboard  error => ', totalUser);
 
-      res.json({totalUser,totalShop,totalAgent,totalDeposit,todayDeposit,totalGamePay});
+      res.json({totalUser,totalAgent,totalDeposit,todayDeposit,totalGamePay});
     } catch (error) {
       logger.error('admin/dahboard.js post bet-list error => ', error);
       res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -79,7 +73,7 @@ router.get('/latatestUser', async (req, res) => {
         RecentUser = await Users.find({ createdAt :{$gte: new Date(t) } },{username:1,id:1,createdAt:1})
 
       }else{
-        RecentUser = await Users.find({ shopId:MongoID(req.query.Id),createdAt :{$gte: new Date(t) } },{username:1,id:1,createdAt:1})
+        RecentUser = await Users.find({ agentId:MongoID(req.query.Id),createdAt :{$gte: new Date(t) } },{username:1,id:1,createdAt:1})
       }
 
       logger.info('admin/dahboard.js post dahboard  error => ', RecentUser);

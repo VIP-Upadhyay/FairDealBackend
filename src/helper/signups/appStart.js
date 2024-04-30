@@ -83,7 +83,7 @@ module.exports.getUserDefaultFields = async (data, client) => {
     referralCode: '',
     tableId: '',
     sckId: client && client.id ? client.id : '',
-    shopId:data.shopId
+    agentId:data.agentId
   };
 
   return setUserDetail;
