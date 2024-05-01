@@ -1,6 +1,8 @@
 
 const _ = require("underscore")
 
+
+
 function RobotAction(table,card){
     const playerInfo = table.playerInfo[table.turnSeatIndex]
 

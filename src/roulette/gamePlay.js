@@ -17,6 +17,17 @@ const RouletteUserHistory = mongoose.model('RouletteUserHistory');
         item:0, 
         bet:10,
     }
+    betaction  
+    {
+        "number" : [ 1 ],
+        "type":"number",
+        "bet":0
+    },
+    {
+        "number" : [1,4,7,10,13,16,19,22,25,28,31,34],
+        "type":"1to34",
+        "bet":0
+    },
 
 */
 module.exports.actionSpin = async (requestData, client) => {
@@ -47,8 +58,8 @@ module.exports.actionSpin = async (requestData, client) => {
         }
 
 
-        let playerInfo = tabInfo.playerInfo[client.seatIndex];
-        let currentBet = Number(requestData.bet);
+        let betObjectData = tabInfo.playerInfo[client.seatIndex].betObject;
+        let currentBet = Number(requestData.betaction.bet);
 
         logger.info("action currentBet ::", currentBet);
 
@@ -81,9 +92,22 @@ module.exports.actionSpin = async (requestData, client) => {
 
         await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex, "roulette");
 
-        updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
-        updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
+        //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
+        let indextoinc  = -1
+        for (let i = 0; i < betObjectData.length; i++) {
+            if(betObjectData[i].betIndex == requestData.betaction.betIndex){
+                indextoinc = i;
+                break;
+            }
+        }
 
+        updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
+        if(indextoinc != -1){
+            updateData.$inc["playerInfo.$.betObject."+indextoinc+".bet"] = chalvalue;
+        }else{
+            updateData["$push"] = {}
+            updateData["$push"]["playerInfo.$.betObject"] = requestData.betaction
+        }
 
         updateData.$inc["totalbet"] = chalvalue;
         updateData.$set["turnDone"] = true;
@@ -100,7 +124,8 @@ module.exports.actionSpin = async (requestData, client) => {
 
         let response = {
             bet: chalvalue,
-            item: requestData.item
+            betaction: requestData.betaction,
+            betObject:tb.playerInfo[client.seatIndex].betObject
         }
 
         commandAcions.sendEvent(client, CONST.ACTIONROULETTE, response, false, "");
@@ -178,6 +203,7 @@ module.exports.ClearBet = async (requestData, client) => {
                     0, 0, 0, 0,
                     0, 0
                 ],
+                "playerInfo.$.betObject":[],
                 "playerInfo.$.totalbet": 0,
 
             },
@@ -252,8 +278,8 @@ module.exports.DoubleBet = async (requestData, client) => {
         let UserInfo = await GameUser.findOne(gwh, {}).lean();
         logger.info("DoubleBet UserInfo : ", gwh, JSON.stringify(UserInfo));
 
-        var chalvalue = playerInfo.selectObj.reduce((accumulator, currentValue) => {
-            return accumulator + currentValue
+        var chalvalue = playerInfo.betObject.reduce((accumulator, currentValue) => {
+            return accumulator.bet + currentValue.bet
         }, 0);
 
         console.log("chalvalue ", chalvalue)
@@ -280,9 +306,15 @@ module.exports.DoubleBet = async (requestData, client) => {
             }
         }
 
-        for (let i = 0; i < playerInfo.selectObj.length; i++) {
-            if (playerInfo.selectObj[i] != 0) {
-                updateData.$inc["playerInfo.$.selectObj." + i] = playerInfo.selectObj[i];
+        // for (let i = 0; i < playerInfo.selectObj.length; i++) {
+        //     if (playerInfo.selectObj[i] != 0) {
+        //         updateData.$inc["playerInfo.$.selectObj." + i] = playerInfo.selectObj[i];
+        //     }
+        // }
+
+        for (let i = 0; i < playerInfo.betObject.length; i++) {
+            if (playerInfo.betObject[i].bet != undefined) {
+                updateData.$inc["playerInfo.$.betObject."+i+".bet"] = playerInfo.betObject[i].bet;
             }
         }
 
@@ -307,7 +339,8 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         let response = {
             selectObj: tb.playerInfo[client.seatIndex].selectObj,
-            totalbet: tb.playerInfo[client.seatIndex].totalbet
+            totalbet: tb.playerInfo[client.seatIndex].totalbet,
+            betObject:tb.playerInfo[client.seatIndex].betObject
 
         }
 
