@@ -14,20 +14,18 @@ const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 /*
     bet : 10,
     object:{
-        item:0, 
         bet:10,
+         betaction : 
+            {
+                "number" : [ 1 ],
+                "type":"number",
+                "bet":0,
+
+            }
+
     }
-    betaction  
-    {
-        "number" : [ 1 ],
-        "type":"number",
-        "bet":0
-    },
-    {
-        "number" : [1,4,7,10,13,16,19,22,25,28,31,34],
-        "type":"1to34",
-        "bet":0
-    },
+   
+    
 
 */
 module.exports.actionSpin = async (requestData, client) => {
