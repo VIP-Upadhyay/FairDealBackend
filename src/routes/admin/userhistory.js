@@ -11,7 +11,7 @@ const logger = require('../../../logger');
 
 
 const UserWalletTracks = mongoose.model('userWalletTracks');
-
+const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 
 /**
 * @api {get} /admin/rouletteHistory
@@ -25,52 +25,11 @@ router.get('/RouletteGameHistory', async (req, res) => {
     try {
         console.info('requet => ', req.query);
 
-        const rouletteHistoryData = [
-            {
-                "SrNo": 1,
-                "DateTime": "2023-10-10 08:30 AM",
-                "Name": "Alice",
-                "PhoneNumber": "123-456-7890",
-                "RoomId": "RHRoom1",
-                "Amount": 100, // Amount in this example (can be credit or debit)
-                "Type": "Credit", // "Credit" or "Debit"
-                "Club": "Club A"
-            },
-            {
-                "SrNo": 2,
-                "DateTime": "2023-10-09 10:15 AM",
-                "Name": "Bob",
-                "PhoneNumber": "987-654-3210",
-                "RoomId": "RHRoom2",
-                "Amount": 50, // Amount in this example (can be credit or debit)
-                "Type": "Debit", // "Credit" or "Debit"
-                "Club": "Club B"
-            },
-            {
-                "SrNo": 3,
-                "DateTime": "2023-10-09 10:15 AM",
-                "Name": "Bob",
-                "PhoneNumber": "987-654-3210",
-                "RoomId": "RHRoom2",
-                "Amount": 50, // Amount in this example (can be credit or debit)
-                "Type": "Debit", // "Credit" or "Debit"
-                "Club": "Club Bd"
-            }, {
-                "SrNo": 3,
-                "DateTime": "2023-10-09 10:15 AM",
-                "Name": "Bob",
-                "PhoneNumber": "987-654-3210",
-                "RoomId": "RHRoom2",
-                "Amount": 50, // Amount in this example (can be credit or debit)
-                "Type": "Debit", // "Credit" or "Debit"
-                "Club": "Club Bd"
-            },
-            // Add more game history entries here
-        ];
+        const tabInfo = await RouletteUserHistory.find({}, {}).sort({createdAt:-1});
 
-        logger.info('admin/dahboard.js post dahboard  error => ', rouletteHistoryData);
+        logger.info('admin/dahboard.js post dahboard  error => ', tabInfo);
 
-        res.json({ gameHistoryData: rouletteHistoryData });
+        res.json({ gameHistoryData: tabInfo });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -745,6 +704,38 @@ router.get('/GetOneToTwelveHistoryData', async (req, res) => {
             { DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1 }).sort({ DateTime: -1 })
 
         console.log("GetOneToTwelveHistoryData ", aviatorHistoryData)
+
+        logger.info('admin/dahboard.js post dahboard  error => ', aviatorHistoryData);
+
+        res.json({ GameHistoryData: aviatorHistoryData });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
+
+/**
+* @api {get} /admin/GetRouletteHistoryData
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.get('/GetRouletteHistoryData', async (req, res) => {
+    try {
+
+
+        console.info('GetRouletteHistoryData  => ', req.query);
+        if (req.query.userId == undefined) {
+            res.json({ GameHistoryData: [] });
+            return false
+        }
+        const aviatorHistoryData = await UserWalletTracks.find({ userId: MongoID(req.query.userId), gameType : "roulette"},
+            { DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1 }).sort({ DateTime: -1 })
+
+        console.log("GetRouletteHistoryData ", aviatorHistoryData)
 
         logger.info('admin/dahboard.js post dahboard  error => ', aviatorHistoryData);
 

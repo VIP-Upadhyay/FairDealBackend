@@ -19,16 +19,10 @@ const userWalletTracksSchema = new Schema(
         chips: { type: Number },
         gameWinning: { type: Number },
         totalBucket: { type: Number },
-        depositId: { type: String },
-        withdrawId: { type: String },
-        gameId: { type: String },
-        isRobot: { type: Number },
         gameType: { type: String },
-        maxSeat: { type: Number },
-        betValue: { type: Number },
-        tableId: { type: String },
-        tournamentId: { type: Number },
-        DateandTime:{ type: Date,default:new Date() }
+        DateandTime:{ type: Date,default:new Date() },
+        adminname: { type: String },
+        adminid: { type: String }
     },
     {
         timestamps: true

@@ -165,6 +165,8 @@ router.put('/addMoney', async (req, res) => {
     try {
         console.log("Add Money ", req.body)
         //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+        
+        await walletActions.addWalletPayin(req.body.userId, Number(req.body.money), 'Credit', req.body.txnmode, 'Admin');
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
@@ -189,6 +191,8 @@ router.put('/deductMoney', async (req, res) => {
     try {
         console.log("deductMoney ", req.body)
         //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+        
+        await walletActions.addWalletPayin(req.body.userId, - Number(req.body.money), 'Credit', req.body.txnmode, 'Admin');
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 

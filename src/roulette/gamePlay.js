@@ -88,7 +88,7 @@ module.exports.actionSpin = async (requestData, client) => {
         }
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex, "roulette");
+        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
 
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc  = -1
