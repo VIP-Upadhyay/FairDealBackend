@@ -44,6 +44,9 @@ myIo.init = function (server) {
             sendEvent(socket, CONST.DONE, {});
 
             socket.on('req', async (data) => {
+                console.log("data ",data)
+                console.log("data.payload ",data.payload)
+
                 const decryptObj = commonHelper.decrypt(data.payload);
                 const payload = JSON.parse(decryptObj);
                 console.log("payload ::::::::::::::::", payload)

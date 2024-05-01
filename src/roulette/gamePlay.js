@@ -122,8 +122,7 @@ module.exports.actionSpin = async (requestData, client) => {
 
         let response = {
             bet: chalvalue,
-            betaction: requestData.betaction,
-            betObject:tb.playerInfo[client.seatIndex].betObject
+            betaction: requestData.betaction
         }
 
         commandAcions.sendEvent(client, CONST.ACTIONROULETTE, response, false, "");
