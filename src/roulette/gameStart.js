@@ -40,6 +40,7 @@ module.exports.gameTimerStart = async (tb) => {
                     0, 0, 0, 0,
                     0, 0
                 ],
+                "playerInfo.0.betObject":[],
                 "isFinalWinner": false,
                 uuid: uuidv4(),
             }
