@@ -121,7 +121,7 @@ module.exports.deductWallet = async (id, deductChips, tType, t, game, adminname,
         logger.info(" upReps userInfo.sckId => ", upReps.sckId)
 
         commandAcions.sendDirectEvent(userInfo.sckId, CONST.WALLET_UPDATE, {
-            winningChips: upReps.winningChips,
+            //winningChips: upReps.winningChips,
             chips: upReps.chips,
             totalWallet: totalRemaningAmount,
             msg: t
