@@ -31,11 +31,21 @@ const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 module.exports.actionSpin = async (requestData, client) => {
     try {
         logger.info("action requestData : ", requestData);
-        if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined" || typeof requestData.bet == "undefined") {
+        if (typeof client.tbid == "undefined" 
+        || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined" 
+        || typeof requestData.bet == "undefined"
+        || typeof requestData.betaction == "undefined"
+        || typeof requestData.betaction.number == "undefined"        
+        ) {
             commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "User session not set, please restart game!");
             return false;
         }
         if (typeof client.action != "undefined" && client.action) return false;
+
+
+        requestData.betaction.number = JSON.parse(requestData.betaction.number)
+
+        console.log("requestData.betaction. ",requestData.betaction)
 
         client.action = true;
 
@@ -93,7 +103,7 @@ module.exports.actionSpin = async (requestData, client) => {
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc  = -1
         for (let i = 0; i < betObjectData.length; i++) {
-            if(betObjectData[i].betIndex == requestData.betaction.betIndex){
+            if(betObjectData[i].betIndex === requestData.betaction.betIndex){
                 indextoinc = i;
                 break;
             }

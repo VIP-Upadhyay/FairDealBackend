@@ -197,6 +197,11 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
         let itemIndex = itemObject;
         let betObjectData = tabInfo.playerInfo[0].betObject;
 
+        logger.info("itemIndex", itemIndex);
+
+        logger.info("betObjectData", betObjectData);
+
+
         for (let i = 0; i < betObjectData.length; i++) {
             if (betObjectData[i].bet != undefined) {
 
@@ -501,7 +506,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
 
                 console.log("TotalWinAmount ", TotalWinAmount)
 
-                TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[i]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
+                TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[0]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
             }
         }
 
