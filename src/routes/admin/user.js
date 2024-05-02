@@ -13,7 +13,7 @@ const mainCtrl = require('../../controller/adminController');
 const logger = require('../../../logger');
 const { registerUser } = require('../../helper/signups/signupValidation');
 const { getUserDefaultFields, saveGameUser } = require('../../helper/signups/appStart');
-
+const walletActions = require("../../roulette/updateWallet");
 
 /**
 * @api {post} /admin/lobbies
@@ -165,8 +165,8 @@ router.put('/addMoney', async (req, res) => {
     try {
         console.log("Add Money ", req.body)
         //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
-        
-        await walletActions.addWalletPayin(req.body.userId, Number(req.body.money), 'Credit', req.body.txnmode, 'Admin');
+    
+        await walletActions.addWalletAdmin(req.body.userId, Number(req.body.money),2, "Agent Addeed Chips","roulette",req.body.adminname,req.body.adminid);
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
@@ -192,7 +192,8 @@ router.put('/deductMoney', async (req, res) => {
         console.log("deductMoney ", req.body)
         //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
         
-        await walletActions.addWalletPayin(req.body.userId, - Number(req.body.money), 'Credit', req.body.txnmode, 'Admin');
+        await walletActions.deductWallet(req.body.userId,-Number(req.body.money),2, "Agent duduct Chips","roulette",req.body.adminname,req.body.adminid);
+
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 

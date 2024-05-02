@@ -24,7 +24,7 @@ module.exports.deductWallet = async (id, deductChips, tType, t, game, adminname,
             username: 1,
             uniqueId: 1,
             chips: 1,
-            winningChips: 1,
+            //winningChips: 1,
             sckId: 1,
             flags: 1
         }
@@ -94,9 +94,9 @@ module.exports.deductWallet = async (id, deductChips, tType, t, game, adminname,
                 trnxTypeTxt: t,
                 trnxAmount: tranferAmount,
                 oppChips: opChips,
-                oppWinningChips: upReps.winningChips,
+                //oppWinningChips: upReps.winningChips,
                 chips: upReps.chips,
-                winningChips: upReps.winningChips,
+                //winningChips: upReps.winningChips,
                 totalBucket: totalRemaningAmount,
                 gameType: game,
                 adminname: adminname != undefined ? adminname : "",
@@ -134,119 +134,6 @@ module.exports.deductWallet = async (id, deductChips, tType, t, game, adminname,
     }
 }
 
-module.exports.addWallet = async (id, added_chips, tType, t, game, adminname, adminid) => {
-    try {
-        logger.info('\ndedudctWallet : call.-->>>', id, added_chips, t);
-        const wh = (typeof id == 'string') ? { _id: MongoID(id) } : { _id: id };
-        if (typeof wh == 'undefined' || typeof wh._id == 'undefined' || wh._id == null || typeof tType == 'undefined') {
-            return false;
-        }
-        added_chips = Number(added_chips.toFixed(2));
-        let projection = {
-            id: 1,
-            user_name: 1,
-            unique_id: 1,
-            chips: 1,
-            winningChips: 1,
-            sckId: 1,
-            flags: 1
-        }
-
-        const userInfo = await GameUser.findOne(wh, projection);
-        logger.info("dedudctWallet userInfo : ", userInfo);
-        if (userInfo == null) {
-            return false;
-        }
-        logger.info("dedudctWallet userInfo :: ", userInfo);
-
-        userInfo.chips = (typeof userInfo.chips == 'undefined' || isNaN(userInfo.chips)) ? 0 : Number(userInfo.chips);
-        userInfo.winningChips = (typeof userInfo.winningChips == 'undefined' || isNaN(userInfo.winningChips)) ? 0 : Number(userInfo.winningChips);
-
-        let opGameWinning = userInfo.winningChips;
-        let opChips = userInfo.chips;
-
-
-        let setInfo = {
-            $inc: {}
-        };
-        let totalDeductChips = added_chips;
-
-        setInfo['$inc']['winningChips'] = Number(Number(added_chips).toFixed(2));
-
-        userInfo.winningChips = Number(userInfo.winningChips) + Number(added_chips);
-        userInfo.winningChips = Number(userInfo.winningChips.toFixed(2))
-
-
-        logger.info("\ndedudctWallet setInfo :: ", setInfo);
-        let tranferAmount = totalDeductChips;
-        logger.info("dedudctWallet userInfo :: ", userInfo);
-
-        if (Object.keys(setInfo["$inc"]).length > 0) {
-            for (let key in setInfo["$inc"]) {
-                setInfo["$inc"][key] = parseFloat(setInfo["$inc"][key].toString());
-            }
-        }
-        if (Object.keys(setInfo["$inc"]).length == 0) {
-            delete setInfo["$inc"];
-        }
-
-        logger.info("\ndedudctWallet wh :: ", wh, setInfo);
-        let upReps = await GameUser.findOneAndUpdate(wh, setInfo, { new: true });
-        logger.info("\ndedudctWallet upReps :: ", upReps);
-
-        upReps.chips = (typeof upReps.chips == 'undefined' || isNaN(upReps.chips)) ? 0 : Number(upReps.chips);
-        upReps.winningChips = (typeof upReps.winningChips == 'undefined' || isNaN(upReps.winningChips)) ? 0 : Number(upReps.winningChips);
-        let totalRemaningAmount = upReps.chips + upReps.winningChips;
-
-        if (typeof tType != 'undefined') {
-
-            let walletTrack = {
-                id: userInfo.id,
-                uniqueId: userInfo.unique_id,
-                userId: wh._id.toString(),
-                trnxType: tType,
-                trnxTypeTxt: t,
-                trnxAmount: tranferAmount,
-                oppChips: opChips,
-                oppWinningChips: opGameWinning,
-                chips: upReps.chips,
-                winningChips: upReps.winningChips,
-                totalBucket: totalRemaningAmount,
-                gameType: game,
-                adminname: adminname != undefined ? adminname : "",
-                adminid: adminid != undefined ? adminid : "",
-
-            }
-            await this.trackUserWallet(walletTrack);
-        }
-
-        if ((typeof upReps.chips.toString().split(".")[1] != "undefined" && upReps.chips.toString().split(".")[1].length > 2) || (typeof upReps.winningChips.toString().split(".")[1] != "undefined" && upReps.winningChips.toString().split(".")[1].length > 2)) {
-
-            let updateData = {
-                $set: {}
-            }
-            updateData["$set"]["chips"] = parseFloat(upReps.chips.toFixed(2))
-
-            updateData["$set"]["winningChips"] = parseFloat(upReps.winningChips.toFixed(2))
-
-            if (Object.keys(updateData.$set).length > 0) {
-                let upRepss = await GameUser.findOneAndUpdate(wh, updateData, { new: true });
-                logger.info("\ndedudctWallet upRepss  :: ", upRepss);
-            }
-        }
-        commandAcions.sendDirectEvent(userInfo.sckId, CONST.WALLET_UPDATE, {
-            winningChips: upReps.winningChips,
-            chips: upReps.chips,
-            totalWallet: totalRemaningAmount,
-            msg: t
-        });
-
-        return totalRemaningAmount;
-    } catch (e) {
-        logger.info("deductWallet : 1 : Exception : 1", e)
-        return 0
-    }
-}
 
 module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminname, adminid) => {
     try {
@@ -261,7 +148,7 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
             user_name: 1,
             unique_id: 1,
             chips: 1,
-            winningChips: 1,
+            //winningChips: 1,
             sckId: 1,
             flags: 1
         }
@@ -274,9 +161,9 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
         logger.info("dedudctWallet userInfo :: ", userInfo);
 
         userInfo.chips = (typeof userInfo.chips == 'undefined' || isNaN(userInfo.chips)) ? 0 : Number(userInfo.chips);
-        userInfo.winningChips = (typeof userInfo.winningChips == 'undefined' || isNaN(userInfo.winningChips)) ? 0 : Number(userInfo.winningChips);
+        //userInfo.winningChips = (typeof userInfo.winningChips == 'undefined' || isNaN(userInfo.winningChips)) ? 0 : Number(userInfo.winningChips);
 
-        let opGameWinning = userInfo.winningChips;
+        //let opGameWinning = userInfo.winningChips;
         let opChips = userInfo.chips;
 
 
@@ -309,8 +196,8 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
         logger.info("\ndedudctWallet upReps :: ", upReps);
 
         upReps.chips = (typeof upReps.chips == 'undefined' || isNaN(upReps.chips)) ? 0 : Number(upReps.chips);
-        upReps.winningChips = (typeof upReps.winningChips == 'undefined' || isNaN(upReps.winningChips)) ? 0 : Number(upReps.winningChips);
-        let totalRemaningAmount = upReps.chips + upReps.winningChips;
+       // upReps.winningChips = (typeof upReps.winningChips == 'undefined' || isNaN(upReps.winningChips)) ? 0 : Number(upReps.winningChips);
+        let totalRemaningAmount = upReps.chips //+ upReps.winningChips;
 
         if (typeof tType != 'undefined') {
 
@@ -322,9 +209,9 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
                 trnxTypeTxt: t,
                 trnxAmount: tranferAmount,
                 oppChips: opChips,
-                oppWinningChips: opGameWinning,
+                //oppWinningChips: opGameWinning,
                 chips: upReps.chips,
-                winningChips: upReps.winningChips,
+                //winningChips: upReps.winningChips,
                 totalBucket: totalRemaningAmount,
                 gameType: game,
                 adminname: adminname != undefined ? adminname : "",
@@ -341,7 +228,7 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
             }
             updateData["$set"]["chips"] = parseFloat(upReps.chips.toFixed(2))
 
-            updateData["$set"]["winningChips"] = parseFloat(upReps.winningChips.toFixed(2))
+            //updateData["$set"]["winningChips"] = parseFloat(upReps.winningChips.toFixed(2))
 
             if (Object.keys(updateData.$set).length > 0) {
                 let upRepss = await GameUser.findOneAndUpdate(wh, updateData, { new: true });
@@ -349,7 +236,7 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
             }
         }
         commandAcions.sendDirectEvent(userInfo.sckId, CONST.WALLET_UPDATE, {
-            winningChips: upReps.winningChips,
+           // winningChips: upReps.winningChips,
             chips: upReps.chips,
             totalWallet: totalRemaningAmount,
             msg: t
@@ -361,6 +248,122 @@ module.exports.addWalletAdmin = async (id, added_chips, tType, t, game, adminnam
         return 0
     }
 }
+
+
+
+// module.exports.addWallet = async (id, added_chips, tType, t, game, adminname, adminid) => {
+//     try {
+//         logger.info('\ndedudctWallet : call.-->>>', id, added_chips, t);
+//         const wh = (typeof id == 'string') ? { _id: MongoID(id) } : { _id: id };
+//         if (typeof wh == 'undefined' || typeof wh._id == 'undefined' || wh._id == null || typeof tType == 'undefined') {
+//             return false;
+//         }
+//         added_chips = Number(added_chips.toFixed(2));
+//         let projection = {
+//             id: 1,
+//             user_name: 1,
+//             unique_id: 1,
+//             chips: 1,
+//             winningChips: 1,
+//             sckId: 1,
+//             flags: 1
+//         }
+
+//         const userInfo = await GameUser.findOne(wh, projection);
+//         logger.info("dedudctWallet userInfo : ", userInfo);
+//         if (userInfo == null) {
+//             return false;
+//         }
+//         logger.info("dedudctWallet userInfo :: ", userInfo);
+
+//         userInfo.chips = (typeof userInfo.chips == 'undefined' || isNaN(userInfo.chips)) ? 0 : Number(userInfo.chips);
+//         userInfo.winningChips = (typeof userInfo.winningChips == 'undefined' || isNaN(userInfo.winningChips)) ? 0 : Number(userInfo.winningChips);
+
+//         let opGameWinning = userInfo.winningChips;
+//         let opChips = userInfo.chips;
+
+
+//         let setInfo = {
+//             $inc: {}
+//         };
+//         let totalDeductChips = added_chips;
+
+//         setInfo['$inc']['winningChips'] = Number(Number(added_chips).toFixed(2));
+
+//         userInfo.winningChips = Number(userInfo.winningChips) + Number(added_chips);
+//         userInfo.winningChips = Number(userInfo.winningChips.toFixed(2))
+
+
+//         logger.info("\ndedudctWallet setInfo :: ", setInfo);
+//         let tranferAmount = totalDeductChips;
+//         logger.info("dedudctWallet userInfo :: ", userInfo);
+
+//         if (Object.keys(setInfo["$inc"]).length > 0) {
+//             for (let key in setInfo["$inc"]) {
+//                 setInfo["$inc"][key] = parseFloat(setInfo["$inc"][key].toString());
+//             }
+//         }
+//         if (Object.keys(setInfo["$inc"]).length == 0) {
+//             delete setInfo["$inc"];
+//         }
+
+//         logger.info("\ndedudctWallet wh :: ", wh, setInfo);
+//         let upReps = await GameUser.findOneAndUpdate(wh, setInfo, { new: true });
+//         logger.info("\ndedudctWallet upReps :: ", upReps);
+
+//         upReps.chips = (typeof upReps.chips == 'undefined' || isNaN(upReps.chips)) ? 0 : Number(upReps.chips);
+//         upReps.winningChips = (typeof upReps.winningChips == 'undefined' || isNaN(upReps.winningChips)) ? 0 : Number(upReps.winningChips);
+//         let totalRemaningAmount = upReps.chips + upReps.winningChips;
+
+//         if (typeof tType != 'undefined') {
+
+//             let walletTrack = {
+//                 id: userInfo.id,
+//                 uniqueId: userInfo.unique_id,
+//                 userId: wh._id.toString(),
+//                 trnxType: tType,
+//                 trnxTypeTxt: t,
+//                 trnxAmount: tranferAmount,
+//                 oppChips: opChips,
+//                 oppWinningChips: opGameWinning,
+//                 chips: upReps.chips,
+//                 winningChips: upReps.winningChips,
+//                 totalBucket: totalRemaningAmount,
+//                 gameType: game,
+//                 adminname: adminname != undefined ? adminname : "",
+//                 adminid: adminid != undefined ? adminid : "",
+
+//             }
+//             await this.trackUserWallet(walletTrack);
+//         }
+
+//         if ((typeof upReps.chips.toString().split(".")[1] != "undefined" && upReps.chips.toString().split(".")[1].length > 2) || (typeof upReps.winningChips.toString().split(".")[1] != "undefined" && upReps.winningChips.toString().split(".")[1].length > 2)) {
+
+//             let updateData = {
+//                 $set: {}
+//             }
+//             updateData["$set"]["chips"] = parseFloat(upReps.chips.toFixed(2))
+
+//             updateData["$set"]["winningChips"] = parseFloat(upReps.winningChips.toFixed(2))
+
+//             if (Object.keys(updateData.$set).length > 0) {
+//                 let upRepss = await GameUser.findOneAndUpdate(wh, updateData, { new: true });
+//                 logger.info("\ndedudctWallet upRepss  :: ", upRepss);
+//             }
+//         }
+//         commandAcions.sendDirectEvent(userInfo.sckId, CONST.WALLET_UPDATE, {
+//             winningChips: upReps.winningChips,
+//             chips: upReps.chips,
+//             totalWallet: totalRemaningAmount,
+//             msg: t
+//         });
+
+//         return totalRemaningAmount;
+//     } catch (e) {
+//         logger.info("deductWallet : 1 : Exception : 1", e)
+//         return 0
+//     }
+// }
 module.exports.trackUserWallet = async (obj) => {
     logger.info("\ntrackUserWallet obj ::", obj);
 

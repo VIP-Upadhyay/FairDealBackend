@@ -210,7 +210,7 @@ module.exports.ClearBet = async (requestData, client) => {
         }
 
 
-        await walletActions.addWallet(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", tabInfo, client.id, client.seatIndex, "roulette");
+        await walletActions.addWalletAdmin(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", "roulette");
 
 
         const upWh = {
@@ -292,7 +292,7 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", tabInfo, client.id, client.seatIndex, "roulette");
+        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet","roulette");
 
         let updateData = {
             $set: {
