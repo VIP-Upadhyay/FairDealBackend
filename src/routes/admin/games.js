@@ -7,7 +7,7 @@ const commonHelper = require('../../helper/commonHelper');
 const mainCtrl = require('../../controller/adminController');
 const logger = require('../../../logger');
 const fs = require("fs")
-
+const RouletteTables = mongoose.model('RouletteTables');
 /**
 * @api {get} /admin/lobbies
 * @apiName  add-bet-list
@@ -127,6 +127,29 @@ router.get('/ludoGameHistory', async (req, res) => {
 
 /**
 * @api {get} /admin/lobbies
+* @apiName  GetGameBetInfo
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.get('/GetGameBetInfo', async (req, res) => {
+    try {
+        console.info('requet => ', req.body);
+
+        const tabInfo = await RouletteTables.find({},{"playerInfo":1});
+        
+        console.info('tabInfo => ', tabInfo);
+
+        res.json({ tabInfo:tabInfo });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
+/**
+* @api {get} /admin/lobbies
 * @apiName  gameLogicSet
 * @apiGroup  Admin
 * @apiHeader {String}  x-access-token Admin's unique access-key
@@ -140,9 +163,9 @@ router.put('/gameLogicSet', async (req, res) => {
 
         console.log("dddddddddddddddddddd 1", process.env.AVIATORLOGIC)
 
-        console.log("req.body.game.gamename  1", req.body.game.gameName )
+        console.log("req.body.gamename  1", req.body.gamename )
       
-        if (req.body.game.gameName == "SORAT") {
+        if (req.body.gamename == "SORAT") {
             GAMELOGICCONFIG.SORAT = req.body.gamelogic
 
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -157,7 +180,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        } else if (req.body.game.gameName == "SPIN") {
+        } else if (req.body.gamename == "SPIN") {
             GAMELOGICCONFIG.SPIN = req.body.gamelogic
 
 
@@ -171,7 +194,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        }else if (req.body.game.gameName == "ANDARBAHAR") {
+        }else if (req.body.gamename == "ANDARBAHAR") {
             GAMELOGICCONFIG.ANDARBAHAR = req.body.gamelogic
 
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -186,7 +209,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        } else if (req.body.game.gameName == "WHEELOFFORTUNE") {
+        } else if (req.body.gamename == "WHEELOFFORTUNE") {
             GAMELOGICCONFIG.WHEELOFFORTUNE = req.body.gamelogic
 
 
@@ -200,7 +223,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        }else if (req.body.game.gameName == "BARAKADUM") {
+        }else if (req.body.gamename == "BARAKADUM") {
             GAMELOGICCONFIG.BARAKADUM = req.body.gamelogic
 
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -215,9 +238,9 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        } else if (req.body.game.gameName == "ROULETTE") {
-            GAMELOGICCONFIG.ROULETTE = req.body.gamelogic
-
+        } else if (req.body.gamename == "ROULETTE") {
+            GAMELOGICCONFIG.ROULETTE = req.body.selectedMode    
+            GAMELOGICCONFIG.FIXNUMBERWON = parseInt(req.body.fixnumberwon)
 
             let link = "./gamelogic.json"
             console.log("link ", link)
@@ -226,12 +249,8 @@ router.put('/gameLogicSet', async (req, res) => {
                 if (err) {
                     console.log(err);
                 }
-
             });
-
         }
-
-
         res.json({ falgs: true });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
@@ -284,7 +303,11 @@ router.get('/getgamelogic', async (req, res) => {
         }else if (req.query.gamename == "ROULETTE") {
             
 
-            res.json({ logic: GAMELOGICCONFIG.ROULETTE });
+            res.json({ logic: {
+                selectedMode: GAMELOGICCONFIG.ROULETTE,
+                fixnumberwon: GAMELOGICCONFIG.FIXNUMBERWON
+            
+            } });
 
         }else{
             res.json({ logic: "" });

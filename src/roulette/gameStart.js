@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const MongoID = mongoose.Types.ObjectId;
 const GameUser = mongoose.model('users');
 const IdCounter = mongoose.model("idCounter")
-
+const _ = require("underscore")
 const commandAcions = require("../helper/socketFunctions");
 const CONST = require("../../constant");
 const logger = require("../../logger");
@@ -93,19 +93,43 @@ module.exports.StartSpinnerGame = async (tbId) => {
         logger.info("RouletteGameStartTimer GAMELOGICCONFIG.SPIN : ", GAMELOGICCONFIG.SPIN);
         logger.info("RouletteGameStartTimer tb.totalbet : ", tb.TableObject);
 
-        // NORMAL 
-        let itemObject = this.getRandomInt(0, 36)
+        // // NORMAL 
+        // let itemObject = this.getRandomInt(0, 36)
 
-        // if(CONST.SORATLOGIC == "Client"){ // Client SIDE
-        //     if(tb.totalbet >= 5){
-        //          Number = this.generateNumber()
-        //     }else if(tb.totalbet < 5){
-        //          Number = this.generateNumber()
-        //     }
-        // }else if(CONST.SORATLOGIC == "User"){  // User SIDE
-        //      Number = this.generateNumber()
-        // }   
-        console.log("itemObject ", itemObject)
+        // // if(CONST.SORATLOGIC == "Client"){ // Client SIDE
+        // //     if(tb.totalbet >= 5){
+        // //          Number = this.generateNumber()
+        // //     }else if(tb.totalbet < 5){
+        // //          Number = this.generateNumber()
+        // //     }
+        // // }else if(CONST.SORATLOGIC == "User"){  // User SIDE
+        // //      Number = this.generateNumber()
+        // // }   
+        // console.log("itemObject ", itemObject)
+
+        // NORMAL 
+
+        let betObjectData = tb.playerInfo[0].betObject;
+
+        
+        if(GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36){
+            itemObject = FIXNUMBERWON
+        }else if(GAMELOGICCONFIG.ROULETTE == "Client"){
+            itemObject = this.getRandomInt(0, 36)
+            totalnmber  = []
+            // Remove TotalNumber for Bet 
+
+            for (let i = 0; i < betObjectData.length; i++) {
+                if (betObjectData[i].bet != undefined) {
+                    totalnmber.push(betObjectData[i].number)
+                }
+            }
+            totalnmber = _.flatten(totalnmber)
+            let notselectnumber = _.difference([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36],totalnmber)
+            itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0,notselectnumber.length-1)]:itemObject
+        }else{  
+            itemObject = this.getRandomInt(0, 36)
+        }
 
         let wh = {
             _id: tbId

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const MongoID = mongoose.Types.ObjectId;
-
+const _ = require("underscore")
 const GameUser = mongoose.model("users");
 
 const CONST = require("../../constant");

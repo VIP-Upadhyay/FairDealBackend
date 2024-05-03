@@ -6,7 +6,7 @@ const config = require('../../../config');
 const commonHelper = require('../../helper/commonHelper');
 const mainCtrl = require('../../controller/adminController');
 const logger = require('../../../logger');
-
+const UserWalletTracks = mongoose.model('userWalletTracks');
 // const Userdeposit = mongoose.model('userdeposit');
 // const Userpayout = mongoose.model('userpayout');
 
@@ -23,14 +23,16 @@ router.get('/DepositList', async (req, res) => {
     try {
         //console.info('requet => ', req);
 
-        // const DepositeList = await Userdeposit.find({ approve: 0, reject: 0 }, {
-        //     name: 1, userId: 1, email: 1, "mobileno": 1, screenshort: 1, depositamount: 1, bankAc: 1, IFSCcode: 1,
-        //     acname: 1, upi_id: 1, paymentmode: 1, status: 1, approve: 1, reject: 1, dateOfdeposit: 1
-        // })
+        //Agent Addeed Chips
 
-        //logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
+        const DepositeList = await UserWalletTracks.find({ trnxTypeTxt:"Agent Addeed Chips" }, {
+            DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1,
+            adminname:1,adminid:1
+        }).sort({DateandTime:-1})
 
-        res.json({ DepositeList:[] });
+        logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
+
+        res.json({ DepositeList:DepositeList });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -268,10 +270,10 @@ router.get('/PayoutList', async (req, res) => {
     try {
         console.log('PayoutList requet => ', req);
 
-        const PayoutList = await Userpayout.find({ status: -1 }, {
-            name: 1, userId: 1, email: 1, "mobileno": 1, screenshort: 1, payoutamount: 1, bankAc: 1, IFSCcode: 1,
-            acname: 1, upi_id: 1, dateOfpayout: 1, paymentmode: 1, status: 1, approve: 1, reject: 1
-        })
+        // const PayoutList = await Userpayout.find({ status: -1 }, {
+        //     name: 1, userId: 1, email: 1, "mobileno": 1, screenshort: 1, payoutamount: 1, bankAc: 1, IFSCcode: 1,
+        //     acname: 1, upi_id: 1, dateOfpayout: 1, paymentmode: 1, status: 1, approve: 1, reject: 1
+        // })
 
         logger.info('admin/dahboard.js post dahboard  error => ', PayoutList);
 
@@ -294,10 +296,10 @@ router.get('/PayoutAcceptList', async (req, res) => {
     try {
         console.log('PayoutAcceptList requet => ');
 
-        const AcceptList = await Userpayout.find({ status: 1 }, {
-            name: 1, userId: 1, email: 1, "mobileno": 1, screenshort: 1, payoutamount: 1, bankAc: 1, IFSCcode: 1,
-            acname: 1, upi_id: 1, paymentmode: 1, status: 1, approve: 1, reject: 1, dateOfpayout: 1
-        })
+        const AcceptList = await UserWalletTracks.find({ trnxTypeTxt:"Agent duduct Chips" }, {
+            DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1,
+            adminname:1,adminid:1
+        }).sort({DateandTime:-1})
 
         console.log('AcceptList requet => ', AcceptList);
 
