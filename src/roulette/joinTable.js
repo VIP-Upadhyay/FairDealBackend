@@ -4,6 +4,8 @@ const GameUser = mongoose.model('users');
 const RouletteTables = mongoose.model('RouletteTables');
 const { sendEvent, sendDirectEvent, AddTime, setDelay, clearJob } = require('../helper/socketFunctions');
 
+const _ = require("underscore")
+
 const gameStartActions = require("./gameStart");
 const CONST = require("../../constant");
 const logger = require("../../logger");
