@@ -63,15 +63,15 @@ module.exports.findTable = async (client,requestData) => {
 
 module.exports.getBetTable = async (requestData) => {
     logger.info("getBetTable  : ",requestData);
-    // let wh = {
-    //     activePlayer: { $gte: 1}
-    // }
-    // logger.info("getBetTable wh : ", JSON.stringify(wh));
-    // let tableInfo = await RouletteTables.find(wh, {}).sort({ activePlayer: 1 }).lean();
+    let wh = {
+        activePlayer: { $gte: 1}
+    }
+    logger.info("getBetTable wh : ", JSON.stringify(wh));
+    let tableInfo = await RouletteTables.find(wh, {}).sort({ activePlayer: 1 }).lean();
 
-    // if (tableInfo.length > 0) {
-    //     return tableInfo[0];
-    // }
+    if (tableInfo.length > 0) {
+        return tableInfo[0];
+    }
     let table = await this.createTable(requestData);
     return table;
 }
@@ -81,7 +81,11 @@ module.exports.createTable = async (requestData) => {
         let insertobj = {
             gameId: "",
             activePlayer: 0,
-            playerInfo: [{}],
+            playerInfo: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
+                         {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
+                         {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},
+                         {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}
+            ],
             gameState: "",
             history:_.shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]),
             betamount:[5,10,50,100,500,1000],

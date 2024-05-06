@@ -140,6 +140,8 @@ router.get('/GetGameBetInfo', async (req, res) => {
         const tabInfo = await RouletteTables.find({},{"playerInfo":1});
         
         console.info('tabInfo => ', tabInfo);
+        console.info('tabInfo =>tabInfo[0].playerInfo.playerInfo ', tabInfo[0].playerInfo[0].betObject);
+
 
         res.json({ tabInfo:tabInfo });
     } catch (error) {

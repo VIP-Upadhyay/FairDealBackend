@@ -40,7 +40,7 @@ module.exports.gameTimerStart = async (tb) => {
                     0, 0, 0, 0,
                     0, 0
                 ],
-                "playerInfo.0.betObject":[],
+                "playerInfo.0.betObject": [],
                 "isFinalWinner": false,
                 uuid: uuidv4(),
             }
@@ -111,12 +111,12 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
         let betObjectData = tb.playerInfo[0].betObject;
 
-        
-        if(GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36){
+
+        if (GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36) {
             itemObject = FIXNUMBERWON
-        }else if(GAMELOGICCONFIG.ROULETTE == "Client"){
+        } else if (GAMELOGICCONFIG.ROULETTE == "Client") {
             itemObject = this.getRandomInt(0, 36)
-            totalnmber  = []
+            totalnmber = []
             // Remove TotalNumber for Bet 
 
             for (let i = 0; i < betObjectData.length; i++) {
@@ -125,9 +125,9 @@ module.exports.StartSpinnerGame = async (tbId) => {
                 }
             }
             totalnmber = _.flatten(totalnmber)
-            let notselectnumber = _.difference([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36],totalnmber)
-            itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0,notselectnumber.length-1)]:itemObject
-        }else{  
+            let notselectnumber = _.difference([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], totalnmber)
+            itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0, notselectnumber.length - 1)] : itemObject
+        } else {
             itemObject = this.getRandomInt(0, 36)
         }
 
@@ -220,318 +220,212 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
         ]
 
         let itemIndex = itemObject;
-        let betObjectData = tabInfo.playerInfo[0].betObject;
-
+        
         logger.info("itemIndex", itemIndex);
 
         logger.info("betObjectData", betObjectData);
 
+        for (let x = 0; x < tbInfo.playerInfo.length; x++) {
+            if (tbInfo.playerInfo[x].seatIndex != undefined && tbInfo.playerInfo[x].betObject != undefined) {
 
-        for (let i = 0; i < betObjectData.length; i++) {
-            if (betObjectData[i].bet != undefined) {
-
+                let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
-                if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 35,
-                    })
 
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 35;
+                for (let i = 0; i < betObjectData.length; i++) {
+                    if (betObjectData[i].bet != undefined) {
+
+                        
+                        if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 35,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 35;
+                        }
+
+                        if (betObjectData[i].type == "1to34" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "2to35" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+
+                        if (betObjectData[i].type == "3to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "1st12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "2nd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "3rd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "1to18" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+
+                        if (betObjectData[i].type == "19to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "odd" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "even" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+
+                        if (betObjectData[i].type == "red" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+                        if (betObjectData[i].type == "black" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 2,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                        }
+
+
+                        if (betObjectData[i].type == "2_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 17.5,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 17.5;
+                        }
+
+
+                        if (betObjectData[i].type == "3_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 11.66,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 11.66;
+                        }
+
+                        if (betObjectData[i].type == "4_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 8.75,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 8.75;
+                        }
+
+
+                        if (betObjectData[i].type == "6_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+                            winnerData.push({
+                                uid: tbInfo.playerInfo[x]._id,
+                                seatIndex: 0,
+                                winAmount: betObjectData[i].bet * 5.83,
+                            })
+
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 5.83;
+                        }
+
+                        console.log("TotalWinAmount ", TotalWinAmount)
+
+                        TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
+                        
+                        let insertobj = {
+                            userId: tbInfo.playerInfo[x]._id.toString(),
+                            ballposition: itemIndex,
+                            play: tbInfo.playerInfo[x].totalbet,
+                            won: TotalWinAmount,
+                            uuid: this.generateRandomNumber(10)
+                        };
+                        console.log("RouletteUserHistory ", insertobj)
+                        await RouletteUserHistory.create(insertobj);
+                    }
                 }
-
-                if (betObjectData[i].type == "1to34" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "2to35" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-
-                if (betObjectData[i].type == "3to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "1st12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "2nd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "3rd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "1to18" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-
-                if (betObjectData[i].type == "19to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "odd" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "even" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-
-                if (betObjectData[i].type == "red" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-                if (betObjectData[i].type == "black" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 2,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
-                }
-
-
-                if (betObjectData[i].type == "2_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 17.5,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 17.5;
-                }
-
-
-                if (betObjectData[i].type == "3_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 11.66,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 11.66;
-                }
-
-                if (betObjectData[i].type == "4_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 8.75,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 8.75;
-                }
-
-
-                if (betObjectData[i].type == "6_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
-                    winnerData.push({
-                        uid: tbInfo.playerInfo[0]._id,
-                        seatIndex: 0,
-                        winAmount: betObjectData[i].bet * 5.83,
-                    })
-
-                    TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 5.83;
-                }
-
-        
-                // // 1 to 34 
-                // if (tbInfo.playerInfo[i].selectObj[37] != 0 && [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34].indexOf(itemIndex) != -1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[37] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[37] * 2;
-                // }
-
-                // //2 to 35
-                // if (tbInfo.playerInfo[i].selectObj[38] != 0 && [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35].indexOf(itemIndex) != -1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[38] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[38] * 2;
-                // }
-
-                // //3 to 36
-                // if (tbInfo.playerInfo[i].selectObj[39] != 0 && [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36].indexOf(itemIndex) != -1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[39] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[39] * 2;
-                // }
-
-                // //1 to 12
-                // if (tbInfo.playerInfo[i].selectObj[40] != 0 && itemIndex >= 1 && itemIndex <= 12) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[40] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[40] * 2;
-                // }
-
-                // //13 to 24
-                // if (tbInfo.playerInfo[i].selectObj[41] != 0 && itemIndex >= 13 && itemIndex <= 24) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[41] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[41] * 2;
-                // }
-
-                // //25 to 36
-                // if (tbInfo.playerInfo[i].selectObj[42] != 0 && itemIndex >= 25 && itemIndex <= 36) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[42] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[42] * 2;
-                // }
-
-                // //1 to 18
-                // if (tbInfo.playerInfo[i].selectObj[43] != 0 && itemIndex >= 1 && itemIndex <= 18) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[43] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[43] * 2;
-                // }
-
-                // //19 to 36
-                // if (tbInfo.playerInfo[i].selectObj[44] != 0 && itemIndex >= 18 && itemIndex <= 36) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[44] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[44] * 2;
-                // }
-
-                // // Odd 
-                // if (tbInfo.playerInfo[i].selectObj[45] != 0 && itemIndex % 2 == 1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[45] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[45] * 2;
-                // }
-
-                // // Even
-                // if (tbInfo.playerInfo[i].selectObj[46] != 0 && itemIndex % 2 == 0) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[46] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[46] * 2;
-                // }
-
-                // // Red
-                // if (tbInfo.playerInfo[i].selectObj[47] != 0 && [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36].indexOf(itemIndex) != -1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[47] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[47] * 2;
-                // }
-                // //Black
-                // if (tbInfo.playerInfo[i].selectObj[48] != 0 && [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35].indexOf(itemIndex) != -1) {
-                //     winnerData.push({
-                //         uid: tbInfo.playerInfo[i]._id,
-                //         seatIndex: tbInfo.playerInfo[i].seatIndex,
-                //         winAmount: tbInfo.playerInfo[i].selectObj[48] * 2,
-                //     })
-                //     TotalWinAmount = TotalWinAmount + tbInfo.playerInfo[i].selectObj[48] * 2;
-                // }
-
-                // 49 to 105 
-
-                console.log("TotalWinAmount ", TotalWinAmount)
-
-                TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[0]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
             }
         }
 
@@ -713,15 +607,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
         // }
 
 
-        let insertobj = {
-            userId: tbInfo.playerInfo[0]._id.toString(),
-            ballposition: itemIndex,
-            play: tbInfo.playerInfo[0].totalbet,
-            won: TotalWinAmount,
-            uuid: this.generateRandomNumber(10)
-        };
-        console.log("RouletteUserHistory ", insertobj)
-        await RouletteUserHistory.create(insertobj);
+       
 
 
         commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.ROULETTEWINNER, {
