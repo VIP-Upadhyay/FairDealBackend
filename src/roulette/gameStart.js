@@ -223,7 +223,6 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
         
         logger.info("itemIndex", itemIndex);
 
-        logger.info("betObjectData", betObjectData);
 
         for (let x = 0; x < tbInfo.playerInfo.length; x++) {
             if (tbInfo.playerInfo[x].seatIndex != undefined && tbInfo.playerInfo[x].betObject != undefined) {
