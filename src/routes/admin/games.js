@@ -175,107 +175,26 @@ router.get('/GetGameBetInfo', async (req, res) => {
     try {
         console.info('requet => ', req.body);
 
-        tabInfo = await RouletteTables.find({},{"playerInfo":1});
+        //tabInfo = await RouletteTables.find({},{"playerInfo":1});
         
-        console.info('tabInfo => ', tabInfo);
+        //console.info('tabInfo => ', tabInfo);
 
-        // tabInfo = [
-        //     { playerInfo: [ 
-        //         {
-        //         seatIndex: 0,
-        //         _id: "661e505b68b64c705150e769",
-        //         playerId: "661e505b68b64c705150e769",
-        //         username: 'USER_15',
-        //         profile: null,
-        //         coins: 21420,
-        //         status: '',
-        //         playerStatus: '',
-        //         selectObj: [
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0
-        //         ],
-        //         betObject: [
-        //           { number: [1], type: 'number', bet: 2, betIndex: '1' },
-        //           { number: [2,3], type: '2_number', bet: 2, betIndex: '49' },
-        //           { number: [1,3,4], type: '3_number', bet: 2, betIndex: '134' }
-        //         ],
-        //         totalbet: 78,
-        //         turnMissCounter: 0,
-        //         turnCount: 0,
-        //         sck: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerSocketId: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerLostChips: 0,
-        //         Iscom: 0,
-        //         playStatus: 'action'
-        //       },
-        //       {
-        //         seatIndex: 0,
-        //         _id: "661e505b68b64c705150e769",
-        //         playerId: "661e505b68b64c705150e769",
-        //         username: 'USER_15',
-        //         profile: null,
-        //         coins: 21420,
-        //         status: '',
-        //         playerStatus: '',
-        //         selectObj: [
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0
-        //         ],
-        //         betObject: [
-        //           { number: [1], type: 'number', bet: 2, betIndex: '1' },
-        //           { number: [2,3], type: '2_number', bet: 2, betIndex: '49' },
-        //           { number: [1,3,4], type: '3_number', bet: 2, betIndex: '134' }
-        //         ],
-        //         totalbet: 78,
-        //         turnMissCounter: 0,
-        //         turnCount: 0,
-        //         sck: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerSocketId: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerLostChips: 0,
-        //         Iscom: 0,
-        //         playStatus: 'action'
-        //       }
-            
-        //     ], _id: "66378e4a716086941dea9fb3" },
-        //     { playerInfo: [ {
-        //         seatIndex: 0,
-        //         _id: "661e505b68b64c705150e769",
-        //         playerId: "661e505b68b64c705150e769",
-        //         username: 'USER_15',
-        //         profile: null,
-        //         coins: 21420,
-        //         status: '',
-        //         playerStatus: '',
-        //         selectObj: [
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //           0, 0
-        //         ],
-        //         betObject: [
-        //           { number: [1], type: 'number', bet: 2, betIndex: '1' },
-        //           { number: [2,3], type: '2_number', bet: 2, betIndex: '49' },
-        //           { number: [4,5,6], type: '3_number', bet: 2, betIndex: '134' }
-        //         ],
-        //         totalbet: 78,
-        //         turnMissCounter: 0,
-        //         turnCount: 0,
-        //         sck: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerSocketId: 'EJ7Z3he8KJ2XjYHmAABZ',
-        //         playerLostChips: 0,
-        //         Iscom: 0,
-        //         playStatus: 'action'
-        //       } ], _id: "66387427716086941deab504" }
-        //   ]
+        const responseData = await RouletteTables.aggregate([
+            { $unwind: "$playerInfo" },
+            { $unwind: "$playerInfo.betObject" },
+            {
+                $group: {
+                    _id: "$playerInfo.betObject.betIndex",
+                    type: { $first: "$playerInfo.betObject.type" },
+                    number: { $first: "$playerInfo.betObject.number" },
+                    bet: { $sum: "$playerInfo.betObject.bet" }
+                }
+            }
+        ]);
 
-        res.json({ tabInfo:tabInfo });
+        console.log("responseData ",responseData)
+
+        res.json({ tabInfo:responseData });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
