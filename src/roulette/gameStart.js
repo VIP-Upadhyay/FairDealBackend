@@ -113,7 +113,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
 
         if (GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36) {
-            itemObject = FIXNUMBERWON
+            itemObject = GAMELOGICCONFIG.FIXNUMBERWON
         } else if (GAMELOGICCONFIG.ROULETTE == "Client") {
             itemObject = this.getRandomInt(0, 36)
             totalnmber = []
