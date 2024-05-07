@@ -165,6 +165,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
                 0,0
             ],
             betObject:[],
+            pastbetObject:[],
             totalbet:0,
             turnMissCounter: 0,
             turnCount: 0,

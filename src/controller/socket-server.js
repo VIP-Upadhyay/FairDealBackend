@@ -283,6 +283,17 @@ myIo.init = function (server) {
                         break;
                     }
 
+                    case CONST.NEIGHBORBET:{
+                        await gamePlayActionsRoulette.NEIGHBORBET(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.PASTBET:{
+                        await gamePlayActionsRoulette.PASTBET(payload.data, socket);
+                        break;
+                    }
+                    
+
                     case CONST.LEAVETABLEROULETTE: {
                         await gamePlayActionsRoulette.leaveTable(payload.data, socket);
                         break;

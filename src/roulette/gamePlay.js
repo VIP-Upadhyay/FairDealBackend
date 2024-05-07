@@ -244,7 +244,6 @@ module.exports.ClearBet = async (requestData, client) => {
     }
 }
 
-
 /*
     bet : 10,
     object:{
@@ -352,6 +351,96 @@ module.exports.DoubleBet = async (requestData, client) => {
         }
 
         commandAcions.sendEvent(client, CONST.DoubleBet, response, false, "");
+
+        return true;
+    } catch (e) {
+        logger.info("Exception action : ", e);
+    }
+}
+
+/*
+    bet : 10,
+    object:{
+        item:0, 
+        bet:10,
+    }
+
+    neighbor  BET 
+
+*/
+module.exports.NEIGHBORBET = async (requestData, client) => {
+    try {
+        logger.info("action requestData : ", requestData);
+        if (typeof client.tbid == "undefined" 
+        || typeof client.uid == "undefined" 
+        || typeof client.seatIndex == "undefined"      
+        ) {
+            commandAcions.sendDirectEvent(client.sck, CONST.NEIGHBORBET, requestData, false, "User session not set, please restart game!");
+            return false;
+        }
+        
+       
+        const tabInfo = await RouletteTables.findOne({},{}).lean();
+        logger.info("NEIGHBORBET tabInfo : ", tabInfo);
+
+        if (tabInfo == null) {
+            logger.info("NEIGHBORBET user not turn ::", tabInfo);
+            return false
+        }
+        let neighborBet =[]
+        for(let i=0;i<tabInfo.playerInfo;i++){
+
+            if(tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) && 
+                tabInfo.playerInfo[i].betObject.length > 0
+            ){
+                neighborBet = tabInfo.playerInfo[i].betObject
+            }
+
+        }
+
+        let response = {
+            neighborBet: neighborBet
+        }
+
+        commandAcions.sendEvent(client, CONST.NEIGHBORBET, response, false, "");
+
+        return true;
+    } catch (e) {
+        logger.info("Exception action : ", e);
+    }
+}
+
+
+/*
+  Past Bet 
+
+*/
+module.exports.PASTBET = async (requestData, client) => {
+    try {
+        logger.info("action requestData : ", requestData);
+        if (typeof client.tbid == "undefined" 
+        || typeof client.uid == "undefined" 
+        || typeof client.seatIndex == "undefined"      
+        ) {
+            commandAcions.sendDirectEvent(client.sck, CONST.PASTBET, requestData, false, "User session not set, please restart game!");
+            return false;
+        }
+        
+       
+        const tabInfo = await RouletteTables.findOne({},{}).lean();
+        logger.info("PASTBET tabInfo : ", tabInfo);
+
+        if (tabInfo == null) {
+            logger.info("PASTBET user not turn ::", tabInfo);
+            return false
+        }
+       
+
+        let response = {
+            pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
+        }
+
+        commandAcions.sendEvent(client, CONST.PASTBET, response, false, "");
 
         return true;
     } catch (e) {
