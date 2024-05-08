@@ -32,7 +32,7 @@ const GameUserSchema = new Schema(
     },
     tableId: { type: String, default: '' },
     sckId: { type: String },
-    status: { type: String, default: '' },
+    status: { type: Boolean, default: true },
     lastLoginDate: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
     modifiedAt: { type: Date, default: Date.now },

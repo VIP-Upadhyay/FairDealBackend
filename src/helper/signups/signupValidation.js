@@ -55,21 +55,27 @@ const checkReferalOrCouponCode = async (requestData, socket) => {
   return true;
 };
 
+/*
+email
+
+*/
+
 const userLogin = async (requestData, socket) => {
-  if (requestData.mobileNumber.length !== 10) {
+  if (requestData.email == undefined || requestData.password == undefined) {
     commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please check mobile Number!');
     return false;
   }
 
   let wh = {
-    mobileNumber: requestData.mobileNumber,
+    email: requestData.email,
+    password:requestData.password
   };
   //  csl('F wh :', wh);
-
+  logger.info('LOGIN EHH :', wh);
   let resp = await Users.findOne(wh, {});
   logger.info('LOGIN resp :', resp);
 
-  if (resp !== null) {
+  if (resp != null) {
     // eslint-disable-next-line no-unused-vars
     //let otpsend = await smsActions.sendOTP(requestData, socket);
     //csl('LOGIN Otp Send :: ', JSON.stringify(otpsend));
