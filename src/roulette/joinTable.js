@@ -246,7 +246,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
             tableid: tableInfo._id,
             gamePlayType: tableInfo.gamePlayType,
             tableAmount: tableInfo.tableAmount,
-            tableType: tableInfo.whichTable
+            tableType: tableInfo.whichTable,
+            history:tableInfo.history
         });
         console.log("tableType: tableInfo.whichTable ",tableInfo.whichTable)
         if(userInfo.Iscom == undefined || userInfo.Iscom == 0)

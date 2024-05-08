@@ -388,16 +388,16 @@ module.exports.NEIGHBORBET = async (requestData, client) => {
             return false
         }
         let neighborBet =[]
+        logger.info("Neighbout Bet Info : ",tabInfo.playerInfo);
         for(let i=0;i<tabInfo.playerInfo;i++){
 
             if(tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) && 
-                tabInfo.playerInfo[i].betObject.length > 0
-            ){
+                tabInfo.playerInfo[i].betObject.length > 0)
+            {
                 neighborBet = tabInfo.playerInfo[i].betObject
             }
-
         }
-
+        
         let response = {
             neighborBet: neighborBet
         }
