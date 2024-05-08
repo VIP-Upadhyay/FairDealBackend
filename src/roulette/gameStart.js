@@ -230,16 +230,6 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
                 let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
 
-
-                await RouletteTables.findOneAndUpdate({
-                    _id: MongoID(tbid),
-                    "playerInfo.seatIndex": Number(tbInfo.playerInfo[x].seatIndex)
-                }, {
-                    $set: {
-                        "playerInfo.$.pastbetObject":betObjectData
-                    }
-                });
-
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 

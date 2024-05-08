@@ -199,7 +199,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
 
         let setPlayerInfo = {
             $set: {
-                gameState: ""
+                //gameState: ""
             },
             $inc: {
                 activePlayer: 1
