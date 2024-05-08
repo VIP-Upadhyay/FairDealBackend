@@ -221,6 +221,7 @@ module.exports.filterBeforeSendSPEvent = async (userData) => {
     chips: userData.chips,
     winningChips: userData.winningChips,
     tableId: userData.tableId || 0,
+    status: userData.status,
     createdAt: userData.createdAt,
   };
 
