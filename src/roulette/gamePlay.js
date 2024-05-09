@@ -396,20 +396,41 @@ module.exports.NEIGHBORBET = async (requestData, client) => {
         }
         let neighborBet = []
         logger.info("Neighbout Bet Info : ", tabInfo.playerInfo);
-        for (let i = 0; i < tabInfo.playerInfo - 1; i++) {
+        // for (let i = 0; i < tabInfo.playerInfo - 1; i++) {
 
-            if (tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) &&
-                tabInfo.playerInfo[i].betObject.length > 0) {
-                neighborBet.push(tabInfo.playerInfo[i].betObject)
+        //     if (tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) &&
+        //         tabInfo.playerInfo[i].betObject.length > 0) {
+        //         neighborBet.push(tabInfo.playerInfo[i].betObject)
+        //     }
+        // }
+
+        if(parseInt(client.seatIndex) == 0)
+        {
+            if(tabInfo.activePlayer > 1)
+            {
+                neighborBet = tabInfo.playerInfo[1].betObject
             }
+        }
+        else if(parseInt(client.seatIndex) == tabInfo.activePlayer-1){
+            if(tabInfo.activePlayer > 1)
+            {
+                neighborBet = tabInfo.playerInfo[0].betObject
+            }
+        }
+        else{
+            neighborBet = tabInfo.playerInfo[parseInt(client.seatIndex)-1].betObject
         }
 
         logger.info("Neighbout Bet Info : neighborBet ", neighborBet);
+        
 
 
         let response = {
-            neighborBet: neighborBet.length > 0 ? neighborBet[this.getRandomInt(0,getRandomInt,length-1)] : []
+            //neighborBet: neighborBet.length > 0 ? neighborBet[this.getRandomInt(0,getRandomInt,length-1)] : []
+            neighborBet:neighborBet
         }
+        
+        neighborBet = tabInfo.playerInfo[this.getRandomInt(0,tabInfo.activePlayer)].betObject
 
         commandAcions.sendEvent(client, CONST.NEIGHBORBET, response, false, "");
 
