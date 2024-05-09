@@ -64,7 +64,8 @@ module.exports.findTable = async (client,requestData) => {
 module.exports.getBetTable = async (requestData) => {
     logger.info("getBetTable  : ",requestData);
     let wh = {
-        activePlayer: { $gte: 1}
+        activePlayer: { $gte: 1 },
+        whichTable:requestData.whichTable != undefined ? requestData.whichTable : "blueTable"
     }
     logger.info("getBetTable wh : ", JSON.stringify(wh));
     let tableInfo = await RouletteTables.find(wh, {}).sort({ activePlayer: 1 }).lean();
