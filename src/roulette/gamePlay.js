@@ -31,11 +31,11 @@ const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 module.exports.actionSpin = async (requestData, client) => {
     try {
         logger.info("action requestData : ", requestData);
-        if (typeof client.tbid == "undefined" 
-        || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined" 
-        || typeof requestData.bet == "undefined"
-        || typeof requestData.betaction == "undefined"
-        || typeof requestData.betaction.number == "undefined"        
+        if (typeof client.tbid == "undefined"
+            || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined"
+            || typeof requestData.bet == "undefined"
+            || typeof requestData.betaction == "undefined"
+            || typeof requestData.betaction.number == "undefined"
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "User session not set, please restart game!");
             return false;
@@ -45,7 +45,7 @@ module.exports.actionSpin = async (requestData, client) => {
 
         requestData.betaction.number = JSON.parse(requestData.betaction.number)
 
-        console.log("requestData.betaction. ",requestData.betaction)
+        console.log("requestData.betaction. ", requestData.betaction)
 
         client.action = true;
 
@@ -101,18 +101,18 @@ module.exports.actionSpin = async (requestData, client) => {
         await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
 
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
-        let indextoinc  = -1
+        let indextoinc = -1
         for (let i = 0; i < betObjectData.length; i++) {
-            if(betObjectData[i].betIndex === requestData.betaction.betIndex){
+            if (betObjectData[i].betIndex === requestData.betaction.betIndex) {
                 indextoinc = i;
                 break;
             }
         }
 
         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
-        if(indextoinc != -1){
-            updateData.$inc["playerInfo.$.betObject."+indextoinc+".bet"] = chalvalue;
-        }else{
+        if (indextoinc != -1) {
+            updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
+        } else {
             updateData["$push"] = {}
             updateData["$push"]["playerInfo.$.betObject"] = requestData.betaction
         }
@@ -210,7 +210,7 @@ module.exports.ClearBet = async (requestData, client) => {
                     0, 0, 0, 0,
                     0, 0
                 ],
-                "playerInfo.$.betObject":[],
+                "playerInfo.$.betObject": [],
                 "playerInfo.$.totalbet": 0,
 
             },
@@ -301,7 +301,7 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet","roulette");
+        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
 
         let updateData = {
             $set: {
@@ -320,7 +320,7 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         for (let i = 0; i < playerInfo.betObject.length; i++) {
             if (playerInfo.betObject[i].bet != undefined) {
-                updateData.$inc["playerInfo.$.betObject."+i+".bet"] = playerInfo.betObject[i].bet;
+                updateData.$inc["playerInfo.$.betObject." + i + ".bet"] = playerInfo.betObject[i].bet;
             }
         }
 
@@ -346,7 +346,7 @@ module.exports.DoubleBet = async (requestData, client) => {
         let response = {
             selectObj: tb.playerInfo[client.seatIndex].selectObj,
             totalbet: tb.playerInfo[client.seatIndex].totalbet,
-            betObject:tb.playerInfo[client.seatIndex].betObject
+            betObject: tb.playerInfo[client.seatIndex].betObject
 
         }
 
@@ -356,6 +356,13 @@ module.exports.DoubleBet = async (requestData, client) => {
     } catch (e) {
         logger.info("Exception action : ", e);
     }
+}
+
+// Generate a random whole number between a specified range (min and max)
+module.exports.getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /*
@@ -371,35 +378,37 @@ module.exports.DoubleBet = async (requestData, client) => {
 module.exports.NEIGHBORBET = async (requestData, client) => {
     try {
         logger.info("action requestData : ", requestData);
-        if (typeof client.tbid == "undefined" 
-        || typeof client.uid == "undefined" 
-        || typeof client.seatIndex == "undefined"      
+        if (typeof client.tbid == "undefined"
+            || typeof client.uid == "undefined"
+            || typeof client.seatIndex == "undefined"
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.NEIGHBORBET, requestData, false, "User session not set, please restart game!");
             return false;
         }
-        
-       
-        const tabInfo = await RouletteTables.findOne({},{}).lean();
+
+
+        const tabInfo = await RouletteTables.findOne({}, {}).lean();
         logger.info("NEIGHBORBET tabInfo : ", tabInfo);
 
         if (tabInfo == null) {
             logger.info("NEIGHBORBET user not turn ::", tabInfo);
             return false
         }
-        let neighborBet =[]
-        logger.info("Neighbout Bet Info : ",tabInfo.playerInfo);
-        for(let i=0;i<tabInfo.playerInfo;i++){
+        let neighborBet = []
+        logger.info("Neighbout Bet Info : ", tabInfo.playerInfo);
+        for (let i = 0; i < tabInfo.playerInfo - 1; i++) {
 
-            if(tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) && 
-                tabInfo.playerInfo[i].betObject.length > 0)
-            {
-                neighborBet = tabInfo.playerInfo[i].betObject
+            if (tabInfo.playerInfo[i].si != undefined && parseInt(tabInfo.playerInfo[i].si) != parseInt(client.seatIndex) &&
+                tabInfo.playerInfo[i].betObject.length > 0) {
+                neighborBet.push(tabInfo.playerInfo[i].betObject)
             }
         }
-        
+
+        logger.info("Neighbout Bet Info : neighborBet ", neighborBet);
+
+
         let response = {
-            neighborBet: neighborBet
+            neighborBet: neighborBet.length > 0 ? neighborBet[this.getRandomInt(0,getRandomInt,length-1)] : []
         }
 
         commandAcions.sendEvent(client, CONST.NEIGHBORBET, response, false, "");
@@ -418,23 +427,23 @@ module.exports.NEIGHBORBET = async (requestData, client) => {
 module.exports.PASTBET = async (requestData, client) => {
     try {
         logger.info("action requestData : ", requestData);
-        if (typeof client.tbid == "undefined" 
-        || typeof client.uid == "undefined" 
-        || typeof client.seatIndex == "undefined"      
+        if (typeof client.tbid == "undefined"
+            || typeof client.uid == "undefined"
+            || typeof client.seatIndex == "undefined"
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.PASTBET, requestData, false, "User session not set, please restart game!");
             return false;
         }
-        
-       
-        const tabInfo = await RouletteTables.findOne({},{}).lean();
+
+
+        const tabInfo = await RouletteTables.findOne({}, {}).lean();
         logger.info("PASTBET tabInfo : ", tabInfo);
 
         if (tabInfo == null) {
             logger.info("PASTBET user not turn ::", tabInfo);
             return false
         }
-       
+
 
         let response = {
             pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
