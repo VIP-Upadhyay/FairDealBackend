@@ -238,6 +238,20 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
                 const updateData = {
                     $set: {
                         "playerInfo.$.pastbetObject": betObjectData,
+                        "playerInfo.$.betObject": betObjectData,
+                        "playerInfo.$.selectObj": [
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0,
+                            0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0
+                        ]
                     }
                 };
                 logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
