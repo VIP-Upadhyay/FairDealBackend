@@ -238,7 +238,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
                 const updateData = {
                     $set: {
                         "playerInfo.$.pastbetObject": betObjectData,
-                        "playerInfo.$.betObject": betObjectData,
+                        "playerInfo.$.betObject": [],
                         "playerInfo.$.selectObj": [
                             0, 0, 0, 0, 0,
                             0, 0, 0, 0, 0,
