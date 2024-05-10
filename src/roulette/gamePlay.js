@@ -158,6 +158,149 @@ module.exports.actionSpin = async (requestData, client) => {
 /*
     bet : 10,
     object:{
+        bet:10,
+         betaction : 
+            {
+                "number" : [ 1 ],
+                "type":"number",
+                "bet":0,
+
+            }
+
+    }
+   
+    
+
+*/
+module.exports.REMOVEBETROULETTE = async (requestData, client) => {
+    try {
+        logger.info("REMOVEBETROULETTE requestData : ", requestData);
+        if (typeof client.tbid == "undefined"
+            || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined"
+            || typeof requestData.bet == "undefined"
+            || typeof requestData.betaction == "undefined"
+            || typeof requestData.betaction.number == "undefined"
+        ) {
+            commandAcions.sendDirectEvent(client.sck, CONST.REMOVEBETROULETTE, requestData, false, "User session not set, please restart game!");
+            return false;
+        }
+        if (typeof client.REMOVEBETROULETTE != "undefined" && client.REMOVEBETROULETTE) return false;
+
+
+        requestData.betaction.number = JSON.parse(requestData.betaction.number)
+
+        console.log("requestData.betaction. ", requestData.betaction)
+
+        client.REMOVEBETROULETTE = true;
+
+        const wh = {
+            _id: MongoID(client.tbid.toString()),
+            //status:"RouletteGameStartTimer"
+        }
+        const project = {
+
+        }
+        const tabInfo = await RouletteTables.findOne(wh, project).lean();
+        logger.info("action tabInfo : ", tabInfo);
+
+        if (tabInfo == null) {
+            logger.info("action user not turn ::", tabInfo);
+            delete client.action;
+            return false
+        }
+
+
+        let betObjectData = tabInfo.playerInfo[client.seatIndex].betObject;
+        let currentBet = Number(requestData.betaction.bet);
+
+        logger.info("action currentBet ::", currentBet);
+
+        let gwh = {
+            _id: MongoID(client.uid)
+        }
+        let UserInfo = await GameUser.findOne(gwh, {}).lean();
+        logger.info("action UserInfo : ", gwh, JSON.stringify(UserInfo));
+
+        let updateData = {
+            $set: {
+
+            },
+            $inc: {
+
+            }
+        }
+        let chalvalue = currentBet;
+        updateData.$set["playerInfo.$.playStatus"] = "action"
+
+        chalvalue = Number(Number(chalvalue).toFixed(2))
+
+
+        //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
+        let indextoinc = -1
+        let leftBetObject = []
+        for (let i = 0; i < betObjectData.length; i++) {
+            if (betObjectData[i].betIndex === requestData.betaction.betIndex) {
+                indextoinc = i;
+            } else {
+                leftBetObject.push(betObjectData[i])
+            }
+        }
+
+        if (indextoinc == -1) {
+            logger.info("action remove bet UserInfo : ", indextoinc);
+            return false
+        }
+
+        await walletActions.addWalletAdmin(client.uid, Number(chalvalue), 4, "roulette Clear Bet", "roulette");
+
+
+        updateData.$inc["playerInfo.$.totalbet"] = -chalvalue;
+        if (indextoinc != -1) {
+            //updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
+            //betObjectData = betObjectData.slice()
+
+            updateData.$set["playerInfo.$.betObject"] = leftBetObject
+        }
+
+        updateData.$inc["totalbet"] = -chalvalue;
+        commandAcions.clearJob(tabInfo.job_id);
+
+        const upWh = {
+            _id: MongoID(client.tbid.toString()),
+            "playerInfo.seatIndex": Number(client.seatIndex)
+        }
+        logger.info("action upWh updateData :: ", upWh, updateData);
+
+        const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
+        logger.info("action tb : ", tb);
+
+        let response = {
+            betObjectData: tb.playerInfo[client.seatIndex].betObject
+        }
+
+        commandAcions.sendEvent(client, CONST.REMOVEBETROULETTE, response, false, "");
+
+
+        delete client.REMOVEBETROULETTE;
+
+        // let activePlayerInRound = await roundStartActions.getPlayingUserInRound(tb.playerInfo);
+        // logger.info("action activePlayerInRound :", activePlayerInRound, activePlayerInRound.length);
+        // if (activePlayerInRound.length == 1) {
+        //     await gameFinishActions.lastUserWinnerDeclareCall(tb);
+        // } else {
+        //     await roundStartActions.nextUserTurnstart(tb);
+        // }
+
+        return true;
+    } catch (e) {
+        logger.info("Exception action : ", e);
+    }
+}
+
+
+/*
+    bet : 10,
+    object:{
         item:0, 
         bet:10,
     }
@@ -404,33 +547,30 @@ module.exports.NEIGHBORBET = async (requestData, client) => {
         //     }
         // }
 
-        if(parseInt(client.seatIndex) == 0)
-        {
-            if(tabInfo.activePlayer > 1)
-            {
+        if (parseInt(client.seatIndex) == 0) {
+            if (tabInfo.activePlayer > 1) {
                 neighborBet = tabInfo.playerInfo[1].betObject
             }
         }
-        else if(parseInt(client.seatIndex) == tabInfo.activePlayer-1){
-            if(tabInfo.activePlayer > 1)
-            {
+        else if (parseInt(client.seatIndex) == tabInfo.activePlayer - 1) {
+            if (tabInfo.activePlayer > 1) {
                 neighborBet = tabInfo.playerInfo[0].betObject
             }
         }
-        else{
-            neighborBet = tabInfo.playerInfo[parseInt(client.seatIndex)-1].betObject
+        else {
+            neighborBet = tabInfo.playerInfo[parseInt(client.seatIndex) - 1].betObject
         }
 
         logger.info("Neighbout Bet Info : neighborBet ", neighborBet);
-        
+
 
 
         let response = {
             //neighborBet: neighborBet.length > 0 ? neighborBet[this.getRandomInt(0,getRandomInt,length-1)] : []
-            neighborBet:neighborBet
+            neighborBet: neighborBet
         }
-        
-        neighborBet = tabInfo.playerInfo[this.getRandomInt(0,tabInfo.activePlayer)].betObject
+
+        neighborBet = tabInfo.playerInfo[this.getRandomInt(0, tabInfo.activePlayer)].betObject
 
         commandAcions.sendEvent(client, CONST.NEIGHBORBET, response, false, "");
 

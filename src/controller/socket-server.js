@@ -152,7 +152,8 @@ myIo.init = function (server) {
                         await OnePlayActions.action(payload.data, socket);
                         break;
                     }
-
+                        
+                        
                     // SORAT GAME Event 
                     case CONST.SORAT_PLAYGAME: {
                         socket.uid = payload.data.playerId;
@@ -272,6 +273,12 @@ myIo.init = function (server) {
                         await gamePlayActionsRoulette.actionSpin(payload.data, socket);
                         break;
                     }
+                        
+                    case CONST.REMOVEBETROULETTE: {
+                        await gamePlayActionsRoulette.REMOVEBETROULETTE(payload.data, socket);
+                        break;
+                    }
+
 
                     case CONST.ClearBet:{
                         await gamePlayActionsRoulette.ClearBet(payload.data, socket);

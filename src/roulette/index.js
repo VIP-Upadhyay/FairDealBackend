@@ -3,7 +3,7 @@
 const { ROULETTE_GAME_JOIN_TABLE } = require("./joinTable");
 const { leaveTable } = require("./leaveTable");
 const { disconnectTableHandle, findDisconnectTable } = require("./disconnectHandle");
-const {PASTBET,NEIGHBORBET, HISTORY,actionSpin,ClearBet,DoubleBet } = require("./gamePlay");
+const {REMOVEBETROULETTE,PASTBET,NEIGHBORBET, HISTORY,actionSpin,ClearBet,DoubleBet } = require("./gamePlay");
 
 module.exports = {
   ROULETTE_GAME_JOIN_TABLE: ROULETTE_GAME_JOIN_TABLE,
@@ -15,5 +15,6 @@ module.exports = {
   DoubleBet:DoubleBet,
   HISTORY:HISTORY,
   NEIGHBORBET:NEIGHBORBET,
-  PASTBET:PASTBET
+  PASTBET: PASTBET,
+  REMOVEBETROULETTE:REMOVEBETROULETTE
 };
