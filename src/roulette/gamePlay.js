@@ -275,7 +275,8 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
         logger.info("action tb : ", tb);
 
         let response = {
-            betObjectData: tb.playerInfo[client.seatIndex].betObject
+            betObjectData: tb.playerInfo[client.seatIndex].betObject,
+            requestData:requestData
         }
 
         commandAcions.sendEvent(client, CONST.REMOVEBETROULETTE, response, false, "");
