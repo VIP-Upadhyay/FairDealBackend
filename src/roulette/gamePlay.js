@@ -229,22 +229,28 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
             }
         }
-        let chalvalue = currentBet;
-        updateData.$set["playerInfo.$.playStatus"] = "action"
-
-        chalvalue = Number(Number(chalvalue).toFixed(2))
-
+        
 
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc = -1
         let leftBetObject = []
+        let userbet = []
         for (let i = 0; i < betObjectData.length; i++) {
             if (betObjectData[i].betIndex === requestData.betaction.betIndex) {
                 indextoinc = i;
+                userbet = betObjectData[i]
             } else {
                 leftBetObject.push(betObjectData[i])
             }
         }
+
+        let chalvalue = userbet.bet;
+        updateData.$set["playerInfo.$.playStatus"] = "action"
+
+        chalvalue = Number(Number(chalvalue).toFixed(2))
+
+        logger.info("action  : userbet ", userbet);
+
 
         if (indextoinc == -1) {
             logger.info("action remove bet UserInfo : ", indextoinc);
