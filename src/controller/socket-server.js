@@ -348,6 +348,21 @@ myIo.init = function (server) {
 
                     //object player is disconnect or not
 
+
+                    let wh = {
+                        sckId: socket.id,
+                      };
+                  
+                      let update = {
+                        $set: {
+                          sckId: "",
+                        },
+                  
+                      };
+                      logger.info('\nuserSesssionSet wh : ', wh, update);
+                  
+                    await GameUser.findOneAndUpdate(wh, update, { upsert: true, new: true });
+
                     let timerSet = Date.now() + 60000;
                     //await setDelay(jobId, new Date(delay), 'disconnect');
                     schedule.scheduleJob(jobId.toString(), timerSet, async function () {
