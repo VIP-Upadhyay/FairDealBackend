@@ -111,6 +111,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
         // NORMAL 
 
         let betObjectData = tb.playerInfo[0].betObject;
+        let itemObject = -1
 
 
         if (GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36) {
@@ -164,7 +165,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             //     }
             // }, { new: true });
 
-            this.winnerSpinner(tabInfo, itemObject);
+            this.winnerSpinner(tabInfo);
         }, 10000);
 
         //botLogic.PlayRobot(tabInfo,tabInfo.playerInfo,itemObject)
@@ -181,10 +182,10 @@ module.exports.getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-module.exports.winnerSpinner = async (tabInfo, itemObject) => {
+module.exports.winnerSpinner = async (tabInfo) => {
 
     try {
-        logger.info("winnerSorat winner ::  -->", itemObject, tabInfo);
+        logger.info("winnerSorat winner ::  -->", tabInfo);
         let tbid = tabInfo._id.toString()
         logger.info("winnerSorat tbid ::", tbid);
 
@@ -192,8 +193,12 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
             _id: MongoID(tbid.toString()),
         }, {})
         console.log("winnerSpinner tb ", tb)
-        if (typeof itemObject == "undefined" || (typeof tb != "undefined" && tb.playerInfo.length == 0)) {
-            logger.info("winnerSpinner winner ::", itemObject);
+
+        console.log("winnerSpinner tb.itemObject ", tb.itemObject)
+
+        
+        if (typeof tb.itemObject == "undefined" || (typeof tb != "undefined" && tb.playerInfo.length == 0)) {
+            logger.info("winnerSpinner winner ::", tb.itemObject);
             logger.info("winnerSpinner winner tb.playerInfo.length ::", tb.playerInfo.length);
 
             return false;
@@ -202,6 +207,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
         if (tabInfo.gameState != "StartSpinner") return false;
         if (tabInfo.isFinalWinner) return false;
 
+        let itemObject = tb.itemObject
         const upWh = {
             _id: tbid
         }

@@ -4,6 +4,9 @@ const schedule = require('node-schedule');
 // eslint-disable-next-line no-undef
 io = module.exports = require('socket.io')(server, { allowEIO3: true });
 
+const mongoose = require("mongoose")
+const MongoID = mongoose.Types.ObjectId;
+
 const logger = (module.exports = require('../../logger'));
 const CONST = require('../../constant');
 const signupActions = require('../helper/signups/index');
@@ -12,7 +15,7 @@ const gamePlayActionsSORAT = require('../SORAT');
 const gamePlayActionsANDARBAHAR = require('../andarbahar');
 const gamePlayActionsRoulette = require('../roulette');
 
-
+const GameUser = mongoose.model('users');
 const gamePlayActionsSpinner = require('../SpinerGame');
 const OnePlayActions = require('../OneToTwelve/');
 

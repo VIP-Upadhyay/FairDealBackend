@@ -75,6 +75,11 @@ const userLogin = async (requestData, socket) => {
   let resp = await Users.findOne(wh, {});
   logger.info('LOGIN resp :', resp);
 
+  if(resp.sckId != ""){
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
+    return false
+  }
+
   if (resp != null) {
     // eslint-disable-next-line no-unused-vars
     //let otpsend = await smsActions.sendOTP(requestData, socket);
