@@ -41,6 +41,7 @@ module.exports.gameTimerStart = async (tb) => {
                     0, 0
                 ],
                 "playerInfo.0.betObject": [],
+                "playerInfo.0.totalbet": 0,
                 "isFinalWinner": false,
                 uuid: uuidv4(),
             }
@@ -239,6 +240,7 @@ module.exports.winnerSpinner = async (tabInfo, itemObject) => {
                     $set: {
                         "playerInfo.$.pastbetObject": betObjectData,
                         "playerInfo.$.betObject": [],
+                        "playerInfo.$.totalbet": 0,
                         "playerInfo.$.selectObj": [
                             0, 0, 0, 0, 0,
                             0, 0, 0, 0, 0,
