@@ -196,7 +196,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
         console.log("winnerSpinner tb.itemObject ", tb.itemObject)
 
-        
+
         if (typeof tb.itemObject == "undefined" || (typeof tb != "undefined" && tb.playerInfo.length == 0)) {
             logger.info("winnerSpinner winner ::", tb.itemObject);
             logger.info("winnerSpinner winner tb.playerInfo.length ::", tb.playerInfo.length);
@@ -227,7 +227,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
         ]
 
         let itemIndex = itemObject;
-        
+
         logger.info("itemIndex", itemIndex);
 
 
@@ -240,7 +240,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 const upWh = {
                     _id: MongoID(tbid),
-                    "playerInfo.seatIndex":tbInfo.playerInfo[x].seatIndex
+                    "playerInfo.seatIndex": tbInfo.playerInfo[x].seatIndex
                 }
                 const updateData = {
                     $set: {
@@ -263,13 +263,13 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     }
                 };
                 logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
-        
+
                 await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
 
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        
+
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
@@ -446,21 +446,24 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 5.83;
                         }
 
-                        console.log("TotalWinAmount ", TotalWinAmount)
 
-                        TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
-                        
-                        let insertobj = {
-                            userId: tbInfo.playerInfo[x]._id.toString(),
-                            ballposition: itemIndex,
-                            play: tbInfo.playerInfo[x].totalbet,
-                            won: TotalWinAmount,
-                            uuid: this.generateRandomNumber(10)
-                        };
-                        console.log("RouletteUserHistory ", insertobj)
-                        await RouletteUserHistory.create(insertobj);
                     }
+
+
                 }
+                console.log("TotalWinAmount ", TotalWinAmount)
+
+                TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
+
+                let insertobj = {
+                    userId: tbInfo.playerInfo[x]._id.toString(),
+                    ballposition: itemIndex,
+                    play: tbInfo.playerInfo[x].totalbet,
+                    won: TotalWinAmount,
+                    uuid: this.generateRandomNumber(10)
+                };
+                console.log("RouletteUserHistory ", insertobj)
+                await RouletteUserHistory.create(insertobj);
             }
         }
 
@@ -642,7 +645,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
         // }
 
 
-       
+
 
 
         commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.ROULETTEWINNER, {
