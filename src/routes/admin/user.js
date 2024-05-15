@@ -84,6 +84,7 @@ router.post('/AddUser', async (req, res) => {
         let response = {
             mobileNumber: req.body.mobileNumber,
             username: req.body.name,
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password,
             isVIP: 1,
