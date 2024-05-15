@@ -57,17 +57,17 @@ const checkReferalOrCouponCode = async (requestData, socket) => {
 
 /*
 email
-
+username
 */
 
 const userLogin = async (requestData, socket) => {
-  if (requestData.email == undefined || requestData.password == undefined) {
+  if (requestData.username == undefined || requestData.password == undefined) {
     commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please check emaul!');
     return false;
   }
 
   let wh = {
-    email: requestData.email,
+    username: requestData.username,
     password:requestData.password
   };
   //  csl('F wh :', wh);
@@ -94,7 +94,7 @@ const userLogin = async (requestData, socket) => {
 
 
   } else {
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'email not register!');
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'username not register!');
   }
   return true;
 };
@@ -102,7 +102,7 @@ const userLogin = async (requestData, socket) => {
 const userSignup = async (requestData_, socket) => {
   let requestData = requestData_;
   if (requestData.mobileNumber.length !== 10) {
-    commandAcions.sendEvent(socket, CONST.SIGNUP, requestData, false, 'Please check email!');
+    commandAcions.sendEvent(socket, CONST.SIGNUP, requestData, false, 'Please check mobilenumber!');
     return false;
   }
 
