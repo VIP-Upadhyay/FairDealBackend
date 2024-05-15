@@ -61,13 +61,13 @@ username
 */
 
 const userLogin = async (requestData, socket) => {
-  if (requestData.username == undefined || requestData.password == undefined) {
+  if (requestData.name == undefined || requestData.password == undefined) {
     commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please check emaul!');
     return false;
   }
 
   let wh = {
-    username: requestData.username,
+    name: requestData.name,
     password:requestData.password
   };
   //  csl('F wh :', wh);
