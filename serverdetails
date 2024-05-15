@@ -11,3 +11,12 @@ PWD : Changeme3!
 Putty Login
 User root 
 PWD  Changeme3@ 
+
+
+sudo certbot certonly --standalone -d dealregal.com 
+
+
+sudo certbot --nginx -d dealregal.com -d www.dealregal.com
+
+Certificate is saved at: /etc/letsencrypt/live/dealregal.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/dealregal.com/privkey.pem
