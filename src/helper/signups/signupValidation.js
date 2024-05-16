@@ -77,6 +77,11 @@ const userLogin = async (requestData, socket) => {
 
 
   if (resp != null) {
+    if(resp.sckId != ""){
+      commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
+      return false
+    }
+    
     // eslint-disable-next-line no-unused-vars
     //let otpsend = await smsActions.sendOTP(requestData, socket);
     //csl('LOGIN Otp Send :: ', JSON.stringify(otpsend));
@@ -93,10 +98,7 @@ const userLogin = async (requestData, socket) => {
     commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please Enter Valied Username Or Password.');
   }
 
-  if(resp.sckId != ""){
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
-    return false
-  }
+
 
   
   return true;
