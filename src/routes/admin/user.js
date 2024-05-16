@@ -29,10 +29,10 @@ router.get('/UserList', async (req, res) => {
         let userList = []
         if (req.query.Id == "Admin") {
 
-            userList = await Users.find({}, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+            userList = await Users.find({}, { username: 1,name:1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         } else {
-            userList = await Users.find({ agentId: MongoID(req.query.Id) }, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+            userList = await Users.find({ agentId: MongoID(req.query.Id) }, { username: 1,name:1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
         }
         logger.info('admin/dahboard.js post dahboard  error => ', userList);
 
@@ -267,6 +267,38 @@ router.get('/UserInfoPrint', async (req, res) => {
     }
 });
 
+/**
+* @api {post} /admin/deductMoney
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.put('/blockandunblock', async (req, res) => {
+    try {
+        console.log("blockandunblock ", req.body)
+        //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+
+        if (req.body.userId != undefined && req.body.isblock != undefined) {
+
+            await Users.updateOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, { $set: { status: req.body.isblock } })
+
+            res.json({ status: "ok" });
+        } else {
+            console.log("false")
+            res.json({ status: false });
+        }
+
+        logger.info('admin/dahboard.js post dahboard  error => ');
+
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        //res.send("error");
+
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
 
 async function createPhoneNumber() {
     const countryCode = "91";
