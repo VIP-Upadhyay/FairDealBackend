@@ -111,12 +111,14 @@ module.exports.StartSpinnerGame = async (tbId) => {
         // NORMAL 
 
         let TotalPlayerBetInfo = []
-        
-        for (let i = 0; i < tb.playerInfo.length; i++) {
-            for (let x = 0; x < tb.playerInfo[i].betObject.length; x++) {
 
-                if (tb.playerInfo[i].betObject[x] != undefined && tb.playerInfo[i].betObject[x].type == "number") {
-                    TotalPlayerBetInfo.push(tb.playerInfo[i].betObject[x])
+        for (let i = 0; i < tb.playerInfo.length; i++) {
+            if (tb.playerInfo[i].betObject != undefined) {
+                for (let x = 0; x < tb.playerInfo[i].betObject.length; x++) {
+
+                    if (tb.playerInfo[i].betObject[x] != undefined && tb.playerInfo[i].betObject[x].type == "number") {
+                        TotalPlayerBetInfo.push(tb.playerInfo[i].betObject[x])
+                    }
                 }
             }
         }
@@ -143,15 +145,15 @@ module.exports.StartSpinnerGame = async (tbId) => {
             let notselectnumber = _.difference([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], totalnmber)
             itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0, notselectnumber.length - 1)] : itemObject
         } else if (GAMELOGICCONFIG.ROULETTE == "User") {
-            
-            betObjectData.sort((e,f) => {
+
+            betObjectData.sort((e, f) => {
                 return e.bet - f.bet;
             })
 
-            console.log("betObjectData",betObjectData)
+            console.log("betObjectData", betObjectData)
 
-            itemObject = betObjectData[0].number != undefined ? _.flatten(betObjectData[0].number)[0]: this.getRandomInt(0, 36)
-            
+            itemObject = betObjectData[0].number != undefined ? _.flatten(betObjectData[0].number)[0] : this.getRandomInt(0, 36)
+
         } else {
             itemObject = this.getRandomInt(0, 36)
         }
