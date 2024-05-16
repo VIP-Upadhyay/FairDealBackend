@@ -62,7 +62,7 @@ username
 
 const userLogin = async (requestData, socket) => {
   if (requestData.name == undefined || requestData.password == undefined) {
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please check emaul!');
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please check Username!');
     return false;
   }
 
@@ -90,7 +90,7 @@ const userLogin = async (requestData, socket) => {
 
 
   } else {
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please Enter Valied UserName Or Password.');
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please Enter Valied Username Or Password.');
   }
 
   if(resp.sckId != ""){
@@ -126,7 +126,7 @@ const userSignup = async (requestData_, socket) => {
     let response = { mobileNumber: requestData.mobileNumber, status: true };
     commandAcions.sendEvent(socket, CONST.REGISTER_USER, response);
   } else {
-    commandAcions.sendEvent(socket, CONST.REGISTER_USER, requestData, false, 'email is already register!');
+    commandAcions.sendEvent(socket, CONST.REGISTER_USER, requestData, false, 'Username is already register!');
   }
   return true;
 };
@@ -134,7 +134,7 @@ const userSignup = async (requestData_, socket) => {
 const verifyOTP = async (requestData_, socket) => {
   let requestData = requestData_;
   if (requestData.mobileNumber.length !== 10) {
-    commandAcions.sendEvent(socket, CONST.VERIFY_OTP, requestData, false, 'Please check email!');
+    commandAcions.sendEvent(socket, CONST.VERIFY_OTP, requestData, false, 'Please check Username!');
     return false;
   }
 
@@ -172,7 +172,7 @@ const verifyOTP = async (requestData_, socket) => {
 const resendOTP = async (requestData_, socket) => {
   let requestData = requestData_;
   if (requestData.mobileNumber.length !== 10) {
-    commandAcions.sendEvent(socket, CONST.RESEND_OTP, requestData, false, 'Please check email!');
+    commandAcions.sendEvent(socket, CONST.RESEND_OTP, requestData, false, 'Please check Username!');
     return false;
   }
 
@@ -192,7 +192,7 @@ const resendOTP = async (requestData_, socket) => {
     let response = { mobileNumber: requestData.mobileNumber, status: true };
     commandAcions.sendEvent(socket, CONST.RESEND_OTP, response);
   } else {
-    commandAcions.sendEvent(socket, CONST.RESEND_OTP, requestData, false, 'Enter Valid email!');
+    commandAcions.sendEvent(socket, CONST.RESEND_OTP, requestData, false, 'Enter Valid Username!');
   }
   return true;
 };
