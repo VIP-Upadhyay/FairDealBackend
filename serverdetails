@@ -20,3 +20,37 @@ sudo certbot --nginx -d dealregal.com -d www.dealregal.com
 
 Certificate is saved at: /etc/letsencrypt/live/dealregal.com/fullchain.pem
 Key is saved at:         /etc/letsencrypt/live/dealregal.com/privkey.pem
+
+
+
+sudo mkdir -p /var/www/dealregal.com/html
+
+
+sudo chown -R $USER:$USER /var/www/dealregal.com/html
+
+sudo chmod -R 755 /var/www/dealregal.com
+
+nano /var/www/dealregal.com/html/index.html
+
+
+sudo nano /etc/nginx/sites-available/dealregal.com
+
+
+sudo nano /etc/nginx/sites-available/dealregal.com
+
+
+sudo ln -s /etc/nginx/sites-available/dealregal.com /etc/nginx/sites-enabled/
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/dealregal.com/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name dealregal.com www.dealregal.com;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}

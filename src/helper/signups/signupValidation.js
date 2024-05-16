@@ -205,9 +205,9 @@ const resendOTP = async (requestData_, socket) => {
 const registerUser = async (requestBody, socket) => {
   try {
     logger.info('Register User Request Body =>', requestBody);
-    const { mobileNumber, deviceId, isVIP } = requestBody;
+    const { name, deviceId, isVIP } = requestBody;
 
-    let query = { mobileNumber: mobileNumber };
+    let query = { name: name };
     let result = await Users.findOne(query, {});
     if (!result) {
 
