@@ -75,10 +75,6 @@ const userLogin = async (requestData, socket) => {
   let resp = await Users.findOne(wh, {});
   logger.info('LOGIN resp :', resp);
 
-  if(resp.sckId != ""){
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
-    return false
-  }
 
   if (resp != null) {
     // eslint-disable-next-line no-unused-vars
@@ -94,8 +90,15 @@ const userLogin = async (requestData, socket) => {
 
 
   } else {
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'username not register!');
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please Enter Valied UserName Or Password.');
   }
+
+  if(resp.sckId != ""){
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
+    return false
+  }
+
+  
   return true;
 };
 
