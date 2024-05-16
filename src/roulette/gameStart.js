@@ -150,9 +150,9 @@ module.exports.StartSpinnerGame = async (tbId) => {
                 return e.bet - f.bet;
             })
 
-            console.log("betObjectData", betObjectData)
+            logger.info("betObjectData", betObjectData)
 
-            itemObject = betObjectData[0].number != undefined ? _.flatten(betObjectData[0].number)[0] : this.getRandomInt(0, 36)
+            itemObject = betObjectData.length > 0 && betObjectData[0].number != undefined ? _.flatten(betObjectData[0].number)[0] : this.getRandomInt(0, 36)
 
         } else {
             itemObject = this.getRandomInt(0, 36)
