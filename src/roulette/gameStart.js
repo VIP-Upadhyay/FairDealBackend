@@ -91,7 +91,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
 
         //Genrate Rendom Number 
-        logger.info("RouletteGameStartTimer GAMELOGICCONFIG.SPIN : ", GAMELOGICCONFIG.SPIN);
+        logger.info("RouletteGameStartTimer GAMELOGICCONFIG.SPIN : ", GAMELOGICCONFIG.ROULETTE);
         logger.info("RouletteGameStartTimer tb.totalbet : ", tb.TableObject);
 
         // // NORMAL 
@@ -129,8 +129,13 @@ module.exports.StartSpinnerGame = async (tbId) => {
         if (GAMELOGICCONFIG.ROULETTE == "User" && ((tb.playerInfo.activePlayer == 1 && TotalAllPlayer.length <= 5) || (TotalAllPlayer.length == 1))) {
             MustPlay = "Client"
         } 
-            
 
+        logger.info("RouletteGameStartTimer MustPlay: ", MustPlay);
+
+
+        logger.info("RouletteGameStartTimer GAMELOGICCONFIG.SPIN : ", GAMELOGICCONFIG.ROULETTE);
+
+        logger.info("RouletteGameStartTimer MustPlay: ", MustPlay);
 
         let betObjectData = TotalPlayerBetInfo //tb.playerInfo[0].betObject;
         let itemObject = -1
@@ -149,7 +154,15 @@ module.exports.StartSpinnerGame = async (tbId) => {
                 }
             }
             totalnmber = _.flatten(totalnmber)
+
+            logger.info("totalnmber ", totalnmber)
+
+            
             let notselectnumber = _.difference([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], totalnmber)
+
+            logger.info("notselectnumber ", notselectnumber)
+            
+
             itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0, notselectnumber.length - 1)] : itemObject
         } else if (GAMELOGICCONFIG.ROULETTE == "User") {
 

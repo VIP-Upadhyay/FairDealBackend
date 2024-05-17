@@ -366,7 +366,7 @@ router.get('/getgamelogic', async (req, res) => {
             res.json({ logic: "" });
         }
 
-        logger.info('admin/dahboard.js post dahboard  error => ', CONST);
+        logger.info('admin/dahboard.js post dahboard  error => ');
 
         
     } catch (error) {
