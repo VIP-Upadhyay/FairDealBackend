@@ -111,6 +111,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
         // NORMAL 
 
         let TotalPlayerBetInfo = []
+        let TotalAllPlayer = []
 
         for (let i = 0; i < tb.playerInfo.length; i++) {
             if (tb.playerInfo[i].betObject != undefined) {
@@ -119,10 +120,16 @@ module.exports.StartSpinnerGame = async (tbId) => {
                     if (tb.playerInfo[i].betObject[x] != undefined && tb.playerInfo[i].betObject[x].type == "number") {
                         TotalPlayerBetInfo.push(tb.playerInfo[i].betObject[x])
                     }
+
+                    TotalAllPlayer.push(tb.playerInfo[i].betObject[x])
                 }
             }
         }
-
+        let MustPlay = ""
+        if (GAMELOGICCONFIG.ROULETTE == "User" && ((tb.playerInfo.activePlayer == 1 && TotalAllPlayer.length <= 5) || (TotalAllPlayer.length == 1))) {
+            MustPlay = "Client"
+        } 
+            
 
 
         let betObjectData = TotalPlayerBetInfo //tb.playerInfo[0].betObject;
@@ -131,7 +138,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
         if (GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36) {
             itemObject = GAMELOGICCONFIG.FIXNUMBERWON
-        } else if (GAMELOGICCONFIG.ROULETTE == "Client") {
+        } else if (MustPlay == "Client" ||  GAMELOGICCONFIG.ROULETTE == "Client") {
             itemObject = this.getRandomInt(0, 36)
             totalnmber = []
             // Remove TotalNumber for Bet 
