@@ -214,7 +214,6 @@ router.put('/gameLogicSet', async (req, res) => {
         console.info('requet => ', req.body);
         // console.log("req.body.gamelogic", CONST.AVIATORLOGIC)
 
-        console.log("dddddddddddddddddddd 1", process.env.AVIATORLOGIC)
 
         console.log("req.body.gamename  1", req.body.gamename )
       
@@ -292,11 +291,17 @@ router.put('/gameLogicSet', async (req, res) => {
             });
 
         } else if (req.body.gamename == "ROULETTE") {
+
+            console.log("req.body ",req.body)
+
             GAMELOGICCONFIG.ROULETTE = req.body.selectedMode    
-            GAMELOGICCONFIG.FIXNUMBERWON = parseInt(req.body.fixnumberwon)
+            GAMELOGICCONFIG.GREENFIXNUMBERWON = parseInt(req.body.greenfixnumberwon)
+            GAMELOGICCONFIG.BLUEFIXNUMBERWON = parseInt(req.body.bluefixnumberwon)
+
+
 
             let link = "./gamelogic.json"
-            console.log("link ", link)
+            console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
             fs.writeFile(link, JSON.stringify(GAMELOGICCONFIG), function (err) {
                 console.log("erre", err)
                 if (err) {
@@ -358,7 +363,9 @@ router.get('/getgamelogic', async (req, res) => {
 
             res.json({ logic: {
                 selectedMode: GAMELOGICCONFIG.ROULETTE,
-                fixnumberwon: GAMELOGICCONFIG.FIXNUMBERWON
+                greenfixnumberwon: GAMELOGICCONFIG.GREENFIXNUMBERWON,
+                bluefixnumberwon: GAMELOGICCONFIG.BLUEFIXNUMBERWON
+
             
             } });
 

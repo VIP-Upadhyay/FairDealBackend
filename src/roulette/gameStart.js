@@ -141,8 +141,10 @@ module.exports.StartSpinnerGame = async (tbId) => {
         let itemObject = -1
 
 
-        if (GAMELOGICCONFIG.FIXNUMBERWON != undefined && GAMELOGICCONFIG.FIXNUMBERWON != -1 && GAMELOGICCONFIG.FIXNUMBERWON >= 0 && GAMELOGICCONFIG.FIXNUMBERWON <= 36) {
-            itemObject = GAMELOGICCONFIG.FIXNUMBERWON
+        if (tb.whichTable == "blueTable" && GAMELOGICCONFIG.BLUEFIXNUMBERWON != undefined && GAMELOGICCONFIG.BLUEFIXNUMBERWON != -1 && GAMELOGICCONFIG.BLUEFIXNUMBERWON >= 0 && GAMELOGICCONFIG.BLUEFIXNUMBERWON <= 36) {
+            itemObject = GAMELOGICCONFIG.BLUEFIXNUMBERWON
+        } else if (tb.whichTable == "greenTable" && GAMELOGICCONFIG.GREENFIXNUMBERWON != undefined && GAMELOGICCONFIG.GREENFIXNUMBERWON != -1 && GAMELOGICCONFIG.GREENFIXNUMBERWON >= 0 && GAMELOGICCONFIG.GREENFIXNUMBERWON <= 36) {
+            itemObject = GAMELOGICCONFIG.GREENFIXNUMBERWON
         } else if (MustPlay == "Client" ||  GAMELOGICCONFIG.ROULETTE == "Client") {
             itemObject = this.getRandomInt(0, 36)
             totalnmber = []

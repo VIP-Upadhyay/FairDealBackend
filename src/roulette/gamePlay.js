@@ -254,6 +254,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
         if (indextoinc == -1) {
             logger.info("action remove bet UserInfo : ", indextoinc);
+            commandAcions.sendDirectEvent(client.sck, CONST.REMOVEBETROULETTE, requestData, false, "User session not set, please restart game!");
             return false
         }
 

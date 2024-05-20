@@ -96,10 +96,12 @@ router.post('/AddUser', async (req, res) => {
         console.log("response  :::::::::::: response ", response)
 
         logger.info('Register User Request Body =>', response);
-        const { mobileNumber } = response;
+        //const { mobileNumber } = response;
 
-        let query = { mobileNumber: mobileNumber };
+        let query = { name: req.body.name };
         let result = await Users.findOne(query, {});
+        console.log("result ", result)
+        
         if (!result) {
             let defaultData = await getUserDefaultFields(response);
             logger.info('registerUser defaultData : ', defaultData);
@@ -179,6 +181,37 @@ router.put('/addMoney', async (req, res) => {
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
     }
 });
+
+
+/**
+* @api {post} /admin/UpdatePassword
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.put('/UpdatePassword', async (req, res) => {
+    try {
+        console.log("UpdatePassword", req.body)
+        await Users.updateOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, {
+            $set: {
+                password:req.body.password
+        }})
+    
+        //await walletActions.addWalletAdmin(req.body.userId, Number(req.body.money),2, "Agent Addeed Chips","roulette",req.body.adminname,req.body.adminid);
+
+        logger.info('admin/dahboard.js post dahboard  error => ');
+
+        res.json({ status: "ok" });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        //res.send("error");
+
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
 
 /**
 * @api {post} /admin/deductMoney

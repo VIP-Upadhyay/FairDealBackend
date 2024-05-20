@@ -139,6 +139,8 @@ router.post('/AddAgent', async (req, res) => {
             console.log("response ", response)
             let insertRes = await Agent.create(response);
 
+            console.log("insertRes ",Object.keys(insertRes).length)
+
             if (Object.keys(insertRes).length > 0) {
                 res.json({ res:true,status: "ok" });
             } else {
