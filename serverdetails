@@ -54,3 +54,36 @@ server {
                 try_files $uri $uri/ =404;
         }
 }
+
+
+
+#
+root /var/www/dealregal.com/html/deal-reagl-website;
+
+
+sudo chown -R $USER:$USER /var/www/dealregal.com/html
+
+
+sudo chmod -R 755 /var/www/dealregal.com
+
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/dealregal.com.conf
+
+sudo nano /etc/apache2/sites-available/dealregal.com.conf
+
+
+ServerName dealregal.com
+ServerAlias www.dealregal.com
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/your_domain_1.conf
+
+
+sudo a2ensite dealregal.com.conf
+
+
+127.0.0.1 dealregal.com
+
+
+
+/var/www/dealregal.com/html/deal-reagl-website/
+
