@@ -71,6 +71,10 @@ module.exports.leaveTable = async (requestData, client) => {
     commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
     //commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVETABLEROULETTE, response);
 
+    if(tbInfo.activePlayer == 0)
+    {
+        await RouletteTables.deleteMany({})
+    }
 
     await this.manageOnUserLeave(tbInfo);
 }
