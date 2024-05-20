@@ -194,7 +194,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client,requestData) => {
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
-            _id: MongoID(table._id.toString())
+            _id: MongoID(table._id.toString()),
+            "playerInfo._id":{$ne:MongoID(userInfo._id)}
         };
         whereCond['playerInfo.' + seatIndex + '.seatIndex'] = { $exists: false };
 
