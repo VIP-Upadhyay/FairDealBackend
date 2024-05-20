@@ -81,6 +81,11 @@ const userLogin = async (requestData, socket) => {
       commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
       return false
     }
+
+    if(!resp.status){
+      commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User Blocked Connect to Admin..!');
+      return false
+    }
     
     // eslint-disable-next-line no-unused-vars
     //let otpsend = await smsActions.sendOTP(requestData, socket);
