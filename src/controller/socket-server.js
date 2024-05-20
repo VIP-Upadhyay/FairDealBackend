@@ -364,7 +364,7 @@ myIo.init = function (server) {
                       };
                       logger.info('\nuserSesssionSet wh : ', wh, update);
                   
-                    await GameUser.findOneAndUpdate(wh, update, { upsert: true, new: true });
+                    await GameUser.findOneAndUpdate(wh, update);
 
                     let timerSet = Date.now() + 60000;
                     //await setDelay(jobId, new Date(delay), 'disconnect');
