@@ -15,7 +15,9 @@ const logger = require("../../logger");
 module.exports.leaveTable = async (requestData, client) => {
     var requestData = (requestData != null) ? requestData : {}
     if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined") {
+        if(requestData.reason == undefined || requestData.reason != 'autoLeave')
         commandAcions.sendDirectEvent(client.sck, CONST.LEAVE_TABLE, requestData, false, "User session not set, please restart game!");
+
         return false;
     }
 
@@ -68,6 +70,7 @@ module.exports.leaveTable = async (requestData, client) => {
     let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
 
+    if(requestData.reason == undefined || requestData.reason != 'autoLeave')
     commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
     //commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVETABLEROULETTE, response);
 
