@@ -103,7 +103,7 @@ module.exports.actionSpin = async (requestData, client) => {
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc = -1
         for (let i = 0; i < betObjectData.length; i++) {
-            if (betObjectData[i].betIndex === requestData.betaction.betIndex) {
+            if ( parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
                 indextoinc = i;
                 break;
             }
@@ -168,9 +168,12 @@ module.exports.actionSpin = async (requestData, client) => {
             }
 
     }
-   
-    
-
+[2024-05-21T12:44:02.846] [INFO] development - REMOVEBETROULETTE requestData :  {
+  tableId: '664c4945b8df2259782d164c',
+  playerId: '663ca51fe1b43a5bd45c7b89',
+  bet: 2,
+  betaction: { number: '[16]', type: 'number', bet: 2, betIndex: '16' }
+}
 */
 module.exports.REMOVEBETROULETTE = async (requestData, client) => {
     try {
@@ -205,7 +208,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
         if (tabInfo == null) {
             logger.info("action user not turn ::", tabInfo);
-            delete client.action;
+            delete client.REMOVEBETROULETTE;
             return false
         }
 
@@ -236,7 +239,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
         let leftBetObject = []
         let userbet = []
         for (let i = 0; i < betObjectData.length; i++) {
-            if (betObjectData[i].betIndex === requestData.betaction.betIndex) {
+            if (parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
                 indextoinc = i;
                 userbet = betObjectData[i]
             } else {
@@ -254,6 +257,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
         if (indextoinc == -1) {
             logger.info("action remove bet UserInfo : ", indextoinc);
+            delete client.REMOVEBETROULETTE;
             commandAcions.sendDirectEvent(client.sck, CONST.REMOVEBETROULETTE, requestData, false, "User session not set, please restart game!");
             return false
         }
