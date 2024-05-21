@@ -13,6 +13,7 @@ User root
 PWD  Changeme3@ 
 
 
+
 sudo certbot certonly --standalone -d dealregal.com 
 
 
@@ -87,3 +88,14 @@ sudo a2ensite dealregal.com.conf
 
 /var/www/dealregal.com/html/deal-reagl-website/
 
+// Mongodb 
+
+
+
+db.createUser({user: "Admin",pwd: "Changeme3@",roles: [ { role: "userAdminAnyDatabase", db: "dealregal" }, "readWriteAnyDatabase" ]})
+
+db.createUser({user: "dealregaluser",pwd: "Changeme3@",roles: [ { role: "readWrite", db: "dealregal" } ]})
+
+db name : dealregal
+user name : dealregaluser
+pwd :  Changeme3@
