@@ -28,12 +28,12 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         let UserInfo = await GameUser.findOne(gwh, {}).lean();
         logger.info("JoinTable UserInfo : ", gwh, JSON.stringify(UserInfo));
 
-        let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
-        if (Number(totalWallet) < 1) {
-            sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please add Wallet!!");
-            delete client.JT
-            return false;
-        }
+        //let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
+        // if (Number(totalWallet) < 1) {
+        //     sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please add Wallet!!");
+        //     delete client.JT
+        //     return false;
+        // }
 
         let gwh1 = {
             "playerInfo._id": MongoID(client.uid)
