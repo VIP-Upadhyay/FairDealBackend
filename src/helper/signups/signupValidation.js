@@ -83,7 +83,7 @@ const userLogin = async (requestData, socket) => {
     }
 
     if(!resp.status){
-      commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User Blocked Connect to Admin..!');
+      commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User blocked, connect to Admin..!');
       return false
     }
     
@@ -100,7 +100,7 @@ const userLogin = async (requestData, socket) => {
 
 
   } else {
-    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please Enter Valied Username Or Password.');
+    commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'Please enter valid Username or Password.');
   }
 
 
@@ -112,7 +112,7 @@ const userLogin = async (requestData, socket) => {
 const userSignup = async (requestData_, socket) => {
   let requestData = requestData_;
   if (requestData.mobileNumber.length !== 10) {
-    commandAcions.sendEvent(socket, CONST.SIGNUP, requestData, false, 'Please check mobilenumber!');
+    commandAcions.sendEvent(socket, CONST.SIGNUP, requestData, false, 'Please check Username!');
     return false;
   }
 
