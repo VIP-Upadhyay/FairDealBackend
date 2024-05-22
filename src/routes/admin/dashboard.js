@@ -133,12 +133,14 @@ router.get('/', async (req, res) => {
     let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
     let AdminWinlossData = await adminwinloss.findOne({ date: currentdata })
 
-    let totalWin = AdminWinlossData.win != undefined ? AdminWinlossData.win : 0
-    let totalLoss = AdminWinlossData.loss != undefined ? AdminWinlossData.loss : 0
+    console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",AdminWinlossData)
+
+    let totalWin = (AdminWinlossData != undefined && AdminWinlossData.win != undefined) ? AdminWinlossData.win : 0
+    let totalLoss = (AdminWinlossData != undefined && AdminWinlossData.loss != undefined) ? AdminWinlossData.loss : 0
 
     const todayProfit = totalWin - totalLoss
 
-    console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
+    
     logger.info('admin/dahboard.js post dahboard  error => ', totalUser);
 
     res.json({ totalUser, totalAgent, totalDeposit, todayDeposit, todayWithdraw, totalWithdraw, totalGamePay, toDayGamePay, todayProfit });
