@@ -10,6 +10,8 @@ const RouletteTables = mongoose.model('RouletteTables');
 
 const walletActions = require("./updateWallet");
 const RouletteUserHistory = mongoose.model('RouletteUserHistory');
+const adminwinloss = mongoose.model('adminwinloss');
+
 
 /*
     bet : 10,
@@ -103,7 +105,7 @@ module.exports.actionSpin = async (requestData, client) => {
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc = -1
         for (let i = 0; i < betObjectData.length; i++) {
-            if ( parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
+            if (parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
                 indextoinc = i;
                 break;
             }
@@ -129,6 +131,9 @@ module.exports.actionSpin = async (requestData, client) => {
 
         const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
         logger.info("action tb : ", tb);
+
+        this.AdminWinLossData(chalvalue,"win")
+
 
         let response = {
             bet: chalvalue,
@@ -232,7 +237,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
             }
         }
-        
+
 
         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         let indextoinc = -1
@@ -285,9 +290,11 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
         const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
         logger.info("action tb : ", tb);
 
+        this.AdminWinLossData(chalvalue,"loss")
+
         let response = {
             betObjectData: tb.playerInfo[client.seatIndex].betObject,
-            requestData:requestData
+            requestData: requestData
         }
 
         commandAcions.sendEvent(client, CONST.REMOVEBETROULETTE, response, false, "");
@@ -386,6 +393,8 @@ module.exports.ClearBet = async (requestData, client) => {
 
         const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
         logger.info("action tb : ", tb);
+
+        this.AdminWinLossData(playerInfo.totalbet,"loss")
 
         let response = {
             flags: true
@@ -497,6 +506,8 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
         logger.info("action tb : ", tb);
+
+        this.AdminWinLossData(chalvalue,"loss")
 
         let response = {
             selectObj: tb.playerInfo[client.seatIndex].selectObj,
@@ -634,7 +645,7 @@ module.exports.HISTORY = async (requestData, client) => {
 
     try {
 
-        const tableHistory = await RouletteUserHistory.find({ userId: requestData.playerId }).sort({ createdAt: -1 });
+        const tableHistory = await RouletteUserHistory.find({ userId: requestData.playerId }).sort({ createdAt: -1 }).limit(20);
 
         commandAcions.sendEvent(client, CONST.HISTORY, { tableHistory: tableHistory }, false, "");
 
@@ -642,4 +653,56 @@ module.exports.HISTORY = async (requestData, client) => {
     } catch (e) {
         logger.info("Exception HISTORY : ", e);
     }
+}
+
+module.exports.AdminWinLossData = async (gold, type) => {
+    try {
+
+
+        var olddate = this.CreateDate(new Date());
+        if (type == "win") {
+            await adminwinloss.updateOne(
+                {
+
+                    date: olddate
+                }, {
+                $inc: { win: gold },
+                $set: { cd: new Date() }
+            }, { upsert: true })
+        } else {
+
+            await adminwinloss.updateOne(
+                {
+
+                    date: olddate
+                }, {
+                $inc: { loss: gold },
+                $set: { cd: new Date() }
+            }, { upsert: true }, () => {
+
+            })
+        }
+
+
+
+    } catch (e) {
+        logger.info("AdminWinLossData", e);
+    }
+}
+
+
+module.exports.CreateDate=(date) => {
+    date = new Date(date);
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+        dt = '0' + dt;
+    }
+    if (month < 10) {
+        month = '0' + month;
+    }
+
+    return dt + '-' + month + '-' + year;
 }

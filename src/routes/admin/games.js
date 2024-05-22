@@ -53,7 +53,7 @@ router.get('/rummyGameHistory', async (req, res) => {
             },
             // Add more game history entries here
         ]
-        
+
         //await Users.find({}, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         logger.info('admin/dahboard.js post dahboard  error => ', gameHistoryData);
@@ -111,7 +111,7 @@ router.get('/ludoGameHistory', async (req, res) => {
             },
             // Add more game history entries here
         ]
-        
+
         //await Users.find({}, { username: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         logger.info('admin/dahboard.js post dahboard  error => ', gameHistoryData);
@@ -176,7 +176,7 @@ router.get('/GetGameBetInfo', async (req, res) => {
         console.info('requet => ', req.body);
 
         //tabInfo = await RouletteTables.find({},{"playerInfo":1});
-        
+
         //console.info('tabInfo => ', tabInfo);
 
         const responseData = await RouletteTables.aggregate([
@@ -192,9 +192,9 @@ router.get('/GetGameBetInfo', async (req, res) => {
             }
         ]);
 
-        console.log("responseData ",responseData)
+        console.log("responseData ", responseData)
 
-        res.json({ tabInfo:responseData });
+        res.json({ tabInfo: responseData });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -215,8 +215,8 @@ router.put('/gameLogicSet', async (req, res) => {
         // console.log("req.body.gamelogic", CONST.AVIATORLOGIC)
 
 
-        console.log("req.body.gamename  1", req.body.gamename )
-      
+        console.log("req.body.gamename  1", req.body.gamename)
+
         if (req.body.gamename == "SORAT") {
             GAMELOGICCONFIG.SORAT = req.body.gamelogic
 
@@ -246,7 +246,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        }else if (req.body.gamename == "ANDARBAHAR") {
+        } else if (req.body.gamename == "ANDARBAHAR") {
             GAMELOGICCONFIG.ANDARBAHAR = req.body.gamelogic
 
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -275,7 +275,7 @@ router.put('/gameLogicSet', async (req, res) => {
 
             });
 
-        }else if (req.body.gamename == "BARAKADUM") {
+        } else if (req.body.gamename == "BARAKADUM") {
             GAMELOGICCONFIG.BARAKADUM = req.body.gamelogic
 
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -292,11 +292,13 @@ router.put('/gameLogicSet', async (req, res) => {
 
         } else if (req.body.gamename == "ROULETTE") {
 
-            console.log("req.body ",req.body)
+            console.log("req.body ", req.body)
 
-            GAMELOGICCONFIG.ROULETTE = req.body.selectedMode    
+            GAMELOGICCONFIG.ROULETTE = req.body.selectedMode
             GAMELOGICCONFIG.GREENFIXNUMBERWON = parseInt(req.body.greenfixnumberwon)
             GAMELOGICCONFIG.BLUEFIXNUMBERWON = parseInt(req.body.bluefixnumberwon)
+            GAMELOGICCONFIG.PERCENTAGE = parseInt(req.body.PERCENTAGE)
+
 
 
 
@@ -332,50 +334,51 @@ router.get('/getgamelogic', async (req, res) => {
 
         console.log("dddddddddddddddddddd 1", process.env.AVIATORLOGIC)
 
-        console.log("req.query.gameName", req.query.gamename )
+        console.log("req.query.gameName", req.query.gamename)
         //"SORAT":"Client","SPIN":"Normal","":"","":"","":"","":"",
         if (req.query.gamename == "SORAT") {
-          
+
             res.json({ logic: GAMELOGICCONFIG.SORAT });
 
         } else if (req.query.gamename == "SPIN") {
-            
+
 
             res.json({ logic: GAMELOGICCONFIG.SPIN });
 
-        }else if (req.query.gamename == "ANDARBAHAR") {
-            
+        } else if (req.query.gamename == "ANDARBAHAR") {
+
 
             res.json({ logic: GAMELOGICCONFIG.ANDARBAHAR });
 
-        }else if (req.query.gamename == "WHEELOFFORTUNE") {
-            
+        } else if (req.query.gamename == "WHEELOFFORTUNE") {
+
 
             res.json({ logic: GAMELOGICCONFIG.WHEELOFFORTUNE });
 
-        }else if (req.query.gamename == "BARAKADUM") {
-            
+        } else if (req.query.gamename == "BARAKADUM") {
+
 
             res.json({ logic: GAMELOGICCONFIG.BARAKADUM });
 
-        }else if (req.query.gamename == "ROULETTE") {
-            
+        } else if (req.query.gamename == "ROULETTE") {
 
-            res.json({ logic: {
-                selectedMode: GAMELOGICCONFIG.ROULETTE,
-                greenfixnumberwon: GAMELOGICCONFIG.GREENFIXNUMBERWON,
-                bluefixnumberwon: GAMELOGICCONFIG.BLUEFIXNUMBERWON
 
-            
-            } });
+            res.json({
+                logic: {
+                    selectedMode: GAMELOGICCONFIG.ROULETTE,
+                    greenfixnumberwon: GAMELOGICCONFIG.GREENFIXNUMBERWON,
+                    bluefixnumberwon: GAMELOGICCONFIG.BLUEFIXNUMBERWON,
+                    PERCENTAGE: parseInt(GAMELOGICCONFIG.PERCENTAGE)
+                }
+            });
 
-        }else{
+        } else {
             res.json({ logic: "" });
         }
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
-        
+
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -437,17 +440,18 @@ router.put('/GameComSet', async (req, res) => {
 router.get('/getgamecom', async (req, res) => {
     try {
         console.info('requet => ', req.query);
-      
+
         console.log("dddddddddddddddddddd 1", process.env.Commission)
 
-        res.json({ admincommission: parseInt(GAMELOGICCONFIG.AdminCommission),
-                    agentcommission: parseInt(GAMELOGICCONFIG.AgentCommission),
-                    shopcommission: parseInt(GAMELOGICCONFIG.ShopCommission)
-                });
+        res.json({
+            admincommission: parseInt(GAMELOGICCONFIG.AdminCommission),
+            agentcommission: parseInt(GAMELOGICCONFIG.AgentCommission),
+            shopcommission: parseInt(GAMELOGICCONFIG.ShopCommission)
+        });
 
         logger.info('admin/dahboard.js post dahboard  error => ', CONST);
 
-        
+
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
