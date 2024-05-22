@@ -126,7 +126,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             }
         }
         let MustPlay = ""
-        if (GAMELOGICCONFIG.ROULETTE == "User" && ((tb.playerInfo.activePlayer == 1 && TotalAllPlayer.length <= 5) || (TotalAllPlayer.length == 1))) {
+        if (GAMELOGICCONFIG.ROULETTE == "User" && TotalAllPlayer.length <= 5) {
             MustPlay = "Client"
         } 
 
