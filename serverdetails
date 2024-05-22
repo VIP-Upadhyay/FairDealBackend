@@ -99,3 +99,22 @@ db.createUser({user: "dealregaluser",pwd: "Changeme3@",roles: [ { role: "readWri
 db name : dealregal
 user name : dealregaluser
 pwd :  Changeme3@
+
+
+
+
+/var/www/dealregal.com/html/deal-reagl-website
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/dealregal.com.conf
+sudo nano /etc/apache2/sites-available/dealregal.com.conf
+
+
+
+sudo a2ensite dealregal.com.conf
+
+
+(node:3238) [DEP0170] DeprecationWarning:
+ The URL mongodb://luckyhit:YQVdVhFgC5bTnUEJ@ac-svkedgw-shard-00-02.irxvop7.mongodb.net:27017,
+ ac-svkedgw-shard-00-00.irxvop7.mongodb.net:27017,ac-svkedgw-shard-00-01.irxvop7.mongodb.net:27017/?authSource=admin&replicaSet=atlas-6qcoxw-shard-0
+ &retryWrites=true&w=majority&ssl=true is invalid. Future versions of Node.js will throw an error.
+(Use `node --trace-deprecation ...` to show where the warning was created)

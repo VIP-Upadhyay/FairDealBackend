@@ -150,9 +150,9 @@ module.exports.StartSpinnerGame = async (tbId) => {
             totalnmber = []
             // Remove TotalNumber for Bet 
 
-            for (let i = 0; i < betObjectData.length; i++) {
-                if (betObjectData[i].bet != undefined) {
-                    totalnmber.push(betObjectData[i].number)
+            for (let i = 0; i < TotalAllPlayer.length; i++) {
+                if (TotalAllPlayer[i].bet != undefined) {
+                    totalnmber.push(TotalAllPlayer[i].number)
                 }
             }
             totalnmber = _.flatten(totalnmber)
