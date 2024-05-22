@@ -172,6 +172,18 @@ module.exports.StartSpinnerGame = async (tbId) => {
                 return e.bet - f.bet;
             })
 
+            // [2024-05-22T05:35:51.163] [INFO] development - betObjectData [
+            //     { number: [ 7 ], type: 'number', bet: 2, betIndex: '7' },
+            //     { number: [ 2 ], type: 'number', bet: 100, betIndex: 2 },
+            //     { number: [ 3 ], type: 'number', bet: 100, betIndex: 3 },
+            //     { number: [ 1 ], type: 'number', bet: 100, betIndex: 1 },
+            //     { number: [ 4 ], type: 'number', bet: 100, betIndex: 4 },
+            //     { number: [ 5 ], type: 'number', bet: 100, betIndex: 5 },
+            //     { number: [ 6 ], type: 'number', bet: 100, betIndex: 6 },
+            //     { number: [ 7 ], type: 'number', bet: 500, betIndex: '7' }
+            //   ]
+              
+
             logger.info("betObjectData", betObjectData)
 
             itemObject = betObjectData.length > 0 && betObjectData[0].number != undefined ? _.flatten(betObjectData[0].number)[0] : this.getRandomInt(0, 36)
