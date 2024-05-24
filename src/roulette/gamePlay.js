@@ -54,8 +54,8 @@ module.exports.actionSpin = async (requestData, client,callback) => {
             return false
         }
 
-
-        requestData.betaction.number = JSON.parse(requestData.betaction.number)
+        console.log("typeof requestData.betaction.number ",typeof requestData.betaction.number)
+        requestData.betaction.number = (typeof requestData.betaction.number == "string")? JSON.parse(requestData.betaction.number):requestData.betaction.number
 
         console.log("requestData.betaction. ", requestData.betaction)
 
@@ -683,6 +683,8 @@ module.exports.BETACTIONCALL = async (pastbetObject, client) => {
             return false;
 
         let userBet = pastbetObject.splice(0, 1)
+        console.log("userBet ",userBet)
+        console.log("pastbetObject ",pastbetObject)
 
         this.actionSpin({
             tableId: client.tbid,
