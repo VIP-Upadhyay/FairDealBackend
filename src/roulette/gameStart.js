@@ -96,6 +96,8 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
         //Genrate Rendom Number 
         logger.info("RouletteGameStartTimer GAMELOGICCONFIG.SPIN : ", GAMELOGICCONFIG.ROULETTE);
+        logger.info("DAY DAY.DAY : ", GAMELOGICCONFIG.DAY);
+
         logger.info("RouletteGameStartTimer tb.totalbet : ", tb.TableObject);
 
         // // NORMAL 
@@ -132,7 +134,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
         let MustPlay = ""
         if (GAMELOGICCONFIG.ROULETTE == "User" && TotalAllPlayer.length <= 5) {
             MustPlay = "Client"
-        } 
+        }
 
         logger.info("RouletteGameStartTimer MustPlay: ", MustPlay);
 
@@ -143,17 +145,30 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
         let betObjectData = TotalPlayerBetInfo //tb.playerInfo[0].betObject;
         let itemObject = -1
+        let AdminWinlossData = []
+        if (GAMELOGICCONFIG.DAY != undefined && GAMELOGICCONFIG.DAY != 1) {
+            let datebeforecount = this.AddTimeLAST(-((GAMELOGICCONFIG.DAY-1)* 86400));
 
-        let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
-        let AdminWinlossData = await adminwinloss.findOne({date:currentdata})
+            logger.info("datebeforecount ", datebeforecount)
 
-        let totalWin = AdminWinlossData.win != undefined ? AdminWinlossData.win : 0
-        let totalLoss = AdminWinlossData.loss != undefined ? AdminWinlossData.loss: 0
-        let perwin  = 100-((totalLoss * 100)/totalWin)
+            //let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
+
+
+            AdminWinlossData = await adminwinloss.find({ createdAt: { $gte: new Date(datebeforecount) } })
+        } else {
+            let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
+            AdminWinlossData = await adminwinloss.find({ date: currentdata })
+        }
+
+        logger.info("AdminWinlossData ", AdminWinlossData)
+
+        let totalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.win);}, 0) : 0
+        let totalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.loss);}, 0) : 0
+        let perwin = 100 - ((totalLoss * 100) / totalWin)
 
         logger.info("totalWin", totalWin);
         logger.info("totalLoss", totalLoss);
-        logger.info("((totalLoss * 100)/totalWin)", ((totalLoss * 100)/totalWin));
+        logger.info("((totalLoss * 100)/totalWin)", ((totalLoss * 100) / totalWin));
         logger.info("perwin", perwin);
         logger.info("GAMELOGICCONFIG.PERCENTAGE", GAMELOGICCONFIG.PERCENTAGE);
 
@@ -161,12 +176,12 @@ module.exports.StartSpinnerGame = async (tbId) => {
         if (GAMELOGICCONFIG.PERCENTAGE != undefined && GAMELOGICCONFIG.PERCENTAGE != -1 && perwin < GAMELOGICCONFIG.PERCENTAGE) {
             MustPlay = "Client"
         }
-        
+
         if (tb.whichTable == "blueTable" && GAMELOGICCONFIG.BLUEFIXNUMBERWON != undefined && GAMELOGICCONFIG.BLUEFIXNUMBERWON != -1 && GAMELOGICCONFIG.BLUEFIXNUMBERWON >= 0 && GAMELOGICCONFIG.BLUEFIXNUMBERWON <= 36) {
             itemObject = GAMELOGICCONFIG.BLUEFIXNUMBERWON
         } else if (tb.whichTable == "greenTable" && GAMELOGICCONFIG.GREENFIXNUMBERWON != undefined && GAMELOGICCONFIG.GREENFIXNUMBERWON != -1 && GAMELOGICCONFIG.GREENFIXNUMBERWON >= 0 && GAMELOGICCONFIG.GREENFIXNUMBERWON <= 36) {
             itemObject = GAMELOGICCONFIG.GREENFIXNUMBERWON
-        } else if (MustPlay == "Client" ||  GAMELOGICCONFIG.ROULETTE == "Client") {
+        } else if (MustPlay == "Client" || GAMELOGICCONFIG.ROULETTE == "Client") {
             itemObject = this.getRandomInt(0, 36)
             totalnmber = []
             // Remove TotalNumber for Bet 
@@ -180,11 +195,11 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
             logger.info("totalnmber ", totalnmber)
 
-            
+
             let notselectnumber = _.difference([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], totalnmber)
 
             logger.info("notselectnumber ", notselectnumber)
-            
+
 
             itemObject = notselectnumber.length > 0 ? notselectnumber[this.getRandomInt(0, notselectnumber.length - 1)] : itemObject
         } else if (GAMELOGICCONFIG.ROULETTE == "User") {
@@ -203,7 +218,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             //     { number: [ 6 ], type: 'number', bet: 100, betIndex: 6 },
             //     { number: [ 7 ], type: 'number', bet: 500, betIndex: '7' }
             //   ]
-              
+
 
             logger.info("betObjectData", betObjectData)
 
@@ -254,6 +269,27 @@ module.exports.StartSpinnerGame = async (tbId) => {
         logger.error("RouletteTables.js error ->", error)
     }
 }
+
+module.exports.AddTimeLAST = (t) => {
+    try {
+        const ut = new Date();
+        ut.setUTCHours(23);
+        ut.setUTCMinutes(59);
+        ut.setUTCSeconds(0);
+        ut.setSeconds(ut.getSeconds() + Number(t));
+
+        ut.setUTCHours(0);
+        ut.setUTCMinutes(0);
+        ut.setUTCSeconds(0);
+        ut.setUTCMilliseconds(0);
+
+
+
+        return ut;
+    } catch (error) {
+        logger.error('socketFunction.js AddTime error :--> ' + error);
+    }
+};
 
 // Generate a random whole number between a specified range (min and max)
 module.exports.getRandomInt = (min, max) => {
@@ -535,7 +571,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
 
-                gamePlayActionsRoulette.AdminWinLossData( Number(TotalWinAmount),"loss")
+                gamePlayActionsRoulette.AdminWinLossData(Number(TotalWinAmount), "loss")
 
                 let insertobj = {
                     userId: tbInfo.playerInfo[x]._id.toString(),

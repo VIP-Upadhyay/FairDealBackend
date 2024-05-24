@@ -298,9 +298,7 @@ router.put('/gameLogicSet', async (req, res) => {
             GAMELOGICCONFIG.GREENFIXNUMBERWON = parseInt(req.body.greenfixnumberwon)
             GAMELOGICCONFIG.BLUEFIXNUMBERWON = parseInt(req.body.bluefixnumberwon)
             GAMELOGICCONFIG.PERCENTAGE = parseInt(req.body.PERCENTAGE)
-
-
-
+            GAMELOGICCONFIG.DAY = parseInt(req.body.DAY)
 
             let link = "./gamelogic.json"
             console.log("GAMELOGICCONFIG ", GAMELOGICCONFIG)
@@ -368,7 +366,8 @@ router.get('/getgamelogic', async (req, res) => {
                     selectedMode: GAMELOGICCONFIG.ROULETTE,
                     greenfixnumberwon: GAMELOGICCONFIG.GREENFIXNUMBERWON,
                     bluefixnumberwon: GAMELOGICCONFIG.BLUEFIXNUMBERWON,
-                    PERCENTAGE: parseInt(GAMELOGICCONFIG.PERCENTAGE)
+                    PERCENTAGE: parseInt(GAMELOGICCONFIG.PERCENTAGE),
+                    DAY:parseInt(GAMELOGICCONFIG.DAY)
                 }
             });
 

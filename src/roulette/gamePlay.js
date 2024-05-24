@@ -667,7 +667,7 @@ module.exports.AdminWinLossData = async (gold, type) => {
                     date: olddate
                 }, {
                 $inc: { win: gold },
-                $set: { cd: new Date() }
+                $set: { createdAt: new Date() }
             }, { upsert: true })
         } else {
 
@@ -677,7 +677,7 @@ module.exports.AdminWinLossData = async (gold, type) => {
                     date: olddate
                 }, {
                 $inc: { loss: gold },
-                $set: { cd: new Date() }
+                $set: { createdAt: new Date() }
             }, { upsert: true }, () => {
 
             })
