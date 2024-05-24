@@ -364,20 +364,20 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
                         if (betObjectData[i].type == "2to35" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
 
@@ -385,40 +385,40 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
                         if (betObjectData[i].type == "1st12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
                         if (betObjectData[i].type == "2nd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
                         if (betObjectData[i].type == "3rd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
                                 uid: tbInfo.playerInfo[x]._id,
                                 seatIndex: 0,
-                                winAmount: betObjectData[i].bet * 2,
+                                winAmount: betObjectData[i].bet * 3,
                             })
 
-                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+                            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
                         }
 
                         if (betObjectData[i].type == "1to18" && betObjectData[i].number.indexOf(itemIndex) != -1) {
