@@ -580,9 +580,9 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     beforeplaypoint: tbInfo.playerInfo[x].coins +  tbInfo.playerInfo[x].totalbet,
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
-                    beforeplaypoint: tbInfo.playerInfo[x].coins,
+                    afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.uuid,
-                    afterplaypoint:betObjectData
+                    betObjectData:betObjectData
 
                 };
                 console.log("RouletteUserHistory ", insertobj)
