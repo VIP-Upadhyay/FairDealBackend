@@ -240,7 +240,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             $push: {
                 "history": {
                     $each: [itemObject],
-                    $slice: -7
+                    $slice: -14
                 }
             }
         }
@@ -579,7 +579,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     ballposition: itemIndex,
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
-                    uuid: this.generateRandomNumber(10)
+                    uuid: tbInfo.uuid
                 };
                 console.log("RouletteUserHistory ", insertobj)
                 await RouletteUserHistory.create(insertobj);
