@@ -97,7 +97,7 @@ module.exports.actionSpin = async (requestData, client,callback) => {
 
             },
             $inc: {
-
+                
             }
         }
         let chalvalue = currentBet;
@@ -138,7 +138,9 @@ module.exports.actionSpin = async (requestData, client,callback) => {
         }
 
         updateData.$inc["totalbet"] = chalvalue;
+        updateData.$inc["playerInfo.$.coins"] = -chalvalue;
         updateData.$set["turnDone"] = true;
+
         commandAcions.clearJob(tabInfo.job_id);
 
         const upWh = {
@@ -299,6 +301,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
         }
 
         updateData.$inc["totalbet"] = -chalvalue;
+        updateData.$inc["playerInfo.$.coins"] = chalvalue;
         commandAcions.clearJob(tabInfo.job_id);
 
         const upWh = {
@@ -394,14 +397,15 @@ module.exports.ClearBet = async (requestData, client) => {
                 ],
                 "playerInfo.$.betObject": [],
                 "playerInfo.$.totalbet": 0,
-
+                
             },
             $inc: {
-                "totalbet": -Number(playerInfo.totalbet)
+                "totalbet": -Number(playerInfo.totalbet),
+                "playerInfo.$.coins" : Number(playerInfo.totalbet)
             }
         }
 
-
+        
         await walletActions.addWalletAdmin(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", "roulette");
 
 
@@ -515,6 +519,7 @@ module.exports.DoubleBet = async (requestData, client) => {
 
 
         updateData.$inc["totalbet"] = chalvalue;
+        updateData.$inc["playerInfo.$.coins"] = -chalvalue;
         updateData.$set["turnDone"] = true;
         commandAcions.clearJob(tabInfo.job_id);
 

@@ -577,9 +577,13 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let insertobj = {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     ballposition: itemIndex,
+                    beforeplaypoint: tbInfo.playerInfo[x].coins +  tbInfo.playerInfo[x].totalbet,
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
-                    uuid: tbInfo.uuid
+                    beforeplaypoint: tbInfo.playerInfo[x].coins,
+                    uuid: tbInfo.uuid,
+                    afterplaypoint:betObjectData
+
                 };
                 console.log("RouletteUserHistory ", insertobj)
                 await RouletteUserHistory.create(insertobj);
