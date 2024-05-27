@@ -74,10 +74,10 @@ module.exports.leaveTable = async (requestData, client) => {
     commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
     //commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVETABLEROULETTE, response);
 
-    if(tbInfo.activePlayer == 0)
-    {
-        await RouletteTables.deleteMany({})
-    }
+    //if(tbInfo.activePlayer == 0)
+    //{
+        //await RouletteTables.deleteMany({})
+    //}
 
     await this.manageOnUserLeave(tbInfo);
 }
@@ -90,10 +90,11 @@ module.exports.manageOnUserLeave = async (tb, client) => {
 
     
     if (playerInGame.length == 0 && tb.activePlayer == 0) {
-        let wh = {
-            _id: MongoID(tb._id.toString())
-        }
-        await RouletteTables.deleteOne(wh);
+        
+        // let wh = {
+        //     _id: MongoID(tb._id.toString())
+        // }
+        // await RouletteTables.deleteOne(wh);
     } else if (tb.activePlayer == 0) {
         this.leaveSingleUser(tb._id)
     }
