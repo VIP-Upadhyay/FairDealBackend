@@ -22,6 +22,7 @@ const adminwinloss = mongoose.model('adminwinloss');
                 "number" : [ 1 ],
                 "type":"number",
                 "bet":0,
+                coin:[10]
 
             }
 
@@ -56,6 +57,9 @@ module.exports.actionSpin = async (requestData, client,callback) => {
 
         console.log("typeof requestData.betaction.number ",typeof requestData.betaction.number)
         requestData.betaction.number = (typeof requestData.betaction.number == "string")? JSON.parse(requestData.betaction.number):requestData.betaction.number
+        requestData.betaction.coin = (typeof requestData.betaction.coin == "string")? JSON.parse(requestData.betaction.coin):requestData.betaction.coin
+
+       
 
         console.log("requestData.betaction. ", requestData.betaction)
 
@@ -132,6 +136,8 @@ module.exports.actionSpin = async (requestData, client,callback) => {
         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
         if (indextoinc != -1) {
             updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
+            updateData.$set["playerInfo.$.betObject." + indextoinc + ".coin"] = betObjectData[indextoinc].coin.concat(requestData.betaction.coin);
+
         } else {
             updateData["$push"] = {}
             updateData["$push"]["playerInfo.$.betObject"] = requestData.betaction
@@ -157,7 +163,8 @@ module.exports.actionSpin = async (requestData, client,callback) => {
 
         let response = {
             bet: chalvalue,
-            betaction: requestData.betaction
+            betaction: requestData.betaction,
+            isOutSideBet: requestData.isOutSideBet
         }
 
         commandAcions.sendEvent(client, CONST.ACTIONROULETTE, response, false, "");
