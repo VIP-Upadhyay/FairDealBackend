@@ -103,15 +103,17 @@ module.exports.actionSpin = async (requestData, client,callback) => {
         let chalvalue = currentBet;
         updateData.$set["playerInfo.$.playStatus"] = "action"
 
-        let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
+        let totalWallet = Number(UserInfo.chips)//+ Number(UserInfo.winningChips)
+        logger.info("totalWallet", totalWallet);
 
         if (Number(chalvalue) > Number(totalWallet)) {
             logger.info("action client.su ::", client.seatIndex);
             delete client.action;
-            commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "Please add wallet!!");
+           
             if (typeof callback == "function") {
                 return callback("error")
             }
+            commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "Please add wallet!!");
             return false;
         }
         chalvalue = Number(Number(chalvalue).toFixed(2))
@@ -472,7 +474,7 @@ module.exports.DoubleBet = async (requestData, client) => {
 
         console.log("chalvalue ", chalvalue)
 
-        let totalWallet = Number(UserInfo.chips) + Number(UserInfo.winningChips)
+        let totalWallet = Number(UserInfo.chips) //+ Number(UserInfo.winningChips)
 
         if (Number(chalvalue) > Number(totalWallet)) {
             logger.info("DoubleBet client.su ::", client.seatIndex);

@@ -157,7 +157,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // };
         // let tbInfo = await RouletteTables.findOne(wh,{}).lean();
         // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
-        let totalWallet = Number(userInfo.chips) + Number(userInfo.winningChips)
+        let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
         let playerDetails = {
             seatIndex: seatIndex,
             _id: userInfo._id,
