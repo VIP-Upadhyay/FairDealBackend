@@ -51,6 +51,7 @@ myIo.init = function (server) {
                 console.log("data.payload ",data.payload)
 
                 const decryptObj = commonHelper.decrypt(data.payload);
+
                 const payload = JSON.parse(decryptObj);
                 console.log("payload ::::::::::::::::", payload)
                 console.log("payload ::::::::::::::::", payload.eventName)

@@ -2,7 +2,25 @@
 const _ = require("underscore")
 
 
+requestData ={
+    betData:
+    [
+    { number: '[24]', type: 'number', bet: 2, betIndex: 24, coin: '[2]' },
+    { number: '[23]', type: 'number', bet: 2, betIndex: 23, coin: '[2]' },
+    { number: '[26]', type: 'number', bet: 2, betIndex: 26, coin: '[2]' }
+  ]
+}
 
+  let currentBet =  requestData.betData.reduce((accumulator, currentValue) => {
+    console.log("accumulator.bet ",accumulator)
+    console.log("currentValue.bet ",currentValue)
+
+    return accumulator + currentValue.bet
+}, 0);
+
+console.log("currentBet ",currentBet)
+
+return false
 function RobotAction(table,card){
     const playerInfo = table.playerInfo[table.turnSeatIndex]
 

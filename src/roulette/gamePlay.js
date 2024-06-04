@@ -65,7 +65,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         }
 
         console.log("typeof requestData.betData.betData ", typeof requestData.betData)
-        requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
+        //requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
         
         console.log("requestData.betData. ", requestData.betData)
 
@@ -91,7 +91,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         }
 
         let currentBet =  requestData.betData.reduce((accumulator, currentValue) => {
-            return accumulator.bet + currentValue.bet
+            return accumulator + currentValue.bet
         }, 0);
 
         logger.info("action currentBet ::", currentBet);
