@@ -6,16 +6,15 @@ const AgentList = mongoose.model('agent');
 
 const ShopSchema = new Schema(
   {
-    email: { type: String, required: true },
+    
     password:{type: String},
     name: { type: String },
-    mobileno: {type: String},
     createdAt: { type: Date, default: Date.now },
     lastLoginDate: { type: Date, default: Date.now },
     agentId:{ type: mongoose.Schema.Types.ObjectId, ref: AgentList },
     status:{ type: String },
     location:{ type: String },
-    area:{ type: String }
+    chips:{ type: Number,default:0 }
   },
   { versionKey: false }
 );

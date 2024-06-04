@@ -179,9 +179,9 @@ async function adminLogin(requestBody) {
 async function AgentLogin(requestBody) {
 
     const { email, password } = requestBody;
-    console.info('email => ', email, '\n password => ', password);
+    console.info('name => ', email, '\n password => ', password);
     try {
-        const data = await Agent.findOne({ email,password }).lean();
+        const data = await Agent.findOne({ name:email,password:password }).lean();
 
         const token = await commonHelper.sign(data);
         data.token = token;
@@ -217,9 +217,9 @@ async function AgentLogin(requestBody) {
 async function ShopLogin(requestBody) {
 
     const { email, password } = requestBody;
-    console.info('email => ', email, '\n password => ', password);
+    console.info('name => ', email, '\n password => ', password);
     try {
-        const data = await Shop.findOne({ email,password }).lean();
+        const data = await Shop.findOne({ name:email,password:password}).lean();
 
         const token = await commonHelper.sign(data);
         data.token = token;

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const collectionName = 'users';
 
 const Agent = require("./agent");
+const Shop = require("./shop");
 
 
 const GameUserSchema = new Schema(
@@ -39,7 +40,7 @@ const GameUserSchema = new Schema(
     isVIP: { type: Number, default: 0 },
     Iscom: { type: Number, default: 0 },
     fcmToken: { type: String, default: '' },
-    agentId:{ type: mongoose.Schema.Types.ObjectId, ref: Agent },
+    agentId:{ type: mongoose.Schema.Types.ObjectId, ref: Shop },
   },
   { versionKey: false }
 );

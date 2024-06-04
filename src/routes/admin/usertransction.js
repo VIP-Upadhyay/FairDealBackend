@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const MongoID = mongoose.Types.ObjectId;
+
 const Users = mongoose.model('users');
 const express = require('express');
 const router = express.Router();
@@ -9,6 +11,120 @@ const logger = require('../../../logger');
 const UserWalletTracks = mongoose.model('userWalletTracks');
 // const Userdeposit = mongoose.model('userdeposit');
 // const Userpayout = mongoose.model('userpayout');
+const ShopWalletTracks = mongoose.model("shopWalletTracks");
+const AgentWalletTracks = mongoose.model("agentWalletTracks");
+
+const AgentUser = mongoose.model("agent");
+const Shop = mongoose.model('shop');
+
+
+
+/**
+* @api {post} /admin/AgentTranscationData
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.get('/AgentTranscationData', async (req, res) => {
+    try {
+        console.log('requet => ', req.query.Id);
+        console.log('requet => type ', req.query.type);
+
+        // const DepositeList = await ShopWalletTracks.find({  }, {
+        //     DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1,
+        //     adminname:1,adminid:1
+        // }).sort({ DateandTime: -1 })
+        
+
+        let DepositeList = []
+        if (req.query.type == "Admin") {
+
+            DepositeList = await AgentWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 })
+
+        }
+        // else if (req.query.type == "Agent") {
+
+        //     let totalsubagent  = await Shop.find({ agentId: MongoID(req.query.Id) }, { _id: 1 })
+
+        //     console.log("totalsubagent ",totalsubagent)
+        //     let totalid = []
+        //     for (let i = 0; i <= totalsubagent.length - 1; i++){
+        //         totalid.push(MongoID(totalsubagent[i]._id))
+        //     }
+
+        //     DepositeList = await AgentWalletTracks.find({ shopId: {$in:totalid} }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 })
+        
+        // }
+        
+        else if (req.query.type == "Agent") {
+
+            DepositeList = await AgentWalletTracks.find({ agentId: MongoID(req.query.Id) }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 })
+        }
+
+
+        logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
+
+        res.json({ DepositeList:DepositeList });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
+
+
+/**
+* @api {post} /admin/SubAgentTranscationData
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.get('/SubAgentTranscationData', async (req, res) => {
+    try {
+        console.log('requet => ', req.query.Id);
+        console.log('requet => type ', req.query.type);
+
+        // const DepositeList = await ShopWalletTracks.find({  }, {
+        //     DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1,
+        //     adminname:1,adminid:1
+        // }).sort({ DateandTime: -1 })
+        
+
+        let DepositeList = []
+        if (req.query.type == "Admin") {
+
+            DepositeList = await ShopWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+
+        } else if(req.query.type == "Agent") {
+
+            let totalsubagent  = await Shop.find({ agentId: MongoID(req.query.Id) }, { _id: 1 })
+
+            console.log("totalsubagent ",totalsubagent)
+            let totalid = []
+            for (let i = 0; i <= totalsubagent.length - 1; i++){
+                totalid.push(MongoID(totalsubagent[i]._id))
+            }
+
+            DepositeList = await ShopWalletTracks.find({ shopId: {$in:totalid} }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+        
+        } else if (req.query.type == "Shop") {
+
+            DepositeList = await ShopWalletTracks.find({ shopId: MongoID(req.query.Id) }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+        }
+
+
+        logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
+
+        res.json({ DepositeList:DepositeList });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
 
 
 /**

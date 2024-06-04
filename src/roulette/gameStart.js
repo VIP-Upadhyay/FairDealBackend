@@ -570,8 +570,9 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 }
                 console.log("TotalWinAmount ", TotalWinAmount)
 
-                TotalWinAmount != 0 && await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
-
+                if (TotalWinAmount != 0) {
+                    await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
+                }
                 gamePlayActionsRoulette.AdminWinLossData(Number(TotalWinAmount), "loss")
 
                 let insertobj = {
@@ -766,9 +767,6 @@ module.exports.winnerSpinner = async (tabInfo) => {
         //         await walletActions.addWalletAdmin(tbInfo.gameTracks[i]._id, Number(winnerTrack.winningAmount), 4, "Sorat Win", tabInfo);
         //     }
         // }
-
-
-
 
 
         commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.ROULETTEWINNER, {

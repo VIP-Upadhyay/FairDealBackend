@@ -28,17 +28,26 @@ const adminwinloss = mongoose.model('adminwinloss');
 
     }
    
+   
+   {
+	"eventName":"ACTIONROULETTE",
+	"data":{
+		"tableId":"665ec3ccf5b4113810f5cdb2",
+		"playerId":"663ca51fe1b43a5bd45c7b89",
+		"betData":"[{"number":"[21]","type":"number","bet":5,"betIndex":21,"coin":"[5]"},{"number":"[20]","type":"number","bet":5,"betIndex":20,"coin":"[5]"},{"number":"[24]","type":"number","bet":5,"betIndex":24,"coin":"[5]"},{"number":"[13,14,15,16,17,18,19,20,21,22,23,24]","type":"2nd12","bet":10,"betIndex":41,"coin":"[10]"},{"number":"[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]","type":"red","bet":10,"betIndex":47,"coin":"[10]"},{"number":"[6]","type":"number","bet":50,"betIndex":6,"coin":"[50]"},{"number":"[1,2,3,4,5,6,7,8,9,10,11,12]","type":"1st12","bet":50,"betIndex":40,"coin":"[50]"}]""
+	}
+}
     
 
 */
-module.exports.actionSpin = async (requestData, client,callback) => {
+module.exports.actionSpin = async (requestData, client, callback) => {
     try {
         logger.info("action requestData : ", requestData);
         if (typeof client.tbid == "undefined"
             || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined"
-            || typeof requestData.bet == "undefined"
-            || typeof requestData.betaction == "undefined"
-            || typeof requestData.betaction.number == "undefined"
+            || typeof requestData.tableId == "undefined"
+            || typeof requestData.playerId == "undefined"
+            || typeof requestData.betData == "undefined"
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "User session not set, please restart game!");
 
@@ -55,13 +64,10 @@ module.exports.actionSpin = async (requestData, client,callback) => {
             return false
         }
 
-        console.log("typeof requestData.betaction.number ",typeof requestData.betaction.number)
-        requestData.betaction.number = (typeof requestData.betaction.number == "string")? JSON.parse(requestData.betaction.number):requestData.betaction.number
-        requestData.betaction.coin = (typeof requestData.betaction.coin == "string")? JSON.parse(requestData.betaction.coin):requestData.betaction.coin
-
-       
-
-        console.log("requestData.betaction. ", requestData.betaction)
+        console.log("typeof requestData.betData.betData ", typeof requestData.betData)
+        requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
+        
+        console.log("requestData.betData. ", requestData.betData)
 
         client.action = true;
 
@@ -84,9 +90,9 @@ module.exports.actionSpin = async (requestData, client,callback) => {
             return false
         }
 
-
-        let betObjectData = tabInfo.playerInfo[client.seatIndex].betObject;
-        let currentBet = Number(requestData.betaction.bet);
+        let currentBet =  requestData.betData.reduce((accumulator, currentValue) => {
+            return accumulator.bet + currentValue.bet
+        }, 0);
 
         logger.info("action currentBet ::", currentBet);
 
@@ -101,6 +107,9 @@ module.exports.actionSpin = async (requestData, client,callback) => {
 
             },
             $inc: {
+
+            },
+            $push: {
                 
             }
         }
@@ -113,7 +122,7 @@ module.exports.actionSpin = async (requestData, client,callback) => {
         if (Number(chalvalue) > Number(totalWallet)) {
             logger.info("action client.su ::", client.seatIndex);
             delete client.action;
-           
+
             if (typeof callback == "function") {
                 return callback("error")
             }
@@ -124,24 +133,24 @@ module.exports.actionSpin = async (requestData, client,callback) => {
 
         await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
 
-        //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
-        let indextoinc = -1
-        for (let i = 0; i < betObjectData.length; i++) {
-            if (parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
-                indextoinc = i;
-                break;
-            }
-        }
+        // //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
+        // let indextoinc = -1
+        // for (let i = 0; i < betObjectData.length; i++) {
+        //     if (parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
+        //         indextoinc = i;
+        //         break;
+        //     }
+        // }
 
-        updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
-        if (indextoinc != -1) {
-            updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
-            updateData.$set["playerInfo.$.betObject." + indextoinc + ".coin"] = betObjectData[indextoinc].coin.concat(requestData.betaction.coin);
+        // updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
+        // if (indextoinc != -1) {
+        //     updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
+        //     updateData.$set["playerInfo.$.betObject." + indextoinc + ".coin"] = betObjectData[indextoinc].coin.concat(requestData.betaction.coin);
 
-        } else {
-            updateData["$push"] = {}
-            updateData["$push"]["playerInfo.$.betObject"] = requestData.betaction
-        }
+        // } else {
+            
+            updateData["$push"]["playerInfo.$.betObject"] = requestData.betData
+        //}
 
         updateData.$inc["totalbet"] = chalvalue;
         updateData.$inc["playerInfo.$.coins"] = -chalvalue;
@@ -187,6 +196,182 @@ module.exports.actionSpin = async (requestData, client,callback) => {
         logger.info("Exception action : ", e);
     }
 }
+
+
+// /*
+//     bet : 10,
+//     object:{
+//         bet:10,
+//          betaction : 
+//             {
+//                 "number" : [ 1 ],
+//                 "type":"number",
+//                 "bet":0,
+//                 coin:[10]
+
+//             }
+
+//     }
+   
+    
+
+// */
+// module.exports.actionSpin = async (requestData, client, callback) => {
+//     try {
+//         logger.info("action requestData : ", requestData);
+//         if (typeof client.tbid == "undefined"
+//             || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined"
+//             || typeof requestData.bet == "undefined"
+//             || typeof requestData.betaction == "undefined"
+//             || typeof requestData.betaction.number == "undefined"
+//         ) {
+//             commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "User session not set, please restart game!");
+
+//             if (typeof callback == "function") {
+//                 return callback("error")
+//             }
+
+//             return false;
+//         }
+//         if (typeof client.action != "undefined" && client.action) {
+//             if (typeof callback == "function") {
+//                 return callback("error")
+//             }
+//             return false
+//         }
+
+//         console.log("typeof requestData.betaction.number ", typeof requestData.betaction.number)
+//         requestData.betaction.number = (typeof requestData.betaction.number == "string") ? JSON.parse(requestData.betaction.number) : requestData.betaction.number
+//         requestData.betaction.coin = (typeof requestData.betaction.coin == "string") ? JSON.parse(requestData.betaction.coin) : requestData.betaction.coin
+
+
+
+//         console.log("requestData.betaction. ", requestData.betaction)
+
+//         client.action = true;
+
+//         const wh = {
+//             _id: MongoID(client.tbid.toString()),
+//             //status:"RouletteGameStartTimer"
+//         }
+//         const project = {
+
+//         }
+//         const tabInfo = await RouletteTables.findOne(wh, project).lean();
+//         logger.info("action tabInfo : ", tabInfo);
+
+//         if (tabInfo == null) {
+//             logger.info("action user not turn ::", tabInfo);
+//             delete client.action;
+//             if (typeof callback == "function") {
+//                 return callback("error")
+//             }
+//             return false
+//         }
+
+
+//         let betObjectData = tabInfo.playerInfo[client.seatIndex].betObject;
+//         let currentBet = Number(requestData.betaction.bet);
+
+//         logger.info("action currentBet ::", currentBet);
+
+//         let gwh = {
+//             _id: MongoID(client.uid)
+//         }
+//         let UserInfo = await GameUser.findOne(gwh, {}).lean();
+//         logger.info("action UserInfo : ", gwh, JSON.stringify(UserInfo));
+
+//         let updateData = {
+//             $set: {
+
+//             },
+//             $inc: {
+
+//             }
+//         }
+//         let chalvalue = currentBet;
+//         updateData.$set["playerInfo.$.playStatus"] = "action"
+
+//         let totalWallet = Number(UserInfo.chips)//+ Number(UserInfo.winningChips)
+//         logger.info("totalWallet", totalWallet);
+
+//         if (Number(chalvalue) > Number(totalWallet)) {
+//             logger.info("action client.su ::", client.seatIndex);
+//             delete client.action;
+
+//             if (typeof callback == "function") {
+//                 return callback("error")
+//             }
+//             commandAcions.sendDirectEvent(client.sck, CONST.ACTIONROULETTE, requestData, false, "Please add wallet!!");
+//             return false;
+//         }
+//         chalvalue = Number(Number(chalvalue).toFixed(2))
+
+//         await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
+
+//         //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
+//         let indextoinc = -1
+//         for (let i = 0; i < betObjectData.length; i++) {
+//             if (parseInt(betObjectData[i].betIndex) === parseInt(requestData.betaction.betIndex)) {
+//                 indextoinc = i;
+//                 break;
+//             }
+//         }
+
+//         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
+//         if (indextoinc != -1) {
+//             updateData.$inc["playerInfo.$.betObject." + indextoinc + ".bet"] = chalvalue;
+//             updateData.$set["playerInfo.$.betObject." + indextoinc + ".coin"] = betObjectData[indextoinc].coin.concat(requestData.betaction.coin);
+
+//         } else {
+//             updateData["$push"] = {}
+//             updateData["$push"]["playerInfo.$.betObject"] = requestData.betaction
+//         }
+
+//         updateData.$inc["totalbet"] = chalvalue;
+//         updateData.$inc["playerInfo.$.coins"] = -chalvalue;
+//         updateData.$set["turnDone"] = true;
+
+//         commandAcions.clearJob(tabInfo.job_id);
+
+//         const upWh = {
+//             _id: MongoID(client.tbid.toString()),
+//             "playerInfo.seatIndex": Number(client.seatIndex)
+//         }
+//         logger.info("action upWh updateData :: ", upWh, updateData);
+
+//         const tb = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
+//         logger.info("action tb : ", tb);
+
+//         this.AdminWinLossData(chalvalue, "win")
+
+
+//         let response = {
+//             bet: chalvalue,
+//             betaction: requestData.betaction,
+//             isOutSideBet: requestData.isOutSideBet
+//         }
+
+//         commandAcions.sendEvent(client, CONST.ACTIONROULETTE, response, false, "");
+
+
+//         delete client.action;
+
+//         // let activePlayerInRound = await roundStartActions.getPlayingUserInRound(tb.playerInfo);
+//         // logger.info("action activePlayerInRound :", activePlayerInRound, activePlayerInRound.length);
+//         // if (activePlayerInRound.length == 1) {
+//         //     await gameFinishActions.lastUserWinnerDeclareCall(tb);
+//         // } else {
+//         //     await roundStartActions.nextUserTurnstart(tb);
+//         // }
+//         if (typeof callback == "function") {
+//             return callback("error")
+//         }
+//         return true;
+//     } catch (e) {
+//         logger.info("Exception action : ", e);
+//     }
+// }
 
 
 /*
@@ -404,15 +589,15 @@ module.exports.ClearBet = async (requestData, client) => {
                 ],
                 "playerInfo.$.betObject": [],
                 "playerInfo.$.totalbet": 0,
-                
+
             },
             $inc: {
                 "totalbet": -Number(playerInfo.totalbet),
-                "playerInfo.$.coins" : Number(playerInfo.totalbet)
+                "playerInfo.$.coins": Number(playerInfo.totalbet)
             }
         }
 
-        
+
         await walletActions.addWalletAdmin(client.uid, Number(playerInfo.totalbet), 4, "roulette Clear Bet", "roulette");
 
 
@@ -697,12 +882,12 @@ module.exports.BETACTIONCALL = async (pastbetObject, client) => {
             return false;
 
         let userBet = pastbetObject.splice(0, 1)
-        console.log("userBet ",userBet)
-        console.log("pastbetObject ",pastbetObject)
+        console.log("userBet ", userBet)
+        console.log("pastbetObject ", pastbetObject)
 
         this.actionSpin({
             tableId: client.tbid,
-            playerId:client.uid,
+            playerId: client.uid,
             bet: userBet[0].bet,
             betaction: userBet[0]
         }, client, (d) => {

@@ -3,6 +3,7 @@ const MongoID = mongoose.Types.ObjectId;
 
 
 const Shop = mongoose.model('shop');
+const AgentUser = mongoose.model("agent");
 const express = require('express');
 const router = express.Router();
 const config = require('../../../config');
@@ -10,6 +11,7 @@ const commonHelper = require('../../helper/commonHelper');
 const mainCtrl = require('../../controller/adminController');
 const logger = require('../../../logger');
 const { registerUser } = require('../../helper/signups/signupValidation');
+const walletActions = require("../../roulette/updateWallet");
 
 
 /**
@@ -25,11 +27,11 @@ router.get('/ShopList', async (req, res) => {
         console.log('requet => ', req.query);
         //agentId
         let shopList = []
-        if(req.query.agentId == "Admin"){
-             shopList = await Shop.find({}, { email: 1, name: 1, mobileno: 1, location: 1, area: 1, createdAt: 1, lastLoginDate: 1, status: 1 ,password:1})
+        if (req.query.agentId == "Admin") {
+            shopList = await Shop.find({}, { name: 1, location: 1, chips: 1, createdAt: 1, lastLoginDate: 1, status: 1, password: 1 })
 
-        }else{
-             shopList = await Shop.find({agentId: MongoID(req.query.agentId)}, { email: 1, name: 1, mobileno: 1, location: 1, area: 1, createdAt: 1, lastLoginDate: 1, status: 1 ,password:1})
+        } else {
+            shopList = await Shop.find({ agentId: MongoID(req.query.agentId) }, { name: 1, location: 1, chips: 1, createdAt: 1, lastLoginDate: 1, status: 1, password: 1 })
         }
         logger.info('ShopList admin/dahboard.js post dahboard  error => ', shopList);
 
@@ -53,7 +55,7 @@ router.get('/ShopData', async (req, res) => {
     try {
         console.info('requet => ', req.query.agentId);
         //
-        const userInfo = await Shop.findOne({ _id: new mongoose.Types.ObjectId(req.query.agentId) }, { email: 1, name: 1, mobileno: 1,password:1, location: 1, area: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+        const userInfo = await Shop.findOne({ _id: new mongoose.Types.ObjectId(req.query.agentId) }, { name: 1, password: 1, chips: 1, location: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         logger.info('admin/dahboard.js post dahboard  error => ', userInfo);
 
@@ -78,16 +80,22 @@ router.put('/ShopUpdate', async (req, res) => {
     try {
 
         console.log("req ", req.body)
+
+        const Checksubagent = await Shop.find({ name: req.body.name });
+        console.log("Checksubagent ", Checksubagent)
+        if (Checksubagent != undefined && Checksubagent.length > 0) {
+            res.json({ status: false, msg: "This Sub Agent name is already taken. Please choose a different one." });
+            return false
+        }
+
+
         //currently send rendom number and generate 
         let response = {
             $set: {
-                email: req.body.email,
-                password:req.body.password,
+                password: req.body.password,
                 name: req.body.name,
-                mobileno: req.body.mobileno,
-                status:req.body.status,
-                location:req.body.location,
-                area:req.body.area
+                status: req.body.status,
+                location: req.body.location
             }
         }
 
@@ -124,25 +132,29 @@ router.post('/AddShop', async (req, res) => {
         //currently send rendom number and generate 
         console.log("req ", req.body)
         //currently send rendom number and generate 
-        if(req.body.email != undefined && req.body.email != null && req.body.email != "" && 
-            req.body.password != undefined && req.body.password != null && req.body.password != "" && 
-            req.body.name != undefined && req.body.name != null && req.body.name != "" && 
-            req.body.mobileno != undefined && req.body.mobileno != null && req.body.mobileno != "" && 
-            req.body.status != undefined && req.body.status != null && req.body.status != "" && 
-            req.body.location != undefined && req.body.location != null && req.body.location != "" && 
-            req.body.area != undefined && req.body.area != null && req.body.area != "" 
-         ){
+        if (
+            req.body.password != undefined && req.body.password != null && req.body.password != "" &&
+            req.body.name != undefined && req.body.name != null && req.body.name != "" &&
+            req.body.status != undefined && req.body.status != null && req.body.status != "" &&
+            req.body.location != undefined && req.body.location != null && req.body.location != ""
+        ) {
+
+            const Checksubagent = await Shop.find({ name: req.body.name });
+            console.log("Checksubagent ", Checksubagent)
+            if (Checksubagent != undefined && Checksubagent.length > 0) {
+                res.json({ status: false, msg: "This Sub Agent name is already taken. Please choose a different one." });
+                return false
+            }
+
+
             let response = {
-                email: req.body.email,
-                password:req.body.password,
+                password: req.body.password,
                 name: req.body.name,
-                mobileno: req.body.mobileno,
                 createdAt: new Date(),
                 lastLoginDate: new Date(),
-                status:req.body.status,
-                location:req.body.location,
-                area:req.body.area,
-                agentId:req.body.agentId
+                status: req.body.status,
+                location: req.body.location,
+                agentId: req.body.agentId
             }
 
             console.log("response ", response)
@@ -155,10 +167,10 @@ router.post('/AddShop', async (req, res) => {
                 res.json({ status: false });
             }
             logger.info('admin/dahboard.js post dahboard  error => ', insertRes);
-        }else{
+        } else {
             res.json({ status: false });
         }
-        
+
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
@@ -202,14 +214,40 @@ router.delete('/Deleteshop/:id', async (req, res) => {
 * @apiSuccess (Success 200) {Array} badges Array of badges document
 * @apiError (Error 4xx) {String} message Validation or error message.
 */
-router.put('/addMoney', async (req, res) => {
+router.put('/shopAddMoney', async (req, res) => {
     try {
-        console.log("Add Money ", req.body)
-        //const RecentUser = //await Agent.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+        console.log("shopAddMoney ", req.body)
+        //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+        console.log("adminname ",req.body.adminname)
+        if (req.body.adminname != 'Super Admin') {
+           
+            const agentInfo = await AgentUser.findOne({ _id: new mongoose.Types.ObjectId(req.body.adminid) }, { name:1,chips: 1 })
 
-        logger.info('admin/dahboard.js post dahboard  error => ');
+            console.log("agentInfo ", agentInfo)
 
-        res.json({ status: "ok" });
+            if (agentInfo != null && agentInfo.chips < Number(req.body.money)) {
+                res.json({ status: false,msg:"not enough chips to adding user wallet" });
+                return false
+            }   
+
+            const ShopInfo = await Shop.findOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, { name: 1 })
+
+            await walletActions.deductagentWallet(req.body.adminid, -Number(req.body.money), 2, "Add Chips to Sub Agent", "roulette", agentInfo.name, req.body.adminid,req.body.userId,ShopInfo.name);
+
+            await walletActions.addshopWalletAdmin(req.body.userId, Number(req.body.money), 2, "Agent Addeed Chips", "roulette", agentInfo.name, req.body.adminid);
+
+            logger.info('admin/dahboard.js post dahboard  error => ');
+
+            res.json({ status: "ok",msg:"Successfully Credited...!!" });
+
+        } else {
+
+            await walletActions.addshopWalletAdmin(req.body.userId, Number(req.body.money), 2, "Agent Addeed Chips", "roulette", req.body.adminname, req.body.adminid);
+
+            logger.info('admin/dahboard.js post dahboard  error => ');
+
+            res.json({ status: "ok" ,msg:"Successfully Credited...!!"});
+        }
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
@@ -219,21 +257,35 @@ router.put('/addMoney', async (req, res) => {
 });
 
 /**
-* @api {post} /admin/deductMoney
+* @api {post} /admin/shopDeductMoney
 * @apiName  add-bet-list
 * @apiGroup  Admin
 * @apiHeader {String}  x-access-token Admin's unique access-key
 * @apiSuccess (Success 200) {Array} badges Array of badges document
 * @apiError (Error 4xx) {String} message Validation or error message.
 */
-router.put('/deductMoney', async (req, res) => {
+router.put('/shopDeductMoney', async (req, res) => {
     try {
         console.log("deductMoney ", req.body)
-        //const RecentUser = //await Agent.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
+       
+        const userInfo = await Shop.findOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, { name:1,chips: 1 })
+
+        console.log("userInfo ", userInfo)
+
+        if (userInfo != null && userInfo.chips < Number(req.body.money)) {
+            res.json({ status: false,msg:"not enough chips to deduct user wallet" });
+            return false
+        }   
+
+        await walletActions.deductshopWallet(req.body.userId,-Number(req.body.money),2, "Agent duduct Chips","roulette",req.body.adminname,req.body.adminid);
+
+        if (req.body.adminname != 'Super Admin') {
+            await walletActions.addagentWalletAdmin(req.body.adminid, Number(req.body.money), 2, "Shop Deduct Chips Added", "roulette", req.body.adminname, req.body.adminid,req.body.userId,userInfo.name);
+        }
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
-        res.json({ status: "ok" });
+        res.json({ status: "ok",msg:"Successfully Debited...!!" });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
@@ -241,11 +293,6 @@ router.put('/deductMoney', async (req, res) => {
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
     }
 });
-
-
-
-
-
 
 async function createPhoneNumber() {
     const countryCode = "91";

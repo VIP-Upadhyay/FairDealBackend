@@ -4,7 +4,7 @@ const MongoID = mongoose.Types.ObjectId;
 const Users = mongoose.model('users');
 const Agent = mongoose.model('agent');
 const UserWalletTracks = mongoose.model("userWalletTracks");
-
+const Shop = mongoose.model("shop");
 const express = require('express');
 const router = express.Router();
 const config = require('../../../config');
@@ -14,6 +14,7 @@ const logger = require('../../../logger');
 const { registerUser } = require('../../helper/signups/signupValidation');
 const { getUserDefaultFields, saveGameUser } = require('../../helper/signups/appStart');
 const walletActions = require("../../roulette/updateWallet");
+
 
 /**
 * @api {post} /admin/lobbies
@@ -26,12 +27,27 @@ const walletActions = require("../../roulette/updateWallet");
 router.get('/UserList', async (req, res) => {
     try {
         console.log('requet => ', req.query.Id);
+        console.log('requet => type ', req.query.type);
+
         let userList = []
-        if (req.query.Id == "Admin") {
+        if (req.query.type == "Admin") {
 
             userList = await Users.find({}, { username: 1,name:1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
-        } else {
+        } else if(req.query.type == "Agent") {
+
+            let totalsubagent  = await Shop.find({ agentId: MongoID(req.query.Id) }, { _id: 1 })
+
+            console.log("totalsubagent ",totalsubagent)
+            let totalid = []
+            for (let i = 0; i <= totalsubagent.length - 1; i++){
+                totalid.push(MongoID(totalsubagent[i]._id))
+            }
+
+            userList = await Users.find({ agentId: {$in:totalid} }, { username: 1, name: 1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+        
+        } else if (req.query.type == "Shop") {
+
             userList = await Users.find({ agentId: MongoID(req.query.Id) }, { username: 1,name:1, id: 1, mobileNumber: 1, "counters.totalMatch": 1, profileUrl: 1, email: 1, uniqueId: 1, isVIP: 1, chips: 1, referralCode: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
         }
         logger.info('admin/dahboard.js post dahboard  error => ', userList);
@@ -168,12 +184,37 @@ router.put('/addMoney', async (req, res) => {
     try {
         console.log("Add Money ", req.body)
         //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
-    
-        await walletActions.addWalletAdmin(req.body.userId, Number(req.body.money),2, "Agent Addeed Chips","roulette",req.body.adminname,req.body.adminid);
 
-        logger.info('admin/dahboard.js post dahboard  error => ');
+        if (req.body.adminname != 'Super Admin') {
 
-        res.json({ status: "ok" });
+            const agentInfo = await Shop.findOne({ _id: new mongoose.Types.ObjectId(req.body.adminid) }, { name:1,chips: 1 })
+
+            console.log("agentInfo ", agentInfo)
+
+            if (agentInfo != null && agentInfo.chips < Number(req.body.money)) {
+                res.json({ status: false,msg:"not enough chips to adding user wallet" });
+                return false
+            }   
+
+            const userInfo = await Users.findOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, { name: 1 })
+
+
+            await walletActions.deductshopWallet(req.body.adminid, -Number(req.body.money), 2, "Add Chips to User", "roulette", agentInfo.name, req.body.adminid,req.body.userId,userInfo.name);
+
+            await walletActions.addWalletAdmin(req.body.userId, Number(req.body.money), 2, "Sub Agent Addeed Chips", "roulette", agentInfo.name, req.body.adminid);
+
+            logger.info('admin/dahboard.js post dahboard  error => ');
+
+            res.json({ status: "ok",msg:"Successfully Credited...!!" });
+
+        } else {
+
+            await walletActions.addWalletAdmin(req.body.userId, Number(req.body.money), 2, "Agent Addeed Chips", "roulette", req.body.adminname, req.body.adminid);
+
+            logger.info('admin/dahboard.js post dahboard  error => ');
+
+            res.json({ status: "ok" ,msg:"Successfully Credited...!!"});
+        }
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
@@ -224,14 +265,26 @@ router.put('/UpdatePassword', async (req, res) => {
 router.put('/deductMoney', async (req, res) => {
     try {
         console.log("deductMoney ", req.body)
-        //const RecentUser = //await Users.deleteOne({_id: new mongoose.Types.ObjectId(req.params.id)})
-        
-        await walletActions.deductWallet(req.body.userId,-Number(req.body.money),2, "Agent duduct Chips","roulette",req.body.adminname,req.body.adminid);
+       
+        const userInfo = await Users.findOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, {name:1, chips: 1 })
 
+        console.log("userInfo ", userInfo)
+
+        if (userInfo != null && userInfo.chips < Number(req.body.money)) {
+            res.json({ status: false,msg:"not enough chips to deduct user wallet" });
+            return false
+        }   
+
+        await walletActions.deductWallet(req.body.userId,-Number(req.body.money),2, "Sub Agent duduct Chips","roulette",req.body.adminname,req.body.adminid);
+
+        if (req.body.adminname != 'Super Admin') {
+            await walletActions.addshopWalletAdmin(req.body.adminid, Number(req.body.money), 2, "User Deduct Chips Added", "roulette",
+                req.body.adminname, req.body.adminid,req.body.userId,userInfo.name);
+        }
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
-        res.json({ status: "ok" });
+        res.json({ status: "ok",msg:"Successfully Debited...!!" });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
