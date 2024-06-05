@@ -108,9 +108,6 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             },
             $inc: {
 
-            },
-            $push: {
-                
             }
         }
         let chalvalue = currentBet;
@@ -149,7 +146,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
         // } else {
             
-            updateData["$push"]["playerInfo.$.betObject"] = requestData.betData
+            updateData["$set"]["playerInfo.$.betObject"] = requestData.betData
         //}
 
         updateData.$inc["totalbet"] = chalvalue;
