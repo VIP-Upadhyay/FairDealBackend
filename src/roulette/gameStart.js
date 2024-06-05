@@ -162,8 +162,8 @@ module.exports.StartSpinnerGame = async (tbId) => {
 
         logger.info("AdminWinlossData ", AdminWinlossData)
 
-        let totalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.win);}, 0) : 0
-        let totalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.loss);}, 0) : 0
+        let totalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.win != undefined ? num.win : 0);}, 0) : 0
+        let totalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.loss != undefined ? num.loss : 0);}, 0) : 0
         let perwin = 100 - ((totalLoss * 100) / totalWin)
 
         logger.info("totalWin", totalWin);

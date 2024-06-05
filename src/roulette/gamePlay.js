@@ -64,7 +64,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             return false
         }
 
-        console.log("typeof requestData.betData.betData ", typeof requestData.betData)
+        console.log("typeof requestData.betData.betData ",requestData.betData)
         //requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
         
         console.log("requestData.betData. ", requestData.betData)
@@ -172,7 +172,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
         let response = {
             bet: chalvalue,
-            betaction: requestData.betaction,
+            betaction: requestData.betData,
             isOutSideBet: requestData.isOutSideBet
         }
 
