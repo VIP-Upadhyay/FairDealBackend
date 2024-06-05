@@ -81,7 +81,7 @@ router.put('/ShopUpdate', async (req, res) => {
 
         console.log("req ", req.body)
 
-        const Checksubagent = await Shop.find({ name: req.body.name });
+        const Checksubagent = await Shop.find({ _id: {$ne: new mongoose.Types.ObjectId(req.body.userId)} , name: req.body.name });
         console.log("Checksubagent ", Checksubagent)
         if (Checksubagent != undefined && Checksubagent.length > 0) {
             res.json({ status: false, msg: "This Sub Agent name is already taken. Please choose a different one." });
@@ -280,7 +280,7 @@ router.put('/shopDeductMoney', async (req, res) => {
         await walletActions.deductshopWallet(req.body.userId,-Number(req.body.money),2, "Agent duduct Chips","roulette",req.body.adminname,req.body.adminid);
 
         if (req.body.adminname != 'Super Admin') {
-            await walletActions.addagentWalletAdmin(req.body.adminid, Number(req.body.money), 2, "Shop Deduct Chips Added", "roulette", req.body.adminname, req.body.adminid,req.body.userId,userInfo.name);
+            await walletActions.addagentWalletAdmin(req.body.adminid, Number(req.body.money), 2, "Sub Agent Deduct Chips Added", "roulette", req.body.adminname, req.body.adminid,req.body.userId,userInfo.name);
         }
 
         logger.info('admin/dahboard.js post dahboard  error => ');

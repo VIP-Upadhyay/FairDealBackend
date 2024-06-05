@@ -21,7 +21,7 @@ router.get('/AgentList', async (req, res) => {
     try {
         //console.info('requet => ', req);
 
-        const agentList = await Agent.find({}, {  name: 1, location: 1,  createdAt: 1, lastLoginDate: 1, status: 1, password: 1,chips:1 })
+        const agentList = await Agent.find({}, { name: 1, location: 1, createdAt: 1, lastLoginDate: 1, status: 1, password: 1, chips: 1 })
 
         logger.info('admin/dahboard.js post dahboard  error => ', agentList);
 
@@ -45,7 +45,7 @@ router.get('/AgentData', async (req, res) => {
     try {
         console.info('requet => ', req.query);
         //
-        const userInfo = await Agent.findOne({ _id: new mongoose.Types.ObjectId(req.query.userId) }, {  name: 1, password: 1, location: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
+        const userInfo = await Agent.findOne({ _id: new mongoose.Types.ObjectId(req.query.userId) }, { name: 1, password: 1, location: 1, createdAt: 1, lastLoginDate: 1, status: 1 })
 
         logger.info('admin/dahboard.js post dahboard  error => ', userInfo);
 
@@ -68,6 +68,13 @@ router.get('/AgentData', async (req, res) => {
 */
 router.put('/AgentUpdate', async (req, res) => {
     try {
+
+        const Checkagent = await Agent.find({ _id: { $ne: new mongoose.Types.ObjectId(req.body.userId) },name: req.body.name });
+        console.log("Checkagent ", Checkagent)
+        if (Checkagent != undefined && Checkagent.length > 0) {
+            res.json({ status: false, msg: "This Agent name is already taken. Please choose a different one." });
+            return false
+        }
 
         console.log("req ", req.body)
         //currently send rendom number and generate 
@@ -204,7 +211,7 @@ router.put('/agentAddMoney', async (req, res) => {
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
-        res.json({ status: "ok",msg:"Successfully Credited...!!" });
+        res.json({ status: "ok", msg: "Successfully Credited...!!" });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
@@ -231,7 +238,7 @@ router.put('/agentDeductMoney', async (req, res) => {
 
         logger.info('admin/dahboard.js post dahboard  error => ');
 
-        res.json({ status: "ok",msg:"Successfully Credited...!!" });
+        res.json({ status: "ok", msg: "Successfully Credited...!!" });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         //res.send("error");
