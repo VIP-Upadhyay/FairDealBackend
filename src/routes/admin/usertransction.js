@@ -13,6 +13,8 @@ const UserWalletTracks = mongoose.model('userWalletTracks');
 // const Userpayout = mongoose.model('userpayout');
 const ShopWalletTracks = mongoose.model("shopWalletTracks");
 const AgentWalletTracks = mongoose.model("agentWalletTracks");
+const AdminWalletTracks = mongoose.model("adminWalletTracks");
+
 
 const AgentUser = mongoose.model("agent");
 const Shop = mongoose.model('shop');
@@ -73,6 +75,38 @@ router.get('/AgentTranscationData', async (req, res) => {
     }
 });
 
+
+/**
+* @api {post} /admin/AdminTranscationData
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.get('/AdminTranscationData', async (req, res) => {
+    try {
+        console.log('requet => ', req.query.Id);
+        console.log('requet => type ', req.query.type);
+
+        // const DepositeList = await ShopWalletTracks.find({  }, {
+        //     DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1,
+        //     adminname:1,adminid:1
+        // }).sort({ DateandTime: -1 })
+        
+
+        let DepositeList = []
+       
+        DepositeList = await AdminWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,adminname:1,adminid:1,agentid:1,agentname:1 })
+
+        logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
+
+        res.json({ DepositeList:DepositeList });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
 
 
 /**

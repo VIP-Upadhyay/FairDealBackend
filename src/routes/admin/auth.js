@@ -11,8 +11,10 @@ const OnePlayingTable = mongoose.model('oneToTwelvePlayingTables');
 const SoratTabe = mongoose.model('soratTables');
 const AndarBaharTable = mongoose.model('blackNwhiteTables');
 const RouletteTables = mongoose.model('RouletteTables');
-var nodemailer = require('nodemailer');
-
+const Pin = mongoose.model('pin');
+const bcrypt = require('bcrypt');
+const _ = require("underscore")
+const Admin = mongoose.model('admin');
 /**
  * @api {post} /admin/signup-admin
  * @apiName  register admin
@@ -28,7 +30,7 @@ router.post('/signup-admin', async (req, res) => {
 
 
 router.post('/signup-admin-update', async (req, res) => {
-  console.log("signup-admin :::::::::::::::",req.body)
+  console.log("signup-admin :::::::::::::::", req.body)
   res.json(await mainCtrl.registerAdminUpdate(req.body));
 });
 
@@ -48,7 +50,7 @@ router.post('/login', async (req, res) => {
     let data = {}
     console.log('req.body => ', req.body);
     if (req.body.logintype == "Admin") {
-      
+
       data = await mainCtrl.adminLogin(req.body);
       data.data.type_name = "Super Admin"
       data.data.name = req.body.email
@@ -78,34 +80,39 @@ router.post('/sendforgotemail', async (req, res) => {
   try {
     // res.json(await mainCtrl.adminLogin(req.body));
     console.log('req.body => ', req.body);
+    if (req.body.pin == undefined) {
+      res.send({ status: false, msg: "Wrong Pin Enter...!!" })
+      return false
+    }
 
+    let pindata = await Pin.find({ pin: req.body.pin })
 
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'iankitkhatrani00@gmail.com',
-        pass: 'Mahadev@1995'
-      }
-    });
+    if (pindata.length > 0) {
+      let admindata = await Admin.findOne({})
+      if (admindata != null) {
+        let  password =  _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 5).join('');
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        updateData = {
+          "$set": {
+            "password": hashedPassword
+          }
+        }
+        
     
-    var mailOptions = {
-      from: 'iankitkhatrani00@gmail.com',
-      to: 'iankitkhatrani@gmail.com',
-      subject: 'Sending Email using Node.js',
-      text: 'That was easy!'
-    };
+        console.log("updateData ",updateData)
     
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
+        const response = await Admin.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(admindata._id) }, updateData, { new: true });
+
+        res.send({ status: true, msg: "Success ...!!" , data:{email:response.email,password:password}})
+
       } else {
-        console.log('Email sent: ' + info.response);
+        res.send({ status: true, msg: "Wrong Pin Enter...!!" })
       }
-    });
-  
+    } else {
 
-    res.send({status:true})
-
+      res.send({ status: false, msg: "Wrong Pin Enter...!!" })
+    }
   } catch (err) {
     logger.error('admin/auth.js login error => ', err);
     res.status(BAD_REQUEST).json({ status: 0, message: 'Something went wrong' });

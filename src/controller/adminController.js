@@ -146,22 +146,22 @@ async function adminLogin(requestBody) {
         console.log("data ",data )
         const token = await commonHelper.sign(data);
         data.token = token;
-        delete data.password;
-        return { status: 1, message: 'Login Succesfully', data };
+        //delete data.password;
+        //return { status: 1, message: 'Login Succesfully', data };
 
 
         if (data !== null) {
             const passwordMatch = await bcrypt.compare(password, data.password);
-            //logger.info('passwordMatch =====> ', passwordMatch, "\n data =====> ", data);
+            logger.info('passwordMatch =====> ', passwordMatch, "\n data =====> ", data);
             if (passwordMatch) {
                 const token = await commonHelper.sign(data);
                 data.token = token;
                 delete data.password;
                 return { status: 1, message: 'Login Succesfully', data };
-            } else return { status: 0, message: 'Incorrect Password' };
+            } else return { status: 0, message: 'Incorrect Password', data };
         } else {
             logger.info('At mainController.js:571 userId not found => ', JSON.stringify(requestBody));
-            return { status: 0, message: 'Id not Found' };
+            return { status: 0, message: 'Id not Found',data };
         }
     } catch (error) {
         logger.error('mainController.js adminLogin error=> ', error, requestBody);

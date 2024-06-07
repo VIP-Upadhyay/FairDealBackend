@@ -13,6 +13,9 @@ const commonHelper = require('../../helper/commonHelper');
 const mainCtrl = require('../../controller/adminController');
 const logger = require('../../../logger');
 const UserWalletTracks = mongoose.model("userWalletTracks");
+const ShopWalletTracks = mongoose.model("shopWalletTracks");
+const AgentWalletTracks = mongoose.model("agentWalletTracks");
+const AdminWalletTracks = mongoose.model("adminWalletTracks");
 const gamePlayActionsRoulette = require('../../roulette/gamePlay');
 const adminwinloss = mongoose.model('adminwinloss');
 const RouletteUserHistory = mongoose.model('RouletteUserHistory');
@@ -44,10 +47,10 @@ router.get('/', async (req, res) => {
 
     totalAgent = await Agent.find().count()
 
-    let totalDepositData = await UserWalletTracks.aggregate([
+    let totalDepositData = await AgentWalletTracks.aggregate([
       {
         $match: {
-          "trnxTypeTxt": "Agent Addeed Chips"
+          "trnxTypeTxt": "Admin Addeed Chips"
         }
       },
       {
@@ -63,10 +66,10 @@ router.get('/', async (req, res) => {
 
     const totalDeposit = totalDepositData.length > 0 ? totalDepositData[0].total.toFixed(2) : 0;
 
-    let totalWithdrawData = await UserWalletTracks.aggregate([
+    let totalWithdrawData = await AgentWalletTracks.aggregate([
       {
         $match: {
-          "trnxTypeTxt": "Agent duduct Chips"
+          "trnxTypeTxt": "Admin duduct Chips"
         }
       },
       {
@@ -84,11 +87,11 @@ router.get('/', async (req, res) => {
 
     const totalWithdraw = totalWithdrawData.length > 0 ? totalWithdrawData[0].total.toFixed(2) : 0
 
-    let todayDepositDataToday = await UserWalletTracks.aggregate([
+    let todayDepositDataToday = await AgentWalletTracks.aggregate([
       {
         $match: {
           "createdAt": { $gte: startOfDay, $lte: endOfDay },
-          "trnxTypeTxt": "Agent Addeed Chips"
+          "trnxTypeTxt": "Admin Addeed Chips"
         }
       },
       {
@@ -105,11 +108,11 @@ router.get('/', async (req, res) => {
     const todayDeposit = todayDepositDataToday.length > 0 ? todayDepositDataToday[0].total.toFixed(2) : 0;
 
 
-    let todayWithdrawDataToday = await UserWalletTracks.aggregate([
+    let todayWithdrawDataToday = await AgentWalletTracks.aggregate([
       {
         $match: {
           "createdAt": { $gte: startOfDay, $lte: endOfDay },
-          "trnxTypeTxt": "Agent duduct Chips"
+          "trnxTypeTxt": "Admin duduct Chips"
         }
       },
       {
@@ -130,20 +133,22 @@ router.get('/', async (req, res) => {
     const totalGamePay = await RouletteUserHistory.find().count();
 
 
-    let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
-    let AdminWinlossData = await adminwinloss.findOne({ date: currentdata })
+    // let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
+    // let AdminWinlossData = await adminwinloss.findOne({ date: currentdata })
 
-    console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",AdminWinlossData)
+    // console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",AdminWinlossData)
 
-    let totalWin = (AdminWinlossData != undefined && AdminWinlossData.win != undefined) ? AdminWinlossData.win : 0
-    let totalLoss = (AdminWinlossData != undefined && AdminWinlossData.loss != undefined) ? AdminWinlossData.loss : 0
+    // let totalWin = (AdminWinlossData != undefined && AdminWinlossData.win != undefined) ? AdminWinlossData.win : 0
+    // let totalLoss = (AdminWinlossData != undefined && AdminWinlossData.loss != undefined) ? AdminWinlossData.loss : 0
 
-    const todayProfit = totalWin - totalLoss
+    const todayProfit = Math.abs(todayDeposit) - Math.abs(todayWithdraw)
+
+    const totalProfit = Math.abs(totalDeposit) - Math.abs(totalWithdraw)
 
     
     logger.info('admin/dahboard.js post dahboard  error => ', totalUser);
 
-    res.json({ totalUser, totalAgent, totalDeposit, todayDeposit, todayWithdraw, totalWithdraw, totalGamePay, toDayGamePay, todayProfit });
+    res.json({ totalUser, totalAgent, totalDeposit, todayDeposit, todayWithdraw, totalWithdraw, totalGamePay, toDayGamePay, todayProfit ,totalProfit });
   } catch (error) {
     logger.error('admin/dahboard.js post bet-list error => ', error);
     res.status(config.INTERNAL_SERVER_ERROR).json(error);

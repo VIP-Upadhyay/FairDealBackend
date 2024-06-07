@@ -5,6 +5,8 @@ const RouletteTables = mongoose.model('RouletteTables');
 const UserWalletTracks = mongoose.model("userWalletTracks");
 const AgentWalletTracks = mongoose.model("agentWalletTracks");
 const ShopWalletTracks = mongoose.model("shopWalletTracks");
+const AdminWalletTracks = mongoose.model("adminWalletTracks");
+
 
 
 
@@ -348,6 +350,21 @@ module.exports.deductagentWallet = async (id, deductChips, tType, t, game, admin
                 shopname: shopname != undefined ? shopname : "",
             }
             await this.trackAgentWallet(walletTrack);
+
+            if (shopid == undefined || shopid == "" ) {
+                let walletTrack1 = {
+                    trnxType: tType,
+                    trnxTypeTxt: t,
+                    trnxAmount: tranferAmount,
+                    gameType: game,
+                    adminname: adminname != undefined ? adminname : "",
+                    adminid: adminid != undefined ? adminid : "",
+                    agentid: wh._id.toString(),
+                    agentname: AgentInfo.name,
+                }
+                await this.trackAdminWallet(walletTrack1);
+            }
+
         }
 
         // if ((typeof upReps.chips.toString().split(".")[1] != "undefined" && upReps.chips.toString().split(".")[1].length > 2)) {
@@ -454,6 +471,22 @@ module.exports.addagentWalletAdmin = async (id, added_chips, tType, t, game, adm
                 shopname: shopname != undefined ? shopname : "",
             }
             await this.trackAgentWallet(walletTrack);
+
+
+            if (shopid == undefined || shopid == "") {
+                let walletTrack1 = {
+                    trnxType: tType,
+                    trnxTypeTxt: t,
+                    trnxAmount: tranferAmount,
+                    gameType: game,
+                    adminname: adminname != undefined ? adminname : "",
+                    adminid: adminid != undefined ? adminid : "",
+                    agentid: wh._id.toString(),
+                    agentname: agentInfo.name,
+                }
+                await this.trackAdminWallet(walletTrack1);
+            }
+
         }
 
         // if ((typeof upReps.chips.toString().split(".")[1] != "undefined" && upReps.chips.toString().split(".")[1].length > 2)
@@ -805,5 +838,13 @@ module.exports.trackShopWallet = async (obj) => {
     logger.info("\n trackShopWallet obj ::", obj);
 
     await ShopWalletTracks.create(obj)
+    return true;
+}
+
+
+module.exports.trackAdminWallet = async (obj) => {
+    logger.info("\n trackAdminWallet obj ::", obj);
+
+    await AdminWalletTracks.create(obj)
     return true;
 }
