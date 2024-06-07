@@ -139,13 +139,11 @@ async function registerAdminUpdate(requestBody) {
  */
 async function adminLogin(requestBody) {
 
-
-
     const { email, password } = requestBody;
     console.info('email => ', email, '\n password => ', password);
     try {
         const data = await Admin.findOne({ email }).lean();
-
+        console.log("data ",data )
         const token = await commonHelper.sign(data);
         data.token = token;
         delete data.password;

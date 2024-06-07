@@ -11,6 +11,7 @@ const OnePlayingTable = mongoose.model('oneToTwelvePlayingTables');
 const SoratTabe = mongoose.model('soratTables');
 const AndarBaharTable = mongoose.model('blackNwhiteTables');
 const RouletteTables = mongoose.model('RouletteTables');
+var nodemailer = require('nodemailer');
 
 /**
  * @api {post} /admin/signup-admin
@@ -72,6 +73,44 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
+router.post('/sendforgotemail', async (req, res) => {
+  try {
+    // res.json(await mainCtrl.adminLogin(req.body));
+    console.log('req.body => ', req.body);
+
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'iankitkhatrani00@gmail.com',
+        pass: 'Mahadev@1995'
+      }
+    });
+    
+    var mailOptions = {
+      from: 'iankitkhatrani00@gmail.com',
+      to: 'iankitkhatrani@gmail.com',
+      subject: 'Sending Email using Node.js',
+      text: 'That was easy!'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  
+
+    res.send({status:true})
+
+  } catch (err) {
+    logger.error('admin/auth.js login error => ', err);
+    res.status(BAD_REQUEST).json({ status: 0, message: 'Something went wrong' });
+  }
+});
 
 /**
 * @api {get} /admin/DeletePlaying
@@ -146,4 +185,6 @@ router.get('/OneDeletePlaying', async (req, res) => {
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
   }
 });
+
+
 module.exports = router;
