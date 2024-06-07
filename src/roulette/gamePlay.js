@@ -148,7 +148,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             
             updateData["$set"]["playerInfo.$.betObject"] = requestData.betData
         //}
-
+        updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
         updateData.$inc["totalbet"] = chalvalue;
         updateData.$inc["playerInfo.$.coins"] = -chalvalue;
         updateData.$set["turnDone"] = true;
