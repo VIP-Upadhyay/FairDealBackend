@@ -18,6 +18,8 @@ const walletActions = require("../../roulette/updateWallet");
 const RouletteTables = mongoose.model('RouletteTables');
 const leaveTableActions = require('../../roulette/leaveTable');
 const commandAcions = require("../../helper/socketFunctions");
+const CONST = require("../../../constant");
+
 /**
 * @api {post} /admin/lobbies
 * @apiName  add-bet-list
