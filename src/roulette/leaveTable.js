@@ -70,8 +70,9 @@ module.exports.leaveTable = async (requestData, client) => {
     let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
 
-    if(requestData.reason == undefined || requestData.reason != 'autoLeave')
-    commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
+    if (requestData.reason == undefined || requestData.reason != 'autoLeave') {
+        commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
+    }
     //commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVETABLEROULETTE, response);
 
     //if(tbInfo.activePlayer == 0)
