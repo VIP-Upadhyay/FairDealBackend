@@ -133,6 +133,39 @@ router.get('/ludoGameHistory', async (req, res) => {
 * @apiSuccess (Success 200) {Array} badges Array of badges document
 * @apiError (Error 4xx) {String} message Validation or error message.
 
+db.getCollection('RouletteTables').aggregate([
+    { $unwind: "$playerInfo" },
+            { $unwind: "$playerInfo.betObject" },
+            {
+                $group: {
+                    _id: "$playerInfo.betObject.betIndex",
+                    type: { $first: "$playerInfo.betObject.type" },
+                    number: { $first: "$playerInfo.betObject.number" },
+                    bet: { $sum: "$playerInfo.betObject.bet" }
+                }
+            },
+             {
+                $project: {
+                    length: { $size: "$number" },
+                    type:1,
+                    number:1,
+                    bet:{ $divide: [ "$bet",{ $size: "$number" } ] }
+                    
+                }
+            },
+            { $unwind: "$number" },
+            {
+                $group: {
+                    _id: "$number",
+                    type: { $first: "$type" },
+                    number: { $first: "$number" },
+                    bet: { $sum: "$bet" }
+                }
+            },
+            {$sort:{number:1}}
+
+])
+            
 {
   seatIndex: 0,
   _id: 661e505b68b64c705150e769,
@@ -189,7 +222,28 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     number: { $first: "$playerInfo.betObject.number" },
                     bet: { $sum: "$playerInfo.betObject.bet" }
                 }
-            }
+            },
+
+
+            {
+                $project: {
+                    length: { $size: "$number" },
+                    type: 1,
+                    number: 1,
+                    bet: { $divide: ["$bet", { $size: "$number" }] }
+
+                }
+            },
+            { $unwind: "$number" },
+            {
+                $group: {
+                    _id: "$number",
+                    type: { $first: "$type" },
+                    number: { $first: "$number" },
+                    bet: { $sum: "$bet" }
+                }
+            },
+            {$sort:{number:1}}
         ]);
 
         console.log("responseData ", responseData)
@@ -200,6 +254,60 @@ router.get('/GetGameBetInfo', async (req, res) => {
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
     }
 });
+
+
+/**
+* @api {get} /admin/lobbies
+* @apiName  GetGameBetInfo
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+
+*/
+router.get('/TableList', async (req, res) => {
+    try {
+        console.info('requet => ', req.body);
+
+        tabInfo = await RouletteTables.find({}, { playerInfo: 0, TableObject: 0, history: 0 });
+
+
+        console.log("TableList ", tabInfo)
+
+        res.json({ tabInfo: tabInfo });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
+
+/**
+* @api {post} /admin/lobbies
+* @apiName  add-bet-list
+* @apiGroup  Admin
+* @apiHeader {String}  x-access-token Admin's unique access-key
+* @apiSuccess (Success 200) {Array} badges Array of badges document
+* @apiError (Error 4xx) {String} message Validation or error message.
+*/
+router.delete('/DeleteTable/:id', async (req, res) => {
+    try {
+        console.log("req ", req.params.id)
+
+        const RecentUser = await RouletteTables.deleteOne({ _id: new mongoose.Types.ObjectId(req.params.id) })
+
+        logger.info('admin/dahboard.js post dahboard  error => ', RecentUser);
+
+        res.json({ status: "ok" });
+    } catch (error) {
+        logger.error('admin/dahboard.js post bet-list error => ', error);
+        //res.send("error");
+
+        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    }
+});
+
+
 
 /**
 * @api {get} /admin/lobbies
@@ -367,7 +475,7 @@ router.get('/getgamelogic', async (req, res) => {
                     greenfixnumberwon: GAMELOGICCONFIG.GREENFIXNUMBERWON,
                     bluefixnumberwon: GAMELOGICCONFIG.BLUEFIXNUMBERWON,
                     PERCENTAGE: parseInt(GAMELOGICCONFIG.PERCENTAGE),
-                    DAY:parseInt(GAMELOGICCONFIG.DAY)
+                    DAY: parseInt(GAMELOGICCONFIG.DAY)
                 }
             });
 

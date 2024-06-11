@@ -43,7 +43,7 @@ router.get('/AgentTranscationData', async (req, res) => {
         let DepositeList = []
         if (req.query.type == "Admin") {
 
-            DepositeList = await AgentWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 })
+            DepositeList = await AgentWalletTracks.find({}, { createdAt: 1, name: 1, trnxTypeTxt: 1, trnxAmount: 1, oppChips: 1, chips: 1, adminname: 1, adminid: 1, shopid: 1, shopname: 1 }).sort({createdAt:-1})
 
         }
         // else if (req.query.type == "Agent") {
@@ -62,7 +62,7 @@ router.get('/AgentTranscationData', async (req, res) => {
         
         else if (req.query.type == "Agent") {
 
-            DepositeList = await AgentWalletTracks.find({ agentId: MongoID(req.query.Id) }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 })
+            DepositeList = await AgentWalletTracks.find({ agentId: MongoID(req.query.Id) }, { createdAt:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,shopid:1,shopname:1 }).sort({createdAt:-1})
         }
 
 
@@ -97,7 +97,7 @@ router.get('/AdminTranscationData', async (req, res) => {
 
         let DepositeList = []
        
-        DepositeList = await AdminWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,adminname:1,adminid:1,agentid:1,agentname:1 })
+        DepositeList = await AdminWalletTracks.find({}, { createdAt:1,name:1,trnxTypeTxt:1,trnxAmount:1,adminname:1,adminid:1,agentid:1,agentname:1 }).sort({createdAt:-1})
 
         logger.info('admin/dahboard.js post dahboard  error => ', DepositeList);
 
@@ -131,7 +131,7 @@ router.get('/SubAgentTranscationData', async (req, res) => {
         let DepositeList = []
         if (req.query.type == "Admin") {
 
-            DepositeList = await ShopWalletTracks.find({}, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+            DepositeList = await ShopWalletTracks.find({}, { createdAt:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 }).sort({createdAt:-1})
 
         } else if(req.query.type == "Agent") {
 
@@ -143,11 +143,11 @@ router.get('/SubAgentTranscationData', async (req, res) => {
                 totalid.push(MongoID(totalsubagent[i]._id))
             }
 
-            DepositeList = await ShopWalletTracks.find({ shopId: {$in:totalid} }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+            DepositeList = await ShopWalletTracks.find({ shopId: {$in:totalid} }, { createdAt:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 }).sort({createdAt:-1})
         
         } else if (req.query.type == "Shop") {
 
-            DepositeList = await ShopWalletTracks.find({ shopId: MongoID(req.query.Id) }, { DateandTime:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 })
+            DepositeList = await ShopWalletTracks.find({ shopId: MongoID(req.query.Id) }, { createdAt:1,name:1,trnxTypeTxt:1,trnxAmount:1,oppChips:1,chips:1,adminname:1,adminid:1,userid:1,username:1 }).sort({createdAt:-1})
         }
 
 

@@ -15,7 +15,9 @@ const { registerUser } = require('../../helper/signups/signupValidation');
 const { getUserDefaultFields, saveGameUser } = require('../../helper/signups/appStart');
 const walletActions = require("../../roulette/updateWallet");
 
-
+const RouletteTables = mongoose.model('RouletteTables');
+const leaveTableActions = require('../../roulette/leaveTable');
+const commandAcions = require("../../helper/socketFunctions");
 /**
 * @api {post} /admin/lobbies
 * @apiName  add-bet-list
@@ -370,7 +372,40 @@ router.put('/blockandunblock', async (req, res) => {
 
             await Users.updateOne({ _id: new mongoose.Types.ObjectId(req.body.userId) }, { $set: { status: req.body.isblock } })
 
+           
+            let userinfo = await Users.findOne({ _id: new mongoose.Types.ObjectId(req.body.userId) })
+
+
+            let gwh1 = {
+                "playerInfo._id": MongoID(req.body.userId)
+            }
+            let tableInfo = await RouletteTables.findOne(gwh1, { "playerInfo.$": 1 }).lean();
+            logger.info("JoinTable tableInfo : ", JSON.stringify(tableInfo));
+
+            if (tableInfo != null) {
+                // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
+                // delete client.JT
+    
+                await leaveTableActions.leaveTable(
+                    {
+                        reason: 'autoLeave',
+                    },
+                    {
+                        uid: tableInfo.playerInfo[0]._id.toString(),
+                        tbid: tableInfo._id.toString(),
+                        seatIndex: tableInfo.playerInfo[0].seatIndex,
+                        sck: tableInfo.playerInfo[0].sck,
+                    }
+                );
+            }
+            if (userinfo != null && userinfo.sckId != undefined) {
+                commandAcions.sendDirectEvent(userinfo.sckId, CONST.BLOCKPLAYER, {
+                    msg:"Check YourOops! It looks like there's an issue with your internet connection. Please check your connection and try again."
+                });
+            }
+
             res.json({ status: "ok" });
+
         } else {
             console.log("false")
             res.json({ status: false });
