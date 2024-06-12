@@ -36,8 +36,12 @@ module.exports.leaveTable = async (requestData, client) => {
 
     if (tb == null) return false;
 
-    if (typeof client.id != "undefined")
+    if (typeof client.id != "undefined") {
         client.leave(tb._id.toString());
+       
+        //io.in(client.id).socketsLeave(tb._id.toString());
+
+    }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
     let playerInfo = tb.playerInfo[client.seatIndex];
@@ -72,6 +76,9 @@ module.exports.leaveTable = async (requestData, client) => {
 
     if (requestData.reason == undefined || requestData.reason != 'autoLeave') {
         commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
+
+        
+
     }
     //commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVETABLEROULETTE, response);
 
