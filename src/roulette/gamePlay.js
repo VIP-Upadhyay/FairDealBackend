@@ -167,6 +167,21 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         this.AdminWinLossData(chalvalue, "win")
 
 
+        let insertobj = {
+            userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
+            ballposition: -1,
+            beforeplaypoint: tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
+            play: tb.playerInfo[Number(client.seatIndex)].totalbet,
+            won: 0,
+            afterplaypoint: tb.playerInfo[Number(client.seatIndex)].coins,
+            uuid: tb.uuid,
+            betObjectData: requestData.betData
+
+        };
+        console.log("RouletteUserHistory ", insertobj)
+        await RouletteUserHistory.create(insertobj);
+
+
         let response = {
             bet: chalvalue,
             betaction: requestData.betData,

@@ -588,8 +588,25 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 }
                 gamePlayActionsRoulette.AdminWinLossData(Number(TotalWinAmount), "loss")
 
-                let insertobj = {
-                    userId: tbInfo.playerInfo[x]._id.toString(),
+                // let finddata = await RouletteUserHistory.find({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.uuid })
+
+                // if()
+                    
+                // let insertobj = {
+                //     userId: tbInfo.playerInfo[x]._id.toString(),
+                //     ballposition: itemIndex,
+                //     beforeplaypoint: tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                //     play: tbInfo.playerInfo[x].totalbet,
+                //     won: TotalWinAmount,
+                //     afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
+                //     uuid: tbInfo.uuid,
+                //     betObjectData: betObjectData
+
+                // };
+                //console.log("RouletteUserHistory ", insertobj)
+                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.uuid }, {
+                    $set: {
+                        userId: tbInfo.playerInfo[x]._id.toString(),
                     ballposition: itemIndex,
                     beforeplaypoint: tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
                     play: tbInfo.playerInfo[x].totalbet,
@@ -597,10 +614,8 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.uuid,
                     betObjectData: betObjectData
-
-                };
-                console.log("RouletteUserHistory ", insertobj)
-                await RouletteUserHistory.create(insertobj);
+                    
+                }}, {upsert:true});
             }
         }
 
