@@ -132,23 +132,41 @@ router.get('/', async (req, res) => {
 
     const totalGamePay = await RouletteUserHistory.find().count();
 
-
-    // let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
-    // let AdminWinlossData = await adminwinloss.findOne({ date: currentdata })
-
-    // console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",AdminWinlossData)
-
-    // let totalWin = (AdminWinlossData != undefined && AdminWinlossData.win != undefined) ? AdminWinlossData.win : 0
-    // let totalLoss = (AdminWinlossData != undefined && AdminWinlossData.loss != undefined) ? AdminWinlossData.loss : 0
-
     const todayProfit = Math.abs(todayDeposit) - Math.abs(todayWithdraw)
 
     const totalProfit = Math.abs(totalDeposit) - Math.abs(totalWithdraw)
 
-    
+    let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
+    let AdminWinlossData = await adminwinloss.findOne({ date: currentdata, win: { $exists: true }, loss: { $exists: true } })
+
+    console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", AdminWinlossData)
+
+    let totalWin = (AdminWinlossData != undefined && AdminWinlossData.win != undefined) ? AdminWinlossData.win : 0
+    let totalLoss = (AdminWinlossData != undefined && AdminWinlossData.loss != undefined) ? AdminWinlossData.loss : 0
+
+    let ConfigdaywiseWinloss = -1
+    if (GAMELOGICCONFIG.DAY != undefined && GAMELOGICCONFIG.DAY != -1) {
+      let datebeforecount = this.AddTimeLAST(-((GAMELOGICCONFIG.DAY - 1) * 86400));
+
+      logger.info("datebeforecount ", datebeforecount)
+
+      AdminWinlossData = await adminwinloss.find({ createdAt: { $gte: new Date(datebeforecount) }, win: { $exists: true }, loss: { $exists: true } })
+
+      
+      let DaytotalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => { return total + Math.round(num.win != undefined ? num.win : 0); }, 0) : 0
+      let DaytotalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => { return total + Math.round(num.loss != undefined ? num.loss : 0); }, 0) : 0
+      ConfigdaywiseWinloss = (100 - ((DaytotalLoss * 100) / DaytotalWin)).toFixed(2)
+
+    }
+
+
+   
+
+    const totalPercentage = (100 - ((totalLoss * 100) / totalWin)).toFixed(2)
+
     logger.info('admin/dahboard.js post dahboard  error => ', totalUser);
 
-    res.json({ totalUser, totalAgent, totalDeposit, todayDeposit, todayWithdraw, totalWithdraw, totalGamePay, toDayGamePay, todayProfit ,totalProfit });
+    res.json({ totalUser, totalAgent, totalDeposit, todayDeposit, todayWithdraw, totalWithdraw, totalGamePay, toDayGamePay, todayProfit, totalProfit, totalPercentage,ConfigdaywiseWinloss });
   } catch (error) {
     logger.error('admin/dahboard.js post bet-list error => ', error);
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
@@ -258,6 +276,27 @@ function AddTime(sec) {
   return t.setSeconds(t.getSeconds() + sec);
 }
 
+
+module.exports.AddTimeLAST = (t) => {
+  try {
+      const ut = new Date();
+      ut.setUTCHours(23);
+      ut.setUTCMinutes(59);
+      ut.setUTCSeconds(0);
+      ut.setSeconds(ut.getSeconds() + Number(t));
+
+      ut.setUTCHours(0);
+      ut.setUTCMinutes(0);
+      ut.setUTCSeconds(0);
+      ut.setUTCMilliseconds(0);
+
+
+
+      return ut;
+  } catch (error) {
+      logger.error('socketFunction.js AddTime error :--> ' + error);
+  }
+};
 
 
 module.exports = router;

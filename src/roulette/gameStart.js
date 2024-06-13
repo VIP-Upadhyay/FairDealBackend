@@ -147,23 +147,23 @@ module.exports.StartSpinnerGame = async (tbId) => {
         let itemObject = -1
         let AdminWinlossData = []
         if (GAMELOGICCONFIG.DAY != undefined && GAMELOGICCONFIG.DAY != 1) {
-            let datebeforecount = this.AddTimeLAST(-((GAMELOGICCONFIG.DAY-1)* 86400));
+            let datebeforecount = this.AddTimeLAST(-((GAMELOGICCONFIG.DAY - 1) * 86400));
 
             logger.info("datebeforecount ", datebeforecount)
 
             //let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
 
 
-            AdminWinlossData = await adminwinloss.find({ createdAt: { $gte: new Date(datebeforecount) } })
+            AdminWinlossData = await adminwinloss.find({ createdAt: { $gte: new Date(datebeforecount) }, win: { $exists: true }, loss: { $exists: true } })
         } else {
             let currentdata = gamePlayActionsRoulette.CreateDate(new Date())
-            AdminWinlossData = await adminwinloss.find({ date: currentdata })
+            AdminWinlossData = await adminwinloss.find({ date: currentdata, win: { $exists: true }, loss: { $exists: true } })
         }
 
         logger.info("AdminWinlossData ", AdminWinlossData)
 
-        let totalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.win != undefined ? num.win : 0);}, 0) : 0
-        let totalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => {return total + Math.round(num.loss != undefined ? num.loss : 0);}, 0) : 0
+        let totalWin = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => { return total + Math.round(num.win != undefined ? num.win : 0); }, 0) : 0
+        let totalLoss = (AdminWinlossData.length > 0) ? AdminWinlossData.reduce((total, num) => { return total + Math.round(num.loss != undefined ? num.loss : 0); }, 0) : 0
         let perwin = 100 - ((totalLoss * 100) / totalWin)
 
         logger.info("totalWin", totalWin);
@@ -171,6 +171,14 @@ module.exports.StartSpinnerGame = async (tbId) => {
         logger.info("((totalLoss * 100)/totalWin)", ((totalLoss * 100) / totalWin));
         logger.info("perwin", perwin);
         logger.info("GAMELOGICCONFIG.PERCENTAGE", GAMELOGICCONFIG.PERCENTAGE);
+
+
+        // GAMELOGICCONFIG.PERCENTAGE = 10 
+        // totalWin = 10000;
+        // loss = 9450 
+        // perwinAdmin = 5.5 //100 - 94.5 // ((9450 * 100) / 10000)
+        // 5 < 10 
+
 
 
         if (GAMELOGICCONFIG.PERCENTAGE != undefined && GAMELOGICCONFIG.PERCENTAGE != -1 && perwin < GAMELOGICCONFIG.PERCENTAGE) {
@@ -358,7 +366,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
 
-                console.log("pastbetObject Winner ",betObjectData)
+                console.log("pastbetObject Winner ", betObjectData)
                 const upWh = {
                     _id: MongoID(tbid),
                     "playerInfo.seatIndex": tbInfo.playerInfo[x].seatIndex
@@ -390,7 +398,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        console.log("betObjectData[i] ",betObjectData[i])
+                        console.log("betObjectData[i] ", betObjectData[i])
 
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
@@ -583,12 +591,12 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let insertobj = {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     ballposition: itemIndex,
-                    beforeplaypoint: tbInfo.playerInfo[x].coins +  tbInfo.playerInfo[x].totalbet,
+                    beforeplaypoint: tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
                     afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.uuid,
-                    betObjectData:betObjectData
+                    betObjectData: betObjectData
 
                 };
                 console.log("RouletteUserHistory ", insertobj)

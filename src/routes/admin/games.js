@@ -133,6 +133,22 @@ router.get('/ludoGameHistory', async (req, res) => {
 * @apiSuccess (Success 200) {Array} badges Array of badges document
 * @apiError (Error 4xx) {String} message Validation or error message.
 
+
+            {
+                $group: {
+                    _id: "$whichTable",
+                    playerInfodata:{$push:"$playerInfo"}
+                }
+            },
+            {
+                $project: {
+                    playerInfodata:1
+                    
+                }
+            },
+            { $unwind: "$playerInfodata" }
+            
+
 db.getCollection('RouletteTables').aggregate([
     { $unwind: "$playerInfo" },
             { $unwind: "$playerInfo.betObject" },
@@ -213,6 +229,7 @@ router.get('/GetGameBetInfo', async (req, res) => {
         //console.info('tabInfo => ', tabInfo);
 
         const responseData = await RouletteTables.aggregate([
+            {$match:{"whichTable" : "greenTable"}},
             { $unwind: "$playerInfo" },
             { $unwind: "$playerInfo.betObject" },
             {
@@ -220,7 +237,8 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     _id: "$playerInfo.betObject.betIndex",
                     type: { $first: "$playerInfo.betObject.type" },
                     number: { $first: "$playerInfo.betObject.number" },
-                    bet: { $sum: "$playerInfo.betObject.bet" }
+                    bet: { $sum: "$playerInfo.betObject.bet" },
+                    "whichTable" : { $first: "$whichTable" }
                 }
             },
 
@@ -230,7 +248,8 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     length: { $size: "$number" },
                     type: 1,
                     number: 1,
-                    bet: { $divide: ["$bet", { $size: "$number" }] }
+                    bet: { $divide: ["$bet", { $size: "$number" }] },
+                    whichTable:1
 
                 }
             },
@@ -240,15 +259,57 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     _id: "$number",
                     type: { $first: "$type" },
                     number: { $first: "$number" },
-                    bet: { $sum: "$bet" }
+                    bet: { $sum: "$bet" },
+                    whichTable: { $first: "$whichTable" },
+                }
+            },
+            {$sort:{number:1}}
+        ]);
+
+
+        const responseDatablue = await RouletteTables.aggregate([
+            {$match:{"whichTable" : "blueTable"}},
+            { $unwind: "$playerInfo" },
+            { $unwind: "$playerInfo.betObject" },
+            {
+                $group: {
+                    _id: "$playerInfo.betObject.betIndex",
+                    type: { $first: "$playerInfo.betObject.type" },
+                    number: { $first: "$playerInfo.betObject.number" },
+                    bet: { $sum: "$playerInfo.betObject.bet" },
+                    "whichTable" : { $first: "$whichTable" }
+                }
+            },
+
+
+            {
+                $project: {
+                    length: { $size: "$number" },
+                    type: 1,
+                    number: 1,
+                    bet: { $divide: ["$bet", { $size: "$number" }] },
+                    whichTable:1
+
+                }
+            },
+            { $unwind: "$number" },
+            {
+                $group: {
+                    _id: "$number",
+                    type: { $first: "$type" },
+                    number: { $first: "$number" },
+                    bet: { $sum: "$bet" },
+                    whichTable: { $first: "$whichTable" },
                 }
             },
             {$sort:{number:1}}
         ]);
 
         console.log("responseData ", responseData)
+        console.log("responseDatablue ", responseDatablue)
 
-        res.json({ tabInfo: responseData });
+
+        res.json({ tabInfo: responseData.concat(responseDatablue) });
     } catch (error) {
         logger.error('admin/dahboard.js post bet-list error => ', error);
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
