@@ -733,7 +733,7 @@ router.get('/GetRouletteHistoryData', async (req, res) => {
             return false
         }
         const aviatorHistoryData = await UserWalletTracks.find({ userId: MongoID(req.query.userId), gameType : "roulette"},
-            { DateandTime: 1, userId: 1, oppChips: 1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1 }).sort({ DateTime: -1 })
+            { createdAt: 1, userId: 1, oppChips: 1,ballposition:1, oppWinningChips: 1, chips: 1, winningChips: 1, trnxAmount: 1, gameType: 1, trnxTypeTxt: 1 }).sort({ createdAt: -1 })
 
         console.log("GetRouletteHistoryData ", aviatorHistoryData)
 
