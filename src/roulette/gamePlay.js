@@ -834,22 +834,21 @@ module.exports.NEIGHBORBET = async (requestData, client) => {
 
 
 /*
+module.exports.PASTBET = async (requestData, client) => {
   Past Bet 
 
 */
 module.exports.PASTBET = async (requestData, client) => {
     try {
         logger.info("action requestData : ", requestData);
-        if (typeof client.tbid == "undefined"
-            || typeof client.uid == "undefined"
-            || typeof client.seatIndex == "undefined"
+        if (typeof requestData.playerId == "undefined"
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.PASTBET, requestData, false, "User session not set, please restart game!");
             return false;
         }
 
 
-        const userInfo = await GameUser.findOne({}, {}).lean();
+        const userInfo = await GameUser.findOne({_id:MongoID(requestData.playerId)}, {}).lean();
         logger.info("PASTBET userInfo : ", userInfo);
 
         if (userInfo == null) {
