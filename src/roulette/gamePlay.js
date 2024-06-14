@@ -882,6 +882,7 @@ module.exports.PASTBETSAVE = async (requestData, client) => {
         if (typeof client.tbid == "undefined"
             || typeof client.uid == "undefined"
             || typeof client.seatIndex == "undefined"
+            || typeof betObjectData == "undefined" 
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.PASTBETSAVE, requestData, false, "User session not set, please restart game!");
             return false;
