@@ -41,8 +41,8 @@ const GameUserSchema = new Schema(
     Iscom: { type: Number, default: 0 },
     fcmToken: { type: String, default: '' },
     agentId: { type: mongoose.Schema.Types.ObjectId, ref: Shop },
-    greentablebet: {},
-    bluetablebet: {}
+    greentablebet: [],
+    bluetablebet: []
   },
   { versionKey: false }
 );
