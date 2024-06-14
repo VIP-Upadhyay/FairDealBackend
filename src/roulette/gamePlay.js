@@ -30,12 +30,12 @@ const adminwinloss = mongoose.model('adminwinloss');
    
    
    {
-	"eventName":"ACTIONROULETTE",
-	"data":{
-		"tableId":"665ec3ccf5b4113810f5cdb2",
-		"playerId":"663ca51fe1b43a5bd45c7b89",
-		"betData":"[{"number":"[21]","type":"number","bet":5,"betIndex":21,"coin":"[5]"},{"number":"[20]","type":"number","bet":5,"betIndex":20,"coin":"[5]"},{"number":"[24]","type":"number","bet":5,"betIndex":24,"coin":"[5]"},{"number":"[13,14,15,16,17,18,19,20,21,22,23,24]","type":"2nd12","bet":10,"betIndex":41,"coin":"[10]"},{"number":"[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]","type":"red","bet":10,"betIndex":47,"coin":"[10]"},{"number":"[6]","type":"number","bet":50,"betIndex":6,"coin":"[50]"},{"number":"[1,2,3,4,5,6,7,8,9,10,11,12]","type":"1st12","bet":50,"betIndex":40,"coin":"[50]"}]""
-	}
+    "eventName":"ACTIONROULETTE",
+    "data":{
+        "tableId":"665ec3ccf5b4113810f5cdb2",
+        "playerId":"663ca51fe1b43a5bd45c7b89",
+        "betData":"[{"number":"[21]","type":"number","bet":5,"betIndex":21,"coin":"[5]"},{"number":"[20]","type":"number","bet":5,"betIndex":20,"coin":"[5]"},{"number":"[24]","type":"number","bet":5,"betIndex":24,"coin":"[5]"},{"number":"[13,14,15,16,17,18,19,20,21,22,23,24]","type":"2nd12","bet":10,"betIndex":41,"coin":"[10]"},{"number":"[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]","type":"red","bet":10,"betIndex":47,"coin":"[10]"},{"number":"[6]","type":"number","bet":50,"betIndex":6,"coin":"[50]"},{"number":"[1,2,3,4,5,6,7,8,9,10,11,12]","type":"1st12","bet":50,"betIndex":40,"coin":"[50]"}]""
+    }
 }
     
 
@@ -64,9 +64,9 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             return false
         }
 
-        console.log("typeof requestData.betData.betData ",requestData.betData)
+        console.log("typeof requestData.betData.betData ", requestData.betData)
         //requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
-        
+
         console.log("requestData.betData. ", requestData.betData)
 
         client.action = true;
@@ -90,7 +90,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             return false
         }
 
-        let currentBet =  requestData.betData.reduce((accumulator, currentValue) => {
+        let currentBet = requestData.betData.reduce((accumulator, currentValue) => {
             return accumulator + currentValue.bet
         }, 0);
 
@@ -145,8 +145,8 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         //     updateData.$set["playerInfo.$.betObject." + indextoinc + ".coin"] = betObjectData[indextoinc].coin.concat(requestData.betaction.coin);
 
         // } else {
-            
-            updateData["$set"]["playerInfo.$.betObject"] = requestData.betData
+
+        updateData["$set"]["playerInfo.$.betObject"] = requestData.betData
         //}
         updateData.$inc["playerInfo.$.totalbet"] = chalvalue;
         updateData.$inc["totalbet"] = chalvalue;
@@ -224,8 +224,8 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 //             }
 
 //     }
-   
-    
+
+
 
 // */
 // module.exports.actionSpin = async (requestData, client, callback) => {
@@ -849,18 +849,19 @@ module.exports.PASTBET = async (requestData, client) => {
         }
 
 
-        const tabInfo = await RouletteTables.findOne({}, {}).lean();
-        logger.info("PASTBET tabInfo : ", tabInfo);
+        const userInfo = await GameUser.findOne({}, {}).lean();
+        logger.info("PASTBET userInfo : ", userInfo);
 
-        if (tabInfo == null) {
-            logger.info("PASTBET user not turn ::", tabInfo);
+        if (userInfo == null) {
+            logger.info("PASTBET user not turn ::", userInfo);
             return false
         }
 
-       // this.BETACTIONCALL(tabInfo.playerInfo[client.seatIndex].pastbetObject, client)
+        // this.BETACTIONCALL(userInfo.playerInfo[client.seatIndex].pastbetObject, client)
 
         let response = {
-            pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
+            greentablebet: userInfo.greentablebet,
+            bluetablebet: userInfo.bluetablebet,
         }
 
         commandAcions.sendEvent(client, CONST.PASTBET, response, false, "");
@@ -875,6 +876,7 @@ module.exports.PASTBET = async (requestData, client) => {
 /*
   Past Bet SAVE
     betObjectData 
+    type : "blueTable" || "greenTable"
 */
 module.exports.PASTBETSAVE = async (requestData, client) => {
     try {
@@ -882,7 +884,9 @@ module.exports.PASTBETSAVE = async (requestData, client) => {
         if (typeof client.tbid == "undefined"
             || typeof client.uid == "undefined"
             || typeof client.seatIndex == "undefined"
-            || typeof betObjectData == "undefined" 
+            || typeof requestData.betObjectData == "undefined"
+            || typeof requestData.type == "undefined"
+
         ) {
             commandAcions.sendDirectEvent(client.sck, CONST.PASTBETSAVE, requestData, false, "User session not set, please restart game!");
             return false;
@@ -890,27 +894,36 @@ module.exports.PASTBETSAVE = async (requestData, client) => {
 
 
         const upWh = {
-            _id: MongoID(client.tbid),
-            "playerInfo.seatIndex": client.seatIndex
+            _id: MongoID(client.uid)
         }
-        const updateData = {
-            $set: {
-                "playerInfo.$.pastbetObject": requestData.betObjectData,
-               
-            }
-        };
+        let updateData = {}
+
+        if (requestData.type == "greenTable") {
+            updateData = {
+                $set: {
+                    "greentablebet": requestData.betObjectData
+                }
+            };
+        } else {
+            updateData = {
+                $set: {
+                    "bluetablebet": requestData.betObjectData
+                }
+            };
+        }
         logger.info("PASTBETSAVE upWh updateData :: ", upWh, updateData);
 
-        let tabInfo = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
+        let userInfo = await GameUser.findOneAndUpdate(upWh, updateData, { new: true });
 
-        if (tabInfo == null) {
-            logger.info("PASTBETSAVE user not turn ::", tabInfo);
+        if (userInfo == null) {
+            logger.info("PASTBETSAVE user not turn ::", userInfo);
             return false
         }
 
-      
+
         let response = {
-            pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
+            greentablebet: userInfo.greentablebet,
+            bluetablebet: userInfo.bluetablebet,
         }
 
         commandAcions.sendEvent(client, CONST.PASTBETSAVE, response, false, "");
