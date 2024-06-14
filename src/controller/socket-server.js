@@ -303,7 +303,12 @@ myIo.init = function (server) {
                         await gamePlayActionsRoulette.PASTBET(payload.data, socket);
                         break;
                     }
+
                     
+                    case CONST.PASTBETSAVE:{
+                        await gamePlayActionsRoulette.PASTBETSAVE(payload.data, socket);
+                        break;
+                    }
 
                     case CONST.LEAVETABLEROULETTE: {
                         await gamePlayActionsRoulette.leaveTable(payload.data, socket);

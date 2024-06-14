@@ -857,13 +857,62 @@ module.exports.PASTBET = async (requestData, client) => {
             return false
         }
 
-        this.BETACTIONCALL(tabInfo.playerInfo[client.seatIndex].pastbetObject, client)
+       // this.BETACTIONCALL(tabInfo.playerInfo[client.seatIndex].pastbetObject, client)
 
         let response = {
             pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
         }
 
         commandAcions.sendEvent(client, CONST.PASTBET, response, false, "");
+
+        return true;
+    } catch (e) {
+        logger.info("Exception action : ", e);
+    }
+}
+
+
+/*
+  Past Bet SAVE
+    betObjectData 
+*/
+module.exports.PASTBETSAVE = async (requestData, client) => {
+    try {
+        logger.info("PASTBETSAVE requestData : ", requestData);
+        if (typeof client.tbid == "undefined"
+            || typeof client.uid == "undefined"
+            || typeof client.seatIndex == "undefined"
+        ) {
+            commandAcions.sendDirectEvent(client.sck, CONST.PASTBETSAVE, requestData, false, "User session not set, please restart game!");
+            return false;
+        }
+
+
+        const upWh = {
+            _id: MongoID(client.tbid),
+            "playerInfo.seatIndex": client.seatIndex
+        }
+        const updateData = {
+            $set: {
+                "playerInfo.$.pastbetObject": requestData.betObjectData,
+               
+            }
+        };
+        logger.info("PASTBETSAVE upWh updateData :: ", upWh, updateData);
+
+        let tabInfo = await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
+
+        if (tabInfo == null) {
+            logger.info("PASTBETSAVE user not turn ::", tabInfo);
+            return false
+        }
+
+      
+        let response = {
+            pastbet: tabInfo.playerInfo[client.seatIndex].pastbetObject
+        }
+
+        commandAcions.sendEvent(client, CONST.PASTBETSAVE, response, false, "");
 
         return true;
     } catch (e) {

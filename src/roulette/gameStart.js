@@ -366,14 +366,14 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
 
-                console.log("pastbetObject Winner ", betObjectData)
+                //console.log("pastbetObject Winner ", betObjectData)
                 const upWh = {
                     _id: MongoID(tbid),
                     "playerInfo.seatIndex": tbInfo.playerInfo[x].seatIndex
                 }
                 const updateData = {
                     $set: {
-                        "playerInfo.$.pastbetObject": betObjectData,
+                        //"playerInfo.$.pastbetObject": betObjectData,
                         "playerInfo.$.betObject": [],
                         "playerInfo.$.totalbet": 0,
                         "playerInfo.$.selectObj": [

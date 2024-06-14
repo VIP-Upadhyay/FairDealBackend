@@ -1,6 +1,1232 @@
 
 const _ = require("underscore")
 
+let betObjectData = [ 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            9
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 9,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 135,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            6, 
+            9
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 53,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2, 
+            1
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 97,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            0
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 0,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            9
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 9,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 135,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            6, 
+            9
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 53,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2, 
+            1
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 97,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            0
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 0,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            9
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 9,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 145,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 146,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            4, 
+            5, 
+            6
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 134,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9
+        ],
+        "type" : "3_number",
+        "bet" : 50,
+        "betIndex" : 135,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            6, 
+            9
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 53,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 147,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            1, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ],
+        "type" : "6_number",
+        "bet" : 50,
+        "betIndex" : 148,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            11
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 11,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2, 
+            1
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 97,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            0
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 0,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            8
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 8,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            8
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 8,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            8
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 8,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2, 
+            1
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 97,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 2,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            2
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 2,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            8, 
+            11
+        ],
+        "type" : "2_number",
+        "bet" : 50,
+        "betIndex" : 65,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            8
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 8,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }, 
+    {
+        "number" : [ 
+            5
+        ],
+        "type" : "number",
+        "bet" : 50,
+        "betIndex" : 5,
+        "coin" : "[50]"
+    }
+]
+
+itemIndex = 7
+winnerData = [];
+TotalWinAmount = 0
+for (let i = 0; i < betObjectData.length; i++) {
+    if (betObjectData[i].bet != undefined) {
+
+        console.log("betObjectData[i] ", betObjectData[i])
+
+        if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 35,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 35;
+        }
+
+        if (betObjectData[i].type == "1to34" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+        if (betObjectData[i].type == "2to35" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+
+        if (betObjectData[i].type == "3to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+        if (betObjectData[i].type == "1st12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+        if (betObjectData[i].type == "2nd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+        if (betObjectData[i].type == "3rd12" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 3,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 3;
+        }
+
+        if (betObjectData[i].type == "1to18" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+
+        if (betObjectData[i].type == "19to36" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+        if (betObjectData[i].type == "odd" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+        if (betObjectData[i].type == "even" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+
+        if (betObjectData[i].type == "red" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+        if (betObjectData[i].type == "black" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 2,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 2;
+        }
+
+
+        if (betObjectData[i].type == "2_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 17.5,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 17.5;
+        }
+
+
+        if (betObjectData[i].type == "3_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 11.66,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 11.66;
+        }
+
+        if (betObjectData[i].type == "4_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 8.75,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 8.75;
+        }
+
+
+        if (betObjectData[i].type == "6_number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
+            winnerData.push({
+                uid: "tbInfo.playerInfo[x]._id",
+                seatIndex: 0,
+                winAmount: betObjectData[i].bet * 5.83,
+            })
+
+            TotalWinAmount = TotalWinAmount + betObjectData[i].bet * 5.83;
+        }
+
+
+    }
+
+
+}
+console.log("TotalWinAmount ", TotalWinAmount)
+
+console.log("winnerData ",winnerData)
+
+return false 
+
 
 requestData ={
     betData:
