@@ -120,7 +120,7 @@ module.exports.startUserTurn = async (seatIndex, objData, firstTurnStart) => {
         // if(typeof tb.playerInfo[tb.turnSeatIndex].seatIndex != "undefined"){
 
         // }
-        let isShow = await this.checShowButton(tb.playerInfo, tb.turnSeatIndex);
+        let isShow = await this.checShowButton(tb.playerInfo,tb.turnSeatIndex);
 
         let response = {
             previousTurn: objData.turnSeatIndex,
@@ -128,11 +128,11 @@ module.exports.startUserTurn = async (seatIndex, objData, firstTurnStart) => {
             chalValue: tb.chalValue,
             isShow: isShow
         }
-        commandAcions.sendEventInTable(tb._id.toString(), CONST.TURN_START, response);
+        commandAcions.sendEventInTable(tb._id.toString(), CONST.TEEN_PATTI_USER_TURN_START, response);
 
-        if (tb.playerInfo != undefined && tb.playerInfo[tb.turnSeatIndex] != undefined && tb.playerInfo[tb.turnSeatIndex].Iscom == 1) {
+        if(tb.playerInfo != undefined && tb.playerInfo[tb.turnSeatIndex] != undefined && tb.playerInfo[tb.turnSeatIndex].Iscom == 1){
             // Rboot Logic Start Playing 
-            botLogic.PlayRobot(tb, tb.playerInfo[tb.turnSeatIndex], playerInGame)
+            botLogic.PlayRobot(tb,tb.playerInfo[tb.turnSeatIndex],playerInGame)
         }
 
 
@@ -294,6 +294,9 @@ module.exports.getUserTurnSeatIndex = async (tbInfo, prevTurn, cnt) => {
     }
 }
 
+module.exports.checkShileShow = (tb) => {
+
+}
 
 module.exports.checkShileShowSeatIndex = (seatIndex, p) => {
     let pl = [];
@@ -302,18 +305,18 @@ module.exports.checkShileShowSeatIndex = (seatIndex, p) => {
         return pl;
 }
 
-module.exports.checShowButton = async (p, playerIndex) => {
+module.exports.checShowButton = async (p,playerIndex) => {
     try {
         //&&  (p[i].playerStatus == "chal" || (p[i].playerStatus == "blind" &&
         let counter = 0;
-        logger.info("checShowButton  :playerIndex  ", playerIndex);
-
+        logger.info("checShowButton  :playerIndex  ", playerIndex );
+       
 
 
         for (let i = 0; i < p.length; i++) {
-            logger.info("checShowButton  :seatIndex  ", p[i].seatIndex);
-            logger.info("checShowButton  :p[i].isSee  ", p[i].isSee);
-            if (p[i].seatIndex != "undefined" && playerIndex == p[i].seatIndex && p[i].isSee == true) {
+            logger.info("checShowButton  :seatIndex  ", p[i].seatIndex );
+            logger.info("checShowButton  :p[i].isSee  ",p[i].isSee);
+            if (p[i].seatIndex != "undefined" && playerIndex == p[i].seatIndex &&  p[i].isSee == true) {
                 counter++;
             }
         }

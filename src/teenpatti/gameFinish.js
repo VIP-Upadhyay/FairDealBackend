@@ -43,14 +43,16 @@ module.exports.lastUserWinnerDeclareCall = async (tb) => {
 
 
     let dcUWh = {
-        _id: MongoID(tb._id.toString()),
+        _id: MongoID(tabInfo._id.toString()),
         "playerInfo.seatIndex": Number(winner.seatIndex)
     }
     let up = {
         $set: {
-            "playerInfo.$.playStatus": "winner",
+            "playerInfo.$.playerStatus": "winner",
         }
     }
+    logger.info("lastUserWinnerDeclareCall dcUWh up ::", dcUWh, up);
+
     const tbInfo = await PlayingTables.findOneAndUpdate(dcUWh, up, { new: true });
     logger.info("lastUserWinnerDeclareCall tbInfo : ", tbInfo);
 
@@ -120,15 +122,17 @@ module.exports.winnerDeclareCall = async (winner, tabInfo) => {
 
         for (let i = 0; i < tbInfo.gameTracks.length; i++) {
             if (tbInfo.gameTracks[i].playStatus == "win") {
-                await walletActions.addWallet(tbInfo.gameTracks[i]._id, Number(winnerTrack.winningAmount), 4, "Sorat Win", tabInfo);
+                await walletActions.addWallet(tbInfo.gameTracks[i]._id, Number(winnerTrack.winningAmount), 4, "TeenPatti Win", tabInfo);
             }
         }
 
         let winnerViewResponse = await this.winnerViewResponseFilter(tbInfo.gameTracks, winnerTrack, winnerIndexs);
+        logger.info("winnerDeclareCall winnerViewResponse:: ", winnerViewResponse);
+
         winnerViewResponse.gameId = tbInfo.gameId;
         winnerViewResponse.winnerIds = tbInfo.winnerIds;
 
-        commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.WINNER, winnerViewResponse);
+        commandAcions.sendEventInTable(tbInfo._id.toString(), CONST.TEEN_PATTI_WINNER, winnerViewResponse);
 
         await roundEndActions.roundFinish(tbInfo);
 

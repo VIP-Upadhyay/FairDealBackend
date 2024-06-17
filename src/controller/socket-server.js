@@ -14,6 +14,8 @@ const commonHelper = require('../helper/commonHelper');
 const gamePlayActionsSORAT = require('../SORAT');
 const gamePlayActionsANDARBAHAR = require('../andarbahar');
 const gamePlayActionsRoulette = require('../roulette');
+const gamePlayActions = require('../teenpatti/');
+
 
 const GameUser = mongoose.model('users');
 const gamePlayActionsSpinner = require('../SpinerGame');
@@ -29,7 +31,7 @@ const { userReconnectSpinner } = require('../SpinerGame/reconnect');
 
 const { getBannerList } = require('./adminController');
 
-console.log("gamePlayActionsRoulette ",gamePlayActionsRoulette)
+logger.info("gamePlayActionsRoulette ", gamePlayActionsRoulette)
 
 const myIo = {};
 
@@ -47,8 +49,8 @@ myIo.init = function (server) {
             sendEvent(socket, CONST.DONE, {});
 
             socket.on('req', async (data) => {
-                console.log("data ",data)
-                console.log("data.payload ",data.payload)
+                console.log("data ", data)
+                console.log("data.payload ", data.payload)
 
                 const decryptObj = commonHelper.decrypt(data.payload);
 
@@ -156,8 +158,8 @@ myIo.init = function (server) {
                         await OnePlayActions.action(payload.data, socket);
                         break;
                     }
-                        
-                        
+
+
                     // SORAT GAME Event 
                     case CONST.SORAT_PLAYGAME: {
                         socket.uid = payload.data.playerId;
@@ -211,7 +213,7 @@ myIo.init = function (server) {
                         break;
                     }
 
-                    case CONST.CHECKOUT_ANADAR_BAHAR:{
+                    case CONST.CHECKOUT_ANADAR_BAHAR: {
                         await gamePlayActionsANDARBAHAR.CHECKOUT_ANADAR_BAHAR(payload.data, socket);
                         break;
                     }
@@ -246,7 +248,7 @@ myIo.init = function (server) {
                         break;
                     }
 
-                    case CONST.PSPINER:{
+                    case CONST.PSPINER: {
                         await gamePlayActionsSpinner.printMytranscation(payload.data, socket);
                         break;
                     }
@@ -264,9 +266,9 @@ myIo.init = function (server) {
                     //============================================================
 
 
-                     // ROULETTE GAME Event 
-                     case CONST.ROULETTE_JOIN_TABLE: {
-                        socket.uid = payload.data.playerId; 
+                    // ROULETTE GAME Event 
+                    case CONST.ROULETTE_JOIN_TABLE: {
+                        socket.uid = payload.data.playerId;
                         socket.sck = socket.id;
                         logger.info("Table Name =======> ", payload.data.whichTable);
                         await gamePlayActionsRoulette.ROULETTE_GAME_JOIN_TABLE(payload.data, socket);
@@ -277,35 +279,35 @@ myIo.init = function (server) {
                         await gamePlayActionsRoulette.actionSpin(payload.data, socket);
                         break;
                     }
-                        
+
                     case CONST.REMOVEBETROULETTE: {
                         await gamePlayActionsRoulette.REMOVEBETROULETTE(payload.data, socket);
                         break;
                     }
 
 
-                    case CONST.ClearBet:{
+                    case CONST.ClearBet: {
                         await gamePlayActionsRoulette.ClearBet(payload.data, socket);
                         break;
                     }
 
-                    case CONST.DoubleBet:{
+                    case CONST.DoubleBet: {
                         await gamePlayActionsRoulette.DoubleBet(payload.data, socket);
                         break;
                     }
 
-                    case CONST.NEIGHBORBET:{
+                    case CONST.NEIGHBORBET: {
                         await gamePlayActionsRoulette.NEIGHBORBET(payload.data, socket);
                         break;
                     }
 
-                    case CONST.PASTBET:{
+                    case CONST.PASTBET: {
                         await gamePlayActionsRoulette.PASTBET(payload.data, socket);
                         break;
                     }
 
-                    
-                    case CONST.PASTBETSAVE:{
+
+                    case CONST.PASTBETSAVE: {
                         await gamePlayActionsRoulette.PASTBETSAVE(payload.data, socket);
                         break;
                     }
@@ -315,12 +317,58 @@ myIo.init = function (server) {
                         break;
                     }
 
+                    //Teen Patti
+
+                    //Teenpatti
+                    case CONST.GET_TEEN_PATTI_ROOM_LIST: {
+                        try {
+                            await gamePlayActions.getBetList(payload.data, socket);
+                        } catch (error) {
+                            logger.error('socketServer.js GET_TEEN_PATTI_ROOM_LIST error => ', error);
+                        }
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_SIGN_UP: {
+                        socket.uid = payload.data.playerId;
+                        socket.sck = socket.id;
+
+                        await gamePlayActions.joinTable(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_SHOW: {
+                        await gamePlayActions.show(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_CHAL: {
+                        await gamePlayActions.chal(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_PACK: {
+                        await gamePlayActions.cardPack(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_CARD_SEEN: {
+                        await gamePlayActions.seeCard(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.TEEN_PATTI_LEAVE_TABLE: {
+                        await gamePlayActions.leaveTable(payload.data, socket);
+                        break;
+                    }
+
+
                     case CONST.RECONNECTROULETTE: {
                         await userReconnectRoulette(payload.data, socket);
                         break;
                     }
 
-                    
+
                     case CONST.HISTORY: {
                         await gamePlayActionsRoulette.HISTORY(payload.data, socket);
                         break;
@@ -360,16 +408,16 @@ myIo.init = function (server) {
 
                     let wh = {
                         sckId: socket.id,
-                      };
-                  
-                      let update = {
+                    };
+
+                    let update = {
                         $set: {
-                          sckId: "",
+                            sckId: "",
                         },
-                  
-                      };
-                      logger.info('\nuserSesssionSet wh : ', wh, update);
-                  
+
+                    };
+                    logger.info('\nuserSesssionSet wh : ', wh, update);
+
                     await GameUser.findOneAndUpdate(wh, update);
 
                     let timerSet = Date.now() + 60000;
