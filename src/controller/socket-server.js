@@ -19,7 +19,8 @@ const gamePlayActions = require('../teenpatti/');
 
 const GameUser = mongoose.model('users');
 const gamePlayActionsSpinner = require('../SpinerGame');
-const OnePlayActions = require('../OneToTwelve/');
+//const OnePlayActions = require('../OneToTwelve/');
+
 
 const { registerUser } = require('../helper/signups/signupValidation');
 const mainCtrl = require('./mainController');
@@ -140,24 +141,24 @@ myIo.init = function (server) {
                         break;
                     }
 
-                    //OneTotwelve
-                    case CONST.ONE_JOIN_TABLE: {
-                        socket.uid = payload.data.playerId;
-                        socket.sck = socket.id;
+                    // //OneTotwelve
+                    // case CONST.ONE_JOIN_TABLE: {
+                    //     socket.uid = payload.data.playerId;
+                    //     socket.sck = socket.id;
 
-                        await OnePlayActions.joinTable(payload.data, socket);
-                        break;
-                    }
+                    //     await OnePlayActions.joinTable(payload.data, socket);
+                    //     break;
+                    // }
 
-                    case CONST.ONE_LEAVE_TABLE: {
-                        await OnePlayActions.leaveTable(payload.data, socket);
-                        break;
-                    }
+                    // case CONST.ONE_LEAVE_TABLE: {
+                    //     await OnePlayActions.leaveTable(payload.data, socket);
+                    //     break;
+                    // }
 
-                    case CONST.ONE_ACTION: {
-                        await OnePlayActions.action(payload.data, socket);
-                        break;
-                    }
+                    // case CONST.ONE_ACTION: {
+                    //     await OnePlayActions.action(payload.data, socket);
+                    //     break;
+                    // }
 
 
                     // SORAT GAME Event 
