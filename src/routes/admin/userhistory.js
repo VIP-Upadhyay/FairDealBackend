@@ -27,7 +27,7 @@ router.get('/RouletteGameHistory', async (req, res) => {
 
         const tabInfo = await RouletteUserHistory.find({}, {}).sort({createdAt:-1});
 
-        logger.info('admin/dahboard.js post dahboard  error => ', tabInfo);
+        logger.info('admin/dahboard.js post dahboard  error => ', tabInfo[0].betObjectData.length);
 
         res.json({ gameHistoryData: tabInfo });
     } catch (error) {
