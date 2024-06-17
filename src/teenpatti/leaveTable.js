@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const MongoID = mongoose.Types.ObjectId;
 
-const PlayingTables = mongoose.model("oneToTwelvePlayingTables");
+const PlayingTables = mongoose.model("playingTables");
 const GameUser = mongoose.model("users");
 
 const CONST = require("../../constant");
@@ -9,12 +9,14 @@ const commandAcions = require("../helper/socketFunctions");
 const roundStartActions = require("./roundStart")
 const gameFinishActions = require("./gameFinish");
 const logger = require("../../logger");
+const { filterBeforeSendSPEvent, getPlayingUserInTable } = require("../common-function/manageUserFunction");
+
 
 
 module.exports.leaveTable = async (requestData, client) => {
-    var requestData = (requestData != null) ? requestData : {}
+    requestData = (requestData != null) ? requestData : {}
     if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined") {
-        commandAcions.sendDirectEvent(client.sck, CONST.LEAVE_TABLE, requestData, false, "User session not set, please restart game!");
+        commandAcions.sendDirectEvent(client.sck, CONST.TEEN_PATTI_LEAVE_TABLE, requestData, false, "User session not set, please restart game!");
         return false;
     }
 
@@ -31,10 +33,13 @@ module.exports.leaveTable = async (requestData, client) => {
     let tb = await PlayingTables.findOne(wh, {});
     logger.info("leaveTable tb : ", tb);
 
-    if (tb == null) return false;
+    if (tb == null) {
+        return false;
+    }
 
-    if (typeof client.id != "undefined")
+    if (typeof client.id != "undefined") {
         client.leave(tb._id.toString());
+    }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
     let playerInfo = tb.playerInfo[client.seatIndex];
@@ -48,7 +53,7 @@ module.exports.leaveTable = async (requestData, client) => {
             activePlayer: -1
         }
     }
-    if (tb.activePlayer == 2 && tb.gameState == "OneGameStartTimer") {
+    if (tb.activePlayer == 2 && tb.gameState == "GameStartTimer") {
         let jobId = CONST.GAME_START_TIMER + ":" + tb._id.toString();
         commandAcions.clearJob(jobId)
         updateData["$set"]["gameState"] = "";
@@ -82,18 +87,34 @@ module.exports.leaveTable = async (requestData, client) => {
 
     logger.info("leaveTable updateData : ", wh, updateData);
 
+    let activePlayerInRound = await getPlayingUserInTable(tb.playerInfo);
+    logger.info("leaveTable activePlayerInRound : ", activePlayerInRound);
+
+
     let response = {
         reason: reason,
         tbid: tb._id,
-        seatIndex: client.seatIndex
+        seatIndex: client.seatIndex,
+        ap: activePlayerInRound.length,
     }
 
     let tbInfo = await PlayingTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
 
-    commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVE_TABLE, response);
-    commandAcions.sendEventInTable(tb._id.toString(), CONST.LEAVE_TABLE, response);
+    commandAcions.sendDirectEvent(client.sck.toString(), CONST.TEEN_PATTI_LEAVE_TABLE, response);
+    commandAcions.sendEventInTable(tb._id.toString(), CONST.TEEN_PATTI_LEAVE_TABLE, response);
 
+    let userDetails = await GameUser.findOne({
+        _id: MongoID(client.uid.toString()),
+    }).lean();
+
+    logger.info("check user Details =>", userDetails)
+
+    let finaldata = await filterBeforeSendSPEvent(userDetails);
+
+    logger.info("check user Details finaldata =>", finaldata)
+
+    commandAcions.sendDirectEvent(client.sck.toString(), CONST.DASHBOARD, finaldata);
 
     await this.manageOnUserLeave(tbInfo);
 }
@@ -110,7 +131,7 @@ module.exports.manageOnUserLeave = async (tb, client) => {
         } else if (playerInGame.length == 1) {
             await gameFinishActions.lastUserWinnerDeclareCall(tb);
         }
-    } else if (["", "OneGameStartTimer"].indexOf(tb.gameState) != -1) {
+    } else if (["", "GameStartTimer"].indexOf(tb.gameState) != -1) {
         if (playerInGame.length == 0 && tb.activePlayer == 0) {
             let wh = {
                 _id: MongoID(tb._id.toString())
