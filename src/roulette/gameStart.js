@@ -389,7 +389,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             0, 0, 0, 0,
                             0, 0
                         ],
-                        uuid: uuidv4(),
+                        "playerInfo.$.uuid": uuidv4(),
                     }
                 };
                 logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
@@ -615,7 +615,8 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     won: TotalWinAmount,
                     afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.playerInfo[x].uuid,
-                    betObjectData: betObjectData
+                    betObjectData: betObjectData,
+                    createdAt:new Date()
                 }}, {upsert:true});
             }
         }

@@ -57,6 +57,12 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
             return false;
         }
+
+        if (typeof requestData.betData != "undefined" && requestData.betData.length == 0) {
+            
+            return false
+        }
+
         if (typeof client.action != "undefined" && client.action) {
             if (typeof callback == "function") {
                 return callback("error")
@@ -176,8 +182,8 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             won: 0,
             afterplaypoint: tb.playerInfo[Number(client.seatIndex)].coins,
             uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
-            betObjectData: requestData.betData
-
+            betObjectData: requestData.betData,
+            createdAt:new Date()
         };
         console.log("RouletteUserHistory ", insertobj)
         await RouletteUserHistory.create(insertobj);
