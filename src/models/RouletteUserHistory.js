@@ -6,6 +6,7 @@ const collectionName = 'RouletteUserHistory';
 
 const RouletteUserSchema = new Schema({
     userId: { type: String },
+    username: { type: String },
     ballposition: { type: Number },
     beforeplaypoint:{ type: Number },
     play:{ type: Number},

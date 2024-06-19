@@ -169,6 +169,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
         let insertobj = {
             userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
+            username: tb.playerInfo[Number(client.seatIndex)].name,
             ballposition: -1,
             beforeplaypoint: tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
             play: tb.playerInfo[Number(client.seatIndex)].totalbet,
@@ -980,7 +981,7 @@ module.exports.HISTORY = async (requestData, client) => {
 
     try {
 
-        const tableHistory = await RouletteUserHistory.find({ userId: requestData.playerId }).sort({ createdAt: -1 }).limit(20);
+        const tableHistory = await RouletteUserHistory.find({ userId: requestData.playerId, ballposition: {$ne:-1} }).sort({ createdAt: -1 }).limit(20);
 
         commandAcions.sendEvent(client, CONST.HISTORY, { tableHistory: tableHistory }, false, "");
 

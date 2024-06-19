@@ -163,6 +163,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             _id: userInfo._id,
             playerId: userInfo._id,
             username: userInfo.username,
+            name:userInfo.name,
             profile: userInfo.profileUrl,
             coins: totalWallet,
             status: "",
