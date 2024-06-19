@@ -175,7 +175,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             play: tb.playerInfo[Number(client.seatIndex)].totalbet,
             won: 0,
             afterplaypoint: tb.playerInfo[Number(client.seatIndex)].coins,
-            uuid: tb.uuid,
+            uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
             betObjectData: requestData.betData
 
         };

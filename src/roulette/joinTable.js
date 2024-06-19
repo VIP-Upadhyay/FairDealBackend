@@ -11,6 +11,7 @@ const CONST = require("../../constant");
 const logger = require("../../logger");
 const botLogic = require("./botLogic");
 const leaveTableActions = require('./leaveTable');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
@@ -190,7 +191,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             playerSocketId: client.id,
             playerLostChips: 0,
             Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-
+            uuid: uuidv4(),
         }
 
         // [

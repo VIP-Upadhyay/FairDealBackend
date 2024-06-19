@@ -388,7 +388,8 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             0, 0, 0,
                             0, 0, 0, 0,
                             0, 0
-                        ]
+                        ],
+                        uuid: uuidv4(),
                     }
                 };
                 logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
@@ -604,7 +605,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
-                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.uuid }, {
+                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
                     $set: {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     username: tbInfo.playerInfo[x].name,
@@ -613,7 +614,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
                     afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
-                    uuid: tbInfo.uuid,
+                    uuid: tbInfo.playerInfo[x].uuid,
                     betObjectData: betObjectData
                 }}, {upsert:true});
             }
