@@ -134,7 +134,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         }
         chalvalue = Number(Number(chalvalue).toFixed(2))
 
-        await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
+        let totalRemaningAmount = await walletActions.deductWallet(client.uid, -chalvalue, 2, "roulette Bet", "roulette");
 
         // //updateData.$inc["playerInfo.$.selectObj." + requestData.item] = chalvalue;
         // let indextoinc = -1
@@ -177,10 +177,10 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
             username: tb.playerInfo[Number(client.seatIndex)].name,
             ballposition: -1,
-            beforeplaypoint: tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
+            beforeplaypoint: totalWallet,//tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
             play: tb.playerInfo[Number(client.seatIndex)].totalbet,
             won: 0,
-            afterplaypoint: tb.playerInfo[Number(client.seatIndex)].coins,
+            afterplaypoint: totalRemaningAmount,//tb.playerInfo[Number(client.seatIndex)].coins,
             uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
             betObjectData: requestData.betData,
             createdAt:new Date()

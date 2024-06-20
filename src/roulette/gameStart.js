@@ -583,9 +583,15 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 }
                 console.log("TotalWinAmount ", TotalWinAmount)
+                
+                let totalRemaningAmount = 0
+
+                const userData = await GameUser.findOne({
+                    _id: MongoID(tbInfo.playerInfo[x]._id.toString()),
+                }, {chips:1})
 
                 if (TotalWinAmount != 0) {
-                    await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
+                    totalRemaningAmount = await walletActions.addWalletAdmin(tbInfo.playerInfo[x]._id, Number(TotalWinAmount), 4, "Roulette Win", "roulette");
                 }
                 gamePlayActionsRoulette.AdminWinLossData(Number(TotalWinAmount), "loss")
 
@@ -610,10 +616,10 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     username: tbInfo.playerInfo[x].name,
                     ballposition: itemIndex,
-                    beforeplaypoint: tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                    beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
                     play: tbInfo.playerInfo[x].totalbet,
                     won: TotalWinAmount,
-                    afterplaypoint: tbInfo.playerInfo[x].coins + TotalWinAmount,
+                    afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.playerInfo[x].uuid,
                     betObjectData: betObjectData,
                     createdAt:new Date()
