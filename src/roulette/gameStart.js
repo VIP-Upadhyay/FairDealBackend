@@ -366,34 +366,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
 
-                //console.log("pastbetObject Winner ", betObjectData)
-                const upWh = {
-                    _id: MongoID(tbid),
-                    "playerInfo.seatIndex": tbInfo.playerInfo[x].seatIndex
-                }
-                const updateData = {
-                    $set: {
-                        //"playerInfo.$.pastbetObject": betObjectData,
-                        "playerInfo.$.betObject": [],
-                        "playerInfo.$.totalbet": 0,
-                        "playerInfo.$.selectObj": [
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0,
-                            0, 0,
-                            0, 0, 0,
-                            0, 0, 0, 0,
-                            0, 0
-                        ],
-                        "playerInfo.$.uuid": uuidv4(),
-                    }
-                };
-                logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
-
+                
                 await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
 
                 for (let i = 0; i < betObjectData.length; i++) {
@@ -595,6 +568,36 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 }
                 gamePlayActionsRoulette.AdminWinLossData(Number(TotalWinAmount), "loss")
 
+                //console.log("pastbetObject Winner ", betObjectData)
+                const upWh = {
+                    _id: MongoID(tbid),
+                    "playerInfo.seatIndex": tbInfo.playerInfo[x].seatIndex
+                }
+                const updateData = {
+                    $set: {
+                        //"playerInfo.$.pastbetObject": betObjectData,
+                        "playerInfo.$.betObject": [],
+                        "playerInfo.$.totalbet": 0,
+                        "playerInfo.$.selectObj": [
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0,
+                            0, 0,
+                            0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0
+                        ],
+                        "playerInfo.$.uuid": uuidv4(),
+                        pasttotalwin:TotalWinAmount
+                    }
+                };
+                logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
+
+                
                 // let finddata = await RouletteUserHistory.find({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.uuid })
 
                 // if()

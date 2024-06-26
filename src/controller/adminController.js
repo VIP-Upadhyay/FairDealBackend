@@ -137,7 +137,7 @@ async function registerAdminUpdate(requestBody) {
  * @param {Object} requestBody
  * @returns {Object}
  */
-async function adminLogin(requestBody) {
+async function superadminLogin(requestBody) {
 
     const { email, password } = requestBody;
     console.info('email => ', email, '\n password => ', password);
@@ -212,12 +212,12 @@ async function AgentLogin(requestBody) {
  * @param {Object} requestBody
  * @returns {Object}
  */
-async function ShopLogin(requestBody) {
+async function AdminLogin(requestBody) {
 
     const { email, password } = requestBody;
     console.info('name => ', email, '\n password => ', password);
     try {
-        const data = await Shop.findOne({ name:email,password:password}).lean();
+        const data = await Admin.findOne({ name:email,password:password}).lean();
 
         const token = await commonHelper.sign(data);
         data.token = token;
@@ -400,12 +400,12 @@ async function getBannerList(requestBody) {
 module.exports = {
     registerAdmin,
     registerAdminUpdate,
-    adminLogin,
+    superadminLogin,
     registerBetList,
     updateBetList,
     getBetList,
     getBetDetails,
     getBannerList,
-    AgentLogin,
-    ShopLogin
+    AdminLogin,
+    AgentLogin
 }

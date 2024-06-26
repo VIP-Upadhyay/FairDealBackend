@@ -1,142 +1,2708 @@
 
 const _ = require("underscore")
 
-let betObjectData = [ 
+let betObjectData = 
+[
     {
-        "number" : [ 
-            3
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 3,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            6
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 6,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            9
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 9,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            12
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 12,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            15
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 15,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            2, 
-            4, 
-            6, 
-            8, 
-            10, 
-            11, 
-            13, 
-            15, 
-            17, 
-            20, 
-            22, 
-            24, 
-            26, 
-            28, 
-            29, 
-            31, 
-            33, 
-            35
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 48,
-        "coin" : "",
-        "isOutSideBet" : true
-    }, 
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            27
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 27,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            36
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 36,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            33
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 33,
-        "coin" : "",
-        "isOutSideBet" : false
-    }, 
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
     {
-        "number" : [ 
-            2, 
-            4, 
-            6, 
-            8, 
-            10, 
-            12, 
-            14, 
-            16, 
-            18, 
-            20, 
-            22, 
-            24, 
-            26, 
-            28, 
-            30, 
-            32, 
-            34, 
-            36
-        ],
-        "type" : "",
-        "bet" : 10,
-        "betIndex" : 46,
-        "coin" : "",
-        "isOutSideBet" : true
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        12
+      ],
+      "type": "number",
+      "bet": 500,
+      "betIndex": 12,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 1,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        2
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 2,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        1,
+        2,
+        3
+      ],
+      "type": "3_number",
+      "bet": 100,
+      "betIndex": 133,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        6
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 6,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        9
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 9,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        5
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 5,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        8
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 8,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        14
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 14,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        13
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 13,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        16
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 16,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        20
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 20,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        21
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 21,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        24
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 24,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        27
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 27,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        26
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 26,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        25
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 25,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        33
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 33,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        36
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 36,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        35
+      ],
+      "type": "number",
+      "bet": 100,
+      "betIndex": 35,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        28,
+        31
+      ],
+      "type": "2_number",
+      "bet": 100,
+      "betIndex": 83,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 3000,
+      "betIndex": 44,
+      "coin": "",
+      "isOutSideBet": true
+    },
+    {
+      "number": [
+        12
+      ],
+      "type": "number",
+      "bet": 500,
+      "betIndex": 12,
+      "coin": "",
+      "isOutSideBet": false
+    },
+    {
+      "number": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "type": "19to36",
+      "bet": 1000,
+      "betIndex": 44,
+      "coin": "[1000]",
+      "isOutSideBet": true
     }
-]
+  ],
 
 itemIndex = 20
 winnerData = [];
