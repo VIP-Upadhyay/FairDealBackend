@@ -367,8 +367,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 var TotalWinAmount = 0
 
                 
-                await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
-
+                
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
@@ -592,10 +591,11 @@ module.exports.winnerSpinner = async (tabInfo) => {
                             0, 0
                         ],
                         "playerInfo.$.uuid": uuidv4(),
-                        pasttotalwin:TotalWinAmount
+                        "playerInfo.$.pasttotalwin":TotalWinAmount
                     }
                 };
                 logger.info("winnerSorat upWh updateData :: ", upWh, updateData);
+                await RouletteTables.findOneAndUpdate(upWh, updateData, { new: true });
 
                 
                 // let finddata = await RouletteUserHistory.find({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.uuid })

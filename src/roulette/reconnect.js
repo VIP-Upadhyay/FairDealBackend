@@ -45,6 +45,7 @@ reconnect = async (requestData, client) => {
 
 
                 //when player in table
+                logger.info('reconnect client Info : ', client.tbid);
                 const wh = {
                     _id: MongoID(client.tbid),
                     'playerInfo._id': MongoID(requestData.playerId),
