@@ -80,6 +80,7 @@ httpApp.use(express.static(path.join(__dirname, 'public')));
 const server = http.createServer(httpApp);
 server.listen(SERVER_PORT, () => {
   logger.info('Server ID : => ' + SERVER_ID + ' - Express server listening on port : ' + SERVER_PORT + ' date : ' + new Date());
+  console.log('Server ID : => ' + SERVER_ID + ' - Express server listening on port : ' + SERVER_PORT + ' date : ' + new Date());
   socket.init(server);
 });
 

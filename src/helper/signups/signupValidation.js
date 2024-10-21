@@ -68,7 +68,7 @@ const userLogin = async (requestData, socket) => {
 
   let wh = {
     name: requestData.name,
-    password:requestData.password
+    password: requestData.password
   };
   //  csl('F wh :', wh);
   logger.info('LOGIN EHH :', wh);
@@ -77,16 +77,16 @@ const userLogin = async (requestData, socket) => {
 
 
   if (resp != null) {
-    if(resp.sckId != ""){
+    if (resp.sckId != "") {
       commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User already logged in another device..!');
       return false
     }
 
-    if(!resp.status){
+    if (!resp.status) {
       commandAcions.sendEvent(socket, CONST.LOGIN, requestData, false, 'User blocked, connect to Admin..!');
       return false
     }
-    
+
     // eslint-disable-next-line no-unused-vars
     //let otpsend = await smsActions.sendOTP(requestData, socket);
     //csl('LOGIN Otp Send :: ', JSON.stringify(otpsend));
@@ -105,10 +105,46 @@ const userLogin = async (requestData, socket) => {
 
 
 
-  
+
   return true;
 };
+const changePassword = async (requestBody, socket) => {
+  try {
+    logger.info('Register User Request Body =>', requestBody);
+    const { playerId, oldPassword, newPassword } = requestBody;
 
+    let query = { _id: playerId };
+    let result = await Users.findOne(query, {});
+    if (!result) {
+
+      if (result.password == oldPassword) {
+        await Users.updateOne(
+          query,
+          {
+            $set: {
+              password: newPassword,
+            },
+          },
+          {}
+        );
+        requestBody['password']=newPassword
+        commandAcions.sendEvent(socket, CONST.CHANGEPASSWORD, requestBody);
+      }else{
+        commandAcions.sendEvent(socket, CONST.CHANGEPASSWORD, requestBody, false, 'Current Password is not Match!');
+      }
+    } else {
+      commandAcions.sendEvent(socket, CONST.CHANGEPASSWORD, requestBody, false, 'Somthing went wrong!');
+      return false;
+    }
+
+  } catch (error) {
+    logger.error('mainController.js registerUser error=> ', error);
+    return {
+      message: 'something went wrong while registering, please try again',
+      status: 0,
+    };
+  }
+};
 const userSignup = async (requestData_, socket) => {
   let requestData = requestData_;
   if (requestData.mobileNumber.length !== 10) {
@@ -247,6 +283,7 @@ const registerUser = async (requestBody, socket) => {
   }
 };
 
+
 const getRegisterUserDetails = async (requestBody, socket) => {
   try {
     let defaultData = await getUserDefaultFields(requestBody, socket);
@@ -281,4 +318,5 @@ module.exports = {
   resendOTP,
   registerUser,
   getRegisterUserDetails,
+  changePassword,
 };

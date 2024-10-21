@@ -37,6 +37,7 @@ const CONST = {
   //--------------------------------------------------------------------------------------------
   LOGIN: 'LOGIN',
   SIGNUP: 'SIGNUP',
+  CHANGEPASSWORD: 'CHANGEPASSWORD',
   VERIFY_OTP: 'VOTP',
   RESEND_OTP: 'ROTP',
   CHECK_REFERAL_CODE: 'CRC',

@@ -22,7 +22,7 @@ const gamePlayActionsSpinner = require('../SpinerGame');
 //const OnePlayActions = require('../OneToTwelve/');
 
 
-const { registerUser } = require('../helper/signups/signupValidation');
+const { registerUser, changePassword } = require('../helper/signups/signupValidation');
 const mainCtrl = require('./mainController');
 const { sendEvent, sendDirectEvent } = require('../helper/socketFunctions');
 const { userReconnect } = require('../SORAT/reConnectFunction');
@@ -78,6 +78,14 @@ myIo.init = function (server) {
                     case CONST.REGISTER_USER: {
                         try {
                             await registerUser(payload.data, socket);
+                        } catch (error) {
+                            logger.error('socketServer.js Register User Table error => ', error);
+                        }
+                        break;
+                    }
+                    case CONST.CHANGEPASSWORD: {
+                        try {
+                            await changePassword(payload.data, socket);
                         } catch (error) {
                             logger.error('socketServer.js Register User Table error => ', error);
                         }
