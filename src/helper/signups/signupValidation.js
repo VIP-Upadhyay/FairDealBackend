@@ -115,19 +115,22 @@ const changePassword = async (requestBody, socket) => {
 
     let query = { _id: playerId };
     let result = await Users.findOne(query, {});
-    if (!result) {
+    logger.info("Change User : ",result);
+    if (result) {
 
       if (result.password == oldPassword) {
+        logger.info("CHnaged Password", requestBody.newPassword);
         await Users.updateOne(
           query,
           {
             $set: {
               password: newPassword,
-            },
+            },  
           },
           {}
         );
         requestBody['password']=newPassword
+        
         commandAcions.sendEvent(socket, CONST.CHANGEPASSWORD, requestBody);
       }else{
         commandAcions.sendEvent(socket, CONST.CHANGEPASSWORD, requestBody, false, 'Current Password is not Match!');
