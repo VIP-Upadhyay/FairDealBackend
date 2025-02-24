@@ -2,3 +2,6 @@
 /node_modules
 /log_file.log
 /logs
+deal-regal.pem
+/dump/*
+.env
