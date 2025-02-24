@@ -36,51 +36,121 @@ router.get("/UserList", async (req, res) => {
     console.log("requet => type ", req.query.type);
 
     let userList = [];
+    let totalRecords = 0;
+    let totalPages = 0;
+    const page = req.query.page || 0;
+    const limit = Number(req.query.limit);
+    const skip = (page - 1) * limit;
+
+    const nameFilter = req.query.name;
+    let fromDate = req.query.startDate; // Start date (Dynamic)
+    let toDate = req.query.endDate; // End date (Dynamic)
+
+    // Convert to Date objects
+    const createdAtFilter = {};
+    if (fromDate) createdAtFilter.$gte = new Date(fromDate);
+    if (toDate) createdAtFilter.$lte = new Date(toDate);
+    const totalCountPipeline = [
+      {
+        $match: {
+          ...(nameFilter ? { name: { $regex: nameFilter, $options: "i" } } : {}),
+          ...(Object.keys(createdAtFilter).length ? { createdAt: createdAtFilter } : {}),
+        },
+      },
+      { $count: "totalRecords" },
+    ];
+
+    const totalCountResult = await Users.aggregate(totalCountPipeline);
+    totalRecords = totalCountResult.length ? totalCountResult[0].totalRecords : 0;
+    console.log(totalRecords)
+    totalPages = Math.ceil(totalRecords / limit);
+
     if (req.query.type == "Admin") {
       const pipeline = [
-        // 1. Match users (Optional: Filter specific users)
+        // 1. Match users with filtering conditions
         {
-          $match: {}, // Add filter criteria here if needed, e.g., { isActive: true }
+          $match: {
+            ...(nameFilter ? { name: { $regex: nameFilter, $options: "i" } } : {}),
+            ...(Object.keys(createdAtFilter).length ? { createdAt: createdAtFilter } : {}),
+          },
         },
+
         // 2. Lookup to join RouletteUserHistory
         {
           $lookup: {
-            from: "RouletteUserHistory", // Collection name of RouletteUserHistory
-            let: { userId: { $toString: "$_id" } }, // Convert _id to string
+            from: "RouletteUserHistory",
+            let: { userId: { $toString: "$_id" } },
             pipeline: [
               {
                 $match: {
-                  $expr: {
-                    $eq: ["$userId", "$$userId"], // Match userId from RouletteUserHistory
-                  },
+                  $expr: { $eq: ["$userId", "$$userId"] },
                 },
               },
               {
                 $group: {
                   _id: null,
-                  totalPlay: { $sum: "$play" }, // Sum of play points
-                  totalWon: { $sum: "$won" }, // Sum of won points
-                  history: { $push: "$$ROOT" }, // Preserve all history records
+                  totalPlay: { $sum: "$play" },
+                  totalWon: { $sum: "$won" },
+                  history: { $push: "$$ROOT" },
                 },
               },
               {
                 $addFields: {
-                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] }, // End points calculation
-                  margin: { $multiply: ["$totalPlay", 0.025] }, // Margin calculation
+                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] },
+                  margin: { $multiply: ["$totalPlay", 0.025] },
                 },
               },
             ],
-            as: "historyData", // Output field name for history data
+            as: "historyData",
           },
         },
-        // 3. Unwind history data to access computed values
+        { $unwind: { path: "$historyData", preserveNullAndEmptyArrays: true } },
+
+        // 3. Lookup agent details
         {
-          $unwind: {
-            path: "$historyData",
-            preserveNullAndEmptyArrays: true, // Optional: Keep users with no history
+          $lookup: {
+            from: "agent",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "agent_data",
           },
         },
-        // 4. Project final output with all user fields and aggregated history data
+        { $unwind: { path: "$agent_data", preserveNullAndEmptyArrays: true } },
+
+        // 4. Lookup sub-agent (shop) details
+        {
+          $lookup: {
+            from: "shop",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "sub_agent_data",
+          },
+        },
+        { $unwind: { path: "$sub_agent_data", preserveNullAndEmptyArrays: true } },
+
+        // 5. Lookup admin details
+        {
+          $lookup: {
+            from: "admin",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "admin_data",
+          },
+        },
+        { $unwind: { path: "$admin_data", preserveNullAndEmptyArrays: true } },
+
+        // 6. Lookup to fetch agent details of the shop (who created the shop)
+        {
+          $lookup: {
+            from: "agent",
+            localField: "sub_agent_data.agentId",
+            foreignField: "_id",
+            as: "shop_agent_data",
+          },
+        },
+        { $unwind: { path: "$shop_agent_data", preserveNullAndEmptyArrays: true } },
+
+        // 7. Project final output
         {
           $project: {
             username: 1,
@@ -97,17 +167,49 @@ router.get("/UserList", async (req, res) => {
             createdAt: 1,
             lastLoginDate: 1,
             status: 1,
-            // history: "$historyData.history", // Preserve all history records
-            totalPlayPoints: "$historyData.totalPlay", // Total play points
-            totalWonPoints: "$historyData.totalWon", // Total won points
-            endPoints: "$historyData.endPoints", // End points
-            margin: "$historyData.margin", // Margin
+            agentId: 1,
+
+            // Agent Details
+            agentDetails: {
+              name: "$agent_data.name",
+              id: "$agent_data._id",
+            },
+
+            // Sub-Agent (Shop) Details
+            subAgent: {
+              id: "$sub_agent_data._id",
+              name: "$sub_agent_data.name",
+              agentId: "$sub_agent_data.agentId",
+            },
+
+            // Agent Details of Shop (Who created the shop)
+            subAgentByAgent: {
+              id: "$shop_agent_data._id",
+              name: "$shop_agent_data.name",
+            },
+
+            // Admin Details
+            adminDetails: {
+              name: "$admin_data.name",
+              id: "$admin_data._id",
+            },
+
+            // Roulette History Data
+            totalPlayPoints: "$historyData.totalPlay",
+            totalWonPoints: "$historyData.totalWon",
+            endPoints: "$historyData.endPoints",
+            margin: "$historyData.margin",
           },
         },
+
+        // 8. Pagination
+        { $skip: skip },
+        { $limit: limit },
       ];
 
       // Run the pipeline
       userList = await Users.aggregate(pipeline);
+
     } else if (req.query.type == "Agent") {
       let totalsubagent = await Shop.find(
         { agentId: MongoID(req.query.Id) },
@@ -120,25 +222,64 @@ router.get("/UserList", async (req, res) => {
         totalid.push(MongoID(totalsubagent[i]._id));
       }
 
-      userList = await Users.find(
-        { agentId: { $in: totalid } },
+      // userList = await Users.find(
+      //   { agentId: { $in: totalid } },
+      //   {
+      //     username: 1,
+      //     name: 1,
+      //     id: 1,
+      //     mobileNumber: 1,
+      //     "counters.totalMatch": 1,
+      //     profileUrl: 1,
+      //     email: 1,
+      //     uniqueId: 1,
+      //     isVIP: 1,
+      //     chips: 1,
+      //     referralCode: 1,
+      //     createdAt: 1,
+      //     lastLoginDate: 1,
+      //     status: 1,
+      //   }
+      // );
+      userList = await Users.aggregate([
         {
-          username: 1,
-          name: 1,
-          id: 1,
-          mobileNumber: 1,
-          "counters.totalMatch": 1,
-          profileUrl: 1,
-          email: 1,
-          uniqueId: 1,
-          isVIP: 1,
-          chips: 1,
-          referralCode: 1,
-          createdAt: 1,
-          lastLoginDate: 1,
-          status: 1,
-        }
-      );
+          $match: { agentId: { $in: totalid } },
+        },
+        {
+          $lookup: {
+            from: "shop",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "sub_agent_data",
+          },
+        },
+        { $unwind: { path: "$sub_agent_data", preserveNullAndEmptyArrays: true } },
+
+        {
+          $project: {
+            username: 1,
+            name: 1,
+            id: 1,
+            mobileNumber: 1,
+            "counters.totalMatch": 1,
+            profileUrl: 1,
+            email: 1,
+            uniqueId: 1,
+            isVIP: 1,
+            chips: 1,
+            referralCode: 1,
+            createdAt: 1,
+            lastLoginDate: 1,
+            status: 1,
+            "subAgentDetails.id": "$sub_agent_data._id",
+            "subAgentDetails.name": "$sub_agent_data.name",
+            "subAgentDetails.agentId": "$sub_agent_data.agentId",
+          },
+        },
+
+        { $skip: skip },
+        { $limit: limit },
+      ]);
     } else if (req.query.type == "Shop") {
       userList = await Users.find(
         { agentId: MongoID(req.query.Id) },
@@ -161,8 +302,14 @@ router.get("/UserList", async (req, res) => {
       );
     }
     logger.info("admin/dahboard.js post dahboard  error => ", userList);
+    const response = {
+      totalRecords,
+      totalPages,
+      currentPage: page,
+      users: userList,
+    };
 
-    res.json({ userList });
+    res.json(response);
   } catch (error) {
     logger.error("admin/dahboard.js post bet-list error => ", error);
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
