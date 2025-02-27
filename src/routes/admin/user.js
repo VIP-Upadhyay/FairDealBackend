@@ -392,7 +392,17 @@ router.get("/agent/UserList", async (req, res) => {
             preserveNullAndEmptyArrays: true, // Optional: Keep users with no history
           },
         },
-        // 4. Project final output with all user fields and aggregated history data
+        // 4. Lookup sub-agent (shop) details
+        {
+          $lookup: {
+            from: "shop",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "sub_agent_data",
+          },
+        },
+        { $unwind: { path: "$sub_agent_data", preserveNullAndEmptyArrays: true } },
+        // 5. Project final output with all user fields and aggregated history data
         {
           $project: {
             username: 1,
@@ -413,6 +423,9 @@ router.get("/agent/UserList", async (req, res) => {
             totalWonPoints: "$historyData.totalWon", // Total won points
             endPoints: "$historyData.endPoints", // End points
             margin: "$historyData.margin", // Margin
+            "subAgentDetails.id": "$sub_agent_data._id",
+            "subAgentDetails.name": "$sub_agent_data.name",
+            "subAgentDetails.agentId": "$sub_agent_data.agentId",
           },
         },
       ];

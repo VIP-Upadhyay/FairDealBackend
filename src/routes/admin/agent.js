@@ -773,136 +773,92 @@ router.get("/turnover", async (req, res) => {
       result = await Shop.aggregate(pipeline);
     }
     else if (req.query.adminId) {
+      const adminId = new mongoose.Types.ObjectId(req.query.adminId);
       const pipeline = [
-        // Step 1: Get the Agent using Admin ID
         {
-          $match: {
-            adminId: new mongoose.Types.ObjectId(req.query.adminId), // Match by Admin ID
-          },
+          $match: {}
         },
         {
           $lookup: {
-            from: "users", 
+            from: "shop",
             localField: "_id",
             foreignField: "agentId",
-            as: "agentInfo",
-          },
-        },
-        {
-          $unwind: "$agentInfo", // Convert agentInfo array to object
-        },
-      
-        // Step 2: Find Sub-Agents Created by Either Agent or Admin
-        {
-          $lookup: {
-            from: "users",
-            let: { agentId: "$agentInfo._id", adminId: req.query.adminId },
-            pipeline: [
-              {
-                $match: {
-                  $expr: {
-                    $or: [
-                      { $eq: ["$agentId", "$$agentId"] }, 
-                      { $eq: ["$adminId", "$$adminId"] }, 
-                    ],
-                  },
-                },
-              },
-            ],
-            as: "subAgents",
-          },
+            as: "subAgents"
+          }
         },
         {
           $unwind: {
             path: "$subAgents",
-            preserveNullAndEmptyArrays: true, 
-          },
+            preserveNullAndEmptyArrays: true
+          }
         },
-      
-        // Step 3: Get Users Under Sub-Agents
         {
           $lookup: {
             from: "users",
             localField: "subAgents._id",
             foreignField: "agentId",
-            as: "subAgentUsers",
-          },
+            as: "users"
+          }
         },
         {
           $unwind: {
-            path: "$subAgentUsers",
-            preserveNullAndEmptyArrays: true, // Keep sub-agents even if they have no users
-          },
+            path: "$users",
+            preserveNullAndEmptyArrays: true
+          }
         },
-      
-        // Step 4: Fetch Roulette History Data for Users under Sub-Agents
         {
           $lookup: {
             from: "RouletteUserHistory",
-            let: { userId: { $toString: "$subAgentUsers._id" } },
+            let: { userId: { $toString: "$users._id" } },
             pipeline: [
               {
                 $match: {
-                  $expr: { $eq: ["$userId", "$$userId"] }, // Match history with userId
-                  ...query, // Apply date filter (query should be a valid object)
-                },
+                  $expr: { $eq: ["$userId", "$$userId"] },
+                  ...query
+                }
               },
               {
                 $group: {
                   _id: null,
                   totalPlay: { $sum: "$play" },
-                  totalWon: { $sum: "$won" },
-                },
+                  totalWon: { $sum: "$won" }
+                }
               },
               {
                 $addFields: {
                   endPoints: { $subtract: ["$totalPlay", "$totalWon"] },
-                  margin: { $multiply: ["$totalPlay", 0.025] },
-                },
-              },
+                  margin: { $multiply: ["$totalPlay", 0.025] }
+                }
+              }
             ],
-            as: "historyData",
-          },
+            as: "historyData"
+          }
         },
         {
           $unwind: {
             path: "$historyData",
-            preserveNullAndEmptyArrays: true,
-          },
+            preserveNullAndEmptyArrays: true
+          }
         },
-      
-        // Step 5: Aggregate Data at the Agent Level
         {
           $group: {
-            _id: "$agentInfo._id",
-            agentName: { $first: "$agentInfo.name" },
+            _id: "$_id",
+            agentName: { $first: "$name" },
             totalPlayPoints: { $sum: "$historyData.totalPlay" },
             totalWonPoints: { $sum: "$historyData.totalWon" },
             totalEndPoints: { $sum: "$historyData.endPoints" },
-            totalMargin: { $sum: "$historyData.margin" },
-          },
+            totalMargin: { $sum: "$historyData.margin" }
+          }
         },
-        {
-          $project: {
-            _id: 0,
-            agentId: "$_id",
-            agentName: 1,
-            totalPlayPoints: 1,
-            totalWonPoints: 1,
-            totalEndPoints: 1,
-            totalMargin: 1,
-          },
-        },
-        // Additional summing for the entire result set (total across all sub-agents)
         {
           $group: {
-            _id: null, // Combine all records into a single one
+            _id: null,
             totalPlayPoints: { $sum: "$totalPlayPoints" },
             totalWonPoints: { $sum: "$totalWonPoints" },
             totalEndPoints: { $sum: "$totalEndPoints" },
             totalMargin: { $sum: "$totalMargin" },
-            AgentData: { $push: "$$ROOT" }, // Push the sub-agent level data into an array
-          },
+            agentData: { $push: "$$ROOT" }
+          }
         },
         {
           $project: {
@@ -911,13 +867,14 @@ router.get("/turnover", async (req, res) => {
             totalWonPoints: 1,
             totalEndPoints: 1,
             totalMargin: 1,
-            AgentData: 1, // Include the sub-agent data
-          },
-        },
+            agentData: 1
+          }
+        }
       ];
-      
 
-      result = await Shop.aggregate(pipeline);
+      result = await Agent.aggregate(pipeline)
+
+      // result = await Shop.aggregate(pipeline);
     }
     else {
       const userPipeline = [
@@ -986,7 +943,7 @@ router.get("/turnover", async (req, res) => {
       result = await GameUser.aggregate(userPipeline);
     }
 
-    res.json({ turnOverData: result });
+    return res.json({ turnOverData: result });
   } catch (error) {
     console.log(error, "errorerror");
     logger.error("admin/dahboard.js post bet-list error => ", error);
@@ -1149,6 +1106,127 @@ router.get("/dashboradData", async (req, res) => {
         suspendedUsers: suspendedUsers[0],
       });
     }
+    else if (req.query.adminId) {
+      const adminId = req.query.adminId;
+      const adminObjectId = new mongoose.Types.ObjectId(adminId);
+
+      // Fetch all agents (only _id)
+      const agents = await Agent.find({}, { _id: 1 });
+      const agentIds = agents.map((agent) => agent._id);
+
+      // Fetch shops using agent IDs and adminId
+      const shops = await Shop.find({ agentId: { $in: [...agentIds, adminObjectId] } }, { _id: 1 });
+
+
+      const subAgentIds = shops.map((doc) => doc._id);
+
+      // Fetch all users under these agents
+      const allData = await GameUser.aggregate([
+        { $match: { agentId: { $in: [...subAgentIds, ...agentIds, adminObjectId] }, status: true } },
+        { $project: { _id: 1, name: 1, chips: 1 } },
+      ]);
+
+      // console.log("Shops:", subAgentIds.length, "Agents:", agentIds.length, "admin:", adminObjectId);
+      // Suspended users aggregation
+      const suspendedUsers = await GameUser.aggregate([
+        { $match: { agentId: { $in: [...subAgentIds, ...agentIds, adminObjectId] }, status: false } },
+        {
+          $group: {
+            _id: null,
+            suspendedUsersCount: { $sum: 1 },
+            suspendedPlayerDetails: { $push: { _id: "$_id", name: "$name", chips: "$chips" } },
+          },
+        },
+        { $project: { _id: 0, suspendedUsersCount: 1, suspendedPlayerDetails: 1 } },
+      ]);
+
+      // Extract user IDs
+      const userIdArray = allData.map((user) => user._id);
+
+      // Playing tables aggregation
+      const results = await PlayingTablesModel.aggregate([
+        {
+          $project: {
+            activePlayers: {
+              $filter: {
+                input: "$playerInfo",
+                as: "player",
+                cond: { $in: ["$$player.playerId", userIdArray] },
+              },
+            },
+            totalPlayers: { $size: "$playerInfo" },
+          },
+        },
+        { $addFields: { activeCount: { $size: "$activePlayers" } } },
+        {
+          $lookup: {
+            from: "users",
+            localField: "activePlayers.playerId",
+            foreignField: "_id",
+            as: "Players",
+          }
+        },
+        {
+          $addFields: {
+            activePlayers: {
+              $map: {
+                input: "$Players",
+                as: "player",
+                in: {
+                  playerId: "$$player._id",
+                  name: "$$player.name",
+                  chip: "$$player.chips", // Ensure this field exists in the users collection
+                },
+              },
+            },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalActiveCount: { $sum: "$activeCount" },
+            activePlayersDetails: { $push: "$activePlayers" },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            totalActiveCount: 1,
+            activePlayersDetails: {
+              $reduce: {
+                input: "$activePlayersDetails",
+                initialValue: [],
+                in: { $concatArrays: ["$$value", "$$this"] },
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            totalActiveCount: 1,
+            activePlayersDetails: {
+              $map: {
+                input: "$activePlayersDetails",
+                as: "player",
+                in: { playerId: "$$player.playerId", name: "$$player.name", chip: "$$player.chip" }, // Corrected from "coins" to "chip"
+              },
+            },
+          },
+        },
+      ]);
+      const result = results.length ? results[0] : { totalActiveCount: 0, activePlayersDetails: [] };
+      const activePlayerIds = new Set(result.activePlayersDetails.map((player) => player.playerId));
+
+      return res.json({
+        activeUsers: result,
+        inactiveUsers: {
+          totalInactiveCount: userIdArray.length - result.totalActiveCount,
+          inActivePlayersDetails: allData.filter((player) => !activePlayerIds.has(player._id)),
+        },
+        suspendedUsers: suspendedUsers.length ? suspendedUsers[0] : { suspendedUsersCount: 0, suspendedPlayerDetails: [] },
+      });
+    }
+
     const pipeline = [
       {
         $match: {
