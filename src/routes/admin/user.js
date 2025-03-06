@@ -21,6 +21,7 @@ const RouletteTables = mongoose.model("RouletteTables");
 const leaveTableActions = require("../../roulette/leaveTable");
 const commandAcions = require("../../helper/socketFunctions");
 const CONST = require("../../../constant");
+const PlayingTablesModel = mongoose.model("RouletteTables");
 
 /**
  * @api {post} /admin/lobbies
@@ -760,36 +761,83 @@ router.put("/UpdatePassword", async (req, res) => {
  * @apiSuccess (Success 200) {Array} badges Array of badges document
  * @apiError (Error 4xx) {String} message Validation or error message.
  */
+
 router.put("/deductMoney", async (req, res) => {
   try {
-    console.log("deductMoney ", req.body);
+    // console.log("deductMoney Request Body:", req.body);
 
+    const userId = new mongoose.Types.ObjectId(req.body.userId); // Convert to ObjectId
+
+    // Find user details
     const userInfo = await Users.findOne(
-      { _id: new mongoose.Types.ObjectId(req.body.userId) },
+      { _id: userId },
       { name: 1, chips: 1 }
     );
+    // Check if the user is currently active in a game
+    const playingTablesModelPipeline = [
+      {
+        $match: {
+          "playerInfo.playerId": userId, 
+        },
+      },
+      {
+        $project: {
+          activePlayers: {
+            $filter: {
+              input: "$playerInfo",
+              as: "player",
+              cond: { $eq: ["$$player.playerId", userId] }, 
+            },
+          },
+        },
+      },
+      {
+        $unwind: {
+          path: "$activePlayers",
+          preserveNullAndEmptyArrays: true, 
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          playerId: "$activePlayers.playerId",
+          name: "$activePlayers.name",
+        },
+      },
+    ];
+    
+    const activeUser = await PlayingTablesModel.aggregate(playingTablesModelPipeline);
+    
+    // console.log("Active User:", activeUser); return; 
 
-    console.log("userInfo ", userInfo);
-
-    if (userInfo != null && userInfo.chips < Number(req.body.money)) {
-      res.json({
+    // If the user is active, prevent deduction
+    if (activeUser.length > 0) {
+      return res.json({
         status: false,
-        msg: "not enough chips to deduct user wallet",
+        msg: "User is currently active in a game. Cannot deduct money.",
       });
-      return false;
+    }
+
+    console.log("User Info:", userInfo);
+
+    if (!userInfo || userInfo.chips < Number(req.body.money)) {
+      return res.json({
+        status: false,
+        msg: "Not enough chips to deduct from user wallet.",
+      });
     }
 
     await walletActions.deductWallet(
       req.body.userId,
       -Number(req.body.money),
       2,
-      "Sub Agent duduct Chips",
+      "Sub Agent deduct Chips",
       "roulette",
       req.body.adminname,
       req.body.adminid
     );
 
-    if (req.body.adminname != "Super Admin") {
+    if (req.body.adminname !== "Super Admin") {
       await walletActions.addshopWalletAdmin(
         req.body.adminid,
         Number(req.body.money),
@@ -803,16 +851,16 @@ router.put("/deductMoney", async (req, res) => {
       );
     }
 
-    logger.info("admin/dahboard.js post dahboard  error => ");
+    logger.info("admin/dahboard.js post dashboard success");
 
     res.json({ status: "ok", msg: "Successfully Debited...!!" });
   } catch (error) {
     logger.error("admin/dahboard.js post bet-list error => ", error);
-    //res.send("error");
 
-    res.status(config.INTERNAL_SERVER_ERROR).json(error);
+    res.status(500).json({ status: "error", message: "Internal Server Error", error });
   }
 });
+
 
 /**
  * @api {post} /admin/K
