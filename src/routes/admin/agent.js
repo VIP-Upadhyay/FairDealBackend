@@ -952,6 +952,152 @@ router.get("/turnover", async (req, res) => {
 });
 
 /**
+ * Calculate margin as per the date range for current week from monday to sunday by checking current date 
+ * @api {get} /admin/netmargin
+ * @apiGroup  Admin
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 5xx) {String} error internal server.
+ */
+
+
+router.get("/netmargin", async (req, res) => {
+  try {
+    const startDate = req.query.startDate ? new Date(req.query.startDate) : null;
+    const endDate = req.query.endDate ? new Date(req.query.endDate) : null;
+    let weekStartDate, weekEndDate;
+
+    if (startDate && endDate) {
+      weekStartDate = startDate;
+      weekEndDate = endDate;
+    } else {
+      const currentDate = new Date();
+      const currentDay = currentDate.getDay();
+      weekStartDate = new Date(currentDate);
+      weekStartDate.setDate(currentDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1));
+      weekStartDate.setHours(0, 0, 0, 0);
+      weekEndDate = new Date(currentDate);
+      weekEndDate.setDate(weekStartDate.getDate() + 6);
+      weekEndDate.setHours(23, 59, 59, 999);
+    }
+
+    console.log(weekStartDate, weekEndDate, "weekStartDate, weekEndDate");
+    const query = {};
+
+    if (weekStartDate && weekEndDate) {
+      query.createdAt = { $gte: weekStartDate, $lte: weekEndDate }; // Date range filter
+    }
+
+
+    let result;
+
+    const pipeline = [
+      {
+        $match: {}
+      },
+      {
+        $lookup: {
+          from: "shop",
+          localField: "_id",
+          foreignField: "agentId",
+          as: "subAgents"
+        }
+      },
+      {
+        $unwind: {
+          path: "$subAgents",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "subAgents._id",
+          foreignField: "agentId",
+          as: "users"
+        }
+      },
+      {
+        $unwind: {
+          path: "$users",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: "RouletteUserHistory",
+          let: { userId: { $toString: "$users._id" } },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$userId", "$$userId"] },
+                ...query
+              }
+            },
+            {
+              $group: {
+                _id: null,
+                totalPlay: { $sum: "$play" },
+                totalWon: { $sum: "$won" }
+              }
+            },
+            {
+              $addFields: {
+                endPoints: { $subtract: ["$totalPlay", "$totalWon"] },
+                margin: { $multiply: ["$totalPlay", 0.025] }
+              }
+            }
+          ],
+          as: "historyData"
+        }
+      },
+      {
+        $unwind: {
+          path: "$historyData",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $group: {
+          _id: "$_id",
+          agentName: { $first: "$name" },
+          totalPlayPoints: { $sum: "$historyData.totalPlay" },
+          totalWonPoints: { $sum: "$historyData.totalWon" },
+          totalEndPoints: { $sum: "$historyData.endPoints" },
+          totalMargin: { $sum: "$historyData.margin" }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          totalPlayPoints: { $sum: "$totalPlayPoints" },
+          totalWonPoints: { $sum: "$totalWonPoints" },
+          totalEndPoints: { $sum: "$totalEndPoints" },
+          totalMargin: { $sum: "$totalMargin" },
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          totalPlayPoints: 1,
+          totalWonPoints: 1,
+          totalEndPoints: 1,
+          totalMargin: 1,
+        }
+      }
+    ];
+
+    result = await Agent.aggregate(pipeline)
+
+    return res.json({ turnOverData: result, weekStartDate, weekEndDate });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+});
+
+
+
+/**
  * @api {get} /agent/dashboradData
  * @apiGroup  Agent
  * @apiHeader {String}  x-access-token Admin's unique access-key
