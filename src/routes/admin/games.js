@@ -222,14 +222,10 @@ db.getCollection('RouletteTables').aggregate([
 */
 router.get('/GetGameBetInfo', async (req, res) => {
     try {
-        console.info('requet => ', req.body);
-
-        //tabInfo = await RouletteTables.find({},{"playerInfo":1});
-
-        //console.info('tabInfo => ', tabInfo);
+        console.info('request => ', req.body);
 
         const responseData = await RouletteTables.aggregate([
-            {$match:{"whichTable" : "greenTable"}},
+            { $match: { "whichTable": "greenTable" } },
             { $unwind: "$playerInfo" },
             { $unwind: "$playerInfo.betObject" },
             {
@@ -238,19 +234,35 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     type: { $first: "$playerInfo.betObject.type" },
                     number: { $first: "$playerInfo.betObject.number" },
                     bet: { $sum: "$playerInfo.betObject.bet" },
-                    "whichTable" : { $first: "$whichTable" }
+                    whichTable: { $first: "$whichTable" },
+                    playerInfo: { $first: "$playerInfo" }
                 }
             },
-
-
             {
                 $project: {
                     length: { $size: "$number" },
                     type: 1,
                     number: 1,
                     bet: { $divide: ["$bet", { $size: "$number" }] },
-                    whichTable:1
-
+                    whichTable: 1,
+                    playerInfo: {
+                        _id: 1,
+                        playerId: 1,
+                        username: 1,
+                        name: 1,
+                        coins: 1,
+                        status: 1,
+                        playerStatus: 1,
+                        totalbet: 1,
+                        turnMissCounter: 1,
+                        turnCount: 1,
+                        playerSocketId: 1,
+                        playerLostChips: 1,
+                        Iscom: 1,
+                        uuid: 1,
+                        rejoin: 1,
+                        playStatus: 1
+                    }
                 }
             },
             { $unwind: "$number" },
@@ -261,14 +273,14 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     number: { $first: "$number" },
                     bet: { $sum: "$bet" },
                     whichTable: { $first: "$whichTable" },
+                    playerInfo: { $first: "$playerInfo" }
                 }
             },
-            {$sort:{number:1}}
+            { $sort: { number: 1 } }
         ]);
-
 
         const responseDatablue = await RouletteTables.aggregate([
-            {$match:{"whichTable" : "blueTable"}},
+            { $match: { "whichTable": "blueTable" } },
             { $unwind: "$playerInfo" },
             { $unwind: "$playerInfo.betObject" },
             {
@@ -277,19 +289,35 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     type: { $first: "$playerInfo.betObject.type" },
                     number: { $first: "$playerInfo.betObject.number" },
                     bet: { $sum: "$playerInfo.betObject.bet" },
-                    "whichTable" : { $first: "$whichTable" }
+                    whichTable: { $first: "$whichTable" },
+                    playerInfo: { $first: "$playerInfo" }
                 }
             },
-
-
             {
                 $project: {
                     length: { $size: "$number" },
                     type: 1,
                     number: 1,
                     bet: { $divide: ["$bet", { $size: "$number" }] },
-                    whichTable:1
-
+                    whichTable: 1,
+                    playerInfo: {
+                        _id: 1,
+                        playerId: 1,
+                        username: 1,
+                        name: 1,
+                        coins: 1,
+                        status: 1,
+                        playerStatus: 1,
+                        totalbet: 1,
+                        turnMissCounter: 1,
+                        turnCount: 1,
+                        playerSocketId: 1,
+                        playerLostChips: 1,
+                        Iscom: 1,
+                        uuid: 1,
+                        rejoin: 1,
+                        playStatus: 1
+                    }
                 }
             },
             { $unwind: "$number" },
@@ -300,14 +328,14 @@ router.get('/GetGameBetInfo', async (req, res) => {
                     number: { $first: "$number" },
                     bet: { $sum: "$bet" },
                     whichTable: { $first: "$whichTable" },
+                    playerInfo: { $first: "$playerInfo" }
                 }
             },
-            {$sort:{number:1}}
+            { $sort: { number: 1 } }
         ]);
 
-        console.log("responseData ", responseData)
-        console.log("responseDatablue ", responseDatablue)
-
+        // console.log("responseData ", responseData)
+        // console.log("responseDatablue ", responseDatablue)
 
         res.json({ tabInfo: responseData.concat(responseDatablue) });
     } catch (error) {
@@ -315,7 +343,6 @@ router.get('/GetGameBetInfo', async (req, res) => {
         res.status(config.INTERNAL_SERVER_ERROR).json(error);
     }
 });
-
 
 /**
 * @api {get} /admin/lobbies
