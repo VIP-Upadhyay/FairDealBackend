@@ -16,7 +16,6 @@ module.exports = {
   HISTORY:HISTORY,
   NEIGHBORBET:NEIGHBORBET,
   PASTBET: PASTBET,
-  // getPlayerData:getPlayerData,
   REMOVEBETROULETTE: REMOVEBETROULETTE,
   AdminWinLossData: AdminWinLossData,
   PASTBETSAVE:PASTBETSAVE
