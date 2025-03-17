@@ -378,6 +378,16 @@ router.put("/addMoneyToUser", async (req, res) => {
       { _id: new mongoose.Types.ObjectId(req.body.userId) },
       { name: 1, agentId: 1 }
     );
+    console.log(userInfo.agentId, "userInfo");
+
+    // Compare ObjectIds in the same type (both should be ObjectIds)
+    if (userInfo.agentId.toString() !== req.body.adminid.toString()) {
+      res.json({
+        status: false,
+        msg: "User is not added by this agent",
+      });
+      return;
+    }
 
     await walletActions.deductagentWallet(
       req.body.adminid,
@@ -412,11 +422,27 @@ router.put("/addMoneyToUser", async (req, res) => {
 
 router.put("/deductMoneyToUser", async (req, res) => {
   try {
+    const agentInfo = await AgentUser.findOne(
+      { _id: new mongoose.Types.ObjectId(req.body.adminid) },
+      { name: 1, chips: 1 }
+    );
+
     const userInfo = await GameUser.findOne(
       { _id: new mongoose.Types.ObjectId(req.body.userId) },
       { name: 1, agentId: 1, chips: 1 }
     );
-    
+    console.log(userInfo.agentId, "userInfo");
+
+    // Compare ObjectIds in the same type (both should be ObjectIds)
+    if (userInfo.agentId.toString() !== req.body.adminid.toString()) {
+      res.json({
+        status: false,
+        msg: "User is not added by this agent",
+      });
+      return;
+    }
+    console.log(userInfo, "agentInfoagentInfo");
+
     if (userInfo != null && userInfo.chips < Number(req.body.money)) {
       res.json({
         status: false,
@@ -493,167 +519,34 @@ router.get("/RouletteGameHistory", async (req, res) => {
             agentId: { $in: [...subAgentsIds, agentId] }, // Match agentId for both sub-agents and the main agent.
           },
         },
-        // 2. Lookup to join RouletteUserHistory
-        {
-          $lookup: {
-            from: "RouletteUserHistory", // Collection name of RouletteUserHistory
-            let: { userId: { $toString: "$_id" } }, // Convert _id to string
-            pipeline: [
-              {
-                $match: {
-                  $expr: {
-                    $eq: ["$userId", "$$userId"], // Match userId from RouletteUserHistory
-                  },
-                },
-              },
-              {
-                $group: {
-                  _id: null,
-                  totalPlay: { $sum: "$play" }, // Sum of play points
-                  totalWon: { $sum: "$won" }, // Sum of won points
-                  history: { $push: "$$ROOT" }, // Preserve all history records
-                },
-              },
-              {
-                $addFields: {
-                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] }, // End points calculation
-                  margin: { $multiply: ["$totalPlay", 0.025] }, // Margin calculation
-                  filteredHistory: {
-                    $filter: {
-                      input: "$history", // Input is the `history` array
-                      as: "item", // Variable for each item in the array
-                      cond: { $ne: ["$$item.play", 0] }, // Condition to exclude items where play is 0
-                    },
-                  },
-                },
-              },
-            ],
-            as: "historyData", // Output field name for history data
-          },
-        },
-        // 3. Unwind history data to access computed values
-        {
-          $unwind: {
-            path: "$historyData",
-            preserveNullAndEmptyArrays: true, // Optional: Keep users with no history
-          },
-        },
-        // 4. Replace history with filteredHistory
-        {
-          $addFields: {
-            "historyData.history": "$historyData.filteredHistory",
-          },
-        },
-        // 5. Optionally remove filteredHistory if not needed
-        {
-          $unset: "historyData.filteredHistory",
-        },
-        // 6. Select only the required fields
         {
           $project: {
-            totalPlayPoints: "$historyData.totalPlay", // Total play points
-            totalWonPoints: "$historyData.totalWon", // Total won points
-            endPoints: "$historyData.endPoints", // End points
-            margin: "$historyData.margin", // Margin
-            history: "$historyData.history", // History
+            _id: 1,
           },
         },
       ];
-
       const allData = await GameUser.aggregate(userPipeline);
-
       // Extract the array of IDs
-      // const userIdArray = allData.map((user) => user._id);
-      // const tabInfo = await RouletteUserHistory.find(
-      //   { userId: { $in: userIdArray } } // Match any userId in the array
-      // ).sort({ createdAt: -1 });
-      // console.log(userIdArray,"userIdArrayuserIdArrayuserIdArray");
-      return res.json({ gameHistoryData: allData });
+      const userIdArray = allData.map((user) => user._id);
+      const tabInfo = await RouletteUserHistory.find(
+        { userId: { $in: userIdArray } } // Match any userId in the array
+      ).sort({ createdAt: -1 });
+      return res.json({ gameHistoryData: tabInfo });
     }
-    const userPipeline = [
-      {
-        $match: {
-          agentId: new mongoose.Types.ObjectId(req.query.subAgentId), // Match agentId for both sub-agents and the main agent.
-        },
-      },
-      // 2. Lookup to join RouletteUserHistory
-      {
-        $lookup: {
-          from: "RouletteUserHistory", // Collection name of RouletteUserHistory
-          let: { userId: { $toString: "$_id" } }, // Convert _id to string
-          pipeline: [
-            {
-              $match: {
-                $expr: {
-                  $eq: ["$userId", "$$userId"], // Match userId from RouletteUserHistory
-                },
-              },
-            },
-            {
-              $group: {
-                _id: null,
-                totalPlay: { $sum: "$play" }, // Sum of play points
-                totalWon: { $sum: "$won" }, // Sum of won points
-                history: { $push: "$$ROOT" }, // Preserve all history records
-              },
-            },
-            {
-              $addFields: {
-                endPoints: { $subtract: ["$totalPlay", "$totalWon"] }, // End points calculation
-                margin: { $multiply: ["$totalPlay", 0.025] }, // Margin calculation
-                filteredHistory: {
-                  $filter: {
-                    input: "$history", // Input is the `history` array
-                    as: "item", // Variable for each item in the array
-                    cond: { $ne: ["$$item.play", 0] }, // Condition to exclude items where play is 0
-                  },
-                },
-              },
-            },
-          ],
-          as: "historyData", // Output field name for history data
-        },
-      },
-      // 3. Unwind history data to access computed values
-      {
-        $unwind: {
-          path: "$historyData",
-          preserveNullAndEmptyArrays: true, // Optional: Keep users with no history
-        },
-      },
-      // 4. Replace history with filteredHistory
-      {
-        $addFields: {
-          "historyData.history": "$historyData.filteredHistory",
-        },
-      },
-      // 5. Optionally remove filteredHistory if not needed
-      {
-        $unset: "historyData.filteredHistory",
-      },
-      // 6. Select only the required fields
-      {
-        $project: {
-          totalPlayPoints: "$historyData.totalPlay", // Total play points
-          totalWonPoints: "$historyData.totalWon", // Total won points
-          endPoints: "$historyData.endPoints", // End points
-          margin: "$historyData.margin", // Margin
-          history: "$historyData.history", // History
-        },
-      },
-    ];
+    const agentAddUserData = await GameUser.find({
+      agentId: req.query.subAgentId,
+    }).select("_id");
+    console.log(agentAddUserData, "agentAddUserDataagentAddUserData");
 
-    const allData = await GameUser.aggregate(userPipeline);
-    // const agentAddUserData = await GameUser.find({
-    //   agentId: req.query.subAgentId,
-    // }).select("_id");
     // Extract the array of IDs
-    // const userIdArray = agentAddUserData.map((user) => user._id);
-    // const tabInfo = await RouletteUserHistory.find(
-    //   { userId: { $in: userIdArray } } // Match any userId in the array
-    // ).sort({ createdAt: -1 });
+    const userIdArray = agentAddUserData.map((user) => user._id);
+    console.log(userIdArray, "userIdArrayuserIdArray");
+
+    const tabInfo = await RouletteUserHistory.find(
+      { userId: { $in: userIdArray } } // Match any userId in the array
+    ).sort({ createdAt: -1 });
     // logger.info('admin/dahboard.js post dahboard  error => ', tabInfo[0].betObjectData.length);
-    res.json({ gameHistoryData: allData });
+    res.json({ gameHistoryData: tabInfo });
   } catch (error) {
     console.log(error, "errorerror");
     logger.error("admin/dahboard.js post bet-list error => ", error);
@@ -958,6 +851,7 @@ router.put("/changeUserStatus", async (req, res) => {
   try {
     console.log("requet => ", req.query.agentId);
     const user = await GameUser.findOne({
+      agentId: req.query.agentId,
       _id: req.query.userId, // Assuming `userId` is passed as a query parameter
     });
     // Check if the user exists
@@ -1003,53 +897,6 @@ router.get("/agentBalance", async (req, res) => {
     console.log(error, "errorerror");
 
     logger.error("admin/dahboard.js post bet-list error => ", error);
-    res.status(config.INTERNAL_SERVER_ERROR).json(error);
-  }
-});
-
-/**
- * @api {post} /admin/agent/check-username
- * @apiName  add-bet-list
- * @apiGroup  Admin
- * @apiHeader {String}  x-access-token Admin's unique access-key
- * @apiSuccess (Success 200) {Array} badges Array of badges document
- * @apiError (Error 4xx) {String} message Validation or error message.
- */
-router.post("/check-username", async (req, res) => {
-  try {
-    const { name } = req.body;
-
-    // Validate input
-    if (!name) {
-      return res
-        .status(400)
-        .json({ success: false, message: "name is required." });
-    }
-
-    // Check if the username exists
-    const user = await AgentUser.findOne({ name });
-
-    if (user) {
-      return res
-        .status(200)
-        .json({
-          success: true,
-          exists: true,
-          message: "name already exists.",
-        });
-    } else {
-      return res
-        .status(200)
-        .json({
-          success: true,
-          exists: false,
-          message: "name is available.",
-        });
-    }
-  } catch (error) {
-    logger.error("admin/dahboard.js post bet-list error => ", error);
-    //res.send("error");
-
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
   }
 });
