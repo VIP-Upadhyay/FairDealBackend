@@ -23,18 +23,54 @@ const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 */
 router.get('/RouletteGameHistory', async (req, res) => {
     try {
-        console.info('requet => ', req.query);
+        const { 
+            page = 1, 
+            limit = 10, 
+            username = '', 
+            startDate = '', 
+            endDate = '' 
+        } = req.query;
 
-        const tabInfo = await RouletteUserHistory.find({}, {}).sort({createdAt:-1});
+        // Construct the query object
+        const query = {
+            afterPlayPoint: { $ne: 0 }, // Ensure afterPlayPoint is not zero
+        };
 
-        logger.info('admin/dahboard.js post dahboard  error => ', tabInfo[0].betObjectData.length);
+        // Add username filter if provided
+        if (username) {
+            query.username = new RegExp(`^${username}`, 'i'); // Matches usernames starting with the provided string
+        }
 
-        res.json({ gameHistoryData: tabInfo });
+        // Add date range filter if both startDate and endDate are provided
+        if (startDate && endDate) {
+            query.createdAt = { 
+                $gte: new Date(startDate), 
+                $lte: new Date(endDate) 
+            };
+        }
+        // Fetch the data with pagination
+        const tabInfo = await RouletteUserHistory.find(query)
+            .sort({ createdAt: -1 }) // Sort by creation date (descending)
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit));
+
+        // Count the total documents matching the query
+        const totalDocuments = await RouletteUserHistory.countDocuments(query);
+
+        // Respond with the data
+        res.json({ 
+            gameHistoryData: tabInfo, 
+            totalDocuments, 
+            totalPages: Math.ceil(totalDocuments / limit), 
+            currentPage: parseInt(page) 
+        });
     } catch (error) {
-        logger.error('admin/dahboard.js post bet-list error => ', error);
-        res.status(config.INTERNAL_SERVER_ERROR).json(error);
+        logger.error('admin/dahboard.js get RouletteGameHistory error => ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 /**
 * @api {get} /admin/BaraKaDumGameHistory
