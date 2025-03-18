@@ -378,16 +378,6 @@ router.put("/addMoneyToUser", async (req, res) => {
       { _id: new mongoose.Types.ObjectId(req.body.userId) },
       { name: 1, agentId: 1 }
     );
-    console.log(userInfo.agentId, "userInfo");
-
-    // Compare ObjectIds in the same type (both should be ObjectIds)
-    if (userInfo.agentId.toString() !== req.body.adminid.toString()) {
-      res.json({
-        status: false,
-        msg: "User is not added by this agent",
-      });
-      return;
-    }
 
     await walletActions.deductagentWallet(
       req.body.adminid,
@@ -422,26 +412,10 @@ router.put("/addMoneyToUser", async (req, res) => {
 
 router.put("/deductMoneyToUser", async (req, res) => {
   try {
-    const agentInfo = await AgentUser.findOne(
-      { _id: new mongoose.Types.ObjectId(req.body.adminid) },
-      { name: 1, chips: 1 }
-    );
-
     const userInfo = await GameUser.findOne(
       { _id: new mongoose.Types.ObjectId(req.body.userId) },
       { name: 1, agentId: 1, chips: 1 }
     );
-    console.log(userInfo.agentId, "userInfo");
-
-    // Compare ObjectIds in the same type (both should be ObjectIds)
-    if (userInfo.agentId.toString() !== req.body.adminid.toString()) {
-      res.json({
-        status: false,
-        msg: "User is not added by this agent",
-      });
-      return;
-    }
-    console.log(userInfo, "agentInfoagentInfo");
 
     if (userInfo != null && userInfo.chips < Number(req.body.money)) {
       res.json({
@@ -493,7 +467,33 @@ router.put("/deductMoneyToUser", async (req, res) => {
  */
 router.get("/RouletteGameHistory", async (req, res) => {
   try {
-    console.log("requet => ", req.query.agentId);
+    const {
+      subAgentId,
+      username = "",
+      startDate = "",
+      endDate = "",
+    } = req.query;
+    const page = Number(req.query.page) || 1; // Ensure it's a number
+    const limit = Number(req.query.limit) || 10; // Ensure it's a number
+    const skip = (page - 1) * limit;
+
+    // Construct the query object
+    const query = {
+      play: { $ne: 0 }, // Ensure afterPlayPoint is not zero
+    };
+
+    // Add username filter if provided
+    if (username) {
+      query.username = new RegExp(`^${username}`, "i"); // Matches usernames starting with the provided string
+    }
+
+    // Add date range filter if both startDate and endDate are provided
+    if (startDate && endDate) {
+      query.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      };
+    }
 
     if (req.query.agentId) {
       const pipeline = [
@@ -520,39 +520,582 @@ router.get("/RouletteGameHistory", async (req, res) => {
           },
         },
         {
+          $lookup: {
+            from: "RouletteUserHistory", // Collection name of RouletteUserHistory
+            let: { userId: { $toString: "$_id" } }, // Convert _id to string
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$userId", "$$userId"], // Match userId from RouletteUserHistory
+                  },
+                  ...query, // Apply filters dynamically
+                },
+              },
+              // Sort by date (assuming there is a 'date' field in your RouletteUserHistory documents)
+              {
+                $sort: { createdAt: -1 }, // Sort in descending order to get the latest first
+              },
+            ],
+            as: "historyData", // Output field name for history data
+          },
+        },
+        {
+          $unwind: {
+            path: "$historyData",
+          },
+        },
+        {
+          $addFields: {
+            "historyData.history": "$historyData.filteredHistory",
+          },
+        },
+        {
+          $unset: "historyData.filteredHistory",
+        },
+        {
+          $replaceRoot: { newRoot: "$historyData" }, // Flatten the structure to return only historyData
+        },
+        {
+          $facet: {
+            metadata: [{ $count: "total" }], // Count total history records
+            data: [{ $skip: skip }, { $limit: limit }], // Apply pagination
+          },
+        },
+        {
           $project: {
-            _id: 1,
+            total: { $arrayElemAt: ["$metadata.total", 0] }, // Extract total count
+            data: 1,
           },
         },
       ];
+
       const allData = await GameUser.aggregate(userPipeline);
-      // Extract the array of IDs
-      const userIdArray = allData.map((user) => user._id);
-      const tabInfo = await RouletteUserHistory.find(
-        { userId: { $in: userIdArray } } // Match any userId in the array
-      ).sort({ createdAt: -1 });
-      return res.json({ gameHistoryData: tabInfo });
+      res.json({
+        historyData: allData[0].data || [],
+        totalRecords: allData[0].total || 0,
+        currentPage: page,
+        totalPages: Math.ceil((allData[0].total || 0) / limit),
+      });
     }
-    const agentAddUserData = await GameUser.find({
-      agentId: req.query.subAgentId,
-    }).select("_id");
-    console.log(agentAddUserData, "agentAddUserDataagentAddUserData");
+    const userPipeline = [
+      {
+        $match: {
+          agentId: new mongoose.Types.ObjectId(subAgentId), // Match agentId for both sub-agents and the main agent.
+        },
+      },
+      {
+        $lookup: {
+          from: "RouletteUserHistory", // Collection name of RouletteUserHistory
+          let: { userId: { $toString: "$_id" } }, // Convert _id to string
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: ["$userId", "$$userId"], // Match userId from RouletteUserHistory
+                },
+                ...query, // Apply filters dynamically
+              },
+            },
+            // Sort by date (assuming there is a 'date' field in your RouletteUserHistory documents)
+            {
+              $sort: { createdAt: -1 }, // Sort in descending order to get the latest first
+            },
+          ],
+          as: "historyData", // Output field name for history data
+        },
+      },
+      {
+        $unwind: {
+          path: "$historyData",
+        },
+      },
+      {
+        $addFields: {
+          "historyData.history": "$historyData.filteredHistory",
+        },
+      },
+      {
+        $unset: "historyData.filteredHistory",
+      },
+      {
+        $replaceRoot: { newRoot: "$historyData" }, // Flatten the structure to return only historyData
+      },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }], // Count total history records
+          data: [{ $skip: skip }, { $limit: limit }], // Apply pagination
+        },
+      },
+      {
+        $project: {
+          total: { $arrayElemAt: ["$metadata.total", 0] }, // Extract total count
+          data: 1,
+        },
+      },
+    ];
 
-    // Extract the array of IDs
-    const userIdArray = agentAddUserData.map((user) => user._id);
-    console.log(userIdArray, "userIdArrayuserIdArray");
+    const result = await GameUser.aggregate(userPipeline);
 
-    const tabInfo = await RouletteUserHistory.find(
-      { userId: { $in: userIdArray } } // Match any userId in the array
-    ).sort({ createdAt: -1 });
-    // logger.info('admin/dahboard.js post dahboard  error => ', tabInfo[0].betObjectData.length);
-    res.json({ gameHistoryData: tabInfo });
+    res.json({
+      historyData: result[0].data || [],
+      totalRecords: result[0].total || 0,
+      currentPage: page,
+      totalPages: Math.ceil((result[0].total || 0) / limit),
+    });
   } catch (error) {
     console.log(error, "errorerror");
     logger.error("admin/dahboard.js post bet-list error => ", error);
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
   }
 });
+
+/**
+ * @api {get} /agent/turnover
+ * @apiGroup  Agent
+ * @apiHeader {String}  x-access-token Admin's unique access-key
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 4xx) {String} message Validation or error message.
+ */
+router.get("/turnover", async (req, res) => {
+  try {
+    const subAgentId = req.query.subAgentId; // Extract subAgentId
+    const startDate = req.query.startDate ? new Date(req.query.startDate) : null;
+    const endDate = req.query.endDate ? new Date(req.query.endDate) : null;
+
+    const query = {};
+
+    if (startDate && endDate) {
+      query.createdAt = { $gte: startDate, $lte: endDate }; // Date range filter
+    }
+
+    let result;
+
+    if (req.query.agentId) {
+      const pipeline = [
+        {
+          $match: {
+            agentId: new mongoose.Types.ObjectId(req.query.agentId),
+          }, // Match sub-agents
+        },
+        {
+          $lookup: {
+            from: "users", // Collection name
+            localField: "_id",
+            foreignField: "agentId",
+            as: "subAgentUsers", // Attach users created by sub-agent
+          },
+        },
+        {
+          $unwind: {
+            path: "$subAgentUsers",
+            preserveNullAndEmptyArrays: true, // Keep sub-agents even if they have no users
+          },
+        },
+        {
+          $lookup: {
+            from: "RouletteUserHistory", // Collection name of RouletteUserHistory
+            let: { userId: { $toString: "$subAgentUsers._id" } }, // Convert `_id` to string
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ["$userId", "$$userId"] }, // Match userId from history
+                  ...query, // Apply date filter (query should be a valid object)
+                },
+              },
+              {
+                $group: {
+                  _id: null,
+                  totalPlay: { $sum: "$play" }, // Sum of play points
+                  totalWon: { $sum: "$won" }, // Sum of won points
+                },
+              },
+              {
+                $addFields: {
+                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] }, // End points calculation
+                  margin: { $multiply: ["$totalPlay", 0.025] }, // Margin calculation
+                },
+              },
+            ],
+            as: "historyData", // Output field name for history data
+          },
+        },
+        {
+          $unwind: {
+            path: "$historyData",
+            preserveNullAndEmptyArrays: true, // Keep users even if they have no history
+          },
+        },
+        {
+          $group: {
+            _id: "$_id",
+            subAgentName: { $first: "$name" }, // Assuming `name` stores the sub-agent name
+            totalPlayPoints: { $sum: "$historyData.totalPlay" }, // Sum of totalPlayPoints for all users
+            totalWonPoints: { $sum: "$historyData.totalWon" }, // Sum of totalWonPoints for all users
+            totalEndPoints: { $sum: "$historyData.endPoints" }, // Sum of endPoints for all users
+            totalMargin: { $sum: "$historyData.margin" }, // Sum of margin for all users
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            subAgentId: "$_id",
+            subAgentName: 1,
+            totalPlayPoints: 1,
+            totalWonPoints: 1,
+            totalEndPoints: 1,
+            totalMargin: 1,
+          },
+        },
+        // Additional summing for the entire result set (total across all sub-agents)
+        {
+          $group: {
+            _id: null, // Combine all records into a single one
+            totalPlayPoints: { $sum: "$totalPlayPoints" },
+            totalWonPoints: { $sum: "$totalWonPoints" },
+            totalEndPoints: { $sum: "$totalEndPoints" },
+            totalMargin: { $sum: "$totalMargin" },
+            subAgentData: { $push: "$$ROOT" }, // Push the sub-agent level data into an array
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            totalPlayPoints: 1,
+            totalWonPoints: 1,
+            totalEndPoints: 1,
+            totalMargin: 1,
+            subAgentData: 1, // Include the sub-agent data
+          },
+        },
+      ];
+
+      result = await Shop.aggregate(pipeline);
+    }
+    else if (req.query.adminId) {
+      const adminId = new mongoose.Types.ObjectId(req.query.adminId);
+      const pipeline = [
+        {
+          $match: {}
+        },
+        {
+          $lookup: {
+            from: "shop",
+            localField: "_id",
+            foreignField: "agentId",
+            as: "subAgents"
+          }
+        },
+        {
+          $unwind: {
+            path: "$subAgents",
+            preserveNullAndEmptyArrays: true
+          }
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "subAgents._id",
+            foreignField: "agentId",
+            as: "users"
+          }
+        },
+        {
+          $unwind: {
+            path: "$users",
+            preserveNullAndEmptyArrays: true
+          }
+        },
+        {
+          $lookup: {
+            from: "RouletteUserHistory",
+            let: { userId: { $toString: "$users._id" } },
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ["$userId", "$$userId"] },
+                  ...query
+                }
+              },
+              {
+                $group: {
+                  _id: null,
+                  totalPlay: { $sum: "$play" },
+                  totalWon: { $sum: "$won" }
+                }
+              },
+              {
+                $addFields: {
+                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] },
+                  margin: { $multiply: ["$totalPlay", 0.025] }
+                }
+              }
+            ],
+            as: "historyData"
+          }
+        },
+        {
+          $unwind: {
+            path: "$historyData",
+            preserveNullAndEmptyArrays: true
+          }
+        },
+        {
+          $group: {
+            _id: "$_id",
+            agentName: { $first: "$name" },
+            totalPlayPoints: { $sum: "$historyData.totalPlay" },
+            totalWonPoints: { $sum: "$historyData.totalWon" },
+            totalEndPoints: { $sum: "$historyData.endPoints" },
+            totalMargin: { $sum: "$historyData.margin" }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            totalPlayPoints: { $sum: "$totalPlayPoints" },
+            totalWonPoints: { $sum: "$totalWonPoints" },
+            totalEndPoints: { $sum: "$totalEndPoints" },
+            totalMargin: { $sum: "$totalMargin" },
+            agentData: { $push: "$$ROOT" }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalPlayPoints: 1,
+            totalWonPoints: 1,
+            totalEndPoints: 1,
+            totalMargin: 1,
+            agentData: 1
+          }
+        }
+      ];
+
+      result = await Agent.aggregate(pipeline)
+
+      // result = await Shop.aggregate(pipeline);
+    }
+    else {
+      const userPipeline = [
+        {
+          $match: {
+            agentId: new mongoose.Types.ObjectId(subAgentId), // Ensure subAgentId is an ObjectId
+            ...(req.query.username ? { name: req.query.username } : {}), // Filter by username if provided
+          },
+        },
+        {
+          $lookup: {
+            from: "RouletteUserHistory", // Collection name of RouletteUserHistory
+            let: { userId: { $toString: "$_id" } }, // Convert `_id` to string
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ["$userId", "$$userId"], // Match userId from history
+                  },
+                  ...query, // Apply date filter
+                },
+              },
+              {
+                $group: {
+                  _id: null,
+                  totalPlay: { $sum: "$play" }, // Sum of play points
+                  totalWon: { $sum: "$won" }, // Sum of won points
+                  lastPlayedDate: { $max: "$createdAt" }, // Get the latest played date
+                  history: { $push: "$$ROOT" }, // Preserve all history records
+                },
+              },
+              {
+                $addFields: {
+                  endPoints: { $subtract: ["$totalPlay", "$totalWon"] }, // End points calculation
+                  margin: { $multiply: ["$totalPlay", 0.025] }, // Margin calculation
+                  filteredHistory: {
+                    $filter: {
+                      input: "$history", // Input is the `history` array
+                      as: "item", // Variable for each item in the array
+                      cond: { $ne: ["$$item.play", 0] }, // Exclude records where play is 0
+                    },
+                  },
+                },
+              },
+            ],
+            as: "historyData", // Output field name for history data
+          },
+        },
+        {
+          $unwind: {
+            path: "$historyData",
+            preserveNullAndEmptyArrays: true, // Keep users with no history
+          },
+        },
+        {
+          $project: {
+            name: 1, // Include username
+            totalPlayPoints: "$historyData.totalPlay", // Total play points
+            totalWonPoints: "$historyData.totalWon", // Total won points
+            endPoints: "$historyData.endPoints", // End points
+            margin: "$historyData.margin", // Margin
+            lastPlayedDate: "$historyData.lastPlayedDate", // Last played date
+          },
+        },
+      ];
+      result = await GameUser.aggregate(userPipeline);
+    }
+
+    return res.json({ turnOverData: result });
+  } catch (error) {
+    console.log(error, "errorerror");
+    logger.error("admin/dahboard.js post bet-list error => ", error);
+    res.status(config.INTERNAL_SERVER_ERROR).json(error);
+  }
+});
+
+/**
+ * Calculate margin as per the date range for current week from monday to sunday by checking current date 
+ * @api {get} /admin/netmargin
+ * @apiGroup  Admin
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 5xx) {String} error internal server.
+ */
+
+
+router.get("/netmargin", async (req, res) => {
+  try {
+    const startDate = req.query.startDate ? new Date(req.query.startDate) : null;
+    const endDate = req.query.endDate ? new Date(req.query.endDate) : null;
+    let weekStartDate, weekEndDate;
+
+    if (startDate && endDate) {
+      weekStartDate = startDate;
+      weekEndDate = endDate;
+    } else {
+      const currentDate = new Date();
+      const currentDay = currentDate.getDay();
+      weekStartDate = new Date(currentDate);
+      weekStartDate.setDate(currentDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1));
+      weekStartDate.setHours(0, 0, 0, 0);
+      weekEndDate = new Date(currentDate);
+      weekEndDate.setDate(weekStartDate.getDate() + 6);
+      weekEndDate.setHours(23, 59, 59, 999);
+    }
+
+    console.log(weekStartDate, weekEndDate, "weekStartDate, weekEndDate");
+    const query = {};
+
+    if (weekStartDate && weekEndDate) {
+      query.createdAt = { $gte: weekStartDate, $lte: weekEndDate }; // Date range filter
+    }
+
+
+    let result;
+
+    const pipeline = [
+      {
+        $match: {}
+      },
+      {
+        $lookup: {
+          from: "shop",
+          localField: "_id",
+          foreignField: "agentId",
+          as: "subAgents"
+        }
+      },
+      {
+        $unwind: {
+          path: "$subAgents",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "subAgents._id",
+          foreignField: "agentId",
+          as: "users"
+        }
+      },
+      {
+        $unwind: {
+          path: "$users",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: "RouletteUserHistory",
+          let: { userId: { $toString: "$users._id" } },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$userId", "$$userId"] },
+                ...query
+              }
+            },
+            {
+              $group: {
+                _id: null,
+                totalPlay: { $sum: "$play" },
+                totalWon: { $sum: "$won" }
+              }
+            },
+            {
+              $addFields: {
+                endPoints: { $subtract: ["$totalPlay", "$totalWon"] },
+                margin: { $multiply: ["$totalPlay", 0.025] }
+              }
+            }
+          ],
+          as: "historyData"
+        }
+      },
+      {
+        $unwind: {
+          path: "$historyData",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $group: {
+          _id: "$_id",
+          agentName: { $first: "$name" },
+          totalPlayPoints: { $sum: "$historyData.totalPlay" },
+          totalWonPoints: { $sum: "$historyData.totalWon" },
+          totalEndPoints: { $sum: "$historyData.endPoints" },
+          totalMargin: { $sum: "$historyData.margin" }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          totalPlayPoints: { $sum: "$totalPlayPoints" },
+          totalWonPoints: { $sum: "$totalWonPoints" },
+          totalEndPoints: { $sum: "$totalEndPoints" },
+          totalMargin: { $sum: "$totalMargin" },
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          totalPlayPoints: 1,
+          totalWonPoints: 1,
+          totalEndPoints: 1,
+          totalMargin: 1,
+        }
+      }
+    ];
+
+    result = await Agent.aggregate(pipeline)
+
+    return res.json({ turnOverData: result, weekStartDate, weekEndDate });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+});
+
+
 
 /**
  * @api {get} /agent/dashboradData
@@ -709,6 +1252,127 @@ router.get("/dashboradData", async (req, res) => {
         suspendedUsers: suspendedUsers[0],
       });
     }
+    else if (req.query.adminId) {
+      const adminId = req.query.adminId;
+      const adminObjectId = new mongoose.Types.ObjectId(adminId);
+
+      // Fetch all agents (only _id)
+      const agents = await Agent.find({}, { _id: 1 });
+      const agentIds = agents.map((agent) => agent._id);
+
+      // Fetch shops using agent IDs and adminId
+      const shops = await Shop.find({ agentId: { $in: [...agentIds, adminObjectId] } }, { _id: 1 });
+
+
+      const subAgentIds = shops.map((doc) => doc._id);
+
+      // Fetch all users under these agents
+      const allData = await GameUser.aggregate([
+        { $match: { agentId: { $in: [...subAgentIds, ...agentIds, adminObjectId] }, status: true } },
+        { $project: { _id: 1, name: 1, chips: 1 } },
+      ]);
+
+      // console.log("Shops:", subAgentIds.length, "Agents:", agentIds.length, "admin:", adminObjectId);
+      // Suspended users aggregation
+      const suspendedUsers = await GameUser.aggregate([
+        { $match: { agentId: { $in: [...subAgentIds, ...agentIds, adminObjectId] }, status: false } },
+        {
+          $group: {
+            _id: null,
+            suspendedUsersCount: { $sum: 1 },
+            suspendedPlayerDetails: { $push: { _id: "$_id", name: "$name", chips: "$chips" } },
+          },
+        },
+        { $project: { _id: 0, suspendedUsersCount: 1, suspendedPlayerDetails: 1 } },
+      ]);
+
+      // Extract user IDs
+      const userIdArray = allData.map((user) => user._id);
+
+      // Playing tables aggregation
+      const results = await PlayingTablesModel.aggregate([
+        {
+          $project: {
+            activePlayers: {
+              $filter: {
+                input: "$playerInfo",
+                as: "player",
+                cond: { $in: ["$$player.playerId", userIdArray] },
+              },
+            },
+            totalPlayers: { $size: "$playerInfo" },
+          },
+        },
+        { $addFields: { activeCount: { $size: "$activePlayers" } } },
+        {
+          $lookup: {
+            from: "users",
+            localField: "activePlayers.playerId",
+            foreignField: "_id",
+            as: "Players",
+          }
+        },
+        {
+          $addFields: {
+            activePlayers: {
+              $map: {
+                input: "$Players",
+                as: "player",
+                in: {
+                  playerId: "$$player._id",
+                  name: "$$player.name",
+                  chip: "$$player.chips", // Ensure this field exists in the users collection
+                },
+              },
+            },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalActiveCount: { $sum: "$activeCount" },
+            activePlayersDetails: { $push: "$activePlayers" },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            totalActiveCount: 1,
+            activePlayersDetails: {
+              $reduce: {
+                input: "$activePlayersDetails",
+                initialValue: [],
+                in: { $concatArrays: ["$$value", "$$this"] },
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            totalActiveCount: 1,
+            activePlayersDetails: {
+              $map: {
+                input: "$activePlayersDetails",
+                as: "player",
+                in: { playerId: "$$player.playerId", name: "$$player.name", chip: "$$player.chip" }, // Corrected from "coins" to "chip"
+              },
+            },
+          },
+        },
+      ]);
+      const result = results.length ? results[0] : { totalActiveCount: 0, activePlayersDetails: [] };
+      const activePlayerIds = new Set(result.activePlayersDetails.map((player) => player.playerId));
+
+      return res.json({
+        activeUsers: result,
+        inactiveUsers: {
+          totalInactiveCount: userIdArray.length - result.totalActiveCount,
+          inActivePlayersDetails: allData.filter((player) => !activePlayerIds.has(player._id)),
+        },
+        suspendedUsers: suspendedUsers.length ? suspendedUsers[0] : { suspendedUsersCount: 0, suspendedPlayerDetails: [] },
+      });
+    }
+
     const pipeline = [
       {
         $match: {
@@ -851,7 +1515,6 @@ router.put("/changeUserStatus", async (req, res) => {
   try {
     console.log("requet => ", req.query.agentId);
     const user = await GameUser.findOne({
-      agentId: req.query.agentId,
       _id: req.query.userId, // Assuming `userId` is passed as a query parameter
     });
     // Check if the user exists
@@ -897,6 +1560,49 @@ router.get("/agentBalance", async (req, res) => {
     console.log(error, "errorerror");
 
     logger.error("admin/dahboard.js post bet-list error => ", error);
+    res.status(config.INTERNAL_SERVER_ERROR).json(error);
+  }
+});
+
+/**
+ * @api {post} /admin/agent/check-username
+ * @apiName  add-bet-list
+ * @apiGroup  Admin
+ * @apiHeader {String}  x-access-token Admin's unique access-key
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 4xx) {String} message Validation or error message.
+ */
+router.post("/check-username", async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    // Validate input
+    if (!name) {
+      return res
+        .status(400)
+        .json({ success: false, message: "name is required." });
+    }
+
+    // Check if the username exists
+    const user = await AgentUser.findOne({ name });
+
+    if (user) {
+      return res.status(200).json({
+        success: true,
+        exists: true,
+        message: "name already exists.",
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        exists: false,
+        message: "name is available.",
+      });
+    }
+  } catch (error) {
+    logger.error("admin/dahboard.js post bet-list error => ", error);
+    //res.send("error");
+
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
   }
 });

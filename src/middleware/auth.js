@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
   try {
     // throw "error"
     const token = req.headers.token || req.body.token || req.query.token;
-    //logger.info('token => ', token);
+    // logger.info('token => ', token);
     //logger.info('req.headers => ', req.headers);
 
     if (token) {

@@ -27,18 +27,49 @@ router.get("/ShopList", async (req, res) => {
     //agentId
     let shopList = [];
     if (req.query.agentId == "Admin") {
-      shopList = await Shop.find(
-        {},
+      // shopList = await Shop.find(
+      //   {},
+      //   {
+      //     name: 1,
+      //     location: 1,
+      //     chips: 1,
+      //     createdAt: 1,
+      //     lastLoginDate: 1,
+      //     status: 1,
+      //     password: 1,
+      //   }
+      // );
+      shopList = await Shop.aggregate([
         {
-          name: 1,
-          location: 1,
-          chips: 1,
-          createdAt: 1,
-          lastLoginDate: 1,
-          status: 1,
-          password: 1,
-        }
-      );
+          $lookup: {
+            from: "agent",
+            localField: "agentId",
+            foreignField: "_id",
+            as: "agent_details",
+          },
+        },
+        {
+          $unwind: {
+            path: "$agent_details",
+            preserveNullAndEmptyArrays: true
+          }
+        }, // Ensures we get agent details even if null
+
+        {
+          $project: {
+            name: 1,
+            location: 1,
+            chips: 1,
+            createdAt: 1,
+            lastLoginDate: 1,
+            status: 1,
+            "agentDetails.id": "$agent_details._id",
+            "agentDetails.name": "$agent_details.name",
+            "agentDetails.email": "$agent_details.email",
+          },
+        },
+      ]);
+
     } else {
       shopList = await Shop.find(
         { agentId: MongoID(req.query.agentId) },
@@ -138,8 +169,8 @@ router.put("/ShopUpdate", async (req, res) => {
       response,
       { new: true }
     );
-    console.log(userInfo,"userInfouserInfouserInfo");
-    
+    console.log(userInfo, "userInfouserInfouserInfo");
+
     if (userInfo.status === "inactive") {
       const updateStatus = await GameUser.updateMany(
         { agentId: new mongoose.Types.ObjectId(userInfo._id) }, // Filter: Find users with the specific agentId
@@ -474,6 +505,54 @@ router.get("/agentBalance", async (req, res) => {
     res.status(config.INTERNAL_SERVER_ERROR).json(error);
   }
 });
+
+/**
+ * @api {post} /admin/shop/check-username
+ * @apiName  add-bet-list
+ * @apiGroup  Admin
+ * @apiHeader {String}  x-access-token Admin's unique access-key
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 4xx) {String} message Validation or error message.
+ */
+router.post("/check-username", async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    // Validate input
+    if (!name) {
+      return res
+        .status(400)
+        .json({ success: false, message: "name is required." });
+    }
+
+    // Check if the username exists
+    const user = await Shop.findOne({ name });
+
+    if (user) {
+      return res
+        .status(200)
+        .json({
+          success: true,
+          exists: true,
+          message: "name already exists.",
+        });
+    } else {
+      return res
+        .status(200)
+        .json({
+          success: true,
+          exists: false,
+          message: "name is available.",
+        });
+    }
+  } catch (error) {
+    logger.error("admin/dahboard.js post bet-list error => ", error);
+    //res.send("error");
+
+    res.status(config.INTERNAL_SERVER_ERROR).json(error);
+  }
+});
+
 
 async function createPhoneNumber() {
   const countryCode = "91";
