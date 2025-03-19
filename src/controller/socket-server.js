@@ -58,7 +58,7 @@ myIo.init = function (server) {
                 const payload = JSON.parse(decryptObj);
                 console.log("payload ::::::::::::::::", payload)
                 console.log("payload ::::::::::::::::", payload.eventName)
-
+                console.log("VIP ......", payload.eventName)
                 switch (payload.eventName) {
 
                     case CONST.PING: {
