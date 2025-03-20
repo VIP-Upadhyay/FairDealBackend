@@ -316,9 +316,11 @@ module.exports.winnerSpinner = async (tabInfo) => {
         const tb = await RouletteTables.findOne({
             _id: MongoID(tbid.toString()),
         }, {})
-        console.log("winnerSpinner tb ", tb)
+        // console.log("winnerSpinner tb ", tb)
 
-        console.log("winnerSpinner tb.itemObject ", tb.itemObject)
+        // console.log("winnerSpinner tb.itemObject ", tb.itemObject)
+
+        console.log("the table win number is - "+tb.itemObject)
 
 
         if (typeof tb.itemObject == "undefined" || (typeof tb != "undefined" && tb.playerInfo.length == 0)) {
