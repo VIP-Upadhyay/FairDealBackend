@@ -618,6 +618,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
+
                 // await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
                 //     $set: {
                 //     userId: tbInfo.playerInfo[x]._id.toString(),
@@ -635,7 +636,9 @@ module.exports.winnerSpinner = async (tabInfo) => {
                
                 // console.log("update uuid ", tbInfo.playerInfo[x].uuid);
                 // Fetch the last inserted record for the given userId
-                
+
+
+                //this is an temp soln
                 const lastUserHistory = await RouletteUserHistory.findOne(
                     { userId: tbInfo.playerInfo[x]._id.toString() }, 
                     {}, 
