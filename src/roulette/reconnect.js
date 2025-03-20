@@ -136,7 +136,7 @@ reconnect = async (requestData, client) => {
                         ...response,
                         timer: (roundTime-(diff/1000)),
                     };
-
+                    console.log("sending the time diff with response:- "+responseRST);
                     sendDirectEvent(client.id.toString(), CONST.RECONNECTROULETTE, responseRST);
                     
                 } else if (tabInfo.gameState === "WinnerDecalre") {
