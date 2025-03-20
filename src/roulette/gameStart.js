@@ -642,7 +642,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     betObjectData: betObjectData,
                     createdAt:new Date()
                 };
-                console.log("askingData ", askingData);
+                console.log("update uuid ", tbInfo.playerInfo[x].uuid);
             }
         }
 

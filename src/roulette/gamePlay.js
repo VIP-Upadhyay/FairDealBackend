@@ -70,10 +70,10 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             return false
         }
 
-        console.log("typeof requestData.betData.betData ", requestData.betData)
+        // console.log("typeof requestData.betData.betData ", requestData.betData)
         //requestData.betData = (typeof requestData.betData == "string") ? JSON.parse(requestData.betData) : requestData.betData
 
-        console.log("requestData.betData. ", requestData.betData)
+        // console.log("requestData.betData. ", requestData.betData)
 
         client.action = true;
 
@@ -185,7 +185,8 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             betObjectData: requestData.betData,
             createdAt:new Date()
         };
-        console.log("RouletteUserHistory ", insertobj)
+        // console.log("RouletteUserHistory ", insertobj)
+        console.log("inserted uuid ", tb.playerInfo[Number(client.seatIndex)].uuid);
         await RouletteUserHistory.create(insertobj);
 
 
@@ -430,7 +431,7 @@ module.exports.REMOVEBETROULETTE = async (requestData, client) => {
 
         requestData.betaction.number = JSON.parse(requestData.betaction.number)
 
-        console.log("requestData.betaction. ", requestData.betaction)
+        // console.log("requestData.betaction. ", requestData.betaction)
 
         client.REMOVEBETROULETTE = true;
 
@@ -687,7 +688,7 @@ module.exports.DoubleBet = async (requestData, client) => {
             return accumulator.bet + currentValue.bet
         }, 0);
 
-        console.log("chalvalue ", chalvalue)
+        // console.log("chalvalue ", chalvalue)
 
         let totalWallet = Number(UserInfo.chips) //+ Number(UserInfo.winningChips)
 
@@ -963,8 +964,8 @@ module.exports.BETACTIONCALL = async (pastbetObject, client) => {
             return false;
 
         let userBet = pastbetObject.splice(0, 1)
-        console.log("userBet ", userBet)
-        console.log("pastbetObject ", pastbetObject)
+        // console.log("userBet ", userBet)
+        // console.log("pastbetObject ", pastbetObject)
 
         this.actionSpin({
             tableId: client.tbid,
