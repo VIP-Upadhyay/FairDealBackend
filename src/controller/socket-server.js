@@ -50,8 +50,8 @@ myIo.init = function (server) {
             sendEvent(socket, CONST.DONE, {});
 
             socket.on('req', async (data) => {
-                console.log("data ", data)
-                console.log("data.payload ", data.payload)
+                // console.log("data ", data)
+                // console.log("data.payload ", data.payload)
 
                 const decryptObj = commonHelper.decrypt(data.payload);
 
@@ -286,6 +286,7 @@ myIo.init = function (server) {
                     }
 
                     case CONST.ACTIONROULETTE: {
+                        console.log("action spin data :- ",payload.data);
                         await gamePlayActionsRoulette.actionSpin(payload.data, socket);
                         break;
                     }
@@ -317,12 +318,14 @@ myIo.init = function (server) {
                     }
 
                     case CONST.PASTBET: {
+                        console.log("past bet data :- ",payload.data);
                         await gamePlayActionsRoulette.PASTBET(payload.data, socket);
                         break;
                     }
 
 
                     case CONST.PASTBETSAVE: {
+                        console.log("past bet save data :- ",payload.data);
                         await gamePlayActionsRoulette.PASTBETSAVE(payload.data, socket);
                         break;
                     }
