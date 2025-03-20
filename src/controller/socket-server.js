@@ -56,9 +56,9 @@ myIo.init = function (server) {
                 const decryptObj = commonHelper.decrypt(data.payload);
 
                 const payload = JSON.parse(decryptObj);
-                console.log("payload ::::::::::::::::", payload)
-                console.log("payload ::::::::::::::::", payload.eventName)
-                console.log("VIP ......", payload.eventName)
+                // console.log("payload ::::::::::::::::", payload)
+                // console.log("payload ::::::::::::::::", payload.eventName)
+                console.log("EVENTNAME =", payload.eventName)
                 switch (payload.eventName) {
 
                     case CONST.PING: {
@@ -243,6 +243,7 @@ myIo.init = function (server) {
                     }
 
                     case CONST.ACTIONSPINNNER: {
+                        console.log("DATA IS "+payload.data);
                         await gamePlayActionsSpinner.actionSpin(payload.data, socket);
                         break;
                     }
