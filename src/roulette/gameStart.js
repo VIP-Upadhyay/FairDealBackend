@@ -647,11 +647,17 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 // Check if a record exists
                 if (lastUserHistory) {
-                    await RouletteUserHistory.updateOne(
-                        { _id: lastUserHistory._id },  // Updating only the latest document
-                        { $set: { ballposition: itemIndex } }  // Only updating ballposition
-                    );
-                    console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
+                    if(lastUserHistory.ballposition==-1){
+                        await RouletteUserHistory.updateOne(
+                            { _id: lastUserHistory._id },  // Updating only the latest document
+                            { $set: { ballposition: itemIndex } }  // Only updating ballposition
+                        );
+                        console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
+                    }else{
+                        console.log("No Bet Placed")
+                    }
+                    
+                    
                 } else {
                     console.log("No previous user history found for userId:", tbInfo.playerInfo[x]._id.toString());
                 }
