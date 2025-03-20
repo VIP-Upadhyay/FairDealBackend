@@ -278,7 +278,7 @@ myIo.init = function (server) {
 
                     // ROULETTE GAME Event 
                     case CONST.ROULETTE_JOIN_TABLE: {
-                        console.log("uid ",payload.data.playerId);
+                        console.log("JOIN TABLE");
                         socket.uid = payload.data.playerId;
                         socket.sck = socket.id;
                         logger.info("Table Name =======> ", payload.data.whichTable);
@@ -287,7 +287,7 @@ myIo.init = function (server) {
                     }
 
                     case CONST.ACTIONROULETTE: {
-                        console.log("action spin data :- ",payload.data);
+                        console.log("action spin ");
                         await gamePlayActionsRoulette.actionSpin(payload.data, socket);
                         break;
                     }
@@ -319,19 +319,20 @@ myIo.init = function (server) {
                     }
 
                     case CONST.PASTBET: {
-                        console.log("past bet data :- ",payload.data);
+                        console.log("past bet data ");
                         await gamePlayActionsRoulette.PASTBET(payload.data, socket);
                         break;
                     }
 
 
                     case CONST.PASTBETSAVE: {
-                        console.log("past bet save data :- ",payload.data);
+                        console.log("past bet save data");
                         await gamePlayActionsRoulette.PASTBETSAVE(payload.data, socket);
                         break;
                     }
 
                     case CONST.LEAVETABLEROULETTE: {
+                        console.log("leaving table");
                         await gamePlayActionsRoulette.leaveTable(payload.data, socket);
                         break;
                     }
