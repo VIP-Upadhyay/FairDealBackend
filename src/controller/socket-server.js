@@ -278,6 +278,7 @@ myIo.init = function (server) {
 
                     // ROULETTE GAME Event 
                     case CONST.ROULETTE_JOIN_TABLE: {
+                        console.log("uid ",payload.data.playerId);
                         socket.uid = payload.data.playerId;
                         socket.sck = socket.id;
                         logger.info("Table Name =======> ", payload.data.whichTable);

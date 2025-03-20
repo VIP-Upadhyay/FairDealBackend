@@ -73,7 +73,7 @@ module.exports.findTable = async (client, requestData) => {
 
     let tableInfo = await this.getBetTable(requestData);
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
-    console.log("tableInfo ", tableInfo)
+    // console.log("tableInfo ", tableInfo)
     await this.findEmptySeatAndUserSeat(tableInfo, client, requestData);
 }
 
@@ -121,7 +121,7 @@ module.exports.createTable = async (requestData) => {
             ],
             whichTable: requestData.whichTable != undefined ? requestData.whichTable : "blueTable"
         };
-        console.log("requestData ", requestData)
+        // console.log("requestData ", requestData)
         logger.info("createTable insertobj : ", insertobj);
 
         let insertInfo = await RouletteTables.create(insertobj);
@@ -149,7 +149,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         let user_wh = {
             _id: client.uid
         }
-        console.log("user_wh ", user_wh)
+        // console.log("user_wh ", user_wh)
         let userInfo = await GameUser.findOne(user_wh, {}).lean();
         logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
 
@@ -269,7 +269,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             tableType: tableInfo.whichTable,
             history: tableInfo.history
         });
-        console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
+        // console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
         if (userInfo.Iscom == undefined || userInfo.Iscom == 0)
             client.join(tableInfo._id.toString());
 
