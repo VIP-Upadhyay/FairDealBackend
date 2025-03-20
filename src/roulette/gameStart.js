@@ -629,6 +629,20 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     betObjectData: betObjectData,
                     createdAt:new Date()
                 }}, {upsert:true});
+
+                const askingData = {
+                    userId: tbInfo.playerInfo[x]._id.toString(),
+                    username: tbInfo.playerInfo[x].name,
+                    ballposition: itemIndex,
+                    beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                    play: tbInfo.playerInfo[x].totalbet,
+                    won: TotalWinAmount,
+                    afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
+                    uuid: tbInfo.playerInfo[x].uuid,
+                    betObjectData: betObjectData,
+                    createdAt:new Date()
+                };
+                console.log("askingData ", askingData);
             }
         }
 
