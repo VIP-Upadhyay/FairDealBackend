@@ -552,6 +552,8 @@ module.exports.winnerSpinner = async (tabInfo) => {
                         }
 
 
+                    }else{
+                        console.log("betObjectData[i] ", betObjectData[i]);
                     }
 
 
