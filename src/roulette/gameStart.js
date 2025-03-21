@@ -309,7 +309,7 @@ module.exports.getRandomInt = (min, max) => {
 module.exports.winnerSpinner = async (tabInfo) => {
 
     try {
-        console.log("winner Table info ",tabInfo);
+        // console.log("winner Table info ",tabInfo);
         logger.info("winnerSorat winner ::  -->", tabInfo);
         let tbid = tabInfo._id.toString()
         logger.info("winnerSorat tbid ::", tbid);
@@ -317,7 +317,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
         const tb = await RouletteTables.findOne({
             _id: MongoID(tbid.toString()),
         }, {})
-        console.log("winnerSpinner tb ", tb)
+        // console.log("winnerSpinner tb ", tb)
 
         // console.log("winnerSpinner tb.itemObject ", tb.itemObject)
 
@@ -374,7 +374,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        console.log("betObjectData[i] ", betObjectData[i])
+                        // console.log("betObjectData[i] ", betObjectData[i])
 
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
