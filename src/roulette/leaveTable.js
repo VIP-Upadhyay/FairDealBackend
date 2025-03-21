@@ -28,7 +28,7 @@ module.exports.leaveTable = async (requestData, client) => {
     }
     let userInfo = await GameUser.findOne(userWh, {});
     logger.info("leaveTable userInfo : ", userInfo)
-    console.log("leaveTable userInfo : ", userInfo)
+    // console.log("leaveTable userInfo : ", userInfo)
     let wh = {
         _id: MongoID(client.tbid.toString()),
         "playerInfo._id": MongoID(client.uid.toString())
@@ -76,7 +76,7 @@ module.exports.leaveTable = async (requestData, client) => {
 
     let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
-    console.log("leaveTable tbInfo : ", tbInfo);
+    // console.log("leaveTable tbInfo : ", tbInfo);
     if (requestData.reason == undefined || requestData.reason != 'autoLeave') {
         commandAcions.sendDirectEvent(client.sck.toString(), CONST.LEAVETABLEROULETTE, response);
 

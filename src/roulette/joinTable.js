@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const MongoID = mongoose.Types.ObjectId;
 const GameUser = mongoose.model('users');
 const RouletteTables = mongoose.model('RouletteTables');
+const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 const { sendEvent, sendDirectEvent, AddTime, setDelay, clearJob } = require('../helper/socketFunctions');
 
 const _ = require("underscore")
@@ -13,8 +14,10 @@ const botLogic = require("./botLogic");
 const leaveTableActions = require('./leaveTable');
 const { v4: uuidv4 } = require('uuid');
 
+let thisUserAlreadyInTable = false;
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
+        
         console.log("Table Join ", requestData);
         if (typeof client.uid == "undefined") {
             sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please restart game!!");
@@ -47,6 +50,14 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
             console.log(" is tab")
+            if (checkUserIsExsist(requestData,table)) {
+                thisUserAlreadyInTable = true;
+                console.log("User already exists........................");
+            } else {
+                thisUserAlreadyInTable = false;
+                console.log("New user found.............................");
+            }
+            
             await leaveTableActions.leaveTable(
                 {
                     reason: 'autoLeave',
@@ -148,11 +159,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         
         // let tbinfo = await RouletteTables.findOne(whfind);
         
-        // if (tbinfo) {
-        //     console.log("User already exists........................");
-        // } else {
-        //     console.log("New user found.............................");
-        // }
+       
 
         
 
@@ -181,6 +188,20 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // let tbInfo = await RouletteTables.findOne(wh,{}).lean();
         // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
         let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
+        let uuid;
+        console.log("is this user already in table ",thisUserAlreadyInTable)
+        if(thisUserAlreadyInTable){
+            const lastUserHistory = await RouletteUserHistory.findOne(
+                    { userId: requestData.playerId }, 
+                    {}, 
+                    { sort: { createdAt: -1 } } // Get the latest record
+            );
+            if(lastUserHistory){
+                if(lastUserHistory.ballposition==-1){
+                    uuid = lastUserHistory.uuid;
+                }
+            }
+        }
         let playerDetails = {
             seatIndex: seatIndex,
             _id: userInfo._id,
@@ -214,7 +235,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             playerSocketId: client.id,
             playerLostChips: 0,
             Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-            uuid: uuidv4(),
+            uuid: thisUserAlreadyInTable?0: uuidv4(),
         }
 
         // [
@@ -334,4 +355,17 @@ module.exports.findEmptySeat = (playerInfo) => {
         }
     }
     return '-1';
+}
+
+const checkUserIsExsist=(reqData,tableInf)=>{
+    if(tableInf.activePlayer>0){
+        for(var i=0;i<tableInf.playerInfo.length;i++){
+            console.log("playerId from req ",reqData.playerId);
+            console.log("playerId from table ",tableInf.playerInfo[i]._id);
+            if(tableInf.playerInfo[i]._id==reqData.playerId){
+                return true;
+            }
+        }
+        return false;
+    }
 }
