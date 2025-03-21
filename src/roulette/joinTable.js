@@ -141,6 +141,21 @@ module.exports.createTable = async (requestData) => {
 
 module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => {
     try {
+
+        let whfind = {
+            "playerInfo.playerId": MongoID("67d59fcf7e048029ed278044")
+        }
+        
+        let tbinfo = await RouletteTables.findOne(whfind);
+        
+        if (tbinfo) {
+            console.log("User already exists");
+        } else {
+            console.log("New user found");
+        }
+
+
+
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
         console.log("Finding empty seat for the user... ", seatIndex);
@@ -157,6 +172,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // console.log("user_wh ", user_wh)
         let userInfo = await GameUser.findOne(user_wh, {}).lean();
         logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
+
+        
 
         // let wh = {
         //     _id : table._id.toString()
