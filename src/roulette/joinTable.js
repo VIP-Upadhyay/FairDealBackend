@@ -141,20 +141,21 @@ module.exports.createTable = async (requestData) => {
 
 module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => {
     try {
-
-        let whfind = {
-            "playerInfo.playerId": MongoID("67d59fcf7e048029ed278044")
-        }
+        // console.log(requestData.playerId);
+        // let whfind = {
+        //     "playerInfo.playerId": MongoID(requestData.playerId)
+        // }
         
-        let tbinfo = await RouletteTables.findOne(whfind);
+        // let tbinfo = await RouletteTables.findOne(whfind);
         
-        if (tbinfo) {
-            console.log("User already exists");
+        if (checkUserIsExsist(requestData,table)) {
+            console.log("User already exists........................");
         } else {
-            console.log("New user found");
+            console.log("New user found.............................");
         }
+        
 
-
+        
 
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
@@ -334,4 +335,17 @@ module.exports.findEmptySeat = (playerInfo) => {
         }
     }
     return '-1';
+}
+
+const checkUserIsExsist=(reqData,tableInf)=>{
+    if(tableInf.activePlayer>0){
+        for(var i=0;i<tableInf.playerInfo.length;i++){
+            console.log("playerId from req ",reqData.playerId);
+            console.log("playerId from table ",tableInf.playerInfo[i]._id);
+            if(tableInf.playerInfo[i]._id==reqData.playerId){
+                return true;
+            }
+        }
+        return false;
+    }
 }
