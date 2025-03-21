@@ -189,6 +189,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
         let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
         let uuid;
+        let isAbleToUpdate=false;
         console.log("is this user already in table ",thisUserAlreadyInTable)
         if(thisUserAlreadyInTable){
             const lastUserHistory = await RouletteUserHistory.findOne(
@@ -199,6 +200,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             if(lastUserHistory){
                 if(lastUserHistory.ballposition==-1){
                     uuid = lastUserHistory.uuid;
+                    isAbleToUpdate=true;
+                    console.log("Able to update uuid ",uuid);
                 }
             }
         }
@@ -235,7 +238,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             playerSocketId: client.id,
             playerLostChips: 0,
             Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-            uuid: thisUserAlreadyInTable?uuid: uuidv4(),
+            uuid: isAbleToUpdate?uuid: uuidv4(),
         }
 
         // [
