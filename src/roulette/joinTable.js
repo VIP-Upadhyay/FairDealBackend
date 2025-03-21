@@ -15,6 +15,7 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
+        console.log("Table Join ", requestData);
         if (typeof client.uid == "undefined") {
             sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please restart game!!");
             return false;

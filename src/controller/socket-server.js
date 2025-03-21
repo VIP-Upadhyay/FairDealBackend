@@ -293,6 +293,7 @@ myIo.init = function (server) {
                     }
 
                     case CONST.GETPLAYERDATA: {
+                        console.log("Get the data");
                         await gamePlayActionsRoulette.getPlayerData(payload.data, socket);
                         break;
                     }

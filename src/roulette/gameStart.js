@@ -650,7 +650,10 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     if(lastUserHistory.ballposition==-1){
                         await RouletteUserHistory.updateOne(
                             { _id: lastUserHistory._id },  // Updating only the latest document
-                            { $set: { ballposition: itemIndex } }  // Only updating ballposition
+                            { $set: { ballposition: itemIndex,
+                                afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,
+                                won: TotalWinAmount,
+                             } }  // Only updating ballposition
                         );
                         console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
                     }else{

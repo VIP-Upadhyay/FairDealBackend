@@ -1053,6 +1053,7 @@ module.exports.CreateDate = (date) => {
 
 module.exports.getPlayerData = async (requestData, client) => {
     try {
+        console.log("Get the player data ",requestData);
         logger.info("player get  requestData : ", requestData);
         if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined") {
             commandAcions.sendDirectEvent(client.sck, CONST.GETPLAYERDATA, requestData, false, "User session not set, please restart game!");
