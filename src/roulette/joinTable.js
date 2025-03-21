@@ -58,10 +58,12 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
                     sck: tableInfo.playerInfo[0].sck,
                 }
             );
+            console.log("Table found...")
             await this.findTable(client, requestData)
 
             return false;
         } else {
+            console.log("No table found...")
             await this.findTable(client, requestData)
         }
     } catch (error) {
@@ -95,6 +97,7 @@ module.exports.getBetTable = async (requestData) => {
 }
 
 module.exports.createTable = async (requestData) => {
+    console.log("Creating new table.....");
     try {
         let insertobj = {
             gameId: "",
@@ -140,6 +143,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
     try {
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
+        console.log("Finding empty seat for the user... ", seatIndex);
         logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
 
         if (seatIndex == "-1") {
@@ -211,6 +215,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+        console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
             _id: MongoID(table._id.toString()),
