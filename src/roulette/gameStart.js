@@ -619,51 +619,51 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
 
-                // await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
-                //     $set: {
-                //     userId: tbInfo.playerInfo[x]._id.toString(),
-                //     username: tbInfo.playerInfo[x].name,
-                //     ballposition: itemIndex,
-                //     beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
-                //     play: tbInfo.playerInfo[x].totalbet,
-                //     won: TotalWinAmount,
-                //     afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
-                //     uuid: tbInfo.playerInfo[x].uuid,
-                //     betObjectData: betObjectData,
-                //     createdAt:new Date()
-                // }}, {upsert:true});
+                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
+                    $set: {
+                    userId: tbInfo.playerInfo[x]._id.toString(),
+                    username: tbInfo.playerInfo[x].name,
+                    ballposition: itemIndex,
+                    beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                    play: tbInfo.playerInfo[x].totalbet,
+                    won: TotalWinAmount,
+                    afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
+                    uuid: tbInfo.playerInfo[x].uuid,
+                    betObjectData: betObjectData,
+                    createdAt:new Date()
+                }}, {upsert:true});
 
                
-                // console.log("update uuid ", tbInfo.playerInfo[x].uuid);
+                console.log("update uuid ", tbInfo.playerInfo[x].uuid);
                 // Fetch the last inserted record for the given userId
 
 
                 //this is an temp soln
-                const lastUserHistory = await RouletteUserHistory.findOne(
-                    { userId: tbInfo.playerInfo[x]._id.toString() }, 
-                    {}, 
-                    { sort: { createdAt: -1 } } // Get the latest record
-                );
+                // const lastUserHistory = await RouletteUserHistory.findOne(
+                //     { userId: tbInfo.playerInfo[x]._id.toString() }, 
+                //     {}, 
+                //     { sort: { createdAt: -1 } } // Get the latest record
+                // );
 
                 // Check if a record exists
-                if (lastUserHistory) {
-                    if(lastUserHistory.ballposition==-1){
-                        await RouletteUserHistory.updateOne(
-                            { _id: lastUserHistory._id },  // Updating only the latest document
-                            { $set: { ballposition: itemIndex,
-                                afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,
-                                won: TotalWinAmount,
-                             } }  // Only updating ballposition
-                        );
-                        console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
-                    }else{
-                        console.log("No Bet Placed")
-                    }
+                // if (lastUserHistory) {
+                //     if(lastUserHistory.ballposition==-1){
+                //         await RouletteUserHistory.updateOne(
+                //             { _id: lastUserHistory._id },  // Updating only the latest document
+                //             { $set: { ballposition: itemIndex,
+                //                 afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,
+                //                 won: TotalWinAmount,
+                //              } }  // Only updating ballposition
+                //         );
+                //         console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
+                //     }else{
+                //         console.log("No Bet Placed")
+                //     }
                     
                     
-                } else {
-                    console.log("No previous user history found for userId:", tbInfo.playerInfo[x]._id.toString());
-                }
+                // } else {
+                //     console.log("No previous user history found for userId:", tbInfo.playerInfo[x]._id.toString());
+                // }
 
             }
         }
