@@ -49,7 +49,7 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         if (tableInfo != null) {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
-            console.log(" is tab ",tableInfo)
+            // console.log(" is tab ",tableInfo)
             if (checkUserIsExsist(requestData,tableInfo)) {
                 thisUserAlreadyInTable = true;
                 console.log("User already exists........................");
@@ -189,6 +189,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
         let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
         let uuid;
+        let betObjectData;
         let isAbleToUpdate=false;
         console.log("is this user already in table ",thisUserAlreadyInTable)
         if(thisUserAlreadyInTable){
@@ -200,6 +201,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             if(lastUserHistory){
                 if(lastUserHistory.ballposition==-1){
                     uuid = lastUserHistory.uuid;
+                    betObjectData = lastUserHistory.betObjectData;
                     isAbleToUpdate=true;
                     console.log("Able to update uuid ",uuid);
                 }
@@ -228,7 +230,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                 0, 0, 0, 0,
                 0, 0
             ],
-            betObject: [],
+            betObject:isAbleToUpdate?betObjectData: [],
             pastbetObject: [],
             pasttotalwin: 0,
             totalbet: 0,
@@ -256,7 +258,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-        console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+        // console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
             _id: MongoID(table._id.toString()),
