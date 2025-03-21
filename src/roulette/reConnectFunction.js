@@ -11,6 +11,7 @@ const RouletteTables = mongoose.model('RouletteTables');
 
 const userReconnectRoulette = async (payload, socket) => {
   try {
+    console.log("data reconnect... ",payload);
     logger.info('User Reconnect Payload ', payload, '\n<==== New Connected Socket id ===>', socket.id, '\n Table Id =>', socket.tbid, '\n Socket Id', socket.id);
 
     socket.tbid = payload.tableId

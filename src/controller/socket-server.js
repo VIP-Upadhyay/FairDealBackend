@@ -385,6 +385,7 @@ myIo.init = function (server) {
 
 
                     case CONST.RECONNECTROULETTE: {
+                        console.log("Reconnect..");
                         await userReconnectRoulette(payload.data, socket);
                         break;
                     }

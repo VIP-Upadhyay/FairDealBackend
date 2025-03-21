@@ -46,7 +46,7 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         if (tableInfo != null) {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
-
+            console.log(" is tab")
             await leaveTableActions.leaveTable(
                 {
                     reason: 'autoLeave',

@@ -13,6 +13,8 @@ const logger = require("../../logger");
 
 
 module.exports.leaveTable = async (requestData, client) => {
+    console.log("Leave table reqdata ",requestData);
+    console.log("Leave table client ",client);
     var requestData = (requestData != null) ? requestData : {}
     if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined") {
         if(requestData.reason == undefined || requestData.reason != 'autoLeave')
@@ -26,7 +28,7 @@ module.exports.leaveTable = async (requestData, client) => {
     }
     let userInfo = await GameUser.findOne(userWh, {});
     logger.info("leaveTable userInfo : ", userInfo)
-
+    console.log("leaveTable userInfo : ", userInfo)
     let wh = {
         _id: MongoID(client.tbid.toString()),
         "playerInfo._id": MongoID(client.uid.toString())
@@ -44,6 +46,7 @@ module.exports.leaveTable = async (requestData, client) => {
     }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
+    console.log("Line no 49 reason ",reason);
     let playerInfo = tb.playerInfo[client.seatIndex];
     logger.info("leaveTable playerInfo : =>", playerInfo)
 
