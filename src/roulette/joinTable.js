@@ -235,7 +235,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             playerSocketId: client.id,
             playerLostChips: 0,
             Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-            uuid: thisUserAlreadyInTable?0: uuidv4(),
+            uuid: thisUserAlreadyInTable?uuid: uuidv4(),
         }
 
         // [
