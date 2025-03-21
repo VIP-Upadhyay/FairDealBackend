@@ -358,7 +358,7 @@ module.exports.findEmptySeat = (playerInfo) => {
 }
 
 const checkUserIsExsist=(reqData,tableInf)=>{
-    if(tableInf.activePlayer>0){
+    if(tableInf.playerInfo.length>0){
         for(var i=0;i<tableInf.playerInfo.length;i++){
             console.log("playerId from req ",reqData.playerId);
             console.log("playerId from table ",tableInf.playerInfo[i]._id);
