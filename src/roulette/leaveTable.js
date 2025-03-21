@@ -13,8 +13,8 @@ const logger = require("../../logger");
 
 
 module.exports.leaveTable = async (requestData, client) => {
-    console.log("Leave table reqdata ",requestData);
-    console.log("Leave table client ",client);
+    // console.log("Leave table reqdata ",requestData);
+    // console.log("Leave table client ",client);
     var requestData = (requestData != null) ? requestData : {}
     if (typeof client.tbid == "undefined" || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined") {
         if(requestData.reason == undefined || requestData.reason != 'autoLeave')

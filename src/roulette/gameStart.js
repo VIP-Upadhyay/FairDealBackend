@@ -309,7 +309,7 @@ module.exports.getRandomInt = (min, max) => {
 module.exports.winnerSpinner = async (tabInfo) => {
 
     try {
-        // console.log("winner Table info ",tabInfo);
+        console.log("winner Table info ",tabInfo);
         logger.info("winnerSorat winner ::  -->", tabInfo);
         let tbid = tabInfo._id.toString()
         logger.info("winnerSorat tbid ::", tbid);
@@ -374,7 +374,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        // console.log("betObjectData[i] ", betObjectData[i])
+                        console.log("betObjectData[i] ", betObjectData[i])
 
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
@@ -620,7 +620,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
 
-                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
+                let rhis = await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
                     $set: {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     username: tbInfo.playerInfo[x].name,
@@ -636,6 +636,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                
                 console.log("update uuid ", tbInfo.playerInfo[x].uuid);
+                console.log("Updated his ",rhis);
                 // Fetch the last inserted record for the given userId
 
 

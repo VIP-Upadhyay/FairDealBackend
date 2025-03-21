@@ -205,7 +205,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                     // uuid = lastUserHistory.uuid;
                     // betObjectData = lastUserHistory.betObjectData;
                     isAbleToUpdate=true;
-                    // console.log("Able to update uuid ",uuid);
+                    // console.log("Able to update uuid ",lastUserHistory.betObjectData);
                 }
             }
         }
@@ -260,7 +260,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-        // console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+        console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
             _id: MongoID(table._id.toString()),
