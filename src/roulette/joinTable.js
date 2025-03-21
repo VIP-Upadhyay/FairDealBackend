@@ -42,22 +42,22 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         }
         let tableInfo = await RouletteTables.findOne(gwh1, { "playerInfo.$": 1 }).lean();
         logger.info("JoinTable tableInfo : ", gwh, JSON.stringify(tableInfo));
-       
+
         if (tableInfo != null) {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
             console.log(" is tab")
-            await leaveTableActions.leaveTable(
-                {
-                    reason: 'autoLeave',
-                },
-                {
-                    uid: tableInfo.playerInfo[0]._id.toString(),
-                    tbid: tableInfo._id.toString(),
-                    seatIndex: tableInfo.playerInfo[0].seatIndex,
-                    sck: tableInfo.playerInfo[0].sck,
-                }
-            );
+            // await leaveTableActions.leaveTable(
+            //     {
+            //         reason: 'autoLeave',
+            //     },
+            //     {
+            //         uid: tableInfo.playerInfo[0]._id.toString(),
+            //         tbid: tableInfo._id.toString(),
+            //         seatIndex: tableInfo.playerInfo[0].seatIndex,
+            //         sck: tableInfo.playerInfo[0].sck,
+            //     }
+            // );
             console.log("Table found...")
             await this.findTable(client, requestData)
 
@@ -145,173 +145,174 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // let whfind = {
         //     "playerInfo.playerId": MongoID(requestData.playerId)
         // }
-        
+
         // let tbinfo = await RouletteTables.findOne(whfind);
-        
-        if (checkUserIsExsist(requestData,table)) {
+
+        if (checkUserIsExsist(requestData, table)) {
             console.log("User already exists........................");
         } else {
             console.log("New user found.............................");
-        }
-        
+            logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
+            let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
+            console.log("Finding empty seat for the user... ", seatIndex);
+            logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
 
-        
-
-        logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
-        let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
-        console.log("Finding empty seat for the user... ", seatIndex);
-        logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
-
-        if (seatIndex == "-1") {
-            await this.findTable(client)
-            return false;
-        }
-
-        let user_wh = {
-            _id: client.uid
-        }
-        // console.log("user_wh ", user_wh)
-        let userInfo = await GameUser.findOne(user_wh, {}).lean();
-        logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
-
-        
-
-        // let wh = {
-        //     _id : table._id.toString()
-        // };
-        // let tbInfo = await RouletteTables.findOne(wh,{}).lean();
-        // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
-        let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
-        let playerDetails = {
-            seatIndex: seatIndex,
-            _id: userInfo._id,
-            playerId: userInfo._id,
-            username: userInfo.username,
-            name:userInfo.name,
-            profile: userInfo.profileUrl,
-            coins: totalWallet,
-            status: "",
-            playerStatus: "",
-            selectObj: [
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0,
-                0, 0,
-                0, 0, 0,
-                0, 0, 0, 0,
-                0, 0
-            ],
-            betObject: [],
-            pastbetObject: [],
-            pasttotalwin: 0,
-            totalbet: 0,
-            turnMissCounter: 0,
-            turnCount: 0,
-            sck: client.id,
-            playerSocketId: client.id,
-            playerLostChips: 0,
-            Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-            uuid: uuidv4(),
-        }
-
-        // [
-        //     0,1,2,3,4,
-        //     5,6,7,8,9,
-        //     10,11,12,13,14,
-        //     15,16,17,18,19,
-        //     20,21,22,23,24,
-        //     25,26,27,28,29,
-        //     30,31,32,33,34,
-        //     35,36,
-        //     "1st12","2nd12","3rd12",
-        //     "1to18","19to36","even","odd",
-        //     "red","black"
-        // ]
-
-        logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-        console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-
-        let whereCond = {
-            _id: MongoID(table._id.toString()),
-            "playerInfo._id": { $ne: MongoID(userInfo._id) }
-        };
-        whereCond['playerInfo.' + seatIndex + '.seatIndex'] = { $exists: false };
-
-        let setPlayerInfo = {
-            $set: {
-                //gameState: ""
-            },
-            $inc: {
-                activePlayer: 1
+            if (seatIndex == "-1") {
+                await this.findTable(client)
+                return false;
             }
-        };
-        setPlayerInfo["$set"]["playerInfo." + seatIndex] = playerDetails;
 
-        logger.info("findEmptySeatAndUserSeat whereCond : ", whereCond, setPlayerInfo);
+            let user_wh = {
+                _id: client.uid
+            }
+            // console.log("user_wh ", user_wh)
+            let userInfo = await GameUser.findOne(user_wh, {}).lean();
+            logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
 
-        let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
-        logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
 
-        let playerInfo = tableInfo.playerInfo[seatIndex];
 
-        if (!(playerInfo._id.toString() == userInfo._id.toString())) {
-            await this.findTable(client);
-            return false;
+            // let wh = {
+            //     _id : table._id.toString()
+            // };
+            // let tbInfo = await RouletteTables.findOne(wh,{}).lean();
+            // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
+            let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
+            let playerDetails = {
+                seatIndex: seatIndex,
+                _id: userInfo._id,
+                playerId: userInfo._id,
+                username: userInfo.username,
+                name: userInfo.name,
+                profile: userInfo.profileUrl,
+                coins: totalWallet,
+                status: "",
+                playerStatus: "",
+                selectObj: [
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0,
+                    0, 0,
+                    0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0
+                ],
+                betObject: [],
+                pastbetObject: [],
+                pasttotalwin: 0,
+                totalbet: 0,
+                turnMissCounter: 0,
+                turnCount: 0,
+                sck: client.id,
+                playerSocketId: client.id,
+                playerLostChips: 0,
+                Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
+                uuid: uuidv4(),
+            }
+
+            // [
+            //     0,1,2,3,4,
+            //     5,6,7,8,9,
+            //     10,11,12,13,14,
+            //     15,16,17,18,19,
+            //     20,21,22,23,24,
+            //     25,26,27,28,29,
+            //     30,31,32,33,34,
+            //     35,36,
+            //     "1st12","2nd12","3rd12",
+            //     "1to18","19to36","even","odd",
+            //     "red","black"
+            // ]
+
+            logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+            console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+
+            let whereCond = {
+                _id: MongoID(table._id.toString()),
+                "playerInfo._id": { $ne: MongoID(userInfo._id) }
+            };
+            whereCond['playerInfo.' + seatIndex + '.seatIndex'] = { $exists: false };
+
+            let setPlayerInfo = {
+                $set: {
+                    //gameState: ""
+                },
+                $inc: {
+                    activePlayer: 1
+                }
+            };
+            setPlayerInfo["$set"]["playerInfo." + seatIndex] = playerDetails;
+
+            logger.info("findEmptySeatAndUserSeat whereCond : ", whereCond, setPlayerInfo);
+
+            let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
+            logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
+
+            let playerInfo = tableInfo.playerInfo[seatIndex];
+
+            if (!(playerInfo._id.toString() == userInfo._id.toString())) {
+                await this.findTable(client);
+                return false;
+            }
+            client.seatIndex = seatIndex;
+            client.tbid = tableInfo._id;
+
+            logger.info('\n Assign table id and seat index socket event ->', client.seatIndex, client.tbid);
+            let diff = -1;
+
+            if (tableInfo.activePlayer >= 2 && tableInfo.gameState === CONST.SORAT_ROUND_START_TIMER) {
+                let currentDateTime = new Date();
+                let time = currentDateTime.getSeconds();
+                let turnTime = new Date(tableInfo.gameTimer.GST);
+                let Gtime = turnTime.getSeconds();
+
+                diff = Gtime - time;
+                diff += CONST.gameStartTime;
+            }
+
+            sendEvent(client, CONST.ROULETTE_JOIN_TABLE, {}); //JOIN_SIGN_UP
+
+            //GTI event
+            sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
+                ssi: tableInfo.playerInfo[seatIndex].seatIndex,
+                gst: diff,
+                pi: tableInfo.playerInfo,
+                utt: CONST.userTurnTimer,
+                fns: CONST.finishTimer,
+                tableid: tableInfo._id,
+                gamePlayType: tableInfo.gamePlayType,
+                tableAmount: tableInfo.tableAmount,
+                tableType: tableInfo.whichTable,
+                history: tableInfo.history
+            });
+            // console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
+            if (userInfo.Iscom == undefined || userInfo.Iscom == 0)
+                client.join(tableInfo._id.toString());
+
+            sendDirectEvent(client.tbid.toString(), CONST.ROULETTE_JOIN_TABLE, {
+                ap: tableInfo.activePlayer,
+                playerDetail: tableInfo.playerInfo[seatIndex],
+            });
+
+            delete client.JT;
+
+            if (tableInfo.gameState == "" && tableInfo.activePlayer == 1) {
+
+                let jobId = "LEAVE_SINGLE_USER:" + tableInfo._id;
+                clearJob(jobId)
+                setTimeout(async () => {
+                    await gameStartActions.gameTimerStart(tableInfo);
+                }, 1000)
+            }
         }
-        client.seatIndex = seatIndex;
-        client.tbid = tableInfo._id;
 
-        logger.info('\n Assign table id and seat index socket event ->', client.seatIndex, client.tbid);
-        let diff = -1;
 
-        if (tableInfo.activePlayer >= 2 && tableInfo.gameState === CONST.SORAT_ROUND_START_TIMER) {
-            let currentDateTime = new Date();
-            let time = currentDateTime.getSeconds();
-            let turnTime = new Date(tableInfo.gameTimer.GST);
-            let Gtime = turnTime.getSeconds();
 
-            diff = Gtime - time;
-            diff += CONST.gameStartTime;
-        }
 
-        sendEvent(client, CONST.ROULETTE_JOIN_TABLE, {}); //JOIN_SIGN_UP
 
-        //GTI event
-        sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
-            ssi: tableInfo.playerInfo[seatIndex].seatIndex,
-            gst: diff,
-            pi: tableInfo.playerInfo,
-            utt: CONST.userTurnTimer,
-            fns: CONST.finishTimer,
-            tableid: tableInfo._id,
-            gamePlayType: tableInfo.gamePlayType,
-            tableAmount: tableInfo.tableAmount,
-            tableType: tableInfo.whichTable,
-            history: tableInfo.history
-        });
-        // console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
-        if (userInfo.Iscom == undefined || userInfo.Iscom == 0)
-            client.join(tableInfo._id.toString());
-
-        sendDirectEvent(client.tbid.toString(), CONST.ROULETTE_JOIN_TABLE, {
-            ap: tableInfo.activePlayer,
-            playerDetail: tableInfo.playerInfo[seatIndex],
-        });
-
-        delete client.JT;
-
-        if (tableInfo.gameState == "" && tableInfo.activePlayer == 1) {
-
-            let jobId = "LEAVE_SINGLE_USER:" + tableInfo._id;
-            clearJob(jobId)
-            setTimeout(async () => {
-                await gameStartActions.gameTimerStart(tableInfo);
-            }, 1000)
-        }
         // else{
 
         //     if(tableInfo.activePlayer <= 2){
@@ -337,13 +338,13 @@ module.exports.findEmptySeat = (playerInfo) => {
     return '-1';
 }
 
-const checkUserIsExsist=(reqData,tableInf)=>{
+const checkUserIsExsist = (reqData, tableInf) => {
     console.log(tableInf);
-    if(tableInf.activePlayer>0){
-        for(var i=0;i<tableInf.playerInfo.length;i++){
-            console.log("playerId from req ",reqData.playerId);
-            console.log("playerId from table ",tableInf.playerInfo[i]._id);
-            if(tableInf.playerInfo[i]._id==reqData.playerId){
+    if (tableInf.activePlayer > 0) {
+        for (var i = 0; i < tableInf.playerInfo.length; i++) {
+            console.log("playerId from req ", reqData.playerId);
+            console.log("playerId from table ", tableInf.playerInfo[i]._id);
+            if (tableInf.playerInfo[i]._id == reqData.playerId) {
                 return true;
             }
         }
