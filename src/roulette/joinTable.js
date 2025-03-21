@@ -49,7 +49,7 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         if (tableInfo != null) {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
-            console.log(" is tab")
+            console.log(" is tab ",tableInfo)
             if (checkUserIsExsist(requestData,tableInfo)) {
                 thisUserAlreadyInTable = true;
                 console.log("User already exists........................");
