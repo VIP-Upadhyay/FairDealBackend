@@ -1621,14 +1621,14 @@ async function createPhoneNumber() {
 }
 
 /**
- * @api {post} /admin/agent/logoutUser
+ * @api {get} /admin/agent/logoutUser
  * @apiName  log-out-user
  * @apiGroup  Admin
  * @apiHeader {String}  x-access-token Admin's unique access-key
  * @apiSuccess (Success 200) {Array} badges Array of badges document
  * @apiError (Error 4xx) {String} message Validation or error message.
  */
-router.post("/logoutUser", async (req, res) => {
+router.get("/logoutUser", async (req, res) => {
   try {
     const  _id  = req.query.playerId;
 
