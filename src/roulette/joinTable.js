@@ -233,17 +233,17 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                 0, 0, 0, 0,
                 0, 0
             ],
-            betObject:isAbleToUpdate?lastuser.betObjectData: [],
+            betObject:[],
             pastbetObject: [],
             pasttotalwin: 0,
-            totalbet: isAbleToUpdate?lastuser.play:0,
+            totalbet: 0,
             turnMissCounter: 0,
             turnCount: 0,
             sck: client.id,
             playerSocketId: client.id,
             playerLostChips: 0,
             Iscom: userInfo.Iscom != undefined ? userInfo.Iscom : 0,
-            uuid: isAbleToUpdate?lastuser.uuid: uuidv4(),
+            uuid: uuidv4(),
         }
 
         // [

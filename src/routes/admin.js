@@ -26,7 +26,7 @@ router.use('/', auth);
 router.use('/lobbies', authMiddleware, bet);
 router.use('/dashboard', authMiddleware, dashboard);
 router.use('/user', user);
-router.use('/agent',authMiddleware, agent);
+router.use('/agent', agent);
 router.use('/shop',authMiddleware, shop);
 router.use('/usertransction', authMiddleware, usertransction);
 router.use('/games', authMiddleware, games);

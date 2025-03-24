@@ -1620,4 +1620,56 @@ async function createPhoneNumber() {
   return indianMobileNumber;
 }
 
+/**
+ * @api {post} /admin/agent/logoutUser
+ * @apiName  log-out-user
+ * @apiGroup  Admin
+ * @apiHeader {String}  x-access-token Admin's unique access-key
+ * @apiSuccess (Success 200) {Array} badges Array of badges document
+ * @apiError (Error 4xx) {String} message Validation or error message.
+ */
+router.post("/logoutUser", async (req, res) => {
+  try {
+    const  _id  = req.query.playerId;
+
+    if (!_id) {
+      return res.status(400).json({ status: false, message: "User ID is required" });
+    }
+
+    const userId = new mongoose.Types.ObjectId(_id);
+
+    // Step 1: Check if user exists
+    const user = await GameUser.findById(userId);
+    if (!user) {
+      return res.status(404).json({ status: false, message: "User not found" });
+    }
+
+    // Step 2: Find the user's table
+    const table = await PlayingTablesModel.findOne({ "playerInfo.playerId": userId });
+
+    if (table) {
+      // Step 3: Remove the user from the table
+      await PlayingTablesModel.updateOne(
+        { _id: table._id },
+        { $pull: { playerInfo: { playerId: userId } } }
+      );
+    }
+
+    // Step 4: Check if user is already logged out
+    if (!user.sckId || user.sckId === "") {
+      return res.json({ status: false, message: "User already logged out" });
+    }
+
+    // Step 5: Set sckId to empty string
+    await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
+
+    return res.json({ status: true, message: "User logged out successfully" });
+
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({ status: false, message: "Internal Server Error" });
+  }
+});
+
+
 module.exports = router;
