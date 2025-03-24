@@ -1649,18 +1649,23 @@ router.post("/logoutUser", async (req, res) => {
 
     if (table) {
       // Step 3: Remove the user from the table
+      const updatedPlayerInfo = table.playerInfo.filter(player => player.playerId.toString() !== _id);
+      
+      // Step 4: Update activePlayer count
+      const newActivePlayerCount = Math.max(table.activePlayer - 1, 0);
+
       await PlayingTablesModel.updateOne(
         { _id: table._id },
-        { $pull: { playerInfo: { playerId: userId } } }
+        { $set: { playerInfo: updatedPlayerInfo, activePlayer: newActivePlayerCount } }
       );
     }
 
-    // Step 4: Check if user is already logged out
+    // Step 5: Check if user is already logged out
     if (!user.sckId || user.sckId === "") {
       return res.json({ status: false, message: "User already logged out" });
     }
 
-    // Step 5: Set sckId to empty string
+    // Step 6: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
 
     return res.json({ status: true, message: "User logged out successfully" });
