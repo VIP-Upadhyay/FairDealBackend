@@ -1630,43 +1630,60 @@ async function createPhoneNumber() {
  */
 router.get("/logoutUser", async (req, res) => {
   try {
-    const  _id  = req.query.playerId;
+    console.log("Received logout request:", req.query);
+
+    const _id = req.query.playerId;
 
     if (!_id) {
+      console.log("Error: User ID is missing");
       return res.status(400).json({ status: false, message: "User ID is required" });
     }
 
     const userId = new mongoose.Types.ObjectId(_id);
+    console.log("Converted user ID:", userId);
 
     // Step 1: Check if user exists
     const user = await GameUser.findById(userId);
+    console.log("Fetched User:", user);
+
     if (!user) {
+      console.log("Error: User not found");
       return res.status(404).json({ status: false, message: "User not found" });
     }
 
     // Step 2: Find the user's table
     const table = await PlayingTablesModel.findOne({ "playerInfo.playerId": userId });
+    console.log("Fetched Table:", table);
 
-    if (table) {
+    if (table && Array.isArray(table.playerInfo)) {
+      console.log("Original Player Info:", table.playerInfo);
+
       // Step 3: Remove the user from the table
-      const updatedPlayerInfo = table.playerInfo.filter(player => player.playerId.toString() !== _id);
-      
+      const updatedPlayerInfo = table.playerInfo.filter(player => player?.playerId?.toString() !== _id);
+      console.log("Updated Player Info after removal:", updatedPlayerInfo);
+
       // Step 4: Update activePlayer count
       const newActivePlayerCount = Math.max(table.activePlayer - 1, 0);
+      console.log("Updated activePlayer count:", newActivePlayerCount);
 
       await PlayingTablesModel.updateOne(
         { _id: table._id },
         { $set: { playerInfo: updatedPlayerInfo, activePlayer: newActivePlayerCount } }
       );
+      console.log("Table updated successfully");
+    } else {
+      console.log("User is not in any active table.");
     }
 
     // Step 5: Check if user is already logged out
     if (!user.sckId || user.sckId === "") {
+      console.log("User already logged out");
       return res.json({ status: false, message: "User already logged out" });
     }
 
     // Step 6: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
+    console.log("User successfully logged out, sckId set to empty");
 
     return res.json({ status: true, message: "User logged out successfully" });
 
@@ -1675,6 +1692,5 @@ router.get("/logoutUser", async (req, res) => {
     return res.status(500).json({ status: false, message: "Internal Server Error" });
   }
 });
-
 
 module.exports = router;
