@@ -620,7 +620,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
 
-                let rhis = await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
+                await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
                     $set: {
                     userId: tbInfo.playerInfo[x]._id.toString(),
                     username: tbInfo.playerInfo[x].name,
@@ -636,7 +636,18 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                
                 console.log("update uuid ", tbInfo.playerInfo[x].uuid);
-                console.log("Updated his ",rhis);
+                console.log("Updated his ",{
+                    userId: tbInfo.playerInfo[x]._id.toString(),
+                    username: tbInfo.playerInfo[x].name,
+                    ballposition: itemIndex,
+                    beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                    play: tbInfo.playerInfo[x].totalbet,
+                    won: TotalWinAmount,
+                    afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
+                    uuid: tbInfo.playerInfo[x].uuid,
+                    betObjectData: betObjectData,
+                    createdAt:new Date()
+                });
                 // Fetch the last inserted record for the given userId
 
 

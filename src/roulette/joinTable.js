@@ -15,6 +15,7 @@ const leaveTableActions = require('./leaveTable');
 const { v4: uuidv4 } = require('uuid');
 
 let thisUserAlreadyInTable = false;
+let AlreadyUser = null;
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
         
@@ -209,7 +210,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                 }
             }
         }
-        let playerDetails = {
+        let playerDetails = isAbleToUpdate? AlreadyUser : {
             seatIndex: seatIndex,
             _id: userInfo._id,
             playerId: userInfo._id,
@@ -219,7 +220,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             coins: totalWallet,
             status: "",
             playerStatus: "",
-            selectObj: [
+            selectObj:[
                 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0,
@@ -370,6 +371,7 @@ const checkUserIsExsist=(reqData,tableInf)=>{
             console.log("playerId from req ",reqData.playerId);
             console.log("playerId from table ",tableInf.playerInfo[i]._id);
             if(tableInf.playerInfo[i]._id==reqData.playerId){
+                AlreadyUser = tableInf.playerInfo[i];
                 return true;
             }
         }
