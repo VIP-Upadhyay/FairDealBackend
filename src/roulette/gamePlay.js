@@ -182,6 +182,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
             won: 0,
             afterplaypoint: totalRemaningAmount,//tb.playerInfo[Number(client.seatIndex)].coins,
             uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
+            whichtable:tb.whichTable,
             betObjectData: requestData.betData,
             createdAt:new Date()
         };

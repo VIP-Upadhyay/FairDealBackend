@@ -630,6 +630,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     won: TotalWinAmount,
                     afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.playerInfo[x].uuid,
+                    whichTable:tbInfo.whichTable,
                     betObjectData: betObjectData,
                     createdAt:new Date()
                 }}, {upsert:true});

@@ -13,6 +13,7 @@ const RouletteUserSchema = new Schema({
     won: { type: Number },
     afterplaypoint:{ type: Number },
     uuid:{ type: String, default: "" },
+    whichtable: { type: String }, 
     createdAt: { type: Date, default: Date.now },
     betObjectData: {}
 }, { versionKey: false });
