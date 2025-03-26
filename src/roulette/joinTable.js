@@ -285,9 +285,9 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 
         let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
         logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
-
+        console.log("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
         let playerInfo = tableInfo.playerInfo[seatIndex];
-
+        
         if (!(playerInfo._id.toString() == userInfo._id.toString())) {
             await this.findTable(client);
             return false;
