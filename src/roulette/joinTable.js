@@ -206,6 +206,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                     // uuid = lastUserHistory.uuid;
                     // betObjectData = lastUserHistory.betObjectData;
                     isAbleToUpdate=true;
+                    AlreadyUser.seatIndex= seatIndex;
+                    console.log("Already User Seat index ........................"+AlreadyUser.seatIndex);
                     // console.log("Able to update uuid ",lastUserHistory.betObjectData);
                 }
             }
