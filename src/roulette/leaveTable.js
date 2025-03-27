@@ -34,6 +34,10 @@ module.exports.leaveTable = async (requestData, client) => {
         "playerInfo._id": MongoID(client.uid.toString())
     };
     let tb = await RouletteTables.findOne(wh, {});
+    let removedCount=1;
+    if (tb) {
+        removedCount = tb.playerInfo.filter(p => p._id.toString() === client.uid.toString()).length;
+    }
     logger.info("leaveTable tb : ", tb);
 
     if (tb == null) return false;
@@ -46,18 +50,26 @@ module.exports.leaveTable = async (requestData, client) => {
     }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
-    console.log("Line no 49 reason ",reason);
+    // console.log("Line no 49 reason ",reason);
     let playerInfo = tb.playerInfo[client.seatIndex];
     logger.info("leaveTable playerInfo : =>", playerInfo)
 
+    // let updateData = {
+    //     $set: {
+    //         "playerInfo.$": {}
+    //     },
+    //     $inc: {
+    //         activePlayer: -1
+    //     }
+    // }
     let updateData = {
-        $set: {
-            "playerInfo.$": {}
+        $pull: {
+            playerInfo: { _id: MongoID(client.uid.toString()) }
         },
         $inc: {
-            activePlayer: -1
+            activePlayer: -removedCount
         }
-    }
+    };
     if (tb.activePlayer == 0 && tb.gameState == "RouletteGameStartTimer") {
         let jobId = CONST.GAME_START_TIMER + ":" + tb._id.toString();
         commandAcions.clearJob(jobId)
@@ -74,7 +86,7 @@ module.exports.leaveTable = async (requestData, client) => {
         seatIndex: client.seatIndex
     }
 
-    let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
+    // let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
     // console.log("leaveTable tbInfo : ", tbInfo);
     if (requestData.reason == undefined || requestData.reason != 'autoLeave') {
