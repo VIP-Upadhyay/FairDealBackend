@@ -46,6 +46,7 @@ myIo.init = function (server) {
     io.on('connection', async (socket) => {
 
         try {
+            console.log(socket);
             logger.info("Socket connected ===> ", socket.id);
             sendEvent(socket, CONST.DONE, {});
 
