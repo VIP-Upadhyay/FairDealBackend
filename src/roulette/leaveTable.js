@@ -59,7 +59,7 @@ module.exports.leaveTable = async (requestData, client) => {
     }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
-    // console.log("Line no 49 reason ",reason);
+    console.log("No of remove  ",removedCount);
     let playerInfo = tb.playerInfo[client.seatIndex];
     logger.info("leaveTable playerInfo : =>", playerInfo)
 
@@ -95,7 +95,7 @@ module.exports.leaveTable = async (requestData, client) => {
         seatIndex: client.seatIndex
     }
 
-    // let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
+    let tbInfo = await RouletteTables.findOneAndUpdate(wh, updateData, { new: true });
     logger.info("leaveTable tbInfo : ", tbInfo);
     // console.log("leaveTable tbInfo : ", tbInfo);
     if (requestData.reason == undefined || requestData.reason != 'autoLeave') {
