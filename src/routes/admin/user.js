@@ -1095,7 +1095,8 @@ router.get("/logoutUser", async (req, res) => {
 
     // Step 4: Emit a logout event to the client
     console.log("Emitting logout event for user:", user.sckId);
-    myIo.io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+    console.log(myIo);
+    // myIo.io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
 
     // Step 5: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
