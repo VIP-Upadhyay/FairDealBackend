@@ -460,12 +460,4 @@ myIo.init = function (server) {
     });
 };
 
-function getIo() {
-    if (!myIo) {
-      console.log("here i am");
-      throw new Error("Socket.io not initialized!");
-    }
-    return myIo;
-}
-
-module.exports = {myIo,getIo};
+module.exports = myIo;
