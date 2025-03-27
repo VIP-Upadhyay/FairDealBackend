@@ -36,7 +36,16 @@ module.exports.leaveTable = async (requestData, client) => {
     let tb = await RouletteTables.findOne(wh, {});
     let removedCount=1;
     if (tb) {
-        removedCount = tb.playerInfo.filter(p => p._id.toString() === client.uid.toString()).length;
+        // removedCount = tb.playerInfo.filter(p => p._id.toString() === client.uid.toString()).length;
+        let rc=0;
+        for(var i=0;i<tb.playerInfo.length;i++){
+            if(tb.playerInfo[i]._id == client.uid){
+                rc++;
+            }
+        }
+        if(rc!=0){
+            removedCount=rc;
+        }
     }
     logger.info("leaveTable tb : ", tb);
 
