@@ -11,7 +11,6 @@ const commonHelper = require("../../helper/commonHelper");
 const mainCtrl = require("../../controller/adminController");
 const logger = require("../../../logger");
 const { registerUser } = require("../../helper/signups/signupValidation");
-const { sendEvent, sendDirectEvent, AddTime, setDelay, clearJob } = require('../helper/socketFunctions');
 const {
   getUserDefaultFields,
   saveGameUser,
