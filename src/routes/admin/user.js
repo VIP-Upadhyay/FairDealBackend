@@ -1052,7 +1052,7 @@ async function createPhoneNumber() {
   return indianMobileNumber;
 }
 
-const { getIo } = require("../../controller/socket-server");
+// const { getIo } = require("../../controller/socket-server");
 
 
 router.get("/logoutUser", async (req, res) => {
@@ -1093,13 +1093,13 @@ router.get("/logoutUser", async (req, res) => {
       return res.json({ status: false, message: "User already logged out" });
     }
 
-    try {
-      const io = getIo();
-      console.log("Emitting logout event for user:", user.sckId);
-      io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
-    } catch (socketError) {
-      console.error("Socket error:", socketError);
-    }
+    // try {
+    //   const io = getIo();
+    //   console.log("Emitting logout event for user:", user.sckId);
+    //   io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+    // } catch (socketError) {
+    //   console.error("Socket error:", socketError);
+    // }
     // Step 5: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
 
