@@ -1628,12 +1628,13 @@ async function createPhoneNumber() {
  * @apiSuccess (Success 200) {Array} badges Array of badges document
  * @apiError (Error 4xx) {String} message Validation or error message.
  */
+const {myIo} = require("../../controller/socket-server");
+const { sendEvent, sendDirectEvent } = require('../../helper/socketFunctions');
 router.get("/logoutUser", async (req, res) => {
   try {
     console.log("Received logout request:", req.query);
 
     const _id = req.query.playerId;
-
     if (!_id) {
       console.log("Error: User ID is missing");
       return res.status(400).json({ status: false, message: "User ID is required" });
@@ -1644,46 +1645,41 @@ router.get("/logoutUser", async (req, res) => {
 
     // Step 1: Check if user exists
     const user = await GameUser.findById(userId);
-    console.log("Fetched User:", user);
-
     if (!user) {
       console.log("Error: User not found");
       return res.status(404).json({ status: false, message: "User not found" });
     }
 
-    // Step 2: Find the user's table
+    // Step 2: Remove the user from the table
     const table = await PlayingTablesModel.findOne({ "playerInfo.playerId": userId });
-    console.log("Fetched Table:", table);
-
     if (table && Array.isArray(table.playerInfo)) {
-      console.log("Original Player Info:", table.playerInfo);
-
-      // Step 3: Remove the user from the table
       const updatedPlayerInfo = table.playerInfo.filter(player => player?.playerId?.toString() !== _id);
-      console.log("Updated Player Info after removal:", updatedPlayerInfo);
-
-      // Step 4: Update activePlayer count
       const newActivePlayerCount = Math.max(table.activePlayer - 1, 0);
-      console.log("Updated activePlayer count:", newActivePlayerCount);
 
       await PlayingTablesModel.updateOne(
         { _id: table._id },
         { $set: { playerInfo: updatedPlayerInfo, activePlayer: newActivePlayerCount } }
       );
-      console.log("Table updated successfully");
-    } else {
-      console.log("User is not in any active table.");
     }
 
-    // Step 5: Check if user is already logged out
+    // Step 3: Check if user is already logged out
     if (!user.sckId || user.sckId === "") {
       console.log("User already logged out");
       return res.json({ status: false, message: "User already logged out" });
     }
-
-    // Step 6: Set sckId to empty string
+    // Step 4: Remove the user's socket ID from the database
+    if (myIo && myIo.sockets) {
+      console.log("Emitting logout event for user:", user.sckId);
+      sendDirectEvent(user.sckId,"USER_LOGGED_OUT",{ status: true, message: "You have been logged out" });
+    }
+    // try {
+    //   console.log("Emitting logout event for user:", user.sckId);
+    //   myIo.sockets.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+    // } catch (socketError) {
+    //   console.error("Socket error:", socketError);
+    // }
+    // Step 5: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
-    console.log("User successfully logged out, sckId set to empty");
 
     return res.json({ status: true, message: "User logged out successfully" });
 
