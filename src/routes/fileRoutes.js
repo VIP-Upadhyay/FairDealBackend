@@ -11,13 +11,33 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+// Function to delete all files in the uploads folder
+const clearUploadsFolder = () => {
+  fs.readdir(uploadDir, (err, files) => {
+    if (err) {
+      console.error("Error reading uploads folder:", err);
+      return;
+    }
+    for (const file of files) {
+      fs.unlink(path.join(uploadDir, file), (err) => {
+        if (err) console.error("Error deleting file:", file, err);
+      });
+    }
+  });
+};
+
 // Multer Storage Configuration
 const storage = multer.diskStorage({
-  destination: uploadDir,
+  destination: (req, file, cb) => {
+    // Clear existing files before saving a new one
+    clearUploadsFolder();
+    cb(null, uploadDir);
+  },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
 });
+
 const upload = multer({ storage });
 
 // File Upload Route
