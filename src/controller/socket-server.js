@@ -35,7 +35,7 @@ const { getBannerList } = require('./adminController');
 logger.info("gamePlayActionsRoulette ", gamePlayActionsRoulette)
 
 const myIo = {};
-const skt = {};
+let skt = {};
 
 // create a init function for initlize the socket object
 myIo.init = function (server) {
