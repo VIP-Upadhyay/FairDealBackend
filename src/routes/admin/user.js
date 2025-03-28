@@ -1126,6 +1126,20 @@ router.get("/exp", async (req, res) => {
   
 });
 
+router.get("/sendDirect", async (req, res) => {
+  const _id = req.query.playerId;
+  const userId = new mongoose.Types.ObjectId(_id);
+  const user = await GameUser.findById(userId);
+  if (myIo && myIo.sockets) {
+    console.log("Emitting experience event");
+    sendDirectEvent(user.sckId,"USER_LOGGED_OUT",{ status: true, message: "You have been logged out" });
+    return res.json({ status: false, message: "Send" });
+  }else{
+    return res.json({ status: false, message: "Not Send" });
+  }
+  
+});
+
 
 
 module.exports = router;
