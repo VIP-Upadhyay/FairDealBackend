@@ -1052,7 +1052,7 @@ async function createPhoneNumber() {
   return indianMobileNumber;
 }
 
-// const { getIo } = require("../../controller/socket-server");
+// const myIo = require("../../controller/socket-server");
 
 
 router.get("/logoutUser", async (req, res) => {
@@ -1094,7 +1094,7 @@ router.get("/logoutUser", async (req, res) => {
     }
 
     // try {
-    //   const io = getIo();
+    //   const io = myIo;
     //   console.log("Emitting logout event for user:", user.sckId);
     //   io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
     // } catch (socketError) {
@@ -1109,6 +1109,12 @@ router.get("/logoutUser", async (req, res) => {
     console.error("Logout error:", error);
     return res.status(500).json({ status: false, message: "Internal Server Error" });
   }
+});
+
+const { io } = require('../../../index');
+
+router.get("/logoutUser", async (req, res) => {
+  console.log(io);
 });
 
 
