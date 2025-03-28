@@ -62,6 +62,8 @@ httpApp.use(
 
 // New Routes
 const admin = require('./src/routes/admin');
+const socketRoutes = require('./src/routes/socketRoutes'); // Create this file with the code above
+httpApp.use('/socket', socketRoutes);
 // const user = require('./src/routes/users');
 
 const morgan = require('morgan');

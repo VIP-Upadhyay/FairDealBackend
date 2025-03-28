@@ -1125,8 +1125,8 @@ router.get("/ioCheck", async (req, res) => {
       }
       console.log("Emitting logout event for user:");
 
-      if(myIo){
-        console.log(myIo);
+      if (myIo && myIo.sockets){
+        console.log(myIo.sockets);
         // skt.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
         console.log("Socket.io is connected");
       }else{

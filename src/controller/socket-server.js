@@ -43,6 +43,8 @@ myIo.init = function (server) {
     // eslint-disable-next-line no-undef
     io.attach(server);
 
+    myIo.sockets = io.sockets;
+
     // eslint-disable-next-line no-undef
     io.on('connection', async (socket) => {
         skt = socket;
