@@ -63,6 +63,7 @@ module.exports.gameTimerStart = async (tb) => {
             roundTime = CONST.GREENTABLETIMER;
 
 
+        console.log("timmer debugging :- ",roundTime);
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history });
 
         let tbId = tabInfo._id;
@@ -374,7 +375,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        console.log("betObjectData[i] ", betObjectData[i])
+                        // console.log("betObjectData[i] ", betObjectData[i])
 
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
@@ -554,7 +555,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
 
                     }else{
-                        console.log("betObjectData[i] ", betObjectData[i]);
+                        // console.log("betObjectData[i] ", betObjectData[i]);
                     }
 
 
@@ -637,18 +638,18 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                
                 console.log("update uuid ", tbInfo.playerInfo[x].uuid);
-                console.log("Updated his ",{
-                    userId: tbInfo.playerInfo[x]._id.toString(),
-                    username: tbInfo.playerInfo[x].name,
-                    ballposition: itemIndex,
-                    beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
-                    play: tbInfo.playerInfo[x].totalbet,
-                    won: TotalWinAmount,
-                    afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
-                    uuid: tbInfo.playerInfo[x].uuid,
-                    betObjectData: betObjectData,
-                    createdAt:new Date()
-                });
+                // console.log("Updated his ",{
+                //     userId: tbInfo.playerInfo[x]._id.toString(),
+                //     username: tbInfo.playerInfo[x].name,
+                //     ballposition: itemIndex,
+                //     beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
+                //     play: tbInfo.playerInfo[x].totalbet,
+                //     won: TotalWinAmount,
+                //     afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
+                //     uuid: tbInfo.playerInfo[x].uuid,
+                //     betObjectData: betObjectData,
+                //     createdAt:new Date()
+                // });
                 // Fetch the last inserted record for the given userId
 
 

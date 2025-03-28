@@ -19,7 +19,7 @@ let AlreadyUser = null;
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
         
-        console.log("Table Join ", requestData);
+        // console.log("Table Join ", requestData);
         if (typeof client.uid == "undefined") {
             sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please restart game!!");
             return false;
@@ -166,7 +166,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
-        console.log("Finding empty seat for the user... ", seatIndex);
+        // console.log("Finding empty seat for the user... ", seatIndex);
         logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
 
         if (seatIndex == "-1") {
@@ -263,7 +263,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-        console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
+        // console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
             _id: MongoID(table._id.toString()),
@@ -285,7 +285,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 
         let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
         logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
-        console.log("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
+        // console.log("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
         let playerInfo = tableInfo.playerInfo[seatIndex];
         
         if (!(playerInfo._id.toString() == userInfo._id.toString())) {

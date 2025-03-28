@@ -59,7 +59,7 @@ module.exports.leaveTable = async (requestData, client) => {
     }
 
     let reason = (requestData != null && typeof requestData.reason != "undefined" && requestData.reason) ? requestData.reason : "ManuallyLeave"
-    console.log("No of remove  ",removedCount);
+    // console.log("No of remove  ",removedCount);
     let playerInfo = tb.playerInfo[client.seatIndex];
     logger.info("leaveTable playerInfo : =>", playerInfo)
 
@@ -135,7 +135,7 @@ module.exports.manageOnUserLeave = async (tb, client) => {
 }
 
 module.exports.leaveSingleUser = async (tbid) => {
-    console.log("leaveSingleUser call tbid : ", tbid);
+    // console.log("leaveSingleUser call tbid : ", tbid);
     let tbId = tbid
     let jobId = "LEAVE_SINGLE_USER:" + tbid;
     let delay = commandAcions.AddTime(120);
