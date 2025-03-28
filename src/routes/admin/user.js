@@ -1052,9 +1052,8 @@ async function createPhoneNumber() {
   return indianMobileNumber;
 }
 
-// const myIo = require("../../controller/socket-server");
 
-
+const {myIo} = require("../../controller/socket-server");
 router.get("/logoutUser", async (req, res) => {
   try {
     console.log("Received logout request:", req.query);
@@ -1092,14 +1091,16 @@ router.get("/logoutUser", async (req, res) => {
       console.log("User already logged out");
       return res.json({ status: false, message: "User already logged out" });
     }
-
-    // try {
-    //   const io = myIo;
-    //   console.log("Emitting logout event for user:", user.sckId);
-    //   io.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
-    // } catch (socketError) {
-    //   console.error("Socket error:", socketError);
-    // }
+    // Step 4: Remove the user's socket ID from the database
+    if (myIo && myIo.sockets) {
+      console.log("Emitting logout event for user:", user.sckId);
+    }
+    try {
+      console.log("Emitting logout event for user:", user.sckId);
+      myIo.sockets.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+    } catch (socketError) {
+      console.error("Socket error:", socketError);
+    }
     // Step 5: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
 
@@ -1111,34 +1112,9 @@ router.get("/logoutUser", async (req, res) => {
   }
 });
 
-// const { io } = require('../../../index');
-const {skt,myIo} = require("../../controller/socket-server");
 
-router.get("/ioCheck", async (req, res) => {
-  try {
-      if(skt){
-        console.log(skt);
-        // skt.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
-        console.log("Socket.io is connected");
-      }else{
-        console.log("Socket.io is not connected");
-      }
-      console.log("Emitting logout event for user:");
 
-      if (myIo && myIo.sockets){
-        console.log(myIo.sockets);
-        // skt.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
-        console.log("Socket.io is connected");
-      }else{
-        console.log("Socket.io is not connected");
-      }
-      console.log("Emitting logout event for user:");
-      
-    } catch (socketError) {
-      console.error("Socket error:", socketError);
-    }
-  return res.json({ status: false, message: "User already logged out" });
-});
+
 
 
 module.exports = router;
