@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { myIo, skt } = require("../../controller/socket-server");
+const { myIo, skt } = require("../controller/socket-server");
 
 // Route to send a message to all connected clients
 router.post("/broadcast", async (req, res) => {
