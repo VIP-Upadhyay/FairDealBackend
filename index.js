@@ -10,7 +10,7 @@ const cors = require('cors');
 
 GAMELOGICCONFIG = module.exports = require('./gamelogic.json')
 
-require('./database/mongoDbConnection');
+require('./database/mongoDbConnection'); 
 
 const modelsPath = './src/models';
 const dirents = fs.readdirSync(modelsPath, { withFileTypes: true });
@@ -63,6 +63,8 @@ httpApp.use(
 // New Routes
 const admin = require('./src/routes/admin');
 const socketRoutes = require('./src/routes/socketRoutes'); // Create this file with the code above
+const fileRoutes = require("./routes/fileRoutes");
+httpApp.use("/files", fileRoutes);
 httpApp.use('/socket', socketRoutes);
 // const user = require('./src/routes/users');
 
