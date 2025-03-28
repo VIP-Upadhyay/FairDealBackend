@@ -1113,7 +1113,7 @@ router.get("/logoutUser", async (req, res) => {
 
 const { io } = require('../../../index');
 
-router.get("/logoutUser", async (req, res) => {
+router.get("/ioCheck", async (req, res) => {
   console.log(io);
 });
 
