@@ -1116,7 +1116,7 @@ router.get("/logoutUser", async (req, res) => {
 
 router.get("/exp", async (req, res) => {
   if (myIo && myIo.sockets) {
-    sendEvent(socket, "SAMPLE_FROM_ROUTES", {});
+    sendEvent(myIo.sockets, "SAMPLE_FROM_ROUTES", {});
     return res.json({ status: false, message: "Send" });
   }else{
     return res.json({ status: false, message: "Not Send" });
