@@ -1114,7 +1114,17 @@ router.get("/logoutUser", async (req, res) => {
 const { io } = require('../../../index');
 
 router.get("/ioCheck", async (req, res) => {
-  console.log(io);
+  try {
+      if(io){
+        console.log("Socket.io is connected");
+      }else{
+        console.log("Socket.io is not connected");
+      }
+      console.log("Emitting logout event for user:");
+      
+    } catch (socketError) {
+      console.error("Socket error:", socketError);
+    }
   return res.json({ status: false, message: "User already logged out" });
 });
 
