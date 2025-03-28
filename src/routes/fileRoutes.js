@@ -29,11 +29,11 @@ const clearUploadsFolder = () => {
 // Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Clear existing files before saving a new one
-    clearUploadsFolder();
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
+    // Clear existing files before saving a new one
+    clearUploadsFolder();
     cb(null, file.originalname);
   },
 });
