@@ -1054,6 +1054,7 @@ async function createPhoneNumber() {
 
 
 const {myIo} = require("../../controller/socket-server");
+const { sendEvent, sendDirectEvent } = require('../../helper/socketFunctions');
 router.get("/logoutUser", async (req, res) => {
   try {
     console.log("Received logout request:", req.query);
@@ -1113,7 +1114,15 @@ router.get("/logoutUser", async (req, res) => {
 });
 
 
-
+router.get("/exp", async (req, res) => {
+  if (myIo && myIo.sockets) {
+    sendEvent(socket, "SAMPLE_FROM_ROUTES", {});
+    return res.json({ status: false, message: "Send" });
+  }else{
+    return res.json({ status: false, message: "Not Send" });
+  }
+  
+});
 
 
 
