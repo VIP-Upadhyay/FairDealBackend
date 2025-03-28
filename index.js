@@ -41,7 +41,7 @@ const redis = require('redis');
   });
 })();
 
-const socket = require('./src/controller/socket-server');
+const {myIo} = require('./src/controller/socket-server');
 const logger = (module.exports = require('./logger'));
 
 // server start configuration here.
@@ -81,7 +81,7 @@ const server = http.createServer(httpApp);
 server.listen(SERVER_PORT, () => {
   logger.info('Server ID : => ' + SERVER_ID + ' - Express server listening on port : ' + SERVER_PORT + ' date : ' + new Date());
   console.log('Server ID : => ' + SERVER_ID + ' - Express server listening on port : ' + SERVER_PORT + ' date : ' + new Date());
-  socket.init(server);
+  myIo.init(server);
 });
 
 process.on('unhandledRejection', (reason, p) => {
