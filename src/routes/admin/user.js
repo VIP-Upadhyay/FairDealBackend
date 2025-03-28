@@ -1112,12 +1112,21 @@ router.get("/logoutUser", async (req, res) => {
 });
 
 // const { io } = require('../../../index');
-const {skt} = require("../../controller/socket-server");
+const {skt,myIo} = require("../../controller/socket-server");
 
 router.get("/ioCheck", async (req, res) => {
   try {
       if(skt){
         console.log(skt);
+        // skt.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+        console.log("Socket.io is connected");
+      }else{
+        console.log("Socket.io is not connected");
+      }
+      console.log("Emitting logout event for user:");
+
+      if(myIo){
+        console.log(myIo);
         // skt.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
         console.log("Socket.io is connected");
       }else{
