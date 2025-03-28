@@ -1117,6 +1117,7 @@ const {skt} = require("../../controller/socket-server");
 router.get("/ioCheck", async (req, res) => {
   try {
       if(skt){
+        socket.emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
         console.log("Socket.io is connected");
       }else{
         console.log("Socket.io is not connected");
