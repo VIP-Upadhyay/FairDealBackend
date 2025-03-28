@@ -1095,13 +1095,14 @@ router.get("/logoutUser", async (req, res) => {
     // Step 4: Remove the user's socket ID from the database
     if (myIo && myIo.sockets) {
       console.log("Emitting logout event for user:", user.sckId);
+      sendDirectEvent(user.sckId,"USER_LOGGED_OUT",{ status: true, message: "You have been logged out" });
     }
-    try {
-      console.log("Emitting logout event for user:", user.sckId);
-      myIo.sockets.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
-    } catch (socketError) {
-      console.error("Socket error:", socketError);
-    }
+    // try {
+    //   console.log("Emitting logout event for user:", user.sckId);
+    //   myIo.sockets.to(user.sckId).emit("USER_LOGGED_OUT", { status: true, message: "You have been logged out" });
+    // } catch (socketError) {
+    //   console.error("Socket error:", socketError);
+    // }
     // Step 5: Set sckId to empty string
     await GameUser.updateOne({ _id: userId }, { $set: { sckId: "" } });
 
