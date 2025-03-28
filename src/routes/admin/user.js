@@ -1115,6 +1115,7 @@ const { io } = require('../../../index');
 
 router.get("/ioCheck", async (req, res) => {
   console.log(io);
+  return res.json({ status: false, message: "User already logged out" });
 });
 
 
