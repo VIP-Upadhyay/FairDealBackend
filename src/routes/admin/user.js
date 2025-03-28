@@ -1111,11 +1111,12 @@ router.get("/logoutUser", async (req, res) => {
   }
 });
 
-const { io } = require('../../../index');
+// const { io } = require('../../../index');
+const {skt} = require("../../controller/socket-server");
 
 router.get("/ioCheck", async (req, res) => {
   try {
-      if(io){
+      if(skt){
         console.log("Socket.io is connected");
       }else{
         console.log("Socket.io is not connected");

@@ -92,4 +92,3 @@ process.on('uncaughtException', (err) => {
   logger.info(err, '< Uncaught Exception thrown');
 });
 
-module.exports = {io};

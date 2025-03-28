@@ -35,6 +35,7 @@ const { getBannerList } = require('./adminController');
 logger.info("gamePlayActionsRoulette ", gamePlayActionsRoulette)
 
 const myIo = {};
+const skt = {};
 
 // create a init function for initlize the socket object
 myIo.init = function (server) {
@@ -44,7 +45,7 @@ myIo.init = function (server) {
 
     // eslint-disable-next-line no-undef
     io.on('connection', async (socket) => {
-
+        skt = socket;
         try {
             logger.info("Socket connected ===> ", socket.id);
             sendEvent(socket, CONST.DONE, {});
@@ -460,4 +461,4 @@ myIo.init = function (server) {
     });
 };
 
-module.exports = myIo;
+module.exports = {myIo,skt};
