@@ -1140,6 +1140,28 @@ router.get("/sendDirect", async (req, res) => {
   
 });
 
+/**
+ * @api {get} /agent/activeUsers
+ * @apiGroup Agent
+ * @apiHeader {String} x-access-token Admin's unique access-key
+ * @apiSuccess (Success 200) {Array} activeUsers Array of active users with sckId not empty
+ * @apiError (Error 4xx) {String} message Validation or error message.
+ */
+router.get("/activeUsers", async (req, res) => {
+  try {
+    const usersWithSckId = await GameUser.find({
+      sckId: { $ne: "" } // Matches users where sckId is NOT an empty string
+    }, {
+      _id: 1, name: 1, username: 1, uniqueId: 1, chips: 1, sckId: 1 // Project only required fields
+    });
+
+    return res.json({ success: true, data: usersWithSckId });
+  } catch (error) {
+    console.error("Error fetching users with sckId:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 
 
 module.exports = router;
