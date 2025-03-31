@@ -71,17 +71,22 @@ module.exports.gameTimerStart = async (tb) => {
         let delay = commandAcions.AddTime(roundTime);
 
         const delayRes = await commandAcions.setDelay(jobId, new Date(delay));
-        var time=0;
+        // var time=0;
         let timeLeft = 60;
-        const countdown = setInterval(() => {
-            console.log("Time left to run spinner ",timeLeft);
-            timeLeft--;
-            console.log(timeLeft);
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                console.log("Time's up!");
-            }
-        }, 1000);
+        const restTime = 15;
+
+        setTimeout(() => {
+            const countdown = setInterval(() => {
+                console.log("Time left to run spinner ",timeLeft);
+                timeLeft--;
+                console.log(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    console.log("Time's up!");
+                }
+            }, 1000);
+        }, restTime * 1000);
+        
         setTimeout(async () => {
             this.StartSpinnerGame(tbId)
         }, 1000)
