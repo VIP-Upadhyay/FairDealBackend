@@ -71,8 +71,9 @@ module.exports.gameTimerStart = async (tb) => {
         let delay = commandAcions.AddTime(roundTime);
 
         const delayRes = await commandAcions.setDelay(jobId, new Date(delay));
-
+        var time=0;
         setTimeout(async () => {
+            console.log("Start timer ",time++);
             this.StartSpinnerGame(tbId)
         }, 1000)
 
@@ -259,7 +260,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
         logger.info("startSpinner tabInfo :: ", tabInfo);
 
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.START_ROULETTE, { itemObject: itemObject, timelimit: 10 });
-
+        var time=0;
         setTimeout(async () => {
             // Clear destory 
             // const tabInfonew = await RouletteTables.findOneAndUpdate(wh, {
@@ -268,6 +269,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             //         itemObject:""
             //     }
             // }, { new: true });
+            console.log("Winner timer ",time++);
 
             this.winnerSpinner(tabInfo);
         }, 10000);
