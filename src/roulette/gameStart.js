@@ -64,6 +64,18 @@ module.exports.gameTimerStart = async (tb) => {
 
 
         console.log("timmer debugging :- ",roundTime);
+         // Add timer countdown in console
+         let remainingTime = roundTime;
+         const countdownInterval = setInterval(() => {
+             remainingTime--;
+             console.log(`Countdown: ${remainingTime} seconds remaining`);
+             
+             if (remainingTime <= 0) {
+                 clearInterval(countdownInterval);
+                 console.log("Countdown complete! Starting spinner game...");
+             }
+         }, 1000);
+
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history });
 
         let tbId = tabInfo._id;
@@ -71,23 +83,9 @@ module.exports.gameTimerStart = async (tb) => {
         let delay = commandAcions.AddTime(roundTime);
 
         const delayRes = await commandAcions.setDelay(jobId, new Date(delay));
-        // var time=0;
-        let timeLeft = 60;
-        const restTime = 15;
 
-        setTimeout(() => {
-            const countdown = setInterval(() => {
-                console.log("Time left to run spinner ",timeLeft);
-                timeLeft--;
-                console.log(timeLeft);
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    console.log("Time's up!");
-                }
-            }, 1000);
-        }, restTime * 1000);
-        
         setTimeout(async () => {
+            clearInterval(countdownInterval);
             this.StartSpinnerGame(tbId)
         }, 1000)
 
@@ -274,7 +272,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
         logger.info("startSpinner tabInfo :: ", tabInfo);
 
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.START_ROULETTE, { itemObject: itemObject, timelimit: 10 });
-        var time=0;
+
         setTimeout(async () => {
             // Clear destory 
             // const tabInfonew = await RouletteTables.findOneAndUpdate(wh, {
@@ -283,7 +281,6 @@ module.exports.StartSpinnerGame = async (tbId) => {
             //         itemObject:""
             //     }
             // }, { new: true });
-            console.log("Winner timer ",time++);
 
             this.winnerSpinner(tabInfo);
         }, 10000);
