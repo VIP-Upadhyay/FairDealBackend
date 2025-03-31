@@ -68,6 +68,7 @@ module.exports.gameTimerStart = async (tb) => {
          let remainingTime = roundTime;
          const countdownInterval = setInterval(() => {
              remainingTime--;
+             commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", { timer: remainingTime});
              console.log(`Countdown: ${remainingTime} seconds remaining`);
              
              if (remainingTime <= 0) {
@@ -86,6 +87,7 @@ module.exports.gameTimerStart = async (tb) => {
 
         setTimeout(async () => {
             clearInterval(countdownInterval);
+            console.log("Spin...........................");
             this.StartSpinnerGame(tbId)
         }, 1000)
 
