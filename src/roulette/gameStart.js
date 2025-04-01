@@ -62,6 +62,9 @@ module.exports.gameTimerStart = async (tb) => {
             roundTime = CONST.BLUETABLETIMER;
         else
             roundTime = CONST.GREENTABLETIMER;
+            
+        
+        commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history, gameId:tabInfo.gameId });
 
 
         console.log("timmer debugging :- ",roundTime);
@@ -83,8 +86,7 @@ module.exports.gameTimerStart = async (tb) => {
              }
          }, 1000);
 
-        commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history, gameId:tabInfo.gameId });
-
+       
         let tbId = tabInfo._id;
         let jobId = CONST.ROULETTE_GAME_START_TIMER + ":" + tbId;
         let delay = commandAcions.AddTime(roundTime);
