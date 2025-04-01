@@ -12,7 +12,7 @@ const gameReJoinRoulette = async (payload) => {
         console.log("data reconnect... ", payload);
 
         let wh = {
-            _id: MongoID(tb._id)
+            _id: MongoID(payload.tableId)
         }
         const tabInfo = await Table.findOne(wh);
 
