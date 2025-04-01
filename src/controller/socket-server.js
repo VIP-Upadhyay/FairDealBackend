@@ -31,6 +31,7 @@ const { userReconnectRoulette } = require('../roulette/reConnectFunction');
 const { userReconnectSpinner } = require('../SpinerGame/reconnect');
 
 const { getBannerList } = require('./adminController');
+const { gameReJoinRoulette } = require('../roulette/gameReJoin');
 
 logger.info("gamePlayActionsRoulette ", gamePlayActionsRoulette)
 
@@ -388,8 +389,13 @@ myIo.init = function (server) {
 
 
                     case CONST.RECONNECTROULETTE: {
-                        console.log("Reconnect..");
+                        console.log("Reconnect...........................");
                         await userReconnectRoulette(payload.data, socket);
+                        break;
+                    }
+                    case CONST.GAMEREJOIN: {
+                        console.log("GAME REJOIN...........................");
+                        await gameReJoinRoulette(payload.data);
                         break;
                     }
 
