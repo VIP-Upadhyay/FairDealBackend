@@ -137,6 +137,7 @@ module.exports.createTable = async (requestData) => {
 
 module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => {
     try {
+        console.log("checking table ----", table);
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
         logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
