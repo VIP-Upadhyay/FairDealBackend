@@ -3,6 +3,8 @@ const CONST = require("../../constant");
 const RouletteTables = require("../models/RouletteTables");
 const commandAcions = require("../helper/socketFunctions");
 
+const mongoose = require('mongoose');
+const MongoID = mongoose.Types.ObjectId;
 
 
 const gameReJoinRoulette = async (payload) => {
@@ -32,7 +34,7 @@ const gameReJoinRoulette = async (payload) => {
 
     } catch (error) {
         console.log("error gameReJoinRoulette", error);
-        logger.error('socketServer.js SEND_MESSAGE_TO_TABLE => ', error);
+        // logger.error('socketServer.js SEND_MESSAGE_TO_TABLE => ', error);
     }
 };
 
