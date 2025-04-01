@@ -75,7 +75,7 @@ module.exports.gameTimerStart = async (tb) => {
                 gameId:tabInfo.gameId
              }};
              commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", datas);
-             console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas}`);
+             console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas.table.gameId}`);
              
              if (remainingTime <= 0) {
                  clearInterval(countdownInterval);
