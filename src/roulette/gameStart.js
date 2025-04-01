@@ -325,7 +325,6 @@ module.exports.getRandomInt = (min, max) => {
 module.exports.winnerSpinner = async (tabInfo) => {
 
     try {
-        console.log("winner Table info ",tabInfo);
         logger.info("winnerSorat winner ::  -->", tabInfo);
         let tbid = tabInfo._id.toString()
         logger.info("winnerSorat tbid ::", tbid);
@@ -333,11 +332,9 @@ module.exports.winnerSpinner = async (tabInfo) => {
         const tb = await RouletteTables.findOne({
             _id: MongoID(tbid.toString()),
         }, {})
-        // console.log("winnerSpinner tb ", tb)
+        console.log("winnerSpinner tb ", tb)
 
-        // console.log("winnerSpinner tb.itemObject ", tb.itemObject)
-
-        console.log("the table win number is - "+tb.itemObject)
+        console.log("winnerSpinner tb.itemObject ", tb.itemObject)
 
 
         if (typeof tb.itemObject == "undefined" || (typeof tb != "undefined" && tb.playerInfo.length == 0)) {
@@ -390,7 +387,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
 
-                        // console.log("betObjectData[i] ", betObjectData[i])
+                        console.log("betObjectData[i] ", betObjectData[i])
 
                         if (betObjectData[i].type == "number" && betObjectData[i].number.indexOf(itemIndex) != -1) {
                             winnerData.push({
@@ -569,8 +566,6 @@ module.exports.winnerSpinner = async (tabInfo) => {
                         }
 
 
-                    }else{
-                        // console.log("betObjectData[i] ", betObjectData[i]);
                     }
 
 
@@ -635,7 +630,6 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
                 // };
                 //console.log("RouletteUserHistory ", insertobj)
-
                 await RouletteUserHistory.updateOne({ userId: tbInfo.playerInfo[x]._id.toString(), uuid: tbInfo.playerInfo[x].uuid }, {
                     $set: {
                     userId: tbInfo.playerInfo[x]._id.toString(),
@@ -646,55 +640,9 @@ module.exports.winnerSpinner = async (tabInfo) => {
                     won: TotalWinAmount,
                     afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
                     uuid: tbInfo.playerInfo[x].uuid,
-                    whichTable:tbInfo.whichTable,
                     betObjectData: betObjectData,
                     createdAt:new Date()
                 }}, {upsert:true});
-
-               
-                console.log("update uuid ", tbInfo.playerInfo[x].uuid);
-                // console.log("Updated his ",{
-                //     userId: tbInfo.playerInfo[x]._id.toString(),
-                //     username: tbInfo.playerInfo[x].name,
-                //     ballposition: itemIndex,
-                //     beforeplaypoint: userData.chips+tbInfo.playerInfo[x].totalbet,//tbInfo.playerInfo[x].coins + tbInfo.playerInfo[x].totalbet,
-                //     play: tbInfo.playerInfo[x].totalbet,
-                //     won: TotalWinAmount,
-                //     afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,//tbInfo.playerInfo[x].coins + TotalWinAmount,
-                //     uuid: tbInfo.playerInfo[x].uuid,
-                //     betObjectData: betObjectData,
-                //     createdAt:new Date()
-                // });
-                // Fetch the last inserted record for the given userId
-
-
-                //this is an temp soln
-                // const lastUserHistory = await RouletteUserHistory.findOne(
-                //     { userId: tbInfo.playerInfo[x]._id.toString() }, 
-                //     {}, 
-                //     { sort: { createdAt: -1 } } // Get the latest record
-                // );
-
-                // Check if a record exists
-                // if (lastUserHistory) {
-                //     if(lastUserHistory.ballposition==-1){
-                //         await RouletteUserHistory.updateOne(
-                //             { _id: lastUserHistory._id },  // Updating only the latest document
-                //             { $set: { ballposition: itemIndex,
-                //                 afterplaypoint: totalRemaningAmount == 0 ? userData.chips : totalRemaningAmount,
-                //                 won: TotalWinAmount,
-                //              } }  // Only updating ballposition
-                //         );
-                //         console.log("Updated ballposition for UUID:", tbInfo.playerInfo[x].uuid);
-                //     }else{
-                //         console.log("No Bet Placed")
-                //     }
-                    
-                    
-                // } else {
-                //     console.log("No previous user history found for userId:", tbInfo.playerInfo[x]._id.toString());
-                // }
-
             }
         }
 
@@ -893,6 +841,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
     }
 
 }
+
 
 module.exports.generateRandomNumber = (length) => {
     let randomNumber = '';
