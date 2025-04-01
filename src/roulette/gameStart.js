@@ -64,11 +64,11 @@ module.exports.gameTimerStart = async (tb) => {
             roundTime = CONST.GREENTABLETIMER;
             
         
-        console.log(tabInfo.history);
+        // console.log(tabInfo.history);
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history, gameId:tabInfo.gameId });
 
 
-        console.log("timmer debugging :- ",roundTime);
+        // console.log("timmer debugging :- ",roundTime);
          // Add timer countdown in console
          let remainingTime = roundTime;
          const countdownInterval = setInterval(() => {
@@ -79,11 +79,11 @@ module.exports.gameTimerStart = async (tb) => {
                 gameId:tabInfo.gameId
              }};
              commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", datas);
-             console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas.table.gameId}`);
+            //  console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas.table.gameId}`);
              
              if (remainingTime <= 0) {
                  clearInterval(countdownInterval);
-                 console.log("Countdown complete! Starting spinner game...");
+                //  console.log("Countdown complete! Starting spinner game...");
              }
          }, 1000);
 
@@ -341,7 +341,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
         const tb = await RouletteTables.findOne({
             _id: MongoID(tbid.toString()),
         }, {})
-        console.log("winnerSpinner tb ", tb)
+        // console.log("winnerSpinner tb ", tb)
 
         console.log("winnerSpinner tb.itemObject ", tb.itemObject)
 
@@ -391,7 +391,6 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 let betObjectData = tbInfo.playerInfo[x].betObject;
                 var TotalWinAmount = 0
 
-                
                 
                 for (let i = 0; i < betObjectData.length; i++) {
                     if (betObjectData[i].bet != undefined) {
@@ -575,6 +574,8 @@ module.exports.winnerSpinner = async (tabInfo) => {
                         }
 
 
+                    }else{
+                        console.log("Not having the betObject");
                     }
 
 
@@ -654,7 +655,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
                 }}, {upsert:true});
             }
         }
-
+        console.log("updated uuid ",tbInfo.playerInfo[x].uuid);
         console.log("itemIndex ", itemIndex)
         // for (let i = 0; i < tbInfo.playerInfo.length; i++) {
         //     if(tbInfo.playerInfo[i].seatIndex != undefined){
