@@ -14,7 +14,7 @@ const gameReJoinRoulette = async (payload) => {
         let wh = {
             _id: MongoID(payload.tableId)
         }
-        const tabInfo = await Table.findOne(wh);
+        const tabInfo = await RouletteTables.findOne(wh);
 
         console.log(tabInfo);
 
