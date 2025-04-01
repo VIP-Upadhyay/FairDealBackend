@@ -9,8 +9,10 @@ const gameReJoinRoulette = async (payload) => {
     try {
         console.log("data reconnect... ", payload);
 
-
-        const tabInfo = await findDisconnectTable(payload.playerId, RouletteTables);
+        let wh = {
+            _id: MongoID(tb._id)
+        }
+        const tabInfo = await Table.findOne(wh);
 
         console.log(tabInfo);
 
