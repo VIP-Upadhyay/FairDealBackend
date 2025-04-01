@@ -68,7 +68,10 @@ module.exports.gameTimerStart = async (tb) => {
          let remainingTime = roundTime;
          const countdownInterval = setInterval(() => {
              remainingTime--;
-             commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", { timer: remainingTime});
+             commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", { timer: remainingTime,table:{
+                tableId:tabInfo._id.toString(),
+                whichTable:tabInfo.whichTable
+             }});
              console.log(`Countdown: ${remainingTime} seconds remaining`);
              
              if (remainingTime <= 0) {
