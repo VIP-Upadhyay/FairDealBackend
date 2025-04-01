@@ -48,6 +48,7 @@ module.exports.gameTimerStart = async (tb) => {
                 "playerInfo.0.totalbet": 0,
                 "isFinalWinner": false,
                 uuid: uuidv4(),
+                gameId:uuidv4()
             }
         }
         logger.info("gameTimerStart UserInfo : ", wh, update);
@@ -68,11 +69,13 @@ module.exports.gameTimerStart = async (tb) => {
          let remainingTime = roundTime;
          const countdownInterval = setInterval(() => {
              remainingTime--;
-             commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", { timer: remainingTime,table:{
+             var datas = { timer: remainingTime,table:{
                 tableId:tabInfo._id.toString(),
-                whichTable:tabInfo.whichTable
-             }});
-             console.log(`Countdown: ${remainingTime} seconds remaining`);
+                whichTable:tabInfo.whichTable,
+                gameId:tabInfo.gameId
+             }};
+             commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", datas);
+             console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas}`);
              
              if (remainingTime <= 0) {
                  clearInterval(countdownInterval);

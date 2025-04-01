@@ -22,7 +22,8 @@ const PlayingTablesSchema = new Schema({
     TableObject:[],
     uuid:{ type: String, default: "" },
     whichTable:{ type: String, default: "" },
-    itemObject:{ type: Number, default: -1 }
+    itemObject:{ type: Number, default: -1 },
+    gameId:{ type: String, default: "" }
 
 }, { versionKey: false });
 
