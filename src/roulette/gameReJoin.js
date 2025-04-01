@@ -12,6 +12,8 @@ const gameReJoinRoulette = async (payload) => {
 
         const tabInfo = await findDisconnectTable(payload.playerId, RouletteTables);
 
+        console.log(tabInfo);
+
         let roundTime = CONST.BLUETABLETIMER;
 
         if (tabInfo.whichTable == "blueTable")
@@ -19,6 +21,8 @@ const gameReJoinRoulette = async (payload) => {
         else
             roundTime = CONST.GREENTABLETIMER;
 
+
+        console.log("here is the data sending ",{ timer: roundTime, history: tabInfo.history, gameId: tabInfo.gameId })
 
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history, gameId: tabInfo.gameId });
 

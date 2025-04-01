@@ -64,6 +64,7 @@ module.exports.gameTimerStart = async (tb) => {
             roundTime = CONST.GREENTABLETIMER;
             
         
+        console.log(tabInfo.history);
         commandAcions.sendEventInTable(tabInfo._id.toString(), CONST.ROULETTE_GAME_START_TIMER, { timer: roundTime, history: tabInfo.history, gameId:tabInfo.gameId });
 
 
