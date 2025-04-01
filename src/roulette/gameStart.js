@@ -79,11 +79,11 @@ module.exports.gameTimerStart = async (tb) => {
                 gameId:tabInfo.gameId
              }};
              commandAcions.sendEventInTable(tabInfo._id.toString(),"COUNTDOWN", datas);
-            //  console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas.table.gameId}`);
+             console.log(`Countdown: ${remainingTime} seconds remaining and sending data ${datas.table.gameId}`);
              
              if (remainingTime <= 0) {
                  clearInterval(countdownInterval);
-                //  console.log("Countdown complete! Starting spinner game...");
+                 console.log("Countdown complete! Starting spinner game...");
              }
          }, 1000);
 
