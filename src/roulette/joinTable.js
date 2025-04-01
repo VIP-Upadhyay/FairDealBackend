@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const MongoID = mongoose.Types.ObjectId;
 const GameUser = mongoose.model('users');
 const RouletteTables = mongoose.model('RouletteTables');
-const RouletteUserHistory = mongoose.model('RouletteUserHistory');
 const { sendEvent, sendDirectEvent, AddTime, setDelay, clearJob } = require('../helper/socketFunctions');
 
 const _ = require("underscore")
@@ -14,12 +13,8 @@ const botLogic = require("./botLogic");
 const leaveTableActions = require('./leaveTable');
 const { v4: uuidv4 } = require('uuid');
 
-let thisUserAlreadyInTable = false;
-let AlreadyUser = null;
 module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
     try {
-        
-        // console.log("Table Join ", requestData);
         if (typeof client.uid == "undefined") {
             sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Please restart game!!");
             return false;
@@ -50,15 +45,7 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
         if (tableInfo != null) {
             // sendEvent(client, CONST.ROULETTE_GAME_JOIN_TABLE, requestData, false, "Already In playing table!!");
             // delete client.JT
-            // console.log(" is tab ",tableInfo)
-            if (checkUserIsExsist(requestData,tableInfo)) {
-                thisUserAlreadyInTable = true;
-                console.log("User already exists........................");
-            } else {
-                thisUserAlreadyInTable = false;
-                console.log("New user found.............................");
-            }
-            
+
             await leaveTableActions.leaveTable(
                 {
                     reason: 'autoLeave',
@@ -70,12 +57,10 @@ module.exports.ROULETTE_GAME_JOIN_TABLE = async (requestData, client) => {
                     sck: tableInfo.playerInfo[0].sck,
                 }
             );
-            console.log("Table found...")
             await this.findTable(client, requestData)
 
             return false;
         } else {
-            console.log("No table found...")
             await this.findTable(client, requestData)
         }
     } catch (error) {
@@ -88,7 +73,7 @@ module.exports.findTable = async (client, requestData) => {
 
     let tableInfo = await this.getBetTable(requestData);
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
-    // console.log("tableInfo ", tableInfo)
+    console.log("tableInfo ", tableInfo)
     await this.findEmptySeatAndUserSeat(tableInfo, client, requestData);
 }
 
@@ -109,7 +94,6 @@ module.exports.getBetTable = async (requestData) => {
 }
 
 module.exports.createTable = async (requestData) => {
-    console.log("Creating new table.....");
     try {
         let insertobj = {
             gameId: "",
@@ -137,7 +121,7 @@ module.exports.createTable = async (requestData) => {
             ],
             whichTable: requestData.whichTable != undefined ? requestData.whichTable : "blueTable"
         };
-        // console.log("requestData ", requestData)
+        console.log("requestData ", requestData)
         logger.info("createTable insertobj : ", insertobj);
 
         let insertInfo = await RouletteTables.create(insertobj);
@@ -153,20 +137,8 @@ module.exports.createTable = async (requestData) => {
 
 module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => {
     try {
-        // console.log(requestData.playerId);
-        // let whfind = {
-        //     "playerInfo.playerId": MongoID(requestData.playerId)
-        // }
-        
-        // let tbinfo = await RouletteTables.findOne(whfind);
-        
-       
-
-        
-
         logger.info("findEmptySeatAndUserSeat table :=> ", table + " client :=> ", client);
         let seatIndex = this.findEmptySeat(table.playerInfo); //finding empty seat
-        // console.log("Finding empty seat for the user... ", seatIndex);
         logger.info("findEmptySeatAndUserSeat seatIndex ::", seatIndex);
 
         if (seatIndex == "-1") {
@@ -177,11 +149,9 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         let user_wh = {
             _id: client.uid
         }
-        // console.log("user_wh ", user_wh)
+        console.log("user_wh ", user_wh)
         let userInfo = await GameUser.findOne(user_wh, {}).lean();
         logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
-
-        
 
         // let wh = {
         //     _id : table._id.toString()
@@ -189,30 +159,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // let tbInfo = await RouletteTables.findOne(wh,{}).lean();
         // logger.info("findEmptySeatAndUserSeat tbInfo : ", tbInfo)
         let totalWallet = Number(userInfo.chips) //+ Number(userInfo.winningChips)
-        // let uuid;
-        // let betObjectData;
-        let lastuser;
-        let isAbleToUpdate=false;
-        console.log("is this user already in table ",thisUserAlreadyInTable)
-        if(thisUserAlreadyInTable){
-            const lastUserHistory = await RouletteUserHistory.findOne(
-                    { userId: requestData.playerId }, 
-                    {}, 
-                    { sort: { createdAt: -1 } } // Get the latest record
-            );
-            if(lastUserHistory){
-                if(lastUserHistory.ballposition==-1){
-                    lastuser = lastUserHistory;
-                    // uuid = lastUserHistory.uuid;
-                    // betObjectData = lastUserHistory.betObjectData;
-                    isAbleToUpdate=true;
-                    AlreadyUser.seatIndex= seatIndex;
-                    console.log("Already User Seat index ........................"+AlreadyUser.seatIndex);
-                    // console.log("Able to update uuid ",lastUserHistory.betObjectData);
-                }
-            }
-        }
-        let playerDetails = isAbleToUpdate? AlreadyUser : {
+        let playerDetails = {
             seatIndex: seatIndex,
             _id: userInfo._id,
             playerId: userInfo._id,
@@ -222,7 +169,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             coins: totalWallet,
             status: "",
             playerStatus: "",
-            selectObj:[
+            selectObj: [
                 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0,
@@ -235,7 +182,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
                 0, 0, 0, 0,
                 0, 0
             ],
-            betObject:[],
+            betObject: [],
             pastbetObject: [],
             pasttotalwin: 0,
             totalbet: 0,
@@ -263,7 +210,6 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-        // console.log("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
 
         let whereCond = {
             _id: MongoID(table._id.toString()),
@@ -285,9 +231,9 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 
         let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
         logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
-        // console.log("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
+
         let playerInfo = tableInfo.playerInfo[seatIndex];
-        
+
         if (!(playerInfo._id.toString() == userInfo._id.toString())) {
             await this.findTable(client);
             return false;
@@ -323,7 +269,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
             tableType: tableInfo.whichTable,
             history: tableInfo.history
         });
-        // console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
+        console.log("tableType: tableInfo.whichTable ", tableInfo.whichTable)
         if (userInfo.Iscom == undefined || userInfo.Iscom == 0)
             client.join(tableInfo._id.toString());
 
@@ -365,18 +311,4 @@ module.exports.findEmptySeat = (playerInfo) => {
         }
     }
     return '-1';
-}
-
-const checkUserIsExsist=(reqData,tableInf)=>{
-    if(tableInf.playerInfo.length>0){
-        for(var i=0;i<tableInf.playerInfo.length;i++){
-            console.log("playerId from req ",reqData.playerId);
-            console.log("playerId from table ",tableInf.playerInfo[i]._id);
-            if(tableInf.playerInfo[i]._id==reqData.playerId){
-                AlreadyUser = tableInf.playerInfo[i];
-                return true;
-            }
-        }
-        return false;
-    }
 }
