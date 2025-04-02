@@ -211,7 +211,9 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         // ]
 
         logger.info("findEmptySeatAndUserSeat playerDetails : ", playerDetails);
-
+        console.log("checking table_Id ",table._id.toString() );
+        console.log("checking playerInfo._id",userInfo._id);
+        console.log("checking seatindex",seatIndex);
         let whereCond = {
             _id: MongoID(table._id.toString()),
             "playerInfo._id": { $ne: MongoID(userInfo._id) }
