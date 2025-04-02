@@ -236,6 +236,8 @@ module.exports.actionSpin = async (requestData, client, callback) => {
     }
 }
 const findSeatNo = (playerInfo,playerId)=>{
+    console.log(playerId);
+    console.log(playerInfo);
     for(var i=0;i<playerInfo.lenght;i++){
         if(playerInfo[i].playerId == playerId){
             return i;
