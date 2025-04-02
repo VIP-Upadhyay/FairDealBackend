@@ -70,6 +70,10 @@ const gameReJoinRouletteUserChecks = async (payload,client) => {
 
         
     } catch (error) {
+        console.log("catch error");
+        commandAcions.sendEvent(client, CONST.ROULETTE_GAME_PLAYGAME, {
+            error:1,
+        });
         console.log("error gameReJoinRoulette", error);
         // logger.error('socketServer.js SEND_MESSAGE_TO_TABLE => ', error);
     }
@@ -79,10 +83,8 @@ const isUsersBets = (playerInfo,playerId)=>{
     for(var i=0;i<playerInfo.length;i++){
         // console.log(playerInfo[i]);
         if(playerInfo[i].playerId == playerId){
-            console.log(playerId[i]);
-            if(playerId[i].betObject.length>0){
-                return true;
-            }
+            console.log(playerInfo[i]);
+            
             
         }
     }
