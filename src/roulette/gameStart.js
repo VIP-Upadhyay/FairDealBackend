@@ -21,6 +21,7 @@ const { v4: uuidv4 } = require('uuid');
 module.exports.gameTimerStart = async (tb) => {
     try {
         logger.info("gameTimerStart tb : ", tb);
+        console.log("game state at start ",tb.gameState);
         if (tb.gameState != "" && tb.gameState != "WinnerDecalre") return false;
 
         let wh = {
