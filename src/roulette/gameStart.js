@@ -379,8 +379,10 @@ module.exports.winnerSpinner = async (tabInfo) => {
 
         logger.info("itemIndex", itemIndex);
 
+        console.log("No of users in table :- ",tbInfo.playerInfo.length);
 
         for (let x = 0; x < tbInfo.playerInfo.length; x++) {
+            console.log("Player Id :-"+ tbInfo.playerInfo[x]._id +" with seat index :- "+tbInfo.playerInfo[x].seatIndex)
             logger.info("tbInfo.playerInfo[x].seatIndex", tbInfo.playerInfo[x].seatIndex);
 
             logger.info("tbInfo.playerInfo[x].betObject", tbInfo.playerInfo[x].betObject);
