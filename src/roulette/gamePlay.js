@@ -172,7 +172,7 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
         this.AdminWinLossData(chalvalue, "win")
 
-
+        console.log("checkout the client data ...........",client);
         let insertobj = {
             userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
             username: tb.playerInfo[Number(client.seatIndex)].name,
