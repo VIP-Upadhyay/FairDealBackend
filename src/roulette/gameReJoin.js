@@ -84,7 +84,9 @@ const isUsersBets = (playerInfo,playerId)=>{
         // console.log(playerInfo[i]);
         if(playerInfo[i].playerId == playerId){
             console.log(playerInfo[i]);
-            
+            if(playerInfo[i].betObject.length>0){
+                return true;
+            }
             
         }
     }
