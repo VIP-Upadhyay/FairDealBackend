@@ -43,6 +43,7 @@ const adminwinloss = mongoose.model('adminwinloss');
 module.exports.actionSpin = async (requestData, client, callback) => {
     try {
         logger.info("action requestData : ", requestData);
+        console.log("request data.....................",requestData);
         if (typeof client.tbid == "undefined"
             || typeof client.uid == "undefined" || typeof client.seatIndex == "undefined"
             || typeof requestData.tableId == "undefined"
