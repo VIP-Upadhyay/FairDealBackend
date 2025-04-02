@@ -63,7 +63,7 @@ const gameReJoinRouletteUserChecks = async (payload,client) => {
         }else{
             commandAcions.sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
                 isAbleToJoin:true,
-                whichTable:tableInfo.whichTable
+                whichTable:payload.whichTable
             });
         }
         
