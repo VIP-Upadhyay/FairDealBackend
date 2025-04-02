@@ -173,22 +173,39 @@ module.exports.actionSpin = async (requestData, client, callback) => {
 
         this.AdminWinLossData(chalvalue, "win")
 
-        console.log("checkout the client data ...........",client);
+        // console.log("checkout the client data ...........",client);
+        var seatNo = findSeatNo(tb.playerInfo,requestData.playerId);
+        console.log("inseting seat no ", seatNo);
         let insertobj = {
-            userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
-            username: tb.playerInfo[Number(client.seatIndex)].name,
+            userId: tb.playerInfo[seatNo]._id.toString(),
+            username: tb.playerInfo[seatNo].name,
             ballposition: -1,
             beforeplaypoint: totalWallet,//tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
-            play: tb.playerInfo[Number(client.seatIndex)].totalbet,
+            play: tb.playerInfo[seatNo].totalbet,
             won: 0,
             afterplaypoint: totalRemaningAmount,//tb.playerInfo[Number(client.seatIndex)].coins,
-            uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
+            uuid: tb.playerInfo[seatNo].uuid,
             whichtable:tb.whichTable,
             betObjectData: requestData.betData,
             createdAt:new Date()
         };
         // console.log("RouletteUserHistory ", insertobj)
-        console.log("inserted uuid ", tb.playerInfo[Number(client.seatIndex)].uuid);
+        console.log("inserted uuid ", tb.playerInfo[seatNo].uuid);
+        // let insertobj = {
+        //     userId: tb.playerInfo[Number(client.seatIndex)]._id.toString(),
+        //     username: tb.playerInfo[Number(client.seatIndex)].name,
+        //     ballposition: -1,
+        //     beforeplaypoint: totalWallet,//tb.playerInfo[Number(client.seatIndex)].coins + chalvalue,
+        //     play: tb.playerInfo[Number(client.seatIndex)].totalbet,
+        //     won: 0,
+        //     afterplaypoint: totalRemaningAmount,//tb.playerInfo[Number(client.seatIndex)].coins,
+        //     uuid: tb.playerInfo[Number(client.seatIndex)].uuid,
+        //     whichtable:tb.whichTable,
+        //     betObjectData: requestData.betData,
+        //     createdAt:new Date()
+        // };
+        // // console.log("RouletteUserHistory ", insertobj)
+        // console.log("inserted uuid ", tb.playerInfo[Number(client.seatIndex)].uuid);
         await RouletteUserHistory.create(insertobj);
 
 
@@ -218,8 +235,13 @@ module.exports.actionSpin = async (requestData, client, callback) => {
         logger.info("Exception action : ", e);
     }
 }
-
-
+const findSeatNo = (playerInfo,playerId)=>{
+    for(var i=0;i<playerInfo.lenght;i++){
+        if(playerInfo[i].playerId == playerId){
+            return i;
+        }
+    }
+}
 // /*
 //     bet : 10,
 //     object:{
