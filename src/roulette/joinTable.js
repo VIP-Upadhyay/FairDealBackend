@@ -216,21 +216,23 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         console.log("checking seatindex",seatIndex);
         let whereCond = {
             _id: MongoID(table._id.toString()),
-            "playerInfo._id": { $ne: MongoID(userInfo._id) } // Ensure the player is not already in the table
+            "playerInfo._id": { $ne: MongoID(userInfo._id) }
         };
-        whereCond[`playerInfo.${seatIndex}`] = {}; // Ensure seat 0 is empty
-        
+        whereCond['playerInfo.' + seatIndex + '.seatIndex'] = { $exists: false };
+
         let setPlayerInfo = {
-            $set: {},
-            $inc: { activePlayer: 1 }
+            $set: {
+                //gameState: ""
+            },
+            $inc: {
+                activePlayer: 1
+            }
         };
-        setPlayerInfo["$set"][`playerInfo.${seatIndex}`] = playerDetails;
-        
-        let tableInfo = await RouletteTables.findOneAndUpdate(
-            whereCond,
-            setPlayerInfo,
-            { new: true }
-        );
+        setPlayerInfo["$set"]["playerInfo." + seatIndex] = playerDetails;
+
+        logger.info("findEmptySeatAndUserSeat whereCond : ", whereCond, setPlayerInfo);
+
+        let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
         logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
         console.log("After Update table ", tableInfo);
 
