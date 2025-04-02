@@ -73,7 +73,7 @@ module.exports.findTable = async (client, requestData) => {
 
     let tableInfo = await this.getBetTable(requestData);
     logger.info("findTable tableInfo : ", JSON.stringify(tableInfo));
-    console.log("tableInfo ", tableInfo)
+    // console.log("tableInfo ", tableInfo)
     await this.findEmptySeatAndUserSeat(tableInfo, client, requestData);
 }
 
@@ -150,7 +150,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
         let user_wh = {
             _id: client.uid
         }
-        console.log("user_wh ", user_wh)
+        // console.log("user_wh ", user_wh)
         let userInfo = await GameUser.findOne(user_wh, {}).lean();
         logger.info("findEmptySeatAndUserSeat userInfo : ", userInfo)
 
@@ -232,6 +232,7 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 
         let tableInfo = await RouletteTables.findOneAndUpdate(whereCond, setPlayerInfo, { new: true });
         logger.info("\nfindEmptySeatAndUserSeat tbInfo : ", tableInfo);
+        console.log("After Update table ", tableInfo);
 
         let playerInfo = tableInfo.playerInfo[seatIndex];
 
@@ -306,6 +307,8 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 }
 
 module.exports.findEmptySeat = (playerInfo) => {
+    console.log("Player available ",playerInfo.length);
+
     let occupiedSeats = new Set();
     
     // Collect all occupied seat indices
@@ -318,6 +321,7 @@ module.exports.findEmptySeat = (playerInfo) => {
     // Find the first available seat index dynamically
     for (let i = 0; i < playerInfo.length; i++) {
         if (!occupiedSeats.has(i)) {
+            console.log("return seat index ",i);
             return i;
         }
     }
