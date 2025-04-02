@@ -293,7 +293,7 @@ module.exports.StartSpinnerGame = async (tbId) => {
             //         itemObject:""
             //     }
             // }, { new: true });
-
+            console.log("winner Spinner...........");
             this.winnerSpinner(tabInfo);
         }, 10000);
 
@@ -383,7 +383,7 @@ module.exports.winnerSpinner = async (tabInfo) => {
         console.log("No of users in table :- ",tbInfo.playerInfo.length);
 
         for (let x = 0; x < tbInfo.playerInfo.length; x++) {
-            console.log("Player Id :-"+ tbInfo.playerInfo[x]._id +" with seat index :- "+tbInfo.playerInfo[x].seatIndex)
+            // console.log("Player Id :-"+ tbInfo.playerInfo[x]._id +" with seat index :- "+tbInfo.playerInfo[x].seatIndex)
             logger.info("tbInfo.playerInfo[x].seatIndex", tbInfo.playerInfo[x].seatIndex);
 
             logger.info("tbInfo.playerInfo[x].betObject", tbInfo.playerInfo[x].betObject);
