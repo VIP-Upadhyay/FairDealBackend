@@ -31,7 +31,7 @@ const { userReconnectRoulette } = require('../roulette/reConnectFunction');
 const { userReconnectSpinner } = require('../SpinerGame/reconnect');
 
 const { getBannerList } = require('./adminController');
-const { gameReJoinRoulette } = require('../roulette/gameReJoin');
+const { gameReJoinRoulette, gameReJoinRouletteUserChecks } = require('../roulette/gameReJoin');
 
 logger.info("gamePlayActionsRoulette ", gamePlayActionsRoulette)
 
@@ -287,6 +287,12 @@ myIo.init = function (server) {
                         socket.sck = socket.id;
                         logger.info("Table Name =======> ", payload.data.whichTable);
                         await gamePlayActionsRoulette.ROULETTE_GAME_JOIN_TABLE(payload.data, socket);
+                        break;
+                    }
+
+                    case CONST.ROULLETEJOIN: {
+                        console.log("IS ABLE TO JOIN");
+                        await gameReJoinRouletteUserChecks(payload.data, socket);
                         break;
                     }
 

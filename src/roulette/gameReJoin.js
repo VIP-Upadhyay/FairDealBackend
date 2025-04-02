@@ -38,4 +38,53 @@ const gameReJoinRoulette = async (payload) => {
     }
 };
 
-module.exports = { gameReJoinRoulette };
+const gameReJoinRouletteUserChecks = async (payload,client) => {
+    try {
+        console.log("data reconnect... ", payload);
+
+
+        let gwh1 = {
+                    "playerInfo._id": MongoID(payload.playerId)
+                }
+        let tableInfo = await RouletteTables.findOne(gwh1, { "playerInfo.$": 1 }).lean();
+                
+        if (tableInfo) {
+            if(isUsersBets(tableInfo.playerInfo,payload.playerId)){
+                commandAcions.sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
+                    isAbleToJoin:0,
+                    whichTable:tableInfo.whichTable
+                });
+            }else{
+                commandAcions.sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
+                    isAbleToJoin:1,
+                    whichTable:tableInfo.whichTable
+                });
+            }
+        }else{
+            commandAcions.sendEvent(client, CONST.ROULETTE_GAME_TABLE_INFO, {
+                isAbleToJoin:true,
+                whichTable:tableInfo.whichTable
+            });
+        }
+        
+
+        
+    } catch (error) {
+        console.log("error gameReJoinRoulette", error);
+        // logger.error('socketServer.js SEND_MESSAGE_TO_TABLE => ', error);
+    }
+};
+const isUsersBets = (playerInfo,playerId)=>{
+    console.log("length ",playerInfo.length);
+    for(var i=0;i<playerInfo.length;i++){
+        // console.log(playerInfo[i]);
+        if(playerInfo[i].playerId == playerId){
+            if(playerId[i].betObject.length>0){
+                return true;
+            }
+            
+        }
+    }
+    return false;
+}
+module.exports = { gameReJoinRoulette,gameReJoinRouletteUserChecks };
