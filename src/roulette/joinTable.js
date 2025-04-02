@@ -306,11 +306,21 @@ module.exports.findEmptySeatAndUserSeat = async (table, client, requestData) => 
 }
 
 module.exports.findEmptySeat = (playerInfo) => {
-    for (x in playerInfo) {
-        if (typeof playerInfo[x] == 'object' && playerInfo[x] != null && typeof playerInfo[x].seatIndex == 'undefined') {
-            return parseInt(x);
-            break;
+    let occupiedSeats = new Set();
+    
+    // Collect all occupied seat indices
+    playerInfo.forEach(player => {
+        if (player && typeof player.seatIndex !== 'undefined') {
+            occupiedSeats.add(player.seatIndex);
+        }
+    });
+    
+    // Find the first available seat index dynamically
+    for (let i = 0; i < playerInfo.length; i++) {
+        if (!occupiedSeats.has(i)) {
+            return i;
         }
     }
-    return '-1';
-}
+    
+    return '-1'; // No empty seats available
+};
